@@ -102,3 +102,12 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# Ignore venv folder
+venv
+
+# Ignore pycache folder
+__pycache__
+
+# Ignore .idea folder
+.idea
