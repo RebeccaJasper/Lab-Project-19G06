@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from flaskext.mysql import MySQL
-app = Flask(__name__)
+from rest_api import app
 
 
 app.config['MYSQL_HOST'] = 'identikit-sql.database.windows.net'
