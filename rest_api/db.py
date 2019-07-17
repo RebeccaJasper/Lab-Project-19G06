@@ -1,12 +1,17 @@
-from flask import Flask, render_template, request
-from flaskext.mysql import MySQL
-from rest_api import app
+import os
+from os.path import join, dirname
+from dotenv import load_dotenv
+import pymssql
 
+dotenv_path = join(os.path.abspath(os.path.join(dirname(__file__), os.pardir)), '.env')
+load_dotenv(dotenv_path)
 
-app.config['MYSQL_HOST'] = 'identikit-sql.database.windows.net'
-app.config['MYSQL_USER'] = 'identikit-db'
-app.config['MYSQL_PASSWORD'] = 'MabulaJasper2019'
-app.config['MYSQL_DATABASE_PORT'] = 1433
-app.config['MYSQL_DB'] = 'identikit-sql'
+SERVER_NAME = os.getenv('SERVER_NAME')
+USER_NAME = os.getenv('USER_NAME')
+PASSWORD = os.getenv('PASSWORD')
+DATABASE = os.getenv('DATABASE')
 
-mysql = MySQL(app)
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+
+pymssql.connect(server=SERVER_NAME, user=USER_NAME, password=PASSWORD, database=DATABASE)
