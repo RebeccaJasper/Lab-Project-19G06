@@ -1,0 +1,1 @@
+This is the package that contains the API logic for the mobile application
