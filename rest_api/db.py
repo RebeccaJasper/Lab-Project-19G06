@@ -14,4 +14,17 @@ DATABASE = os.getenv('DATABASE')
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
-pymssql.connect(server=SERVER_NAME, user=USER_NAME, password=PASSWORD, database=DATABASE)
+conn = pymssql.connect(server=SERVER_NAME, user=USER_NAME, password=PASSWORD, database=DATABASE)
+
+cursor = conn.cursor()
+# cursor.execute("""IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='identikits' and xtype='U')
+#         CREATE TABLE identikits (
+#           id varchar(255) PRIMARY KEY,
+#           video_number integer,
+#           identikit varbinary(max),
+#
+
+cursor.execute("""INSERT INTO identikits (id, video_number, identikit)
+                VALUES(9, 1, 2)""")
+conn.commit()
+conn.close()
