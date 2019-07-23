@@ -14,6 +14,7 @@ def index():
 
 
 pygame.init()
+pygame.display.set_caption('Identi-Kreate')
 mouse = pygame.mouse
 fpsClock = pygame.time.Clock()
 width = 1200
