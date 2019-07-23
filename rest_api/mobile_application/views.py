@@ -21,14 +21,15 @@ width = 1200
 height = 600
 
 window = pygame.display.set_mode((width, height))
-canvas = window.copy()
+#canvas = window.copy()
 
 #                     R    G    B
 BLACK = pygame.Color( 0 ,  0 ,  0 )
 WHITE = pygame.Color(255, 255, 255)
+BROWN = pygame.Color(161, 117, 73)
 
 
-canvas.fill(WHITE)
+#canvas.fill(WHITE)
 
 while True:
   left_pressed, middle_pressed, right_pressed = mouse.get_pressed()
@@ -36,9 +37,13 @@ while True:
     if event.type == QUIT:
       pygame.quit()
       sys.exit()
-    elif left_pressed:
-      pygame.draw.circle(canvas, BLACK, (pygame.mouse.get_pos()),5)
+    #elif left_pressed:
+    #  pygame.draw.circle(canvas, BLACK, (pygame.mouse.get_pos()),5)
   window.fill(WHITE)
-  window.blit(canvas, (0, 0))
+#   pygame.draw.polygon(window, BLACK, ((25,75),(76,125),(250,375),(400,25),(60,540)))
+  #pygame.draw.circle(window, BROWN, (600, 300),75)
+  rectangle = Rect(400, 100, 300, 400)
+  pygame.draw.ellipse(window, BROWN, rectangle)
+  #window.blit(canvas, (0, 0))
   #pygame.draw.circle(window, BLACK, (pygame.mouse.get_pos()), 5)
   pygame.display.update()
