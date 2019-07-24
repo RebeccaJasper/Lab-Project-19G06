@@ -1,3 +1,9 @@
+# Instructions to run in anaconda terminal:
+# activate activate opencv-env
+# navigate to folder with file in it
+# python controller.py
+# conda deactivate to close opencv env
+
 import cv2
 import numpy as np
 import dlib
