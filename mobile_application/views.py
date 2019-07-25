@@ -1,8 +1,7 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, render_template
 
 mobile_application = Blueprint('mobile_application', __name__)
 
-
 @mobile_application.route('/')
 def index():
-    return jsonify({"greeting": "Hello, World!"})
+    return render_template('index.html')

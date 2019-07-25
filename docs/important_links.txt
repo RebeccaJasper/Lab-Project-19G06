@@ -1,0 +1,12 @@
+
+Google Drive for project documentation:
+https://drive.google.com/drive/u/0/folders/1AZa_Hc7HDOfoLyRqgTOKy2QB4pBaDcQk
+
+Info on Flask folder structure:
+http://exploreflask.com/en/latest/organizing.html
+
+Facial photograph database: 
+https://www.kaggle.com/ciplab/real-and-fake-face-detection/
+
+GitHub project board:
+https://github.com/RebeccaJasper/Lab-Project-19G06/projects/1

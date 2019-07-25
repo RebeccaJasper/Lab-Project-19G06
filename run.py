@@ -1,4 +1,4 @@
-from rest_api import app
+from mobile_application import app
 
 if __name__ == "__main__":
     app.run()
