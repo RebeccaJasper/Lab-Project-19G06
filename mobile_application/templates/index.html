@@ -10,7 +10,8 @@
 
 <body>
 	<script src = '\static\js\three.js'></script>
-
+	<script src = '\static\js\OrbitControls.js'></script>
+	
 	<script>
 
 		var scene, camera, renderer
@@ -35,9 +36,14 @@
 			camera.aspect = width/height
 			camera.updateProjectionMatrix()
 		})
+		
+		controls = new THREE.OrbitControls(camera, renderer.domElement)
+		controls.enablePan = false
+		controls.minDistance = 90
+		controls.maxDistance = 300
 
 		var geometry = new THREE.SphereGeometry( 50, 32, 32 );
-		var material = new THREE.MeshBasicMaterial( {color:  0x996633, wireframe:false} );
+		var material = new THREE.MeshBasicMaterial( {color:  0x996633, wireframe:true} );
 		var sphere = new THREE.Mesh( geometry, material );
 		scene.add( sphere );
 
