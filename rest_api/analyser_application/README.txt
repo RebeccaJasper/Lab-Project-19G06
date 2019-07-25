@@ -1,1 +1,0 @@
-This is the package that contains the API logic for the desktop application for viewing analysing the cluster
