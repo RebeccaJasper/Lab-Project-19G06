@@ -3,6 +3,12 @@ import numpy as np
 import dlib
 from operator import itemgetter
 
+def change_coordinate_reference (ref, point):
+    x = point.x - ref.x
+    y = point.y - ref.y
+    new_point = dlib.point(x, y)
+    return new_point
+
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor("landmarks_data/shape_predictor_68_face_landmarks.dat")
 
@@ -22,12 +28,19 @@ for face in faces:
 
     # Extract only the chosen facial markers
     required_indexes = [0, 4, 6, 10, 12, 16, 31, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 51, 54, 57]
+    central_point_index = 51
+    transformed_points = []
 
+    # Place circles at desired facial markers
     for n in required_indexes:
+        new_point = change_coordinate_reference(landmarks.part(central_point_index), landmarks.part(n))
+        print(new_point)
+        transformed_points.append(new_point)
         x = landmarks.part(n).x
         y = landmarks.part(n).y
         cv2.circle(img, (x, y), 4, (255, 0, 0), -1)
 
+    print('Central point: x =' + transformed_points(21).x + " y = " + transformed_points(21).y)
 
 cv2.imshow('Output', img)
 
