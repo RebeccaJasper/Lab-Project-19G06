@@ -5,7 +5,7 @@ init()
 function init () {
   scene = new THREE.Scene()
   camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
-  camera.position.set(0, 0, 100)
+  camera.position.set(0, 0, 800)
   camera.lookAt(0, 0, 0)
 
   renderer = new THREE.WebGLRenderer()
@@ -16,7 +16,7 @@ function init () {
   controls = new THREE.OrbitControls(camera, renderer.domElement)
   controls.enablePan = false
   controls.minDistance = 90
-  controls.maxDistance = 300
+  controls.maxDistance = 800
 
   var ambientLight = new THREE.AmbientLight(0x404040) // soft white light
   scene.add(ambientLight)
@@ -42,14 +42,6 @@ var sphere = new THREE.Mesh(geometry, material)
 // scene.add(sphere)
 
 var curve = new THREE.SplineCurve([
-//   new THREE.Vector2(-163, -120), // 0
-//   new THREE.Vector2(-134, 38), // 4
-//   new THREE.Vector2(-81, 101), // 6
-//   new THREE.Vector2(0, 101), // 8
-//   new THREE.Vector2(94, 107), // 10
-//   new THREE.Vector2(159, 49), // 12
-//   new THREE.Vector2(190, -119) // 16
-
   new THREE.Vector2(-163, 120), // 0
   new THREE.Vector2(-134, -38), // 4
   new THREE.Vector2(-81, -101), // 6
@@ -59,9 +51,19 @@ var curve = new THREE.SplineCurve([
   new THREE.Vector2(190, 119) // 16
 ])
 
-var points = curve.getPoints(100)
-var geometry2 = new THREE.BufferGeometry().setFromPoints(points)
-var face = new THREE.Line(geometry2, material)
+var extrudeSettings = {
+  steps: 50,
+  depth: 100,
+  bevelEnabled: true,
+  bevelThickness: 100,
+  bevelSize: 50,
+  bevelOffset: -50,
+  bevelSegments: 100
+}
+
+var shape = new THREE.Shape(curve.getSpacedPoints(100))
+var geometry2 = new THREE.ExtrudeGeometry(shape, extrudeSettings)
+var face = new THREE.Mesh(geometry2, material)
 scene.add(face)
 
 var UserControls = function () {
