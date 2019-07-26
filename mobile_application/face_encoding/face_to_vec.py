@@ -28,7 +28,7 @@ def encode_face_image(img):
         # Place circles at desired facial markers
         for n in required_indexes:
             new_dlib_point = change_coordinate_reference(landmarks.part(central_point_index), landmarks.part(n))
-            print('(%d, %d)' % (new_dlib_point.x, new_dlib_point.y))
+            # print('(%d, %d)' % (new_dlib_point.x, new_dlib_point.y))
             new_point = unit_vector(new_dlib_point)
             transformed_points.append(new_point.x)
             transformed_points.append(new_point.y)
