@@ -10,6 +10,7 @@ function init () {
 
   renderer = new THREE.WebGLRenderer()
   renderer.setSize(window.innerWidth, window.innerHeight)
+  // renderer.setClearColor(0x333F47, 1)
   document.body.appendChild(renderer.domElement)
 
   controls = new THREE.OrbitControls(camera, renderer.domElement)
