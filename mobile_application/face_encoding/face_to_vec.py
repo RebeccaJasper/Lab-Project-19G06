@@ -34,12 +34,12 @@ def encode_face_image(img):
             transformed_points.append(new_point.y)
             x = landmarks.part(n).x
             y = landmarks.part(n).y
-            cv2.circle(img, (x, y), 4, (255, 0, 0), -1)
+            # cv2.circle(img, (x, y), 4, (255, 0, 0), -1)
 
-    cv2.imshow('Output', img)
+    # cv2.imshow('Output', img)
 
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    # cv2.waitKey(0)
+    # cv2.destroyAllWindows()
     return transformed_points
 
 
