@@ -41,14 +41,23 @@ var material = new THREE.MeshLambertMaterial({ color: skinColour })
 var sphere = new THREE.Mesh(geometry, material)
 // scene.add(sphere)
 
+// var foreheadPeak = new THREE.Vector2(0, 275)
+var zero = new THREE.Vector2(-163, 120) // 0
+var four = new THREE.Vector2(-134, -38) // 4
+var six = new THREE.Vector2(-81, -101) // 6
+var eight = new THREE.Vector2(0, -150) // 8
+var ten = new THREE.Vector2(94, -107) // 10
+var twelve = new THREE.Vector2(159, -49) // 12
+var sixteen = new THREE.Vector2(190, 119) // 16
+
 var curve = new THREE.SplineCurve([
-  new THREE.Vector2(-163, 120), // 0
-  new THREE.Vector2(-134, -38), // 4
-  new THREE.Vector2(-81, -101), // 6
-  new THREE.Vector2(0, -150), // 8
-  new THREE.Vector2(94, -107), // 10
-  new THREE.Vector2(159, -49), // 12
-  new THREE.Vector2(190, 119) // 16
+  // foreheadPeak,
+//   new THREE.Vector2(-50, 275),
+//   new THREE.Vector2(-100, 250),
+  zero, four, six, eight, ten, twelve, sixteen
+//   new THREE.Vector2(100, 250),
+//   new THREE.Vector2(50, 275),
+  // foreheadPeak
 ])
 
 var extrudeSettings = {
@@ -57,7 +66,7 @@ var extrudeSettings = {
   bevelEnabled: true,
   bevelThickness: 100,
   bevelSize: 50,
-  bevelOffset: -50,
+  bevelOffset: 50,
   bevelSegments: 100
 }
 
