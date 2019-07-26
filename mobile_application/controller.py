@@ -20,7 +20,7 @@ def unit_vector(dlib_point):
         new_point = Coordinate(x, y)
     else:
         new_point = (dlib_point.x, dlib_point.y)
-        
+
     return new_point
 
 def change_coordinate_reference (ref, point):
@@ -57,8 +57,8 @@ for face in faces:
     for n in required_indexes:
         new_dlib_point = change_coordinate_reference(landmarks.part(central_point_index), landmarks.part(n))
         new_point = unit_vector(new_dlib_point)
-        print(new_point)
-        transformed_points.append(new_point)
+        transformed_points.append(new_point.x)
+        transformed_points.append(new_point.y)
         x = landmarks.part(n).x
         y = landmarks.part(n).y
         cv2.circle(img, (x, y), 4, (255, 0, 0), -1)
