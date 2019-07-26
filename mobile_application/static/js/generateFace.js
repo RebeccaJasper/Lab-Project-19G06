@@ -39,11 +39,33 @@ var geometry = new THREE.SphereGeometry(50, 32, 32)
 var skinColour = 0x996633
 var material = new THREE.MeshLambertMaterial({ color: skinColour })
 var sphere = new THREE.Mesh(geometry, material)
-scene.add(sphere)
+// scene.add(sphere)
+
+var curve = new THREE.SplineCurve([
+//   new THREE.Vector2(-163, -120), // 0
+//   new THREE.Vector2(-134, 38), // 4
+//   new THREE.Vector2(-81, 101), // 6
+//   new THREE.Vector2(0, 101), // 8
+//   new THREE.Vector2(94, 107), // 10
+//   new THREE.Vector2(159, 49), // 12
+//   new THREE.Vector2(190, -119) // 16
+
+  new THREE.Vector2(-163, 120), // 0
+  new THREE.Vector2(-134, -38), // 4
+  new THREE.Vector2(-81, -101), // 6
+  new THREE.Vector2(0, -150), // 8
+  new THREE.Vector2(94, -107), // 10
+  new THREE.Vector2(159, -49), // 12
+  new THREE.Vector2(190, 119) // 16
+])
+
+var points = curve.getPoints(100)
+var geometry2 = new THREE.BufferGeometry().setFromPoints(points)
+var face = new THREE.Line(geometry2, material)
+scene.add(face)
 
 var UserControls = function () {
   this.skinColour = skinColour
-  // this.name = 'Name'
 }
 
 window.onload = function () {
