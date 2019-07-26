@@ -18,7 +18,7 @@
 
 		init()
 
-		var init = function(){
+		function init(){
 			scene = new THREE.Scene()
 			camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000)
 			camera.position.set( 0, 0, 100 );
@@ -44,17 +44,22 @@
 	
 
 		var geometry = new THREE.SphereGeometry( 50, 32, 32 )
-		var material = new THREE.MeshBasicMaterial( {color:  0x996633, wireframe:true} )
+		var material = new THREE.MeshLambertMaterial( {color:  0x996633} )
 		var sphere = new THREE.Mesh( geometry, material )
 		scene.add( sphere )
 
-		var ambientLight = new THREE.AmbientLight( 0x404040 ) // soft white light
+		var ambientLight = new THREE.AmbientLight( 0x404040) // soft white light
 		scene.add( ambientLight )
 
-		var directionalLight = new THREE.DirectionalLight( 0xffffff, 1 ) 
-		directionalLight.position.set( 500, 0, 500 )
+		var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 ) 
+		// 					left/right, up/down, front/back
+		directionalLight.position.set( 0, 0, 1 )
 		scene.add( directionalLight )
 
+		// var directionalLightBack = new THREE.DirectionalLight( 0xffffff, 0.5 ) 
+		// directionalLightBack.position.set( 0, 0, -1 )
+		// scene.add( directionalLightBack )
+		
 		var update = function(){
 			// game logic
 		}
