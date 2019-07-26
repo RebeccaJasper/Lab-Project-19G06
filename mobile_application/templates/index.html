@@ -11,6 +11,7 @@
 <body>
 	<script src = '\static\js\three.js'></script>
 	<script src = '\static\js\OrbitControls.js'></script>
+	<script src="\static\js\dat.gui.js"></script>
 	
 	<script>
 
@@ -32,6 +33,14 @@
 			controls.enablePan = false
 			controls.minDistance = 90
 			controls.maxDistance = 300
+
+			var ambientLight = new THREE.AmbientLight( 0x404040) // soft white light
+			scene.add( ambientLight )
+
+			var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.7 ) 
+			// 					left/right, up/down, front/back
+			directionalLight.position.set( 0, 0, 1 )
+			scene.add( directionalLight )
 		}
 		
 		window.addEventListener('resize', function(){
@@ -42,24 +51,29 @@
 			camera.updateProjectionMatrix()
 		})
 	
-
 		var geometry = new THREE.SphereGeometry( 50, 32, 32 )
-		var material = new THREE.MeshLambertMaterial( {color:  0x996633} )
+		var skinColour = 0x996633
+		var material = new THREE.MeshLambertMaterial( {color: skinColour} )
 		var sphere = new THREE.Mesh( geometry, material )
 		scene.add( sphere )
 
-		var ambientLight = new THREE.AmbientLight( 0x404040) // soft white light
-		scene.add( ambientLight )
-
-		var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 ) 
-		// 					left/right, up/down, front/back
-		directionalLight.position.set( 0, 0, 1 )
-		scene.add( directionalLight )
-
-		// var directionalLightBack = new THREE.DirectionalLight( 0xffffff, 0.5 ) 
-		// directionalLightBack.position.set( 0, 0, -1 )
-		// scene.add( directionalLightBack )
+		var UserControls = function() {
+			this.skinColour = skinColour
+			
+			//this.name = 'Name'
+		}
 		
+		window.onload = function() {
+			var params = new UserControls()
+			var gui = new dat.GUI()
+
+			gui.addColor(params, 'skinColour').name('Skin Tone')
+
+			//gui.add(params, 'name')
+			// Choose from named values (useful when choosing from presets)
+			// gui.add(text, 'speed', { Stopped: 0, Slow: 0.1, Fast: 5 } )
+		}
+
 		var update = function(){
 			// game logic
 		}
@@ -79,6 +93,7 @@
 		gameLoop()
 
 	</script>
+
 </body>
 
 </html>
