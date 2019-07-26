@@ -35,13 +35,10 @@ window.addEventListener('resize', function () {
   camera.updateProjectionMatrix()
 })
 
-var geometry = new THREE.SphereGeometry(50, 32, 32)
 var skinColour = 0x996633
 var material = new THREE.MeshLambertMaterial({ color: skinColour })
-var sphere = new THREE.Mesh(geometry, material)
-// scene.add(sphere)
 
-// var foreheadPeak = new THREE.Vector2(0, 275)
+// setup facial markers
 var zero = new THREE.Vector2(-163, 120) // 0
 var four = new THREE.Vector2(-134, -38) // 4
 var six = new THREE.Vector2(-81, -101) // 6
@@ -51,13 +48,7 @@ var twelve = new THREE.Vector2(159, -49) // 12
 var sixteen = new THREE.Vector2(190, 119) // 16
 
 var curve = new THREE.SplineCurve([
-  // foreheadPeak,
-//   new THREE.Vector2(-50, 275),
-//   new THREE.Vector2(-100, 250),
   zero, four, six, eight, ten, twelve, sixteen
-//   new THREE.Vector2(100, 250),
-//   new THREE.Vector2(50, 275),
-  // foreheadPeak
 ])
 
 var extrudeSettings = {
@@ -71,8 +62,8 @@ var extrudeSettings = {
 }
 
 var shape = new THREE.Shape(curve.getSpacedPoints(100))
-var geometry2 = new THREE.ExtrudeGeometry(shape, extrudeSettings)
-var face = new THREE.Mesh(geometry2, material)
+var geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings)
+var face = new THREE.Mesh(geometry, material)
 scene.add(face)
 
 var UserControls = function () {
