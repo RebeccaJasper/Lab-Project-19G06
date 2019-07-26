@@ -2,12 +2,34 @@ import cv2
 import numpy as np
 import dlib
 from operator import itemgetter
+from math import sqrt
+
+class Coordinate:
+    def __init__(self, x: float, y: float):
+        self.x = x
+        self.y = y
+
+    def __str__(self):
+        return '({self.x}, {self.y})'.format(self=self)
+
+def unit_vector(dlib_point):
+    modulus = sqrt(pow(dlib_point.x, 2) + pow(dlib_point.y, 2))
+    if modulus != 0:
+        x = dlib_point.x /modulus
+        y = dlib_point.y/modulus
+        new_point = Coordinate(x, y)
+    else:
+        new_point = (dlib_point.x, dlib_point.y)
+        
+    return new_point
 
 def change_coordinate_reference (ref, point):
     x = point.x - ref.x
     y = point.y - ref.y
     new_point = dlib.point(x, y)
     return new_point
+
+
 
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor("landmarks_data/shape_predictor_68_face_landmarks.dat")
@@ -33,17 +55,15 @@ for face in faces:
 
     # Place circles at desired facial markers
     for n in required_indexes:
-        new_point = change_coordinate_reference(landmarks.part(central_point_index), landmarks.part(n))
+        new_dlib_point = change_coordinate_reference(landmarks.part(central_point_index), landmarks.part(n))
+        new_point = unit_vector(new_dlib_point)
         print(new_point)
         transformed_points.append(new_point)
         x = landmarks.part(n).x
         y = landmarks.part(n).y
         cv2.circle(img, (x, y), 4, (255, 0, 0), -1)
 
-    print('Central point: x =' + transformed_points(21).x + " y = " + transformed_points(21).y)
-
 cv2.imshow('Output', img)
-
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()
