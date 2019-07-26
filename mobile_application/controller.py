@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import dlib
+from operator import itemgetter
 
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor("landmarks_data/shape_predictor_68_face_landmarks.dat")
@@ -18,7 +19,11 @@ for face in faces:
 
     landmarks = predictor(img, face)
 
-    for n in range(0, 68):
+
+    # Extract only the chosen facial markers
+    required_indexes = [0, 4, 6, 10, 12, 16, 31, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 51, 54, 57]
+
+    for n in required_indexes:
         x = landmarks.part(n).x
         y = landmarks.part(n).y
         cv2.circle(img, (x, y), 4, (255, 0, 0), -1)
