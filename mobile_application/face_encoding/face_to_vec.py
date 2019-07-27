@@ -2,7 +2,6 @@ import cv2
 import dlib
 from .coordinates import *
 
-
 def encode_face_image(img):
     detector = dlib.get_frontal_face_detector()
     predictor = dlib.shape_predictor("./landmarks_data/shape_predictor_68_face_landmarks.dat")
