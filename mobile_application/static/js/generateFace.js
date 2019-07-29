@@ -64,7 +64,7 @@ var extrudeSettings = {
 var shape = new THREE.Shape(curve.getSpacedPoints(100))
 var geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings)
 var face = new THREE.Mesh(geometry, material)
-scene.add(face)
+// scene.add(face)
 
 var UserControls = function () {
   this.skinColour = skinColour
@@ -83,13 +83,13 @@ window.onload = function () {
     let value = params.upperWidth
     zero.x -= value
     sixteen.x += value
-    console.log(value)
-    console.log(curve)
+    // console.log(value)
+    // console.log(curve)
 
-    shape = new THREE.Shape(curve.getSpacedPoints(100))
-    geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings)
-    face = new THREE.Mesh(geometry, material)
-    scene.add(face)
+    // shape = new THREE.Shape(curve.getSpacedPoints(100))
+    // geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings)
+    // face = new THREE.Mesh(geometry, material)
+    // scene.add(face)
   })
 }
 
@@ -101,6 +101,11 @@ function dec2hex (i) {
 
 var update = function () {
   // game logic
+  scene.remove(face)
+  shape = new THREE.Shape(curve.getSpacedPoints(100))
+  geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings)
+  face = new THREE.Mesh(geometry, material)
+  scene.add(face)
 }
 
 // draw scene
