@@ -54,7 +54,7 @@ var curve = new THREE.SplineCurve([
 var extrudeSettings = {
   steps: 50,
   depth: 100,
-  bevelEnabled: true,
+  bevelEnabled: false,
   bevelThickness: 100,
   bevelSize: 50,
   bevelOffset: 50,
@@ -68,6 +68,7 @@ scene.add(face)
 
 var UserControls = function () {
   this.skinColour = skinColour
+  this.upperWidth = 0
 }
 
 window.onload = function () {
@@ -76,6 +77,19 @@ window.onload = function () {
 
   gui.addColor(params, 'skinColour').name('Skin Tone').onChange(function () {
     material.color.setHex(dec2hex(params.skinColour))
+  })
+
+  gui.add(params, 'upperWidth', -100, 100).name('Upper Face Width').onChange(function () {
+    let value = params.upperWidth
+    zero.x -= value
+    sixteen.x += value
+    console.log(value)
+    console.log(curve)
+
+    shape = new THREE.Shape(curve.getSpacedPoints(100))
+    geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings)
+    face = new THREE.Mesh(geometry, material)
+    scene.add(face)
   })
 }
 
