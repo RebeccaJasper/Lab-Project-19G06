@@ -64,7 +64,6 @@ var extrudeSettings = {
 var shape = new THREE.Shape(curve.getSpacedPoints(100))
 var geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings)
 var face = new THREE.Mesh(geometry, material)
-// scene.add(face)
 
 var UserControls = function () {
   this.skinColour = skinColour
@@ -79,17 +78,21 @@ window.onload = function () {
     material.color.setHex(dec2hex(params.skinColour))
   })
 
+  let oldValue = params.upperWidth
   gui.add(params, 'upperWidth', -100, 100).name('Upper Face Width').onChange(function () {
     let value = params.upperWidth
-    zero.x -= value
-    sixteen.x += value
-    // console.log(value)
-    // console.log(curve)
 
-    // shape = new THREE.Shape(curve.getSpacedPoints(100))
-    // geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings)
-    // face = new THREE.Mesh(geometry, material)
-    // scene.add(face)
+    if (value > oldValue) {
+      zero.x -= value
+      sixteen.x += value
+      oldValue = value
+    }
+
+    if (value < oldValue) {
+      zero.x += value
+      sixteen.x -= value
+      oldValue = value
+    }
   })
 }
 
