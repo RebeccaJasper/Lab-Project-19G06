@@ -39,13 +39,13 @@ var skinColour = 0x996633
 var material = new THREE.MeshLambertMaterial({ color: skinColour })
 
 // setup facial markers
-var zero = new THREE.Vector2(-163, 120) // 0
-var four = new THREE.Vector2(-134, -38) // 4
-var six = new THREE.Vector2(-81, -101) // 6
+var zero = new THREE.Vector2(-177, 120) // 0
+var four = new THREE.Vector2(-147, -44) // 4
+var six = new THREE.Vector2(-88, -104) // 6
 var eight = new THREE.Vector2(0, -150) // 8
-var ten = new THREE.Vector2(94, -107) // 10
-var twelve = new THREE.Vector2(159, -49) // 12
-var sixteen = new THREE.Vector2(190, 119) // 16
+var ten = new THREE.Vector2(88, -104) // 10
+var twelve = new THREE.Vector2(147, -44) // 12
+var sixteen = new THREE.Vector2(177, 120) // 16
 
 var curve = new THREE.SplineCurve([
   zero, four, six, eight, ten, twelve, sixteen
