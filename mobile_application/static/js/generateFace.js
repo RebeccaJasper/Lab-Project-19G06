@@ -56,5 +56,4 @@ function dec2hex (i) {
   if (result.length === 8) { return result }
 }
 
-export { skinColour, material, faceShape, faceCurve, face,
-  zero, four, six, ten, twelve, sixteen, dec2hex, update }
+export { skinColour, material, zero, four, six, ten, twelve, sixteen, dec2hex, update }

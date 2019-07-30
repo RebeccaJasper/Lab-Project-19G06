@@ -62,6 +62,5 @@ var update = function () {
   gameLogic.scene.add(rightEye)
 }
 
-export { thirtySix, thirtySeven, thirtyEight, thirtyNine, forty, fortyOne, fortyTwo, fortyThree, fortyFour,
-  fortyFive, fortySix, fortySeven, eyeColour, leftEye, leftEyeCurve, leftEyeShape, material, rightEye, rightEyeCurve,
-  rightEyeShape, update }
+export { thirtySix, thirtySeven, thirtyEight, thirtyNine, forty, fortyOne, fortyTwo, fortyThree,
+  fortyFour, fortyFive, fortySix, fortySeven, eyeColour, material, update }

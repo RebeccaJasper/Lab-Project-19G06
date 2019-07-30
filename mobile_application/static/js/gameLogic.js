@@ -35,21 +35,6 @@ window.addEventListener('resize', function () {
   camera.updateProjectionMatrix()
 })
 
-// game logic
-// var update = function () {
-//     // scene.remove(generateFace.face)
-//     var faceShape = new THREE.Shape(generateFace.faceCurve.getSpacedPoints(100))
-//     var geometry = new THREE.ExtrudeGeometry(faceShape, generateFace.extrudeSettings)
-//     face = new THREE.Mesh(geometry, generateFace.material)
-//     scene.add(face)
-
-//     // scene.remove(eyes.leftEye)
-//     // eyes.leftEyeShape = new THREE.Shape(eyes.leftEyeCurve.getSpacedPoints(100))
-//     // geometry = new THREE.ExtrudeGeometry(eyes.leftEyeShape, eyes.extrudeSettings)
-//     // leftEye = new THREE.Mesh(geometry, eyes.material)
-//     // scene.add(eyes.leftEye)
-// }
-
 // draw scene
 var render = function () {
   renderer.render(scene, camera)
@@ -60,7 +45,6 @@ var gameLoop = function () {
   requestAnimationFrame(gameLoop)
   generateFace.update()
   eyes.update()
-  // update()
   render()
 }
 
