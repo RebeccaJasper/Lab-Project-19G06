@@ -75,40 +75,6 @@ var faceShape = new THREE.Shape(faceCurve.getSpacedPoints(100))
 var geometry = new THREE.ExtrudeGeometry(faceShape, extrudeSettings)
 var face = new THREE.Mesh(geometry, material)
 
-var UserControls = function () {
-  this.skinColour = skinColour
-  this.upperWidth = 0
-  this.midWidth = 0
-  this.chinWidth = 0
-}
-
-window.onload = function () {
-  var params = new UserControls()
-  var gui = new dat.GUI()
-
-  gui.addColor(params, 'skinColour').name('Skin Tone').onChange(function () {
-    material.color.setHex(dec2hex(params.skinColour))
-  })
-
-  gui.add(params, 'upperWidth', -30, 30).name('Upper Face Width').onChange(function () {
-    let value = params.upperWidth
-    zero.x = -177 - value
-    sixteen.x = 177 + value
-  })
-
-  gui.add(params, 'midWidth', -50, 50).name('Mid-Face Width').onChange(function () {
-    let value = params.midWidth
-    four.x = -147 - value
-    twelve.x = 147 + value
-  })
-
-  gui.add(params, 'chinWidth', -50, 50).name('Chin Width').onChange(function () {
-    let value = params.chinWidth
-    six.x = -88 - value
-    ten.x = 88 + value
-  })
-}
-
 function dec2hex (i) {
   var result = '0x000000'
   if (i >= 0 && i <= 15) { result = '0x00000' + i.toString(16) } else if (i >= 16 && i <= 255) { result = '0x0000' + i.toString(16) } else if (i >= 256 && i <= 4095) { result = '0x000' + i.toString(16) } else if (i >= 4096 && i <= 65535) { result = '0x00' + i.toString(16) } else if (i >= 65535 && i <= 1048575) { result = '0x0' + i.toString(16) } else if (i >= 1048575) { result = '0x' + i.toString(16) }
@@ -137,3 +103,5 @@ var gameLoop = function () {
 }
 
 gameLoop()
+
+export { skinColour, material, zero, four, six, ten, twelve, sixteen, dec2hex }
