@@ -39,13 +39,13 @@ var skinColour = 0x996633
 var material = new THREE.MeshLambertMaterial({ color: skinColour })
 
 // setup facial markers
-var zero = new THREE.Vector2(-177, 120) // 0
-var four = new THREE.Vector2(-147, -44) // 4
-var six = new THREE.Vector2(-88, -104) // 6
-var eight = new THREE.Vector2(0, -150) // 8
-var ten = new THREE.Vector2(88, -104) // 10
-var twelve = new THREE.Vector2(147, -44) // 12
-var sixteen = new THREE.Vector2(177, 120) // 16
+var zero = new THREE.Vector2(-177, 120)
+var four = new THREE.Vector2(-147, -44)
+var six = new THREE.Vector2(-88, -104)
+var eight = new THREE.Vector2(0, -150)
+var ten = new THREE.Vector2(88, -104)
+var twelve = new THREE.Vector2(147, -44)
+var sixteen = new THREE.Vector2(177, 120)
 
 var curve = new THREE.SplineCurve([
   zero, four, six, eight, ten, twelve, sixteen
@@ -78,28 +78,17 @@ window.onload = function () {
     material.color.setHex(dec2hex(params.skinColour))
   })
 
-  let oldValue = params.upperWidth
   gui.add(params, 'upperWidth', -30, 30).name('Upper Face Width').onChange(function () {
     let value = params.upperWidth
-
-    if (((value > oldValue) && value > 0) || ((value < oldValue) && value < 0)) {
-      zero.x -= value
-      sixteen.x += value
-      oldValue = value
-    }
-
-    if (((value > oldValue) && value < 0) || ((value < oldValue) && value > 0)) {
-      zero.x += value
-      sixteen.x -= value
-      oldValue = value
-    }
+    zero.x = -177 - value
+    sixteen.x = 177 + value
   })
 }
 
 function dec2hex (i) {
   var result = '0x000000'
   if (i >= 0 && i <= 15) { result = '0x00000' + i.toString(16) } else if (i >= 16 && i <= 255) { result = '0x0000' + i.toString(16) } else if (i >= 256 && i <= 4095) { result = '0x000' + i.toString(16) } else if (i >= 4096 && i <= 65535) { result = '0x00' + i.toString(16) } else if (i >= 65535 && i <= 1048575) { result = '0x0' + i.toString(16) } else if (i >= 1048575) { result = '0x' + i.toString(16) }
-  if (result.length == 8) { return result }
+  if (result.length === 8) { return result }
 }
 
 var update = function () {
