@@ -1,8 +1,5 @@
 var scene, camera, renderer, controls
 
-// init()
-
-// function init () {
 scene = new THREE.Scene()
 camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
 camera.position.set(0, 0, 800)
@@ -10,7 +7,6 @@ camera.lookAt(0, 0, 0)
 
 renderer = new THREE.WebGLRenderer()
 renderer.setSize(window.innerWidth, window.innerHeight)
-// renderer.setClearColor(0x333F47, 1)
 document.body.appendChild(renderer.domElement)
 
 controls = new THREE.OrbitControls(camera, renderer.domElement)
@@ -25,7 +21,6 @@ var directionalLight = new THREE.DirectionalLight(0xffffff, 0.7)
 // 					left/right, up/down, front/back
 directionalLight.position.set(0, 0, 1)
 scene.add(directionalLight)
-// }
 
 window.addEventListener('resize', function () {
   var width = window.innerWidth
@@ -62,10 +57,10 @@ var faceCurve = new THREE.SplineCurve([
 ])
 
 var extrudeSettings = {
-  steps: 50,
-  depth: 100,
-  bevelEnabled: true,
-  bevelThickness: 100,
+  steps: 1,
+  depth: 10,
+  bevelEnabled: false,
+  bevelThickness: 50,
   bevelSize: 50,
   bevelOffset: 50,
   bevelSegments: 10

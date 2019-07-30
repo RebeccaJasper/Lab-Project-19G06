@@ -25,25 +25,25 @@ var leftEyeCurve = new THREE.SplineCurve([
 ])
 
 var rightEyeCurve = new THREE.SplineCurve([
-  fortyTwo, fortyThree, fortyFour, fortyFive, fortySix, fortySeven, fortyTwo
+  fortyFive, fortySix, fortySeven, fortyTwo, fortyThree, fortyFour, fortyFive
 ])
 
 var extrudeSettings = {
-  steps: 50,
-  depth: 100,
-  bevelEnabled: true,
+  steps: 1,
+  depth: 15,
+  bevelEnabled: false,
   bevelThickness: 100,
   bevelSize: 50,
   bevelOffset: 50,
   bevelSegments: 10
 }
 
-var leftEyeShape = new THREE.Shape(leftEyeCurve.getSpacedPoints(100))
+var leftEyeShape = new THREE.Shape(leftEyeCurve.getSpacedPoints(50))
 var geometryLeft = new THREE.ExtrudeGeometry(leftEyeShape, extrudeSettings)
 var leftEye = new THREE.Mesh(geometryLeft, material)
 generateFace.scene.add(leftEye)
 
-var rightEyeShape = new THREE.Shape(rightEyeCurve.getSpacedPoints(100))
+var rightEyeShape = new THREE.Shape(rightEyeCurve.getSpacedPoints(50))
 var geometryRight = new THREE.ExtrudeGeometry(rightEyeShape, extrudeSettings)
 var rightEye = new THREE.Mesh(geometryRight, material)
 generateFace.scene.add(rightEye)
