@@ -1,31 +1,31 @@
 var scene, camera, renderer, controls
 
-init()
+// init()
 
-function init () {
-  scene = new THREE.Scene()
-  camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
-  camera.position.set(0, 0, 800)
-  camera.lookAt(0, 0, 0)
+// function init () {
+scene = new THREE.Scene()
+camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
+camera.position.set(0, 0, 800)
+camera.lookAt(0, 0, 0)
 
-  renderer = new THREE.WebGLRenderer()
-  renderer.setSize(window.innerWidth, window.innerHeight)
-  // renderer.setClearColor(0x333F47, 1)
-  document.body.appendChild(renderer.domElement)
+renderer = new THREE.WebGLRenderer()
+renderer.setSize(window.innerWidth, window.innerHeight)
+// renderer.setClearColor(0x333F47, 1)
+document.body.appendChild(renderer.domElement)
 
-  controls = new THREE.OrbitControls(camera, renderer.domElement)
-  controls.enablePan = false
-  controls.minDistance = 90
-  controls.maxDistance = 800
+controls = new THREE.OrbitControls(camera, renderer.domElement)
+controls.enablePan = false
+controls.minDistance = 90
+controls.maxDistance = 800
 
-  var ambientLight = new THREE.AmbientLight(0x404040) // soft white light
-  scene.add(ambientLight)
+var ambientLight = new THREE.AmbientLight(0x404040) // soft white light
+scene.add(ambientLight)
 
-  var directionalLight = new THREE.DirectionalLight(0xffffff, 0.7)
-  // 					left/right, up/down, front/back
-  directionalLight.position.set(0, 0, 1)
-  scene.add(directionalLight)
-}
+var directionalLight = new THREE.DirectionalLight(0xffffff, 0.7)
+// 					left/right, up/down, front/back
+directionalLight.position.set(0, 0, 1)
+scene.add(directionalLight)
+// }
 
 window.addEventListener('resize', function () {
   var width = window.innerWidth
@@ -104,4 +104,4 @@ var gameLoop = function () {
 
 gameLoop()
 
-export { skinColour, material, zero, four, six, ten, twelve, sixteen, dec2hex }
+export { skinColour, material, zero, four, six, ten, twelve, sixteen, dec2hex, scene }

@@ -1,4 +1,5 @@
 import * as generateFace from './generateFace.js'
+// import * as eyes from './eyes.js'
 
 var UserControls = function () {
   this.skinColour = generateFace.skinColour
