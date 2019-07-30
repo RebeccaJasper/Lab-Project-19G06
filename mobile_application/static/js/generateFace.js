@@ -54,11 +54,11 @@ var curve = new THREE.SplineCurve([
 var extrudeSettings = {
   steps: 50,
   depth: 100,
-  bevelEnabled: false,
+  bevelEnabled: true,
   bevelThickness: 100,
   bevelSize: 50,
   bevelOffset: 50,
-  bevelSegments: 100
+  bevelSegments: 10
 }
 
 var shape = new THREE.Shape(curve.getSpacedPoints(100))
@@ -79,16 +79,16 @@ window.onload = function () {
   })
 
   let oldValue = params.upperWidth
-  gui.add(params, 'upperWidth', -100, 100).name('Upper Face Width').onChange(function () {
+  gui.add(params, 'upperWidth', -30, 30).name('Upper Face Width').onChange(function () {
     let value = params.upperWidth
 
-    if (value > oldValue) {
+    if (((value > oldValue) && value > 0) || ((value < oldValue) && value < 0)) {
       zero.x -= value
       sixteen.x += value
       oldValue = value
     }
 
-    if (value < oldValue) {
+    if (((value > oldValue) && value < 0) || ((value < oldValue) && value > 0)) {
       zero.x += value
       sixteen.x -= value
       oldValue = value
