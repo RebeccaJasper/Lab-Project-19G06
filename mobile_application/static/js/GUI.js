@@ -35,11 +35,11 @@ window.onload = function () {
     generateFace.ten.x = 88 + value
   })
 
-  gui.add(params, 'eyeWidth', -20, 20).name('Eye Width').onChange(function () {
+  gui.add(params, 'eyeWidth', -15, 15).name('Eye Width').onChange(function () {
     let value = params.eyeWidth
     eyes.thirtySix.x = -113 - value
     eyes.thirtyNine.x = -49 + value
     eyes.fortyTwo.x = 49 - value
-    eyes.forty = 113 + value
+    eyes.fortyFive.x = 113 + value
   })
 }
