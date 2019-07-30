@@ -1,4 +1,4 @@
-import * as generateFace from './generateFace.js'
+import * as gameLogic from './gameLogic.js'
 
 // Facial markers related to Dlib are numbered
 // Left eye
@@ -41,11 +41,27 @@ var extrudeSettings = {
 var leftEyeShape = new THREE.Shape(leftEyeCurve.getSpacedPoints(50))
 var geometryLeft = new THREE.ExtrudeGeometry(leftEyeShape, extrudeSettings)
 var leftEye = new THREE.Mesh(geometryLeft, material)
-generateFace.scene.add(leftEye)
+// gameLogic.scene.add(leftEye)
 
 var rightEyeShape = new THREE.Shape(rightEyeCurve.getSpacedPoints(50))
 var geometryRight = new THREE.ExtrudeGeometry(rightEyeShape, extrudeSettings)
 var rightEye = new THREE.Mesh(geometryRight, material)
-generateFace.scene.add(rightEye)
+// gameLogic.scene.add(rightEye)
 
-// export {}
+var update = function () {
+  gameLogic.scene.remove(leftEye)
+  var leftEyeShape = new THREE.Shape(leftEyeCurve.getSpacedPoints(50))
+  var geometryLeft = new THREE.ExtrudeGeometry(leftEyeShape, extrudeSettings)
+  leftEye = new THREE.Mesh(geometryLeft, material)
+  gameLogic.scene.add(leftEye)
+
+  gameLogic.scene.remove(rightEye)
+  var rightEyeShape = new THREE.Shape(rightEyeCurve.getSpacedPoints(50))
+  var geometryRight = new THREE.ExtrudeGeometry(rightEyeShape, extrudeSettings)
+  rightEye = new THREE.Mesh(geometryRight, material)
+  gameLogic.scene.add(rightEye)
+}
+
+export { thirtySix, thirtySeven, thirtyEight, thirtyNine, forty, fortyOne, fortyTwo, fortyThree, fortyFour,
+  fortyFive, fortySix, fortySeven, eyeColour, leftEye, leftEyeCurve, leftEyeShape, material, rightEye, rightEyeCurve,
+  rightEyeShape, update }

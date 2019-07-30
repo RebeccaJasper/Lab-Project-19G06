@@ -1,11 +1,12 @@
 import * as generateFace from './generateFace.js'
-// import * as eyes from './eyes.js'
+import * as eyes from './eyes.js'
 
 var UserControls = function () {
   this.skinColour = generateFace.skinColour
   this.upperWidth = 0
   this.midWidth = 0
   this.chinWidth = 0
+  this.eyeWidth = 0
 }
 
 window.onload = function () {
@@ -32,5 +33,13 @@ window.onload = function () {
     let value = params.chinWidth
     generateFace.six.x = -88 - value
     generateFace.ten.x = 88 + value
+  })
+
+  gui.add(params, 'eyeWidth', -20, 20).name('Eye Width').onChange(function () {
+    let value = params.eyeWidth
+    eyes.thirtySix.x = -113 - value
+    eyes.thirtyNine.x = -49 + value
+    eyes.fortyTwo.x = 49 - value
+    eyes.forty = 113 + value
   })
 }
