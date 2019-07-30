@@ -69,6 +69,7 @@ var UserControls = function () {
   this.skinColour = skinColour
   this.upperWidth = 0
   this.midWidth = 0
+  this.chinWidth = 0
 }
 
 window.onload = function () {
@@ -89,6 +90,12 @@ window.onload = function () {
     let value = params.midWidth
     four.x = -147 - value
     twelve.x = 147 + value
+  })
+
+  gui.add(params, 'chinWidth', -30, 30).name('Chin Width').onChange(function () {
+    let value = params.chinWidth
+    six.x = -88 - value
+    ten.x = 88 + value
   })
 }
 
