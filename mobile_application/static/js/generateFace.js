@@ -38,7 +38,9 @@ window.addEventListener('resize', function () {
 var skinColour = 0x996633
 var material = new THREE.MeshLambertMaterial({ color: skinColour })
 
-// setup facial markers
+// Facial markers related to Dlib are numbered
+
+// Face shape
 var zero = new THREE.Vector2(-177, 120)
 var four = new THREE.Vector2(-147, -44)
 var six = new THREE.Vector2(-88, -104)
@@ -46,13 +48,16 @@ var eight = new THREE.Vector2(0, -150)
 var ten = new THREE.Vector2(88, -104)
 var twelve = new THREE.Vector2(147, -44)
 var sixteen = new THREE.Vector2(177, 120)
+
+// Facial markers added to make face look better
+// FH = forehead markers
 var FH0 = new THREE.Vector2(0, 320)
 var FH1 = new THREE.Vector2(-88, 310)
 var FH2 = new THREE.Vector2(88, 310)
 var FH3 = new THREE.Vector2(-147, 250)
 var FH4 = new THREE.Vector2(147, 250)
 
-var curve = new THREE.SplineCurve([
+var faceCurve = new THREE.SplineCurve([
   FH0, FH1, FH3, zero, four, six, eight, ten, twelve, sixteen, FH4, FH2, FH0
 ])
 
@@ -66,8 +71,8 @@ var extrudeSettings = {
   bevelSegments: 10
 }
 
-var shape = new THREE.Shape(curve.getSpacedPoints(100))
-var geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings)
+var faceShape = new THREE.Shape(faceCurve.getSpacedPoints(100))
+var geometry = new THREE.ExtrudeGeometry(faceShape, extrudeSettings)
 var face = new THREE.Mesh(geometry, material)
 
 var UserControls = function () {
@@ -113,8 +118,8 @@ function dec2hex (i) {
 var update = function () {
   // game logic
   scene.remove(face)
-  shape = new THREE.Shape(curve.getSpacedPoints(100))
-  geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings)
+  faceShape = new THREE.Shape(faceCurve.getSpacedPoints(100))
+  geometry = new THREE.ExtrudeGeometry(faceShape, extrudeSettings)
   face = new THREE.Mesh(geometry, material)
   scene.add(face)
 }
