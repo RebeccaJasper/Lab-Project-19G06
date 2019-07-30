@@ -68,6 +68,7 @@ var face = new THREE.Mesh(geometry, material)
 var UserControls = function () {
   this.skinColour = skinColour
   this.upperWidth = 0
+  this.midWidth = 0
 }
 
 window.onload = function () {
@@ -82,6 +83,12 @@ window.onload = function () {
     let value = params.upperWidth
     zero.x = -177 - value
     sixteen.x = 177 + value
+  })
+
+  gui.add(params, 'midWidth', -30, 30).name('Mid-Face Width').onChange(function () {
+    let value = params.midWidth
+    four.x = -147 - value
+    twelve.x = 147 + value
   })
 }
 
