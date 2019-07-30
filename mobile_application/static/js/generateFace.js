@@ -86,13 +86,13 @@ window.onload = function () {
     sixteen.x = 177 + value
   })
 
-  gui.add(params, 'midWidth', -30, 30).name('Mid-Face Width').onChange(function () {
+  gui.add(params, 'midWidth', -50, 50).name('Mid-Face Width').onChange(function () {
     let value = params.midWidth
     four.x = -147 - value
     twelve.x = 147 + value
   })
 
-  gui.add(params, 'chinWidth', -30, 30).name('Chin Width').onChange(function () {
+  gui.add(params, 'chinWidth', -50, 50).name('Chin Width').onChange(function () {
     let value = params.chinWidth
     six.x = -88 - value
     ten.x = 88 + value
