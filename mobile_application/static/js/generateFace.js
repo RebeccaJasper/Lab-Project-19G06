@@ -46,9 +46,14 @@ var eight = new THREE.Vector2(0, -150)
 var ten = new THREE.Vector2(88, -104)
 var twelve = new THREE.Vector2(147, -44)
 var sixteen = new THREE.Vector2(177, 120)
+var FH0 = new THREE.Vector2(0, 320)
+var FH1 = new THREE.Vector2(-88, 310)
+var FH2 = new THREE.Vector2(88, 310)
+var FH3 = new THREE.Vector2(-147, 250)
+var FH4 = new THREE.Vector2(147, 250)
 
 var curve = new THREE.SplineCurve([
-  zero, four, six, eight, ten, twelve, sixteen
+  FH0, FH1, FH3, zero, four, six, eight, ten, twelve, sixteen, FH4, FH2, FH0
 ])
 
 var extrudeSettings = {
