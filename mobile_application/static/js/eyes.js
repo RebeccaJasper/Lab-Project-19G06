@@ -6,8 +6,8 @@ var thirtySix = new THREE.Vector2(-113, 138)
 var thirtySeven = new THREE.Vector2(-94, 150)
 var thirtyEight = new THREE.Vector2(-71, 150)
 var thirtyNine = new THREE.Vector2(-49, 135)
-var forty = new THREE.Vector2(-94, 131)
-var fortyOne = new THREE.Vector2(-71, 131)
+var forty = new THREE.Vector2(-71, 131)
+var fortyOne = new THREE.Vector2(-94, 131)
 
 // Right eye
 var fortyTwo = new THREE.Vector2(49, 135)
@@ -31,10 +31,10 @@ var rightEyeCurve = new THREE.SplineCurve([
 var extrudeSettings = {
   steps: 1,
   depth: 15,
-  bevelEnabled: false,
-  bevelThickness: 100,
-  bevelSize: 50,
-  bevelOffset: 50,
+  bevelEnabled: true,
+  bevelThickness: 3,
+  bevelSize: 1,
+  bevelOffset: 1,
   bevelSegments: 10
 }
 

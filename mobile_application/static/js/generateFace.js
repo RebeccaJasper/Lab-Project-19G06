@@ -1,5 +1,7 @@
 var scene, camera, renderer, controls
 
+// Initialise scene with camera, renderer, controls and lighting
+
 scene = new THREE.Scene()
 camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
 camera.position.set(0, 0, 800)
@@ -30,6 +32,9 @@ window.addEventListener('resize', function () {
   camera.updateProjectionMatrix()
 })
 
+
+// Draw the face
+
 var skinColour = 0x996633
 var material = new THREE.MeshLambertMaterial({ color: skinColour })
 
@@ -59,10 +64,10 @@ var faceCurve = new THREE.SplineCurve([
 var extrudeSettings = {
   steps: 1,
   depth: 10,
-  bevelEnabled: false,
-  bevelThickness: 50,
-  bevelSize: 50,
-  bevelOffset: 50,
+  bevelEnabled: true,
+  bevelThickness: 3,
+  bevelSize: 1,
+  bevelOffset: 1,
   bevelSegments: 10
 }
 
@@ -76,8 +81,9 @@ function dec2hex (i) {
   if (result.length === 8) { return result }
 }
 
+
+// game logic
 var update = function () {
-  // game logic
   scene.remove(face)
   faceShape = new THREE.Shape(faceCurve.getSpacedPoints(100))
   geometry = new THREE.ExtrudeGeometry(faceShape, extrudeSettings)
