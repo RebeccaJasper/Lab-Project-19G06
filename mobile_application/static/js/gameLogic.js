@@ -1,5 +1,6 @@
 import * as generateFace from './generateFace.js'
 import * as eyes from './eyes.js'
+import * as mouth from './mouth.js'
 
 var scene, camera, renderer, controls
 
@@ -45,6 +46,7 @@ var gameLoop = function () {
   requestAnimationFrame(gameLoop)
   generateFace.update()
   eyes.update()
+  mouth.update()
   render()
 }
 
