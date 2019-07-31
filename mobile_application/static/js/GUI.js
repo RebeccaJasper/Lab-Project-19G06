@@ -13,6 +13,7 @@ var UserControls = function () {
   this.mouthWidth = 0
   this.lipCurve = 0
   this.lipThickness = 0
+  this.mouthColour = mouth.lipColour
 }
 
 window.onload = function () {
@@ -79,6 +80,8 @@ window.onload = function () {
     mouth.fiftyFour.x = 64 + value
     mouth.fortyNine.x = -38 - value
     mouth.fiftyThree.x = 38 + value
+    mouth.sixty.x = -53 - value
+    mouth.sixtyFour.x = 53 + value
   })
 
   mouthGUI.add(params, 'lipCurve', -10, 5).name('Upper Lip Shape').onChange(function () {
@@ -100,5 +103,9 @@ window.onload = function () {
     mouth.fiftySeven.y = -39 - value
     mouth.fiftyEight.y = -38 - value
     mouth.fiftyNine.y = -32 - value
+  })
+
+  mouthGUI.addColor(params, 'mouthColour').name('Mouth Colour').onChange(function () {
+    mouth.material.color.setHex(generateFace.dec2hex(params.mouthColour))
   })
 }

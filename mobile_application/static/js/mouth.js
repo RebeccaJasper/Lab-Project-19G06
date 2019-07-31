@@ -47,6 +47,22 @@ var lowerLipShape = new THREE.Shape(lowerLipCurve.getSpacedPoints(30))
 var lowerLipGeometry = new THREE.ExtrudeGeometry(lowerLipShape, extrudeSettings)
 var lowerLip = new THREE.Mesh(lowerLipGeometry, material)
 
+var extrudeSettingsGap = {
+  steps: 1,
+  depth: 20,
+  bevelEnabled: true,
+  bevelThickness: 3,
+  bevelSize: 1,
+  bevelOffset: 1,
+  bevelSegments: 10
+}
+
+var mouthGapMaterial = new THREE.MeshLambertMaterial({ color: 0x4d0000 })
+var mouthGapCurve = new THREE.SplineCurve([ sixty, sixtyOne, sixtyTwo, sixtyThree, sixtyFour, sixtyFive, sixtySix, sixtySeven ])
+var mouthGapShape = new THREE.Shape(mouthGapCurve.getSpacedPoints(30))
+var mouthGapGeometry = new THREE.ExtrudeGeometry(mouthGapShape, extrudeSettingsGap)
+var mouthGap = new THREE.Mesh(mouthGapGeometry, mouthGapMaterial)
+
 var update = function () {
   gameLogic.scene.remove(upperLip)
   var upperLipShape = new THREE.Shape(upperLipCurve.getSpacedPoints(30))
@@ -59,7 +75,14 @@ var update = function () {
   var lowerLipGeometry = new THREE.ExtrudeGeometry(lowerLipShape, extrudeSettings)
   lowerLip = new THREE.Mesh(lowerLipGeometry, material)
   gameLogic.scene.add(lowerLip)
+
+  gameLogic.scene.remove(mouthGap)
+  var mouthGapShape = new THREE.Shape(mouthGapCurve.getSpacedPoints(30))
+  var mouthGapGeometry = new THREE.ExtrudeGeometry(mouthGapShape, extrudeSettingsGap)
+  mouthGap = new THREE.Mesh(mouthGapGeometry, mouthGapMaterial)
+  gameLogic.scene.add(mouthGap)
 }
 
 export { fortyEight, fiftyFour, fortyNine, fiftyThree, fifty, fiftyTwo, fiftyOne, fiftyFive,
-  fiftySix, fiftySeven, fiftyEight, fiftyNine, update }
+  fiftySix, fiftySeven, fiftyEight, fiftyNine, update, lipColour, material,
+  sixty, sixtyOne, sixtyTwo, sixtyThree, sixtyFour, sixtyFive, sixtySix, sixtySeven }
