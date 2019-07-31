@@ -3,7 +3,7 @@ import * as eyes from './eyes.js'
 
 var UserControls = function () {
   this.skinColour = generateFace.skinColour
-  this.faceLength = 0
+  // this.faceLength = 0
   this.upperWidth = 0
   this.midWidth = 0
   this.chinWidth = 0
@@ -20,13 +20,17 @@ window.onload = function () {
     generateFace.material.color.setHex(generateFace.dec2hex(params.skinColour))
   })
 
-  gui.add(params, 'faceLength', -30, 30).name('Face Length').onChange(function () {
-    let value = params.faceLength
-    generateFace.FH0.y = 320 + value
-    generateFace.FH1.y = 310 + value
-    generateFace.FH2.y = 310 + value
-    generateFace.eight.y = -150 - value
-  })
+  // gui.add(params, 'faceLength', -30, 30).name('Face Length').onChange(function () {
+  //   let value = params.faceLength
+  //   generateFace.FH0.y = 320 + value
+  //   generateFace.FH1.y = 310 + value
+  //   generateFace.FH2.y = 310 + value
+  //   generateFace.six.y = -104 - value
+  //   generateFace.seven.y = -122 - value
+  //   generateFace.eight.y = -150 - value
+  //   generateFace.nine.y = -122 - value
+  //   generateFace.ten.y = -104 - value
+  // })
 
   gui.add(params, 'upperWidth', -30, 30).name('Upper Face Width').onChange(function () {
     let value = params.upperWidth
