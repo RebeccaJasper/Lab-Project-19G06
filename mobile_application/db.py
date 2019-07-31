@@ -19,7 +19,7 @@ conn = pymssql.connect(server=SERVER_NAME, user=USER_NAME, password=PASSWORD, da
 cursor = conn.cursor()
 
 
-def execute_query(query_string: str, arg: str) -> None:
+def execute_query(query_string: str, arg: tuple) -> None:
     """
     Allows SQL queries to be executed in the database
 
@@ -28,5 +28,7 @@ def execute_query(query_string: str, arg: str) -> None:
     :return: None
     """
 
-    cursor.execute(query_string, arg)
+    query = query_string % arg
+    print(query)
+    cursor.execute(query)
     conn.commit()
