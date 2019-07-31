@@ -7,6 +7,7 @@ var UserControls = function () {
   this.midWidth = 0
   this.chinWidth = 0
   this.eyeWidth = 0
+  this.eyeHeight = 0
 }
 
 window.onload = function () {
@@ -41,5 +42,17 @@ window.onload = function () {
     eyes.thirtyNine.x = -49 + value
     eyes.fortyTwo.x = 49 - value
     eyes.fortyFive.x = 113 + value
+  })
+
+  gui.add(params, 'eyeHeight', -15, 15).name('Eye Height').onChange(function () {
+    let value = params.eyeHeight
+    eyes.thirtySeven.y = 150 + value
+    eyes.thirtyEight.y = 150 + value
+    eyes.fortyThree.y = 150 + value
+    eyes.fortyFour.y = 150 + value
+    eyes.forty.y = 131 - value
+    eyes.fortyOne.y = 131 - value
+    eyes.fortySix.y = 131 - value
+    eyes.fortySeven.y = 131 - value
   })
 }
