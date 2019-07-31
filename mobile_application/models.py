@@ -23,4 +23,12 @@ def get_encoding_list():
 
 
 def add_image_to_database(filename):
-    photo_to_binary('1.png')
+    param = photo_to_binary('1.png')
+    query_string = ''' INSERT INTO person_photo(photo)
+                    VALUES (%s); '''
+    cursor.execute(query_string, param)
+    conn.commit
+    
+
+
+
