@@ -1,5 +1,6 @@
 from typing import IO
-from db import *
+from mobile_application.db import *
+from typing import List
 
 
 def photo_to_binary(filename: str) -> IO[bytes]:
@@ -29,6 +30,26 @@ def add_image_to_database(filename):
                     VALUES (%s); '''
     execute_query(query_string, arg)
 
+
+def convert_list_to_str(list: List[float]) -> str:
+    feature = [str(i) for i in list]
+    feature_string = str(",".join(feature))
+    return feature_string
+
+
+def add_feature_vector_to_database(feature_vector: List[float]) -> None:
+    """
+    Adds a feature vector to the database
+
+    :param filename: name of the image file
+    :return: None
+    """
+
+    query_string = ''' INSERT INTO face_encoding(person_id, face_encodings)
+                    VALUES ({}, {}); '''
+
+    arg = ()
+    execute_query(query_string, arg)
 
 
 
