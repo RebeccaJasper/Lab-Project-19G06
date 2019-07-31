@@ -6,38 +6,20 @@
 		body{margin: 0}
 		canvas{width: 100%; height: 100%}
 	</style>
+	<link rel = 'stylesheet' href='\static\CSS\title.css'/>
 </head>
 
 <body>
 	<script src = '\static\js\three.js'></script>
+	<script src = '\static\js\OrbitControls.js'></script>
+	<script src="\static\js\dat.gui.js"></script>
+	<script src = '\static\js\generateFace.js'></script>
 
-	<script>
-		var scene = new THREE.Scene()
-		var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000)
-		
-		var renderer = new THREE.WebGLRenderer()
-		renderer.setSize(window.innerWidth, window.innerHeight)
-		document.body.appendChild(renderer.domElement)
+	<div class="container">
+		<h1>Identi-Kreate</h1>
+		<h3>Create a face</h3>
+	</div>
 
-		var update = function(){
-			// game logic
-		}
-
-		// draw scene
-		var render = function(){
-			renderer.render(scene, camera)
-		}
-
-		// run game loop (update, render, repeat)
-		var gameLoop = function(){
-			requestAnimationFrame(gameLoop)
-			update()
-			render()
-		}
-
-		gameLoop()
-
-	</script>
 </body>
 
 </html>
