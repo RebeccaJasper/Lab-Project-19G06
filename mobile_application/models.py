@@ -44,21 +44,19 @@ def convert_list_to_str(list: List[float]) -> str:
     return feature_string
 
 
-def add_feature_vector_to_database(id: str, feature_vector: List[float]) -> None:
+def add_feature_vector_to_database(person_id: str, feature_vector: List[float]) -> None:
     """
     Adds a feature vector to the database
 
     :param feature_vector: List representing a feature vector
-    :param id: String representing the id associated with the person
+    :param person_id: String representing the id associated with the person
     :rtype: None
     """
 
     query_string = ''' INSERT INTO face_encodings(person_id, face_encodings)
                     VALUES ('%s', '%s'); '''
-    args = (id, convert_list_to_str(feature_vector))
+    args = (person_id, convert_list_to_str(feature_vector))
     execute_query(query_string, args)
 
-
-add_feature_vector_to_database('1', [0.2, 0.6, 0.9])
 
 
