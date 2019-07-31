@@ -1,6 +1,6 @@
 import * as gameLogic from './gameLogic.js'
 
-// Upper lip
+// Mouth markers
 var fortyEight = new THREE.Vector2(-64, -20)
 var fortyNine = new THREE.Vector2(-38, -6)
 var fifty = new THREE.Vector2(-15, 5)
@@ -8,20 +8,16 @@ var fiftyOne = new THREE.Vector2(0, 0)
 var fiftyTwo = new THREE.Vector2(15, 5)
 var fiftyThree = new THREE.Vector2(38, -6)
 var fiftyFour = new THREE.Vector2(64, -20)
-
-var sixty = new THREE.Vector2(-53, -20)
-var sixtyOne = new THREE.Vector2(-15, -14)
-var sixtyTwo = new THREE.Vector2(0, -15)
-var sixtyThree = new THREE.Vector2(15, -14)
-var sixtyFour = new THREE.Vector2(53, -20)
-
-// Lower lip
 var fiftyFive = new THREE.Vector2(38, -32)
 var fiftySix = new THREE.Vector2(16, -38)
 var fiftySeven = new THREE.Vector2(0, -39)
 var fiftyEight = new THREE.Vector2(-16, -38)
 var fiftyNine = new THREE.Vector2(-38, -32)
-
+var sixty = new THREE.Vector2(-53, -20)
+var sixtyOne = new THREE.Vector2(-15, -14)
+var sixtyTwo = new THREE.Vector2(0, -15)
+var sixtyThree = new THREE.Vector2(15, -14)
+var sixtyFour = new THREE.Vector2(53, -20)
 var sixtyFive = new THREE.Vector2(15, -15)
 var sixtySix = new THREE.Vector2(0, -17)
 var sixtySeven = new THREE.Vector2(-15, -15)
@@ -65,4 +61,4 @@ var update = function () {
   gameLogic.scene.add(lowerLip)
 }
 
-export { fortyEight, fiftyFour, fortyNine, fiftyThree, update }
+export { fortyEight, fiftyFour, fortyNine, fiftyThree, fifty, fiftyTwo, update }

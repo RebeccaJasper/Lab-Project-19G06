@@ -11,6 +11,7 @@ var UserControls = function () {
   this.eyeHeight = 0
   this.eyeColour = eyes.irisColour
   this.mouthWidth = 0
+  this.lipCurve = 0
 }
 
 window.onload = function () {
@@ -71,5 +72,11 @@ window.onload = function () {
     mouth.fiftyFour.x = 64 + value
     mouth.fortyNine.x = -38 - value
     mouth.fiftyThree.x = 38 + value
+  })
+
+  gui.add(params, 'lipCurve', -5, 5).name('Upper Lip Shape').onChange(function () {
+    let value = params.lipCurve
+    mouth.fifty.y = 5 + value
+    mouth.fiftyTwo.y = 5 + value
   })
 }
