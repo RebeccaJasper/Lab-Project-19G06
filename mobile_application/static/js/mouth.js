@@ -41,19 +41,28 @@ var extrudeSettings = {
 
 var upperLipCurve = new THREE.SplineCurve([ fortyEight, fortyNine, fifty, fiftyOne, fiftyTwo, fiftyThree, fiftyFour,
   sixtyFour, sixtyThree, sixtyTwo, sixtyOne, sixty ])
-var upperLipShape = new THREE.Shape(upperLipCurve.getSpacedPoints(50))
+var upperLipShape = new THREE.Shape(upperLipCurve.getSpacedPoints(30))
 var upperLipGeometry = new THREE.ExtrudeGeometry(upperLipShape, extrudeSettings)
 var upperLip = new THREE.Mesh(upperLipGeometry, material)
 
 var lowerLipCurve = new THREE.SplineCurve([ fortyEight, sixtySeven, sixtySix, sixtyFive, fiftyFour,
   fiftyFive, fiftySix, fiftySeven, fiftyEight, fiftyNine ])
-var lowerLipShape = new THREE.Shape(lowerLipCurve.getSpacedPoints(50))
+var lowerLipShape = new THREE.Shape(lowerLipCurve.getSpacedPoints(30))
 var lowerLipGeometry = new THREE.ExtrudeGeometry(lowerLipShape, extrudeSettings)
 var lowerLip = new THREE.Mesh(lowerLipGeometry, material)
 
 var update = function () {
+  gameLogic.scene.remove(upperLip)
+  var upperLipShape = new THREE.Shape(upperLipCurve.getSpacedPoints(30))
+  var upperLipGeometry = new THREE.ExtrudeGeometry(upperLipShape, extrudeSettings)
+  upperLip = new THREE.Mesh(upperLipGeometry, material)
   gameLogic.scene.add(upperLip)
+
+  gameLogic.scene.remove(lowerLip)
+  var lowerLipShape = new THREE.Shape(lowerLipCurve.getSpacedPoints(30))
+  var lowerLipGeometry = new THREE.ExtrudeGeometry(lowerLipShape, extrudeSettings)
+  lowerLip = new THREE.Mesh(lowerLipGeometry, material)
   gameLogic.scene.add(lowerLip)
 }
 
-export { update }
+export { fortyEight, fiftyFour, fortyNine, fiftyThree, update }

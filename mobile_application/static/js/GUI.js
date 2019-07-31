@@ -1,15 +1,16 @@
 import * as generateFace from './generateFace.js'
 import * as eyes from './eyes.js'
+import * as mouth from './mouth.js'
 
 var UserControls = function () {
   this.skinColour = generateFace.skinColour
-  // this.faceLength = 0
   this.upperWidth = 0
   this.midWidth = 0
   this.chinWidth = 0
   this.eyeWidth = 0
   this.eyeHeight = 0
   this.eyeColour = eyes.irisColour
+  this.mouthWidth = 0
 }
 
 window.onload = function () {
@@ -19,18 +20,6 @@ window.onload = function () {
   gui.addColor(params, 'skinColour').name('Skin Tone').onChange(function () {
     generateFace.material.color.setHex(generateFace.dec2hex(params.skinColour))
   })
-
-  // gui.add(params, 'faceLength', -30, 30).name('Face Length').onChange(function () {
-  //   let value = params.faceLength
-  //   generateFace.FH0.y = 320 + value
-  //   generateFace.FH1.y = 310 + value
-  //   generateFace.FH2.y = 310 + value
-  //   generateFace.six.y = -104 - value
-  //   generateFace.seven.y = -122 - value
-  //   generateFace.eight.y = -150 - value
-  //   generateFace.nine.y = -122 - value
-  //   generateFace.ten.y = -104 - value
-  // })
 
   gui.add(params, 'upperWidth', -30, 30).name('Upper Face Width').onChange(function () {
     let value = params.upperWidth
@@ -74,5 +63,13 @@ window.onload = function () {
 
   gui.addColor(params, 'eyeColour').name('Eye Colour').onChange(function () {
     eyes.circleMaterial.color.setHex(generateFace.dec2hex(params.eyeColour))
+  })
+
+  gui.add(params, 'mouthWidth', -15, 15).name('Mouth Width').onChange(function () {
+    let value = params.mouthWidth
+    mouth.fortyEight.x = -64 - value
+    mouth.fiftyFour.x = 64 + value
+    mouth.fortyNine.x = -38 - value
+    mouth.fiftyThree.x = 38 + value
   })
 }

@@ -38,11 +38,11 @@ var extrudeSettings = {
   bevelSegments: 10
 }
 
-var leftEyeShape = new THREE.Shape(leftEyeCurve.getSpacedPoints(50))
+var leftEyeShape = new THREE.Shape(leftEyeCurve.getSpacedPoints(30))
 var geometryLeft = new THREE.ExtrudeGeometry(leftEyeShape, extrudeSettings)
 var leftEye = new THREE.Mesh(geometryLeft, material)
 
-var rightEyeShape = new THREE.Shape(rightEyeCurve.getSpacedPoints(50))
+var rightEyeShape = new THREE.Shape(rightEyeCurve.getSpacedPoints(30))
 var geometryRight = new THREE.ExtrudeGeometry(rightEyeShape, extrudeSettings)
 var rightEye = new THREE.Mesh(geometryRight, material)
 
@@ -59,36 +59,36 @@ var extrudeSettingsCircle = {
 var irisColour = 0x331a00
 var circleMaterial = new THREE.MeshLambertMaterial({ color: irisColour })
 var circleCurveLeft = new THREE.SplineCurve([ thirtySeven, thirtyEight, forty, fortyOne, thirtySeven ])
-var leftCircleShape = new THREE.Shape(circleCurveLeft.getSpacedPoints(50))
+var leftCircleShape = new THREE.Shape(circleCurveLeft.getSpacedPoints(20))
 var geometryCircleLeft = new THREE.ExtrudeGeometry(leftCircleShape, extrudeSettingsCircle)
 var leftCircle = new THREE.Mesh(geometryCircleLeft, circleMaterial)
 
 var circleCurveRight = new THREE.SplineCurve([ fortyThree, fortyFour, fortySix, fortySeven ])
-var rightCircleShape = new THREE.Shape(circleCurveRight.getSpacedPoints(50))
+var rightCircleShape = new THREE.Shape(circleCurveRight.getSpacedPoints(20))
 var geometryCircleRight = new THREE.ExtrudeGeometry(rightCircleShape, extrudeSettingsCircle)
 var rightCircle = new THREE.Mesh(geometryCircleRight, circleMaterial)
 
 var update = function () {
   gameLogic.scene.remove(leftEye)
-  var leftEyeShape = new THREE.Shape(leftEyeCurve.getSpacedPoints(50))
+  var leftEyeShape = new THREE.Shape(leftEyeCurve.getSpacedPoints(30))
   var geometryLeft = new THREE.ExtrudeGeometry(leftEyeShape, extrudeSettings)
   leftEye = new THREE.Mesh(geometryLeft, material)
   gameLogic.scene.add(leftEye)
 
   gameLogic.scene.remove(rightEye)
-  var rightEyeShape = new THREE.Shape(rightEyeCurve.getSpacedPoints(50))
+  var rightEyeShape = new THREE.Shape(rightEyeCurve.getSpacedPoints(30))
   var geometryRight = new THREE.ExtrudeGeometry(rightEyeShape, extrudeSettings)
   rightEye = new THREE.Mesh(geometryRight, material)
   gameLogic.scene.add(rightEye)
 
   gameLogic.scene.remove(leftCircle)
-  var leftCircleShape = new THREE.Shape(circleCurveLeft.getSpacedPoints(50))
+  var leftCircleShape = new THREE.Shape(circleCurveLeft.getSpacedPoints(20))
   var geometryCircleLeft = new THREE.ExtrudeGeometry(leftCircleShape, extrudeSettingsCircle)
   leftCircle = new THREE.Mesh(geometryCircleLeft, circleMaterial)
   gameLogic.scene.add(leftCircle)
 
   gameLogic.scene.remove(rightCircle)
-  var rightCircleShape = new THREE.Shape(circleCurveRight.getSpacedPoints(50))
+  var rightCircleShape = new THREE.Shape(circleCurveRight.getSpacedPoints(20))
   var geometryCircleRight = new THREE.ExtrudeGeometry(rightCircleShape, extrudeSettingsCircle)
   rightCircle = new THREE.Mesh(geometryCircleRight, circleMaterial)
   gameLogic.scene.add(rightCircle)
