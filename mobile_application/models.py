@@ -32,6 +32,13 @@ def add_image_to_database(filename):
 
 
 def convert_list_to_str(list: List[float]) -> str:
+    """
+    Converts a list into a csv string
+
+    :param list: Input list to be converted to a string
+    :return: A csv string with all the elements in the input list
+    :rtype: str
+    """
     feature = [str(i) for i in list]
     feature_string = str(",".join(feature))
     return feature_string
