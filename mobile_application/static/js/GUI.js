@@ -12,6 +12,7 @@ var UserControls = function () {
   this.eyeColour = eyes.irisColour
   this.mouthWidth = 0
   this.lipCurve = 0
+  this.lipThickness = 0
 }
 
 window.onload = function () {
@@ -80,9 +81,24 @@ window.onload = function () {
     mouth.fiftyThree.x = 38 + value
   })
 
-  mouthGUI.add(params, 'lipCurve', -5, 5).name('Upper Lip Shape').onChange(function () {
+  mouthGUI.add(params, 'lipCurve', -10, 5).name('Upper Lip Shape').onChange(function () {
     let value = params.lipCurve
     mouth.fifty.y = 5 + value
     mouth.fiftyTwo.y = 5 + value
+  })
+
+  mouthGUI.add(params, 'lipThickness', -5, 5).name('Lip Thickness').onChange(function () {
+    let value = params.lipThickness
+    mouth.fortyNine.y = -6 + value
+    mouth.fifty.y = 5 + value
+    mouth.fiftyOne.y = value
+    mouth.fiftyTwo.y = 5 + value
+    mouth.fiftyThree.y = -6 + value
+
+    mouth.fiftyFive.y = -32 - value
+    mouth.fiftySix.y = -38 - value
+    mouth.fiftySeven.y = -39 - value
+    mouth.fiftyEight.y = -38 - value
+    mouth.fiftyNine.y = -32 - value
   })
 }

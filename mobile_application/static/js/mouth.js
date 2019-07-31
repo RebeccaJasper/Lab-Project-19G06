@@ -61,4 +61,5 @@ var update = function () {
   gameLogic.scene.add(lowerLip)
 }
 
-export { fortyEight, fiftyFour, fortyNine, fiftyThree, fifty, fiftyTwo, update }
+export { fortyEight, fiftyFour, fortyNine, fiftyThree, fifty, fiftyTwo, fiftyOne, fiftyFive,
+  fiftySix, fiftySeven, fiftyEight, fiftyNine, update }
