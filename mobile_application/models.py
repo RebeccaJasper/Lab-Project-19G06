@@ -28,7 +28,7 @@ def add_image_to_database(filename):
                     VALUES (%s); '''
     cursor.execute(query_string, param)
     conn.commit
-    
+
 
 
 
