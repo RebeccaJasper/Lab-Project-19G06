@@ -44,6 +44,8 @@ window.onload = function () {
     let value = params.chinWidth
     generateFace.six.x = -88 - value
     generateFace.ten.x = 88 + value
+    generateFace.seven.x = -46 - value
+    generateFace.nine.x = 46 + value
   })
 
   gui.add(params, 'eyeWidth', -15, 15).name('Eye Width').onChange(function () {

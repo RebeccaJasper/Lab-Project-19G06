@@ -11,7 +11,9 @@ var material = new THREE.MeshLambertMaterial({ color: skinColour })
 var zero = new THREE.Vector2(-177, 120)
 var four = new THREE.Vector2(-147, -44)
 var six = new THREE.Vector2(-88, -104)
-var eight = new THREE.Vector2(0, -150)
+var seven = new THREE.Vector2(-46, -122)
+var eight = new THREE.Vector2(0, -128)
+var nine = new THREE.Vector2(46, -122)
 var ten = new THREE.Vector2(88, -104)
 var twelve = new THREE.Vector2(147, -44)
 var sixteen = new THREE.Vector2(177, 120)
@@ -25,7 +27,7 @@ var FH3 = new THREE.Vector2(-147, 250)
 var FH4 = new THREE.Vector2(147, 250)
 
 var faceCurve = new THREE.SplineCurve([
-  FH0, FH1, FH3, zero, four, six, eight, ten, twelve, sixteen, FH4, FH2, FH0
+  FH0, FH1, FH3, zero, four, six, seven, eight, nine, ten, twelve, sixteen, FH4, FH2, FH0
 ])
 
 var extrudeSettings = {
@@ -56,4 +58,4 @@ function dec2hex (i) {
   if (result.length === 8) { return result }
 }
 
-export { skinColour, material, zero, four, six, ten, eight, twelve, FH0, FH1, FH2, sixteen, dec2hex, update }
+export { skinColour, material, zero, four, six, seven, nine, ten, eight, twelve, FH0, FH1, FH2, sixteen, dec2hex, update }
