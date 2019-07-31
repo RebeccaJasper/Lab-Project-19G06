@@ -1,4 +1,5 @@
 from typing import IO
+from db import *
 
 
 def photo_to_binary(filename: str) -> IO[bytes]:
@@ -23,11 +24,12 @@ def get_encoding_list():
 
 
 def add_image_to_database(filename):
-    param = photo_to_binary('1.png')
+    arg = photo_to_binary('1.png')
     query_string = ''' INSERT INTO person_photo(photo)
                     VALUES (%s); '''
-    cursor.execute(query_string, param)
-    conn.commit
+    execute_query(query_string, arg)
+
+
 
 
 

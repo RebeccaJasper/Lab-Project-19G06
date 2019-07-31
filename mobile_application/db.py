@@ -17,3 +17,15 @@ load_dotenv(dotenv_path)
 conn = pymssql.connect(server=SERVER_NAME, user=USER_NAME, password=PASSWORD, database=DATABASE)
 
 cursor = conn.cursor()
+
+
+def execute_query(query_string: str, arg: str) -> None:
+    """
+    Allows SQL queries to be executed in the database
+    :param query_string: query string to be inserted to the database
+    :param arg: argument for the query string
+    :return: None
+    """
+
+    cursor.execute(query_string, arg)
+    conn.commit()
