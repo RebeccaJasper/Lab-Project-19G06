@@ -8,6 +8,7 @@ var UserControls = function () {
   this.chinWidth = 0
   this.eyeWidth = 0
   this.eyeHeight = 0
+  this.eyeColour = eyes.irisColour
 }
 
 window.onload = function () {
@@ -54,5 +55,9 @@ window.onload = function () {
     eyes.fortyOne.y = 131 - value
     eyes.fortySix.y = 131 - value
     eyes.fortySeven.y = 131 - value
+  })
+
+  gui.addColor(params, 'eyeColour').name('Eye Colour').onChange(function () {
+    eyes.circleMaterial.color.setHex(generateFace.dec2hex(params.eyeColour))
   })
 }

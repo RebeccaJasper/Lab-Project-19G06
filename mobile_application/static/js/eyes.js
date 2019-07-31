@@ -56,7 +56,8 @@ var extrudeSettingsCircle = {
   bevelSegments: 10
 }
 
-var circleMaterial = new THREE.MeshLambertMaterial({ color: 0x331a00 })
+var irisColour = 0x331a00
+var circleMaterial = new THREE.MeshLambertMaterial({ color: irisColour })
 var circleCurveLeft = new THREE.SplineCurve([ thirtySeven, thirtyEight, forty, fortyOne, thirtySeven ])
 var leftCircleShape = new THREE.Shape(circleCurveLeft.getSpacedPoints(50))
 var geometryCircleLeft = new THREE.ExtrudeGeometry(leftCircleShape, extrudeSettingsCircle)
@@ -94,4 +95,4 @@ var update = function () {
 }
 
 export { thirtySix, thirtySeven, thirtyEight, thirtyNine, forty, fortyOne, fortyTwo, fortyThree,
-  fortyFour, fortyFive, fortySix, fortySeven, eyeColour, material, update }
+  fortyFour, fortyFive, fortySix, fortySeven, eyeColour, material, update, irisColour, circleMaterial }
