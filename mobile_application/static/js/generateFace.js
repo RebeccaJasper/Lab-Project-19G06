@@ -1,44 +1,13 @@
-var scene, camera, renderer, controls
+import * as gameLogic from './gameLogic.js'
 
-init()
-
-function init () {
-  scene = new THREE.Scene()
-  camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
-  camera.position.set(0, 0, 800)
-  camera.lookAt(0, 0, 0)
-
-  renderer = new THREE.WebGLRenderer()
-  renderer.setSize(window.innerWidth, window.innerHeight)
-  // renderer.setClearColor(0x333F47, 1)
-  document.body.appendChild(renderer.domElement)
-
-  controls = new THREE.OrbitControls(camera, renderer.domElement)
-  controls.enablePan = false
-  controls.minDistance = 90
-  controls.maxDistance = 800
-
-  var ambientLight = new THREE.AmbientLight(0x404040) // soft white light
-  scene.add(ambientLight)
-
-  var directionalLight = new THREE.DirectionalLight(0xffffff, 0.7)
-  // 					left/right, up/down, front/back
-  directionalLight.position.set(0, 0, 1)
-  scene.add(directionalLight)
-}
-
-window.addEventListener('resize', function () {
-  var width = window.innerWidth
-  var height = window.innerHeight
-  renderer.setSize(width, height)
-  camera.aspect = width / height
-  camera.updateProjectionMatrix()
-})
+// Draw the face
 
 var skinColour = 0x996633
 var material = new THREE.MeshLambertMaterial({ color: skinColour })
 
-// setup facial markers
+// Facial markers related to Dlib are numbered
+
+// Face shape
 var zero = new THREE.Vector2(-177, 120)
 var four = new THREE.Vector2(-147, -44)
 var six = new THREE.Vector2(-88, -104)
@@ -47,56 +16,38 @@ var ten = new THREE.Vector2(88, -104)
 var twelve = new THREE.Vector2(147, -44)
 var sixteen = new THREE.Vector2(177, 120)
 
-var curve = new THREE.SplineCurve([
-  zero, four, six, eight, ten, twelve, sixteen
+// Facial markers added to make face look better
+// FH = forehead markers
+var FH0 = new THREE.Vector2(0, 320)
+var FH1 = new THREE.Vector2(-88, 310)
+var FH2 = new THREE.Vector2(88, 310)
+var FH3 = new THREE.Vector2(-147, 250)
+var FH4 = new THREE.Vector2(147, 250)
+
+var faceCurve = new THREE.SplineCurve([
+  FH0, FH1, FH3, zero, four, six, eight, ten, twelve, sixteen, FH4, FH2, FH0
 ])
 
 var extrudeSettings = {
-  steps: 50,
-  depth: 100,
+  steps: 1,
+  depth: 10,
   bevelEnabled: true,
-  bevelThickness: 100,
-  bevelSize: 50,
-  bevelOffset: 50,
+  bevelThickness: 3,
+  bevelSize: 1,
+  bevelOffset: 1,
   bevelSegments: 10
 }
 
-var shape = new THREE.Shape(curve.getSpacedPoints(100))
-var geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings)
+var faceShape = new THREE.Shape(faceCurve.getSpacedPoints(100))
+var geometry = new THREE.ExtrudeGeometry(faceShape, extrudeSettings)
 var face = new THREE.Mesh(geometry, material)
 
-var UserControls = function () {
-  this.skinColour = skinColour
-  this.upperWidth = 0
-  this.midWidth = 0
-  this.chinWidth = 0
-}
-
-window.onload = function () {
-  var params = new UserControls()
-  var gui = new dat.GUI()
-
-  gui.addColor(params, 'skinColour').name('Skin Tone').onChange(function () {
-    material.color.setHex(dec2hex(params.skinColour))
-  })
-
-  gui.add(params, 'upperWidth', -30, 30).name('Upper Face Width').onChange(function () {
-    let value = params.upperWidth
-    zero.x = -177 - value
-    sixteen.x = 177 + value
-  })
-
-  gui.add(params, 'midWidth', -50, 50).name('Mid-Face Width').onChange(function () {
-    let value = params.midWidth
-    four.x = -147 - value
-    twelve.x = 147 + value
-  })
-
-  gui.add(params, 'chinWidth', -50, 50).name('Chin Width').onChange(function () {
-    let value = params.chinWidth
-    six.x = -88 - value
-    ten.x = 88 + value
-  })
+var update = function () {
+  gameLogic.scene.remove(face)
+  var faceShape = new THREE.Shape(faceCurve.getSpacedPoints(100))
+  var geometry = new THREE.ExtrudeGeometry(faceShape, extrudeSettings)
+  face = new THREE.Mesh(geometry, material)
+  gameLogic.scene.add(face)
 }
 
 function dec2hex (i) {
@@ -105,25 +56,4 @@ function dec2hex (i) {
   if (result.length === 8) { return result }
 }
 
-var update = function () {
-  // game logic
-  scene.remove(face)
-  shape = new THREE.Shape(curve.getSpacedPoints(100))
-  geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings)
-  face = new THREE.Mesh(geometry, material)
-  scene.add(face)
-}
-
-// draw scene
-var render = function () {
-  renderer.render(scene, camera)
-}
-
-// run game loop (update, render, repeat)
-var gameLoop = function () {
-  requestAnimationFrame(gameLoop)
-  update()
-  render()
-}
-
-gameLoop()
+export { skinColour, material, zero, four, six, ten, twelve, sixteen, dec2hex, update }
