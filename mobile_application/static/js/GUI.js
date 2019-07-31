@@ -93,9 +93,7 @@ window.onload = function () {
   mouthGUI.add(params, 'lipThickness', -5, 5).name('Lip Thickness').onChange(function () {
     let value = params.lipThickness
     mouth.fortyNine.y = -6 + value
-    mouth.fifty.y = 5 + value
     mouth.fiftyOne.y = value
-    mouth.fiftyTwo.y = 5 + value
     mouth.fiftyThree.y = -6 + value
 
     mouth.fiftyFive.y = -32 - value
