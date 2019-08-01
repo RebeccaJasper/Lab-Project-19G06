@@ -19,7 +19,11 @@ var UserControls = function () {
   this.mouthColour = mouth.lipColour
   this.noseWidth = 0
   this.nosePeak = 0
-  this.browOuter = 0
+  this.browPeak = 0
+  this.browOuterX = 0
+  this.browOuterY = 0
+  this.browInnerX = 0
+  this.browInnerY = 0
 }
 
 window.onload = function () {
@@ -135,9 +139,33 @@ window.onload = function () {
 
   var browsGUI = gui.addFolder('Eyebrow Shape')
 
-  browsGUI.add(params, 'browOuter', -7, 15).name('Outer Position').onChange(function () {
-    let value = params.browOuter
+  browsGUI.add(params, 'browPeak', -10, 10).name('Brow Peak').onChange(function () {
+    let value = params.browPeak
+    brows.nineteen.y = 203 + value
+    brows.twentyFour.y = 203 + value
+  })
+
+  browsGUI.add(params, 'browOuterX', -10, 0).name('Outer Horizontal').onChange(function () {
+    let value = params.browOuterX
+    brows.seventeen.x = -152 - value
+    brows.twentySix.x = 152 + value
+  })
+
+  browsGUI.add(params, 'browOuterY', -7, 15).name('Outer Vertical').onChange(function () {
+    let value = params.browOuterY
     brows.seventeen.y = 169 + value
     brows.twentySix.y = 169 + value
+  })
+
+  browsGUI.add(params, 'browInnerX', -10, 10).name('Inner Horizontal').onChange(function () {
+    let value = params.browInnerX
+    brows.twentyOne.x = -28 - value
+    brows.twentyTwo.x = 28 + value
+  })
+
+  browsGUI.add(params, 'browInnerY', -5, 5).name('Inner Vertical').onChange(function () {
+    let value = params.browInnerY
+    brows.twentyOne.y = 192 + value
+    brows.twentyTwo.y = 192 + value
   })
 }

@@ -51,4 +51,4 @@ var update = function () {
   gameLogic.scene.add(rightBrow)
 }
 
-export { browColour, material, update, twentySix, seventeen }
+export { browColour, material, update, twentySix, seventeen, twentyOne, twentyTwo, nineteen, twentyFour }
