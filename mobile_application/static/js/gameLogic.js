@@ -1,4 +1,4 @@
-import * as generateFace from './generateFace.js'
+import * as generateFace from './face.js'
 import * as eyes from './eyes.js'
 import * as mouth from './mouth.js'
 import * as nose from './nose.js'
