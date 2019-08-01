@@ -1,6 +1,7 @@
 import * as generateFace from './generateFace.js'
 import * as eyes from './eyes.js'
 import * as mouth from './mouth.js'
+import * as nose from './nose.js'
 
 var UserControls = function () {
   this.upperWidth = 0
@@ -45,6 +46,7 @@ window.onload = function () {
 
   faceGUI.addColor(params, 'skinColour').name('Skin Tone').onChange(function () {
     generateFace.material.color.setHex(generateFace.dec2hex(params.skinColour))
+    nose.material.color.setHex(generateFace.dec2hex(params.skinColour))
   })
 
   var eyeGUI = gui.addFolder('Eyes')
