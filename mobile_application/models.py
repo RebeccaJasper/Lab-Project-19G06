@@ -4,12 +4,13 @@ from typing import List
 from base64 import b64encode
 
 
-def photo_to_string(filename: str) -> IO[bytes]:
+def photo_to_string(filename: str) -> str:
     """
     Opens a specified photo and converts it to a string using base64 encoding
 
     :param filename: name of the image file
-    :return: typing.BinaryIO
+    :return: Base64 encoded image
+    :rtype: str
     """
 
     with open(filename, 'rb') as file:
@@ -26,7 +27,7 @@ def add_image_to_database(person_id: str, filename: str) -> None:
     :type: str
     :param filename: The name of the image file
     :type: str
-    :return: None
+    :rtype: None
     """
     query_string = ''' INSERT INTO person_photos(person_id, photo)
                     VALUES ('%s', '%s'); '''
