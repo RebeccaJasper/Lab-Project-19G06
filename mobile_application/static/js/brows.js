@@ -1,18 +1,18 @@
 import * as gameLogic from './gameLogic.js'
 
 // Left brow markers
-var seventeen = new THREE.Vector2(-145, 166)
-var eighteen = new THREE.Vector2(-125, 191)
-var nineteen = new THREE.Vector2(-94, 202)
-var twenty = new THREE.Vector2(-59, 201)
-var twentyOne = new THREE.Vector2(-27, 190)
+var seventeen = new THREE.Vector2(-152, 169)
+var eighteen = new THREE.Vector2(-130, 193)
+var nineteen = new THREE.Vector2(-97, 203)
+var twenty = new THREE.Vector2(-62, 203)
+var twentyOne = new THREE.Vector2(-28, 192)
 
 // Right brow markers
-var twentyTwo = new THREE.Vector2(30, 194)
-var twentyThree = new THREE.Vector2(64, 205)
-var twentyFour = new THREE.Vector2(100, 205)
-var twentyFive = new THREE.Vector2(134, 195)
-var twentySix = new THREE.Vector2(158, 171)
+var twentyTwo = new THREE.Vector2(28, 192)
+var twentyThree = new THREE.Vector2(62, 203)
+var twentyFour = new THREE.Vector2(97, 203)
+var twentyFive = new THREE.Vector2(130, 193)
+var twentySix = new THREE.Vector2(152, 169)
 
 var extrudeSettings = {
   steps: 1,
@@ -27,12 +27,12 @@ var extrudeSettings = {
 var browColour = 0x331a00
 var material = new THREE.MeshLambertMaterial({ color: browColour })
 
-var leftBrowCurve = new THREE.SplineCurve([seventeen, eighteen, nineteen, twenty, twentyOne])
+var leftBrowCurve = new THREE.SplineCurve([seventeen, eighteen, nineteen, twenty, twentyOne, nineteen, seventeen])
 var leftBrowShape = new THREE.Shape(leftBrowCurve.getSpacedPoints(100))
 var geometryL = new THREE.ExtrudeGeometry(leftBrowShape, extrudeSettings)
 var leftBrow = new THREE.Mesh(geometryL, material)
 
-var rightBrowCurve = new THREE.SplineCurve([twentyTwo, twentyThree, twentyFour, twentyFive, twentySix])
+var rightBrowCurve = new THREE.SplineCurve([twentyTwo, twentyThree, twentyFour, twentyFive, twentySix, twentyFour, twentyTwo])
 var rightBrowShape = new THREE.Shape(rightBrowCurve.getSpacedPoints(100))
 var geometryR = new THREE.ExtrudeGeometry(rightBrowShape, extrudeSettings)
 var rightBrow = new THREE.Mesh(geometryR, material)
