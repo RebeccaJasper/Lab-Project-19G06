@@ -2,6 +2,7 @@ import * as generateFace from './face.js'
 import * as eyes from './eyes.js'
 import * as mouth from './mouth.js'
 import * as nose from './nose.js'
+import * as brows from './brows.js'
 
 var scene, camera, renderer, controls
 
@@ -49,6 +50,7 @@ var gameLoop = function () {
   eyes.update()
   mouth.update()
   nose.update()
+  brows.update()
   render()
 }
 
