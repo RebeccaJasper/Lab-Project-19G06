@@ -4,9 +4,9 @@ from typing import List
 from base64 import b64encode
 
 
-def photo_to_binary(filename: str) -> IO[bytes]:
+def photo_to_string(filename: str) -> IO[bytes]:
     """
-    Opens a specified photo and converts it to binary
+    Opens a specified photo and converts it to a string using base64 encoding
 
     :param filename: name of the image file
     :return: typing.BinaryIO
@@ -15,7 +15,6 @@ def photo_to_binary(filename: str) -> IO[bytes]:
     with open(filename, 'rb') as file:
         binary_data = b64encode(file.read())
 
-    # print('This word can be formatted: "%s" ' % binary_data.decode('utf-8'))
     return binary_data.decode('utf-8')
 
 
@@ -31,10 +30,9 @@ def add_image_to_database(person_id, filename):
 
     query_string = ''' INSERT INTO person_photos(person_id, photo)
                     VALUES ('%s', '%s'); '''
-    args = (person_id, photo_to_binary(filename))
+    args = (person_id, photo_to_string(filename))
     execute_query(query_string, args)
 
-add_image_to_database('1', '1.jpg')
 
 def convert_list_to_str(list: List[float]) -> str:
     """
