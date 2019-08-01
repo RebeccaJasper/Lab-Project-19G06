@@ -1,5 +1,8 @@
-import * as generateFace from './generateFace.js'
+import * as generateFace from './face.js'
 import * as eyes from './eyes.js'
+import * as mouth from './mouth.js'
+import * as nose from './nose.js'
+import * as brows from './brows.js'
 
 var scene, camera, renderer, controls
 
@@ -7,7 +10,7 @@ var scene, camera, renderer, controls
 
 scene = new THREE.Scene()
 camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
-camera.position.set(0, 0, 800)
+camera.position.set(0, 0, 500)
 camera.lookAt(0, 0, 0)
 
 renderer = new THREE.WebGLRenderer()
@@ -15,7 +18,7 @@ renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild(renderer.domElement)
 
 controls = new THREE.OrbitControls(camera, renderer.domElement)
-controls.enablePan = false
+controls.enablePan = true
 controls.minDistance = 90
 controls.maxDistance = 800
 
@@ -45,6 +48,9 @@ var gameLoop = function () {
   requestAnimationFrame(gameLoop)
   generateFace.update()
   eyes.update()
+  mouth.update()
+  nose.update()
+  brows.update()
   render()
 }
 
