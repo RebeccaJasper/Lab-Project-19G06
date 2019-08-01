@@ -16,6 +16,8 @@ var UserControls = function () {
   this.lipThickness = 0
   this.mouthCorners = 0
   this.mouthColour = mouth.lipColour
+  this.noseWidth = 0
+  this.nosePeak = 0
 }
 
 window.onload = function () {
@@ -114,5 +116,18 @@ window.onload = function () {
 
   mouthGUI.addColor(params, 'mouthColour').name('Mouth Colour').onChange(function () {
     mouth.material.color.setHex(generateFace.dec2hex(params.mouthColour))
+  })
+
+  var noseGUI = gui.addFolder('Nose')
+
+  noseGUI.add(params, 'noseWidth', -10, 10).name('Nose Width').onChange(function () {
+    let value = params.noseWidth
+    nose.thirtyOne.x = -33 - value
+    nose.thirtyFive.x = 33 + value
+  })
+
+  noseGUI.add(params, 'nosePeak', -5, 10).name('Nose Peak').onChange(function () {
+    let value = params.nosePeak
+    nose.thirtyThree.y = 35 - value
   })
 }

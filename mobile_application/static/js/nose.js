@@ -39,4 +39,4 @@ var update = function () {
   gameLogic.scene.add(nose)
 }
 
-export { skinColour, material, update }
+export { skinColour, material, update, thirtyOne, thirtyFive, thirtyThree }
