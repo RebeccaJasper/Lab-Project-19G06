@@ -18,14 +18,6 @@ def photo_to_string(filename: str) -> IO[bytes]:
     return binary_data.decode('utf-8')
 
 
-def add_encoding_to_db(feature_vec):
-    db_list.append(feature_vec)
-
-
-def get_encoding_list():
-    return db_list
-
-
 def add_image_to_database(person_id: str, filename: str) -> None:
     """
     Adds a specified person's image to the database
