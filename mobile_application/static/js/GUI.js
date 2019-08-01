@@ -13,6 +13,7 @@ var UserControls = function () {
   this.mouthWidth = 0
   this.lipCurve = 0
   this.lipThickness = 0
+  this.mouthCorners = 0
   this.mouthColour = mouth.lipColour
 }
 
@@ -101,6 +102,12 @@ window.onload = function () {
     mouth.fiftySeven.y = -39 - value
     mouth.fiftyEight.y = -38 - value
     mouth.fiftyNine.y = -32 - value
+  })
+
+  mouthGUI.add(params, 'mouthCorners', -5, 5).name('Mouth Corners').onChange(function () {
+    let value = params.mouthCorners
+    mouth.fiftyFour.y = -20 + value
+    mouth.fortyEight.y = -20 + value
   })
 
   mouthGUI.addColor(params, 'mouthColour').name('Mouth Colour').onChange(function () {
