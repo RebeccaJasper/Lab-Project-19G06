@@ -24,6 +24,7 @@ var UserControls = function () {
   this.browOuterY = 0
   this.browInnerX = 0
   this.browInnerY = 0
+  this.browColour = brows.browColour
 }
 
 window.onload = function () {
@@ -167,5 +168,9 @@ window.onload = function () {
     let value = params.browInnerY
     brows.twentyOne.y = 192 + value
     brows.twentyTwo.y = 192 + value
+  })
+
+  browsGUI.addColor(params, 'browColour').name('Eyebrow Colour').onChange(function () {
+    brows.material.color.setHex(generateFace.dec2hex(params.browColour))
   })
 }
