@@ -2,6 +2,7 @@ import * as generateFace from './face.js'
 import * as eyes from './eyes.js'
 import * as mouth from './mouth.js'
 import * as nose from './nose.js'
+import * as brows from './brows.js'
 
 var UserControls = function () {
   this.upperWidth = 0
@@ -18,6 +19,7 @@ var UserControls = function () {
   this.mouthColour = mouth.lipColour
   this.noseWidth = 0
   this.nosePeak = 0
+  this.browOuter = 0
 }
 
 window.onload = function () {
@@ -129,5 +131,13 @@ window.onload = function () {
   noseGUI.add(params, 'nosePeak', -5, 10).name('Nose Peak').onChange(function () {
     let value = params.nosePeak
     nose.thirtyThree.y = 35 - value
+  })
+
+  var browsGUI = gui.addFolder('Eyebrow Shape')
+
+  browsGUI.add(params, 'browOuter', -7, 15).name('Outer Position').onChange(function () {
+    let value = params.browOuter
+    brows.seventeen.y = 169 + value
+    brows.twentySix.y = 169 + value
   })
 }

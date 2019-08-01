@@ -18,7 +18,7 @@ renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild(renderer.domElement)
 
 controls = new THREE.OrbitControls(camera, renderer.domElement)
-controls.enablePan = false
+controls.enablePan = true
 controls.minDistance = 90
 controls.maxDistance = 800
 
