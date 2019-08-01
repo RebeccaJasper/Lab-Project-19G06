@@ -65,20 +65,20 @@ var mouthGap = new THREE.Mesh(mouthGapGeometry, mouthGapMaterial)
 
 var update = function () {
   gameLogic.scene.remove(upperLip)
-  var upperLipShape = new THREE.Shape(upperLipCurve.getSpacedPoints(30))
-  var upperLipGeometry = new THREE.ExtrudeGeometry(upperLipShape, extrudeSettings)
+  upperLipShape = new THREE.Shape(upperLipCurve.getSpacedPoints(30))
+  upperLipGeometry = new THREE.ExtrudeGeometry(upperLipShape, extrudeSettings)
   upperLip = new THREE.Mesh(upperLipGeometry, material)
   gameLogic.scene.add(upperLip)
 
   gameLogic.scene.remove(lowerLip)
-  var lowerLipShape = new THREE.Shape(lowerLipCurve.getSpacedPoints(30))
-  var lowerLipGeometry = new THREE.ExtrudeGeometry(lowerLipShape, extrudeSettings)
+  lowerLipShape = new THREE.Shape(lowerLipCurve.getSpacedPoints(30))
+  lowerLipGeometry = new THREE.ExtrudeGeometry(lowerLipShape, extrudeSettings)
   lowerLip = new THREE.Mesh(lowerLipGeometry, material)
   gameLogic.scene.add(lowerLip)
 
   gameLogic.scene.remove(mouthGap)
-  var mouthGapShape = new THREE.Shape(mouthGapCurve.getSpacedPoints(30))
-  var mouthGapGeometry = new THREE.ExtrudeGeometry(mouthGapShape, extrudeSettingsGap)
+  mouthGapShape = new THREE.Shape(mouthGapCurve.getSpacedPoints(30))
+  mouthGapGeometry = new THREE.ExtrudeGeometry(mouthGapShape, extrudeSettingsGap)
   mouthGap = new THREE.Mesh(mouthGapGeometry, mouthGapMaterial)
   gameLogic.scene.add(mouthGap)
 }

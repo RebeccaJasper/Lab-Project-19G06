@@ -46,8 +46,8 @@ var face = new THREE.Mesh(geometry, material)
 
 var update = function () {
   gameLogic.scene.remove(face)
-  var faceShape = new THREE.Shape(faceCurve.getSpacedPoints(100))
-  var geometry = new THREE.ExtrudeGeometry(faceShape, extrudeSettings)
+  faceShape = new THREE.Shape(faceCurve.getSpacedPoints(100))
+  geometry = new THREE.ExtrudeGeometry(faceShape, extrudeSettings)
   face = new THREE.Mesh(geometry, material)
   gameLogic.scene.add(face)
 }
