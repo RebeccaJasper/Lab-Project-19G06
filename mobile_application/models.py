@@ -26,8 +26,16 @@ def get_encoding_list():
     return db_list
 
 
-def add_image_to_database(person_id, filename):
+def add_image_to_database(person_id: str, filename: str) -> None:
+    """
+    Adds a specified person's image to the database
 
+    :param person_id: The id od the person
+    :type: str
+    :param filename: The name of the image file
+    :type: str
+    :return: None
+    """
     query_string = ''' INSERT INTO person_photos(person_id, photo)
                     VALUES ('%s', '%s'); '''
     args = (person_id, photo_to_string(filename))
