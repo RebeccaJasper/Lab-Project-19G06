@@ -34,15 +34,15 @@ def add_image_to_database(person_id, filename):
     execute_query(query_string, args)
 
 
-def convert_list_to_str(list: List[float]) -> str:
+def convert_list_to_str(input_list: List[float]) -> str:
     """
     Converts a list into a csv string
 
-    :param list: Input list to be converted to a string
+    :param input_list: Input list to be converted to a string
     :return: A csv string with all the elements in the input list
     :rtype: str
     """
-    feature = [str(i) for i in list]
+    feature = [str(i) for i in input_list]
     feature_string = str(",".join(feature))
     return feature_string
 
