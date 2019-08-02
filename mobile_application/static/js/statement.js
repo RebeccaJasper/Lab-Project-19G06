@@ -14,9 +14,13 @@ $(document).ready(() => {
 
     // Toggle the input fields for person's name
     $("#person-name-yes").on('change', () => {
-        $('#name-is-known').toggle()
+        if ($("#person-name-yes").is(':checked')) {
+            $('#name-is-known').css('display','block')
+        }
     })
-    $("#person-name-no").on('change', () => {
-        $('#name-is-known').toggle()
+    $("#person-name-no").click(() => {
+        if ($("#person-name-no").is(':checked')) {
+            $('#name-is-known').css('display','none')
+        }
     })
 })
