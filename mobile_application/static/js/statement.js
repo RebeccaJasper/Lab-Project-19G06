@@ -39,8 +39,18 @@ $(document).ready(() => {
     $("#submit-btn").click(()=> {
         // Get the person's name
         if ($("#person-name-yes").is(':checked')) {
-            submission.firstName = ("#firstname").val()
-            submission.surname = ("#surname").val()
+            submission.firstName = $("#firstname").val()
+            submission.surname = $("#surname").val()
         }
+
+        $.ajax({
+          url: '/api/submit',
+          method: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify(submission),
+          success: function (res) {
+            console.log(submission)
+          }
+        })
     })
 })
