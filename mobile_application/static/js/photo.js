@@ -5,7 +5,7 @@ $(document).ready(() => {
       method: 'POST',
       contentType: 'application/json',
       success: function (res) {
-        console.log(res)
+        $('#image-area').append("<img src='data:image/jpg;base64," + res.img_string + "'>")
       }
     })
 })

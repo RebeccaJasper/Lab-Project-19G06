@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, jsonify
+from os import path, getcwd
 
 mobile_application = Blueprint('mobile_application', __name__)
 
@@ -15,5 +16,8 @@ def picture():
 
 @mobile_application.route('/api/photo', methods=['POST'])
 def picture_base64():
-    return jsonify(img='hello')
-    # return render_template('photo.html')
+    photo_directory = path.join(getcwd(), 'mobile_application\\facial_images\\base64.txt')
+    base64_image = open(photo_directory, 'r')
+    base64_image_string = base64_image.read()
+    print(type(base64_image_string))
+    return jsonify(img_string=base64_image_string)
