@@ -75,6 +75,15 @@ def get_random_image() -> Tuple[str, str]:
     :return: person_id, base64_image_string
     :rtype Tuple[str, str]
     """
+
+    # Find the total number of entries in the table
+    query_string = ''' SELECT COUNT(*)
+                        FROM person_photos '''
+    execute_query(query_string, ())
+    data = retrieve_data()
+    NUM_OF_ROWS = data[0]
+    print(NUM_OF_ROWS)
+
     query_string = ''' SELECT * FROM person_photos
                     WHERE person_id = '%s' '''
     args = 1
