@@ -80,5 +80,5 @@ def get_random_image():
     data = retrieve_data()
     (person_id, base64_img_string) = (data[0], data[1])
     return person_id, base64_img_string
- 
+
 
