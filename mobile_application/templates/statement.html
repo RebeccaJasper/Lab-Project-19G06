@@ -31,7 +31,7 @@
         </div>
     </p>
 
-    <div id="details" style="display: none">
+    <div class="details" style="display: none">
         <p>
             Do you know the person's name?
             <div class="form-check">
@@ -41,8 +41,8 @@
             </div>
 
             <div id="name-is-known" style="display: none">
-                First name: <input type="text" class="form-control" placeholder="Person's first name">
-                Surname: <input type="text" class="form-control" placeholder="Person's surname">
+                First name: <input type="text" class="form-control" placeholder="Person's first name" id="firstname">
+                Surname: <input type="text" class="form-control" placeholder="Person's surname" id="surname">
             </div>
 
             <div class="form-check">
@@ -75,7 +75,8 @@
             </select>
         </p>
 
-        <button type="button" class="btn btn-success">Submit Response</button>
+        <button type="button" class="btn btn-success" id="submit-btn" style="display: none">Submit Response</button>
+
 </body>
 
 </html>
