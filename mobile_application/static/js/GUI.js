@@ -27,6 +27,19 @@ var UserControls = function () {
   this.browColour = brows.browColour
 }
 
+var submitButton = { submit: function () {
+  console.log('clicked')
+
+  let facialMarkers = [generateFace.zero, generateFace.four, generateFace.six, generateFace.ten,
+    generateFace.twelve, generateFace.sixteen, nose.thirtyOne, nose.thirtyFive, eyes.thirtySix,
+    eyes.thirtySeven, eyes.thirtyEight, eyes.thirtyNine, eyes.forty, eyes.fortyOne, eyes.fortyTwo,
+    eyes.fortyThree, eyes.fortyFour, eyes.fortyFive, eyes.fortySix, eyes.fortySeven, mouth.fortyEight,
+    mouth.fiftyOne, mouth.fiftyFour, mouth.fiftySeven]
+
+  window.localStorage.setItem('markers', JSON.stringify(facialMarkers))
+}
+}
+
 window.onload = function () {
   var params = new UserControls()
   var gui = new dat.GUI()
@@ -174,7 +187,5 @@ window.onload = function () {
     brows.material.color.setHex(generateFace.dec2hex(params.browColour))
   })
 
-  // var submitGUI = gui.addFolder('SUBMIT')
-  var obj = { submit: function () { console.log('clicked') } }
-  gui.add(obj, 'submit').name('SUBMIT IDENTIKIT')
+  gui.add(submitButton, 'submit').name('SUBMIT IDENTIKIT')
 }
