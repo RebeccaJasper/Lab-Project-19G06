@@ -19,5 +19,4 @@ def picture_base64():
     photo_directory = path.join(getcwd(), 'mobile_application\\facial_images\\base64.txt')
     base64_image = open(photo_directory, 'r')
     base64_image_string = base64_image.read()
-    print(type(base64_image_string))
     return jsonify(img_string=base64_image_string)

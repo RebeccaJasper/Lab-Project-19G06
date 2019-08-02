@@ -1,6 +1,7 @@
 from mobile_application.db import *
 from typing import List
 from base64 import b64encode
+from random import randint
 
 
 def photo_to_string(filename: str) -> str:
@@ -33,7 +34,7 @@ def add_image_to_database(person_id: str, filename: str) -> None:
                     VALUES ('%s', '%s'); '''
     args = (person_id, photo_to_string(filename))
     execute_query(query_string, args)
-
+    commit_changes()
 
 def convert_list_to_str(input_list: List[float]) -> str:
     """
@@ -64,6 +65,20 @@ def add_feature_vector_to_db(person_id: str, feature_vector: List[float]) -> Non
                     VALUES ('%s', '%s'); '''
     args = (person_id, convert_list_to_str(feature_vector))
     execute_query(query_string, args)
+    commit_changes()
 
 
+def get_random_image():
+    """
+
+    :return:
+    """
+    query_string = ''' SELECT * FROM person_photos
+                    WHERE person_id = '%s' '''
+    args = 1
+    execute_query(query_string, args)
+    data = retrieve_data()
+    (person_id, base64_img_string) = (data[0], data[1])
+    return person_id, base64_img_string
+ 
 
