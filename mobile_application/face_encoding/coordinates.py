@@ -26,7 +26,7 @@ class Coordinate:
         return '({self.x}, {self.y})'.format(self=self)
 
 
-def unit_vector(dlib_point):
+def unit_vector(dlib_point) -> Coordinate:
     """
     Coverts a dlib vector to a unit vector
     :param dlib_point: Dlib coordinate
@@ -45,7 +45,7 @@ def unit_vector(dlib_point):
     return new_point
 
 
-def change_coordinate_reference(ref: Coordinate, point: Coordinate):
+def change_coordinate_reference(ref: Coordinate, point: Coordinate) -> Coordinate:
     """
     Change the base-reference point of a particular coordinate
 

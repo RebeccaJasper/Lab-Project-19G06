@@ -1,8 +1,18 @@
 import cv2
 import dlib
 from .coordinates import *
+from typing import List
 
-def encode_face_image(img):
+
+def encode_face_image(img: str) -> List[float]:
+    """
+    Creates a normailized feature vector for a given id photograph
+    :param img: File directory for the id photograph
+    :type: str
+
+    :return: Normalized list of features
+    :rtype: List[float]
+    """
     detector = dlib.get_frontal_face_detector()
     predictor = dlib.shape_predictor("./landmarks_data/shape_predictor_68_face_landmarks.dat")
 
