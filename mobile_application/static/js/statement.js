@@ -49,7 +49,7 @@ $(document).ready(() => {
           contentType: 'application/json',
           data: JSON.stringify(submission),
           success: function (res) {
-            console.log(submission)
+            window.location = "/identi-kreate"
           }
         })
     })
