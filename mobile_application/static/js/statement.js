@@ -1,6 +1,8 @@
 $(document).ready(() => {
-  console.log('Does this even change?')
-  $('.dropdown-item').click(() => {
-    console.log('works')
-  })
+    $("#person-name-yes").on('change', () => {
+        $('#name-is-known').toggle()
+    })
+    $("#person-name-no").on('change', () => {
+        $('#name-is-known').toggle()
+    })
 })
