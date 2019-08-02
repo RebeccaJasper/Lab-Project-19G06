@@ -173,4 +173,8 @@ window.onload = function () {
   browsGUI.addColor(params, 'browColour').name('Eyebrow Colour').onChange(function () {
     brows.material.color.setHex(generateFace.dec2hex(params.browColour))
   })
+
+  // var submitGUI = gui.addFolder('SUBMIT')
+  var obj = { submit: function () { console.log('clicked') } }
+  gui.add(obj, 'submit').name('SUBMIT IDENTIKIT')
 }
