@@ -30,6 +30,37 @@
           </label>
         </div>
     </p>
+
+    <div id="details">
+        <p>
+            Do you know the person's name?
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="optradio">Yes
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="optradio">No
+              </label>
+            </div>
+
+            <div id="name-is-known">
+                First name: <input type="text" class="form-control" placeholder="Person's first name">
+                Surname: <input type="text" class="form-control" placeholder="Person's surname">
+            </div>
+        </p>
+
+        <p>
+            Person's gender:
+            <select id="gender">
+              <option value="other">Other</option>
+              <option value="female">Female</option>
+              <option value="male">Male</option>
+              <option value="unknown">Unknown</option>
+            </select>
+        </p>
+    </div>
 </body>
 
 </html>
