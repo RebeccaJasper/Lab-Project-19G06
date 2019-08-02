@@ -77,17 +77,17 @@ def get_random_image() -> Tuple[str, str]:
     """
 
     # Find the total number of entries in the table
-    query_string = ''' SELECT COUNT(*)
-                        FROM person_photos '''
-    execute_query(query_string, ())
-    data = retrieve_data()
-    NUM_OF_ROWS = data[0]
-    print(NUM_OF_ROWS)
+    # query_string = ''' SELECT COUNT(*)
+    #                     FROM person_photos '''
+    # execute_query(query_string, ())
+    # data = retrieve_data()
+    # NUM_OF_ROWS = data[0]
 
-    query_string = ''' SELECT * FROM person_photos
-                    WHERE person_id = '%s' '''
+
+    query_string = '''SELECT TOP 1 * FROM person_photos
+                    ORDER BY NEWID() '''
     args = 1
-    execute_query(query_string, args)
+    execute_query(query_string, ())
     data = retrieve_data()
     (person_id, base64_img_string) = (data[0], data[1])
     return person_id, base64_img_string
