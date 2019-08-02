@@ -25,8 +25,15 @@ class Coordinate:
         """
         return '({self.x}, {self.y})'.format(self=self)
 
+
 def unit_vector(dlib_point):
-    
+    """
+    Coverts a dlib vector to a unit vector
+    :param dlib_point: Dlib coordinate
+    :type: dlib.point
+    :return: Unit vector of the input vector
+    :rtype: Coordinate
+    """
     modulus = sqrt(pow(dlib_point.x, 2) + pow(dlib_point.y, 2))
     if modulus != 0:
         x = dlib_point.x /modulus
@@ -37,7 +44,18 @@ def unit_vector(dlib_point):
 
     return new_point
 
-def change_coordinate_reference(ref, point):
+
+def change_coordinate_reference(ref: Coordinate, point: Coordinate):
+    """
+    Change the base-reference point of a particular coordinate
+
+    :param ref: The new reference point of the new coordinate system
+    :type: Coordinate
+    :param point: The point to be transformed onto the new coordinate system
+    :type: Coordinate
+    :return: Transformed coordinate of point on the new coordinate system
+    :rtype: Coordinate
+    """
     x = point.x - ref.x
     y = point.y - ref.y
     new_point = Coordinate(x, y)
