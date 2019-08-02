@@ -1,5 +1,5 @@
 from mobile_application.db import *
-from typing import List
+from typing import List, Tuple
 from base64 import b64encode
 from random import randint
 
@@ -68,10 +68,12 @@ def add_feature_vector_to_db(person_id: str, feature_vector: List[float]) -> Non
     commit_changes()
 
 
-def get_random_image():
+def get_random_image() -> Tuple[str, str]:
     """
+    Returns a random image id and base64 encoded image from the database
 
-    :return:
+    :return: person_id, base64_image_string
+    :rtype Tuple[str, str]
     """
     query_string = ''' SELECT * FROM person_photos
                     WHERE person_id = '%s' '''

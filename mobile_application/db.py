@@ -1,6 +1,7 @@
 import os
 from os.path import join, dirname
 from dotenv import load_dotenv
+from typing import List
 import pymssql
 
 dotenv_path = join(os.path.abspath(os.path.join(dirname(__file__), os.pardir)), '.env')
@@ -33,9 +34,21 @@ def execute_query(query_string: str, args: tuple) -> None:
     cursor.execute(query)
 
 
-def commit_changes():
+def commit_changes() -> None:
+    """
+    Function for ensuring persistence of alterations made to the database by previously executed queries
+
+    :rtype: None
+    """
     conn.commit()
 
-def retrieve_data():
+
+def retrieve_data() -> List:
+    """
+    Retrieves a row returned by the DBMS from previously executed query
+
+    :return: Row of data retrieved from query
+    rtype: List
+    """
     return cursor.fetchone()
 
