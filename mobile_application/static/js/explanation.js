@@ -1,5 +1,5 @@
 $(document).ready(() => {
-    $('.continue-btn').click(() => {
+    $('#consent-checkbox').on(() => {
         window.location = "/consent-form"
     })
 
