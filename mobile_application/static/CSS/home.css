@@ -10,11 +10,26 @@ body {
 }
 
 .brand-name {
+    animation-duration: 3s;
+    animation-name: slidein;
     font-size: 600%;
     color: white;
     font-family: 'Abril Fatface', cursive;
     margin-bottom: 15px;
 }
+
+@keyframes slidein {
+  from {
+    margin-left: 50%;
+    width: 20%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
 
 .sub-heading {
     color: white;
