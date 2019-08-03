@@ -11,3 +11,8 @@ def home():
 @mobile_application.route('/explanation')
 def explain():
     return render_template('explanation.html')
+
+
+@mobile_application.route('/consent-form')
+def consent():
+    return render_template('consent.html')
