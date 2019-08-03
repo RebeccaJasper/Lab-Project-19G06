@@ -20,8 +20,8 @@ body {
 
 @keyframes slidein {
   from {
-    margin-left: 50%;
-    width: 20%;
+    margin-left: 100%;
+    width: 50%;
   }
 
   to {
@@ -45,4 +45,20 @@ body {
     text-align: center;
     background-color: #f0f0f0;
     border: none;
+}
+
+.home-page-real-image {
+    height: 300px;
+    position: absolute;
+    z-index: 5;
+    margin-left: 600px;
+    margin-top: 3%;
+}
+.home-page-cartoon-image {
+    height: 300px;
+    position: absolute;
+    z-index: 5;
+    float: right;
+    margin-left: 1000px;
+    margin-top: 3%;
 }
