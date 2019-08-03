@@ -1,5 +1,6 @@
 body {
     background-color: #171717;
+    position:relative;
 }
 
 #brand-name-area {
@@ -40,7 +41,7 @@ body {
     font-family: 'Crimson Pro', serif;
     font-size: 250%;
     margin-left: 40%;
-    margin-top: 5%;
+    margin-top: 0%;
     width: 30%;
     text-align: center;
     background-color: #f0f0f0;
@@ -53,6 +54,8 @@ body {
     z-index: 5;
     margin-left: 600px;
     margin-top: 3%;
+    animation-duration: 6s;
+    animation-name: slide-real;
 }
 .home-page-cartoon-image {
     height: 300px;
@@ -61,4 +64,28 @@ body {
     float: right;
     margin-left: 1000px;
     margin-top: 3%;
+    animation-duration: 6s;
+    animation-name: slide-fake;
 }
+
+@keyframes slide-real {
+  from {
+    margin-left: 100%;
+  }
+
+  to {
+    margin-left: 600px;
+  }
+}
+
+@keyframes slide-fake {
+  from {
+    margin-left: 100%;
+  }
+
+  to {
+    margin-left: 1000px;
+  }
+}
+
+
