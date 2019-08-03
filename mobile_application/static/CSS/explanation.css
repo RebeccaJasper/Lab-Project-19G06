@@ -37,15 +37,16 @@ body {
     font-family: 'Crimson Pro', serif;
 }
 
-#home-page-btn {
+button.continue-btn {
     font-family: 'Crimson Pro', serif;
     font-size: 250%;
-    margin-left: 40%;
-    margin-top: 0%;
+    margin-right: 140px;
+    margin-top: 60px;
     width: 30%;
     text-align: center;
     background-color: #f0f0f0;
     border: none;
+    float: right;
 }
 
 .home-page-real-image {
