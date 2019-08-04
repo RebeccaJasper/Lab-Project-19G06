@@ -18,6 +18,10 @@ def explain():
 def consent():
     return render_template('consent.html')
 
+@mobile_application.route('/instructions')
+def instructions():
+    return render_template('instructions.html')
+
 @mobile_application.route('/identi-kreate')
 def index():
     return render_template('index.html')
