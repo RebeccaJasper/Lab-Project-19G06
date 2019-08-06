@@ -1,0 +1,39 @@
+
+body {
+    background-color: #000000;
+    margin: 0
+}
+
+canvas{width: 100%; height: 100%}
+
+#brand-name-area {
+    margin-top: 10px;
+    margin-left: 5px;
+    text-align: center;
+    width: 30%;
+}
+
+.brand-name {
+    font-size: 330%;
+    color: white;
+    font-family: 'Abril Fatface', cursive;
+    margin-bottom: 0px;
+}
+
+.sub-heading {
+    color: white;
+    font-family: 'Crimson Pro', serif;
+    font-size: 130%;
+}
+
+button.submit-btn {
+    font-family: 'Crimson Pro', serif;
+    font-size: 150%;
+    margin-left: 60px;
+    margin-top: 0px;
+    width: 20%;
+    text-align: center;
+    background-color: white;
+    border: none;
+    /* float: left; */
+}

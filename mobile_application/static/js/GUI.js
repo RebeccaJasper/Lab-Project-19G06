@@ -27,30 +27,6 @@ var UserControls = function () {
   this.browColour = brows.browColour
 }
 
-var submitButton = { submit: function () {
-  console.log('clicked')
-
-  // let facialMarkers = [generateFace.zero, generateFace.four, generateFace.six, generateFace.ten,
-  //   generateFace.twelve, generateFace.sixteen, nose.thirtyOne, nose.thirtyFive, eyes.thirtySix,
-  //   eyes.thirtySeven, eyes.thirtyEight, eyes.thirtyNine, eyes.forty, eyes.fortyOne, eyes.fortyTwo,
-  //   eyes.fortyThree, eyes.fortyFour, eyes.fortyFive, eyes.fortySix, eyes.fortySeven, mouth.fortyEight,
-  //   mouth.fiftyOne, mouth.fiftyFour, mouth.fiftySeven]
-
-  let facialMarkers = [generateFace.zero.x, generateFace.zero.y, generateFace.four.x, generateFace.four.y,
-    generateFace.six.x, generateFace.six.y, generateFace.ten.x, generateFace.ten.y,
-    generateFace.twelve.x, generateFace.twelve.y, generateFace.sixteen.x, generateFace.sixteen.y,
-    nose.thirtyOne.x, nose.thirtyOne.y, nose.thirtyFive.x, nose.thirtyFive.y, eyes.thirtySix.x,
-    eyes.thirtySix.y, eyes.thirtySeven.x, eyes.thirtySeven.y, eyes.thirtyEight.x, eyes.thirtyEight.y,
-    eyes.thirtyNine.x, eyes.thirtyNine.y, eyes.forty.x, eyes.forty.y, eyes.fortyOne.x, eyes.fortyOne.y,
-    eyes.fortyTwo.x, eyes.fortyTwo.y, eyes.fortyThree.x, eyes.fortyThree.y, eyes.fortyFour.x, eyes.fortyFour.y,
-    eyes.fortyFive.x, eyes.fortyFive.y, eyes.fortySix.x, eyes.fortySix.y, eyes.fortySeven.x, eyes.fortySeven.y,
-    mouth.fortyEight.x, mouth.fortyEight.y, mouth.fiftyOne.x, mouth.fiftyOne.y, mouth.fiftyFour.x,
-    mouth.fiftyFour.y, mouth.fiftySeven.x, mouth.fiftySeven.y]
-
-  window.localStorage.setItem('markers', JSON.stringify(facialMarkers))
-}
-}
-
 window.onload = function () {
   var params = new UserControls()
   var gui = new dat.GUI()
@@ -197,6 +173,28 @@ window.onload = function () {
   browsGUI.addColor(params, 'browColour').name('Eyebrow Colour').onChange(function () {
     brows.material.color.setHex(generateFace.dec2hex(params.browColour))
   })
-
-  gui.add(submitButton, 'submit').name('SUBMIT IDENTIKIT')
 }
+
+// let facialMarkers = [generateFace.zero, generateFace.four, generateFace.six, generateFace.ten,
+//   generateFace.twelve, generateFace.sixteen, nose.thirtyOne, nose.thirtyFive, eyes.thirtySix,
+//   eyes.thirtySeven, eyes.thirtyEight, eyes.thirtyNine, eyes.forty, eyes.fortyOne, eyes.fortyTwo,
+//   eyes.fortyThree, eyes.fortyFour, eyes.fortyFive, eyes.fortySix, eyes.fortySeven, mouth.fortyEight,
+//   mouth.fiftyOne, mouth.fiftyFour, mouth.fiftySeven]
+
+let facialMarkers = [generateFace.zero.x, generateFace.zero.y, generateFace.four.x, generateFace.four.y,
+  generateFace.six.x, generateFace.six.y, generateFace.ten.x, generateFace.ten.y,
+  generateFace.twelve.x, generateFace.twelve.y, generateFace.sixteen.x, generateFace.sixteen.y,
+  nose.thirtyOne.x, nose.thirtyOne.y, nose.thirtyFive.x, nose.thirtyFive.y, eyes.thirtySix.x,
+  eyes.thirtySix.y, eyes.thirtySeven.x, eyes.thirtySeven.y, eyes.thirtyEight.x, eyes.thirtyEight.y,
+  eyes.thirtyNine.x, eyes.thirtyNine.y, eyes.forty.x, eyes.forty.y, eyes.fortyOne.x, eyes.fortyOne.y,
+  eyes.fortyTwo.x, eyes.fortyTwo.y, eyes.fortyThree.x, eyes.fortyThree.y, eyes.fortyFour.x, eyes.fortyFour.y,
+  eyes.fortyFive.x, eyes.fortyFive.y, eyes.fortySix.x, eyes.fortySix.y, eyes.fortySeven.x, eyes.fortySeven.y,
+  mouth.fortyEight.x, mouth.fortyEight.y, mouth.fiftyOne.x, mouth.fiftyOne.y, mouth.fiftyFour.x,
+  mouth.fiftyFour.y, mouth.fiftySeven.x, mouth.fiftySeven.y]
+
+$(document).ready(() => {
+  $('.submit-btn').click(() => {
+    console.log('submit button')
+    window.localStorage.setItem('markers', JSON.stringify(facialMarkers))
+  })
+})
