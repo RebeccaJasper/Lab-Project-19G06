@@ -1,18 +1,13 @@
-<<<<<<< HEAD
 from flask import Blueprint, render_template, jsonify
 from os import path, getcwd
 from mobile_application.models import get_random_image
-=======
+
 from flask import Blueprint, render_template, jsonify,request
->>>>>>> master
+
 
 mobile_application = Blueprint('mobile_application', __name__)
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> master
 @mobile_application.route('/')
 def home():
     return render_template('home.html')
@@ -27,16 +22,17 @@ def explain():
 def consent():
     return render_template('consent.html')
 
+
 @mobile_application.route('/instructions')
 def instructions():
     return render_template('instructions.html')
+
 
 @mobile_application.route('/identi-kreate')
 def index():
     return render_template('index.html')
 
 
-<<<<<<< HEAD
 @mobile_application.route('/photo')
 def picture():
     return render_template('photo.html')
@@ -46,7 +42,8 @@ def picture():
 def picture_base64():
     (person_id, base64_image_string) = get_random_image()
     return jsonify(img_string=base64_image_string, person_id=person_id)
-=======
+
+
 @mobile_application.route('/statement')
 def statement():
     return render_template('statement.html')
@@ -58,4 +55,3 @@ def submit_statement():
     print(submission)
     return jsonify(status="success")
 
->>>>>>> master
