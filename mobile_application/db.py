@@ -1,20 +1,22 @@
 import os
 from os.path import join, dirname
 from dotenv import load_dotenv
-import pymssql
+from typing import List
+import pyodbc
 
 dotenv_path = join(os.path.abspath(os.path.join(dirname(__file__), os.pardir)), '.env')
 load_dotenv(dotenv_path)
 
-SERVER_NAME = os.getenv('SERVER_NAME')
-USER_NAME = os.getenv('USER_NAME')
-PASSWORD = os.getenv('PASSWORD')
-DATABASE = os.getenv('DATABASE')
+server = os.getenv('SERVER_NAME')
+username = os.getenv('USER_NAME')
+password = os.getenv('PASSWORD')
+database = os.getenv('DATABASE')
+driver = '{ODBC Driver 17 for SQL Server}'
 
-dotenv_path = join(dirname(__file__), '.env')
-load_dotenv(dotenv_path)
+# dotenv_path = join(dirname(__file__), '.env')
+# load_dotenv(dotenv_path)
 
-conn = pymssql.connect(server=SERVER_NAME, user=USER_NAME, password=PASSWORD, database=DATABASE)
+conn = pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
 
 cursor = conn.cursor()
 
@@ -31,4 +33,23 @@ def execute_query(query_string: str, args: tuple) -> None:
     query = query_string % args
     print(query)
     cursor.execute(query)
+
+
+def commit_changes() -> None:
+    """
+    Function for ensuring persistence of alterations made to the database by previously executed queries
+
+    :rtype: None
+    """
     conn.commit()
+
+
+def retrieve_data() -> List:
+    """
+    Retrieves a row returned by the DBMS from previously executed query
+
+    :return: Row of data retrieved from query
+    rtype: List
+    """
+    return cursor.fetchone()
+

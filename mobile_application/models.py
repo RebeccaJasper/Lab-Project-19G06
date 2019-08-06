@@ -1,6 +1,7 @@
 from mobile_application.db import *
-from typing import List
+from typing import List, Tuple
 from base64 import b64encode
+from random import randint
 
 
 def photo_to_string(filename: str) -> str:
@@ -33,7 +34,7 @@ def add_image_to_database(person_id: str, filename: str) -> None:
                     VALUES ('%s', '%s'); '''
     args = (person_id, photo_to_string(filename))
     execute_query(query_string, args)
-
+    commit_changes()
 
 def convert_list_to_str(input_list: List[float]) -> str:
     """
@@ -64,6 +65,31 @@ def add_feature_vector_to_db(person_id: str, feature_vector: List[float]) -> Non
                     VALUES ('%s', '%s'); '''
     args = (person_id, convert_list_to_str(feature_vector))
     execute_query(query_string, args)
+    commit_changes()
 
+
+def get_random_image() -> Tuple[str, str]:
+    """
+    Returns a random image id and base64 encoded image from the database
+
+    :return: person_id, base64_image_string
+    :rtype Tuple[str, str]
+    """
+
+    # Find the total number of entries in the table
+    # query_string = ''' SELECT COUNT(*)
+    #                     FROM person_photos '''
+    # execute_query(query_string, ())
+    # data = retrieve_data()
+    # NUM_OF_ROWS = data[0]
+
+
+    query_string = '''SELECT TOP 1 * FROM person_photos
+                    ORDER BY NEWID() '''
+    args = 1
+    execute_query(query_string, ())
+    data = retrieve_data()
+    (person_id, base64_img_string) = (data[0], data[1])
+    return person_id, base64_img_string
 
 
