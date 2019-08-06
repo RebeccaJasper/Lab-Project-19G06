@@ -1,7 +1,5 @@
-import sys
-sys.path.append('../')
 import unittest
-from mobile_application.models import photo_to_string, convert_list_to_str
+from ..mobile_application.models import photo_to_string, convert_list_to_str
 from os import path, getcwd
 from random import random, randint
 
