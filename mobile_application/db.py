@@ -2,20 +2,21 @@ import os
 from os.path import join, dirname
 from dotenv import load_dotenv
 from typing import List
-import pymssql
+import pyodbc
 
 dotenv_path = join(os.path.abspath(os.path.join(dirname(__file__), os.pardir)), '.env')
 load_dotenv(dotenv_path)
 
-SERVER_NAME = os.getenv('SERVER_NAME')
-USER_NAME = os.getenv('USER_NAME')
-PASSWORD = os.getenv('PASSWORD')
-DATABASE = os.getenv('DATABASE')
+server = os.getenv('SERVER_NAME')
+username = os.getenv('USER_NAME')
+password = os.getenv('PASSWORD')
+database = os.getenv('DATABASE')
+driver = '{ODBC Driver 17 for SQL Server}'
 
-dotenv_path = join(dirname(__file__), '.env')
-load_dotenv(dotenv_path)
+# dotenv_path = join(dirname(__file__), '.env')
+# load_dotenv(dotenv_path)
 
-conn = pymssql.connect(server=SERVER_NAME, user=USER_NAME, password=PASSWORD, database=DATABASE)
+conn = pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
 
 cursor = conn.cursor()
 
