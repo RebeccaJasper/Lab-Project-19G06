@@ -5,8 +5,8 @@ var submission = {
 $(document).ready(() => {
 // Object for holding submission information
 
-  document.getElementById('gender').value = 'unknown'
-  document.getElementById('race').value = 'unknown'
+  // document.getElementById('gender').value = 'unknown'
+  // document.getElementById('race').value = 'unknown'
 
   // Toggle all further details based on whether the person is known or not
   $('#known-before-yes').on('change', () => {
@@ -81,6 +81,7 @@ $(document).ready(() => {
       submission.race = 0.96
     }
 
+    console.log('statement submitted')
     // $.ajax({
     //   url: '/api/submit',
     //   method: 'POST',
