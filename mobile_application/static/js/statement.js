@@ -1,8 +1,9 @@
+var submission = {
+  nameKnown: 0.5
+}
+
 $(document).ready(() => {
 // Object for holding submission information
-  var submission = {
-    nameKnown: 0.5
-  }
 
   document.getElementById('gender').value = 'unknown'
   document.getElementById('race').value = 'unknown'
@@ -80,14 +81,16 @@ $(document).ready(() => {
       submission.race = 0.96
     }
 
-    $.ajax({
-      url: '/api/submit',
-      method: 'POST',
-      contentType: 'application/json',
-      data: JSON.stringify(submission),
-      success: function (res) {
-        window.location = '/identi-kreate'
-      }
-    })
+    // $.ajax({
+    //   url: '/api/submit',
+    //   method: 'POST',
+    //   contentType: 'application/json',
+    //   data: JSON.stringify(submission),
+    //   success: function (res) {
+    //     window.location = '/identi-kreate'
+    //   }
+    // })
   })
 })
+
+export { submission }
