@@ -1,7 +1,9 @@
 
 $(document).ready(() => {
 // Object for holding submission information
-  var submission = new Object()
+  var submission = {
+    nameKnown: 0.5
+  }
 
   document.getElementById('gender').value = 'unknown'
   document.getElementById('race').value = 'unknown'
@@ -40,43 +42,43 @@ $(document).ready(() => {
 
   // Submission
   $('#submit-btn').click(() => {
-  // Get the person's name
+    // Get the person's name
     if ($('#person-name-yes').is(':checked')) {
       submission.firstName = $('#firstname').val()
       submission.surname = $('#surname').val()
     }
 
-    let gender = document.getElementById('gender')
-    if (gender.value === 'other') {
+    if ($('#gender :selected').val() === 'other') {
       submission.gender = 0.25
     }
-    if (gender.value === 'female') {
+    if ($('#gender :selected').val() === 'female') {
       submission.gender = 0.5
     }
-    if (gender.value === 'male') {
+    if ($('#gender :selected').val() === 'male') {
       submission.gender = 0.75
     }
-    if (gender.value === 'unknown') {
+    if ($('#gender :selected').val() === 'unknown') {
       submission.gender = 1
     }
 
-    let race = document.getElementById('race')
-    if (race.value === 'unknown') {
+    if ($('#race :selected').val() === 'unknown') {
       submission.race = 0.16
     }
-    if (race.value === 'white') {
+
+    if ($('#race :selected').val() === 'white') {
       submission.race = 0.32
+      console.log(submission.race)
     }
-    if (race.value === 'asian') {
+    if ($('#race :selected').val() === 'asian') {
       submission.race = 0.48
     }
-    if (race.value === 'indian') {
+    if ($('#race :selected').val() === 'indian') {
       submission.race = 0.64
     }
-    if (race.value === 'coloured') {
+    if ($('#race :selected').val() === 'coloured') {
       submission.race = 0.8
     }
-    if (race.value === 'black') {
+    if ($('#race :selected').val() === 'black') {
       submission.race = 0.96
     }
 
