@@ -1,8 +1,6 @@
 from mobile_application.db import *
 from typing import List, Tuple
 from base64 import b64encode
-from random import randint
-from datetime import *
 
 
 def photo_to_string(filename: str) -> str:
@@ -88,10 +86,10 @@ def get_random_image() -> Tuple[str, str]:
     # data = retrieve_data()
     # NUM_OF_ROWS = data[0]
 
+    query_string = '''SELECT * FROM person_photos
+                    ORDER BY RANDOM()  
+                    LIMIT 1 '''
 
-    query_string = '''SELECT TOP 1 * FROM person_photos
-                    ORDER BY NEWID() '''
-    args = 1
     execute_query(query_string, ())
     data = retrieve_data()
     (person_id, base64_img_string) = (data[0], data[1])
