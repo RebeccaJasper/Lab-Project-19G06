@@ -10,6 +10,7 @@ defusedxml==0.6.0
 entrypoints==0.3
 Flask==1.1.1
 Flask-MySQL==1.4.0
+gunicorn==19.9.0
 importlib-metadata==0.18
 imutils==0.5.2
 ipykernel==5.1.1
