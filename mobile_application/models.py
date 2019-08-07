@@ -2,6 +2,7 @@ from mobile_application.db import *
 from typing import List, Tuple
 from base64 import b64encode
 from random import randint
+from datetime import *
 
 
 def photo_to_string(filename: str) -> str:
@@ -35,6 +36,10 @@ def add_image_to_database(person_id: str, filename: str) -> None:
     args = (person_id, photo_to_string(filename))
     execute_query(query_string, args)
     commit_changes()
+
+
+# add_image_to_database('3', './facial_images/3.jpg')
+
 
 def convert_list_to_str(input_list: List[float]) -> str:
     """
@@ -93,3 +98,23 @@ def get_random_image() -> Tuple[str, str]:
     return person_id, base64_img_string
 
 
+def add_person_info_to_db(person_id: str, firstname: str, surname: str) -> None:
+    """
+    Adds a person to the the database of persons
+
+    :param person_id: ID of person
+    :type: str
+    :param firstname: First name of person
+    :type: str
+    :param surname: Surname of person
+    :type: str
+    :rtype: None
+    """
+    query_string = """INSERT INTO persons(person_id, firstname, surname)
+                    VALUES ('%s', '%s', '%s');"""
+    args = (person_id, firstname, surname)
+    execute_query(query_string, args)
+    commit_changes()
+
+
+# add_person_info_to_db('3', 'Mark', 'Wilkins')
