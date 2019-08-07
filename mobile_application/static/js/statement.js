@@ -1,4 +1,3 @@
-
 $(document).ready(() => {
 // Object for holding submission information
   var submission = {
