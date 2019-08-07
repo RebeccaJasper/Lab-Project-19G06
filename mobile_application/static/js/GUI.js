@@ -174,3 +174,22 @@ window.onload = function () {
     brows.material.color.setHex(generateFace.dec2hex(params.browColour))
   })
 }
+
+let facialMarkers = []
+
+$(document).ready(() => {
+  $('.submit-btn').click(() => {
+    console.log('submit button')
+    facialMarkers = [generateFace.zero.x, generateFace.zero.y, generateFace.four.x, generateFace.four.y,
+      generateFace.six.x, generateFace.six.y, generateFace.ten.x, generateFace.ten.y,
+      generateFace.twelve.x, generateFace.twelve.y, generateFace.sixteen.x, generateFace.sixteen.y,
+      nose.thirtyOne.x, nose.thirtyOne.y, nose.thirtyFive.x, nose.thirtyFive.y, eyes.thirtySix.x,
+      eyes.thirtySix.y, eyes.thirtySeven.x, eyes.thirtySeven.y, eyes.thirtyEight.x, eyes.thirtyEight.y,
+      eyes.thirtyNine.x, eyes.thirtyNine.y, eyes.forty.x, eyes.forty.y, eyes.fortyOne.x, eyes.fortyOne.y,
+      eyes.fortyTwo.x, eyes.fortyTwo.y, eyes.fortyThree.x, eyes.fortyThree.y, eyes.fortyFour.x, eyes.fortyFour.y,
+      eyes.fortyFive.x, eyes.fortyFive.y, eyes.fortySix.x, eyes.fortySix.y, eyes.fortySeven.x, eyes.fortySeven.y,
+      mouth.fortyEight.x, mouth.fortyEight.y, mouth.fiftyOne.x, mouth.fiftyOne.y, mouth.fiftyFour.x,
+      mouth.fiftyFour.y, mouth.fiftySeven.x, mouth.fiftySeven.y]
+    window.localStorage.setItem('markers', JSON.stringify(facialMarkers))
+  })
+})
