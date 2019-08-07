@@ -41,7 +41,6 @@ $(document).ready(() => {
 
   // Submission
   $('#submit-btn').click(() => {
-    // Get the person's name
     if ($('#person-name-yes').is(':checked')) {
       submission.firstName = $('#firstname').val()
       submission.surname = $('#surname').val()
@@ -81,16 +80,14 @@ $(document).ready(() => {
       submission.race = 0.96
     }
 
-    console.log(submission)
-
-  // $.ajax({
-  //   url: '/api/submit',
-  //   method: 'POST',
-  //   contentType: 'application/json',
-  //   data: JSON.stringify(submission),
-  //   success: function (res) {
-  //     window.location = '/identi-kreate'
-  //   }
-  // })
+    $.ajax({
+      url: '/api/submit',
+      method: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify(submission),
+      success: function (res) {
+        window.location = '/identi-kreate'
+      }
+    })
   })
 })
