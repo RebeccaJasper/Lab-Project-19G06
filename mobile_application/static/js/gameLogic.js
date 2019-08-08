@@ -13,21 +13,8 @@ camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight,
 camera.position.set(0, 0, 500)
 camera.lookAt(0, 0, 0)
 
-var strDownloadMime = 'image/octet-stream'
-
-var saveLink = document.createElement('div')
-saveLink.style.position = 'absolute'
-saveLink.style.top = '10px'
-saveLink.style.width = '100%'
-saveLink.style.color = 'white !important'
-saveLink.style.textAlign = 'center'
-saveLink.innerHTML =
-        '<a href="#" id="saveLink">Save Frame</a>'
-document.body.appendChild(saveLink)
-document.getElementById('saveLink').addEventListener('click', saveAsImage)
 renderer = new THREE.WebGLRenderer({
   preserveDrawingBuffer: true
-
 })
 
 // renderer = new THREE.WebGLRenderer()
@@ -73,7 +60,9 @@ var gameLoop = function () {
 
 gameLoop()
 
-/// //////////////////////
+// Save screen/frame as a jpeg image
+
+var strDownloadMime = 'image/octet-stream'
 
 function saveAsImage () {
   var imgData, imgNode
@@ -101,4 +90,4 @@ var saveFile = function (strData, filename) {
   }
 }
 
-export { scene }
+export { scene, saveAsImage }
