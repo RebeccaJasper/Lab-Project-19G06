@@ -2,21 +2,14 @@ import os
 from os.path import join, dirname
 from dotenv import load_dotenv
 from typing import List
-import pyodbc
+from os import environ
+from psycopg2 import *
 
 dotenv_path = join(os.path.abspath(os.path.join(dirname(__file__), os.pardir)), '.env')
 load_dotenv(dotenv_path)
 
-server = os.getenv('SERVER_NAME')
-username = os.getenv('USER_NAME')
-password = os.getenv('PASSWORD')
-database = os.getenv('DATABASE')
-driver = '{ODBC Driver 17 for SQL Server}'
-
-# dotenv_path = join(dirname(__file__), '.env')
-# load_dotenv(dotenv_path)
-
-conn = pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
+DATABASE_URL = os.getenv('DATABASE_URL')
+conn = connect(DATABASE_URL, sslmode='require')
 
 cursor = conn.cursor()
 
