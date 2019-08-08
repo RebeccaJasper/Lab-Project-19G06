@@ -63,12 +63,11 @@ gameLoop()
 // Save screen/frame as a jpeg image
 
 function saveAsImage () {
-  var imgData
-
   try {
     var strMime = 'image/jpeg'
-    imgData = renderer.domElement.toDataURL(strMime)
-    window.open(imgData)
+    var imgData = renderer.domElement.toDataURL(strMime)
+    // window.open(imgData)
+    return imgData
   } catch (e) {
     console.log(e)
   }
