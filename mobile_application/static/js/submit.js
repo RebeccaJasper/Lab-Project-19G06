@@ -1,8 +1,10 @@
 import * as markers from './GUI.js'
+// import * as game from './gameLogic.js'
 
 $(document).ready(() => {
   $('.submit-btn').click(() => {
     let statement = window.sessionStorage.getItem('statement')
+    // game.saveAsImage()
 
     $.ajax({
       url: '/api/submit',
