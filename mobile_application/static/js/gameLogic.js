@@ -62,31 +62,15 @@ gameLoop()
 
 // Save screen/frame as a jpeg image
 
-var strDownloadMime = 'image/octet-stream'
-
 function saveAsImage () {
-  var imgData, imgNode
+  var imgData
 
   try {
     var strMime = 'image/jpeg'
     imgData = renderer.domElement.toDataURL(strMime)
-
-    saveFile(imgData.replace(strMime, strDownloadMime), 'test.jpg')
+    window.open(imgData)
   } catch (e) {
     console.log(e)
-  }
-}
-
-var saveFile = function (strData, filename) {
-  var link = document.createElement('a')
-  if (typeof link.download === 'string') {
-    document.body.appendChild(link) // Firefox requires the link to be in the body
-    link.download = filename
-    link.href = strData
-    link.click()
-    document.body.removeChild(link) // remove the link when done
-  } else {
-    location.replace(uri)
   }
 }
 
