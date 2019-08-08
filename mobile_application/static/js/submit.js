@@ -4,11 +4,6 @@ $(document).ready(() => {
   $('.submit-btn').click(() => {
     let statement = window.sessionStorage.getItem('statement')
 
-    html2canvas(document.body, { allowTaint: true, useCORS: true }).then(function (canvas) {
-      var img = canvas.toDataURL('image/png')
-      window.open(img)
-    })
-
     $.ajax({
       url: '/api/submit',
       method: 'POST',
