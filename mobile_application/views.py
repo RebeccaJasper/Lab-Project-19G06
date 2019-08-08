@@ -55,3 +55,6 @@ def submit_statement():
     print(submission)
     return jsonify(status="success")
 
+@mobile_application.route('/submissions')
+def submissions():
+    return render_template('submissions.html')
