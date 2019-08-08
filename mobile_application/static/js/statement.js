@@ -1,14 +1,11 @@
-// Object for holding submission information
-var submission = {
-  nameKnown: 0.5
-}
-
 $(document).ready(() => {
+  // Object for holding submission information
+  var submission = {}
+
   // Toggle all further details based on whether the person is known or not
   $('#known-before-yes').on('change', () => {
     if ($('#known-before-yes').is(':checked')) {
       $('.details').css('display', 'block')
-      submission.foreknown = 1
     }
     $('#submit-btn').css('display', 'block')
   })
@@ -16,7 +13,6 @@ $(document).ready(() => {
   $('#known-before-no').click(() => {
     if ($('#known-before-no').is(':checked')) {
       $('.details').css('display', 'none')
-      submission.foreknown = 0.5
     }
     $('#submit-btn').css('display', 'block')
   })
@@ -25,14 +21,12 @@ $(document).ready(() => {
   $('#person-name-yes').on('change', () => {
     if ($('#person-name-yes').is(':checked')) {
       $('#name-is-known').css('display', 'block')
-      submission.nameKnown = 1
     }
   })
 
   $('#person-name-no').click(() => {
     if ($('#person-name-no').is(':checked')) {
       $('#name-is-known').css('display', 'none')
-      submission.nameKnown = 0.5
     }
   })
 
@@ -62,7 +56,6 @@ $(document).ready(() => {
 
     if ($('#race :selected').val() === 'white') {
       submission.race = 0.32
-      console.log(submission.race)
     }
     if ($('#race :selected').val() === 'asian') {
       submission.race = 0.48
