@@ -14,6 +14,7 @@ $(document).ready(() => {
       success: function (res) {
         console.log('statement and identikit submitted')
         console.log(statement, markers.facialMarkers, identikit)
+        window.location = '/complete'
       }
     })
   })
