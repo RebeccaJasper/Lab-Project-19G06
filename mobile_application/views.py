@@ -30,7 +30,7 @@ def instructions():
 
 @mobile_application.route('/identi-kreate')
 def index():
-    return render_template('index.html')
+    return render_template('identi-kreate.html')
 
 
 @mobile_application.route('/photo')
