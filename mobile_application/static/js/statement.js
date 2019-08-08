@@ -77,17 +77,8 @@ $(document).ready(() => {
       submission.race = 0.96
     }
 
-    console.log('statement submitted')
-    console.log(submission)
-
     window.sessionStorage.setItem('statement', JSON.stringify(submission))
 
-    let VIEWING_DURATION = 5000
-
-    setTimeout(() => {
-      window.location = '/identi-kreate'
-    }, VIEWING_DURATION)
+    window.location = '/identi-kreate'
   })
 })
-
-// export { submission }
