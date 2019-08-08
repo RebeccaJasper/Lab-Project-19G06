@@ -1,13 +1,9 @@
+// Object for holding submission information
 var submission = {
   nameKnown: 0.5
 }
 
 $(document).ready(() => {
-// Object for holding submission information
-
-  // document.getElementById('gender').value = 'unknown'
-  // document.getElementById('race').value = 'unknown'
-
   // Toggle all further details based on whether the person is known or not
   $('#known-before-yes').on('change', () => {
     if ($('#known-before-yes').is(':checked')) {
@@ -82,15 +78,15 @@ $(document).ready(() => {
     }
 
     console.log('statement submitted')
-    // $.ajax({
-    //   url: '/api/submit',
-    //   method: 'POST',
-    //   contentType: 'application/json',
-    //   data: JSON.stringify(submission),
-    //   success: function (res) {
-    //     window.location = '/identi-kreate'
-    //   }
-    // })
+    console.log(submission)
+
+    // window.sessionStorage.setItem('statement', JSON.stringify(submission))
+
+    let VIEWING_DURATION = 5000
+
+    setTimeout(() => {
+      window.location = '/identi-kreate'
+    }, VIEWING_DURATION)
   })
 })
 

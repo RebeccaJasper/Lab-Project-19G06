@@ -4,6 +4,10 @@ import * as markers from './GUI.js'
 $(document).ready(() => {
   $('.submit-btn').click(() => {
     console.log('identikit submit button')
+    // let statement = window.sessionStorage.getItem('statement')
+    console.log(statement.submission)
+
+    console.log('again')
     $.ajax({
       url: '/api/submit',
       method: 'POST',
