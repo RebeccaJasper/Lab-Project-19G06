@@ -58,3 +58,8 @@ def submit_statement():
 @mobile_application.route('/submissions')
 def submissions():
     return render_template('submissions.html')
+
+
+@mobile_application.route('/submission-info')
+def submission_info():
+    return render_template('submission-info.html')

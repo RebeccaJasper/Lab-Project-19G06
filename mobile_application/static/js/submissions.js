@@ -49,5 +49,30 @@ let appendSubmissionToTable = function (submission) {
   viewButtonCell.appendChild(viewButton)
   newRow.appendChild(viewButtonCell)
 
+  newRow.id = submission.id
   submissionsTable.append(newRow)
 }
+
+$(document).on('click', '#viewButton', function (e) {
+  let submissionID = $(this).parents('tr')[0].id
+  $(this).parents('tr').remove()
+
+  let obj = {
+    'id': submissionID,
+    'title': $(this).closest('tr').find('td:first').text()
+  }
+
+  window.sessionStorage.setItem('submission', obj)
+
+  window.location = '/submission-info'
+
+  //   $.ajax({
+  //     url: '/invites/data/accept',
+  //     method: 'POST',
+  //     contentType: 'application/json',
+  //     data: JSON.stringify(obj),
+  //     success: function (res) {
+  //       window.location = '/trip-manager'
+  //     }
+  //   })
+})
