@@ -96,6 +96,14 @@ def get_random_image() -> Tuple[str, str]:
     return person_id, base64_img_string
 
 
+def save_identikit_info_to_db(firstname: str, surname: str, gender: float, race: float, person_id:int):
+    query_string = """INSERT INTO identikits(firstname, surname, gender, race, person_id)
+                    VALUES ('%s', '%s', '%f', '%f", '%d');"""
+    args = (firstname, surname, gender, race, person_id)
+    execute_query(query_string, args)
+    commit_changes()
+
+
 def add_person_info_to_db(person_id: str, firstname: str, surname: str) -> None:
     """
     Adds a person to the the database of persons

@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, jsonify
 from os import path, getcwd
 from mobile_application.models import get_random_image
-from mobile_application.controller import process_submission
+from mobile_application.controller import process_submission_info
 from flask import Blueprint, render_template, jsonify, request
 from json import loads
 
@@ -53,7 +53,7 @@ def statement():
 @mobile_application.route('/api/submit',  methods=['POST'])
 def submit_statement():
     submission = loads(request.get_json())
-    process_submission(submission["firstName"], submission["surname"], submission["gender"], submission["race"])
+    process_submission_info(submission["firstName"], submission["surname"], submission["gender"], submission["race"])
     return jsonify(status="success")
 
 
