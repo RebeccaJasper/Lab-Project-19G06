@@ -4,8 +4,10 @@ import * as gameWindow from './gameLogic.js'
 $(document).ready(() => {
   $('.submit-btn').click(() => {
     let statement = JSON.parse(window.sessionStorage.getItem('statement'))
+    // Format string
     let identikit = gameWindow.saveAsImage()
-    console.log(statement.firstName)
+    identikit = identikit.substring(identikit.indexOf(',') + 1, identikit.length)
+
     let submission = {
         "firstName" : statement.firstName,
         "surname" : statement.surname,
