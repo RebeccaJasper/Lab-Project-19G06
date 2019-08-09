@@ -36,7 +36,21 @@ def add_image_to_database(person_id: str, filename: str) -> None:
     commit_changes()
 
 
-# add_image_to_database('3', './facial_images/3.jpg')
+def add_image_to_identikit_database(base64_string: str) -> None:
+    """
+    Adds a specified person's image to the database
+
+    :param person_id: The id od the person
+    :type: str
+    :param filename: The name of the image file
+    :type: str
+    :rtype: None
+    """
+    query_string = ''' INSERT INTO identikit_photos(photo)
+                    VALUES ('%s'); '''
+    args = (base64_string)
+    execute_query(query_string, args)
+    commit_changes()
 
 
 def convert_list_to_str(input_list: List[float]) -> str:
