@@ -1,4 +1,4 @@
-from mobile_application.db import *
+from db import *
 from typing import List, Tuple
 from base64 import b64encode
 
@@ -116,3 +116,4 @@ def add_person_info_to_db(person_id: str, firstname: str, surname: str) -> None:
 
 
 # add_person_info_to_db('3', 'Mark', 'Wilkins')
+

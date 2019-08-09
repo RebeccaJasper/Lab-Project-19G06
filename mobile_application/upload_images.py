@@ -1,7 +1,8 @@
-from mobile_application.models import *
+from models import *
 from os import listdir
 from os.path import join
 from random import randint
+from face_encoding.face_to_vec import encode_face_image
 
 existing_ids = []
 
@@ -23,5 +24,10 @@ def generate_id():
 
 
 for i in listdir('./facial_images'):
+    print(i)
+    person_id = generate_id()
+    add_person_info_to_db(person_id, '', '')
+
     filename = join('./facial_images', i)
-    
+    add_image_to_database(person_id, filename)
+    add_feature_vector_to_db(person_id, convert_list_to_str(encode_face_image(filename)))

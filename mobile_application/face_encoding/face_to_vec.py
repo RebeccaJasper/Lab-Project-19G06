@@ -4,10 +4,10 @@ from .coordinates import *
 from typing import List
 
 
-def encode_face_image(img: str) -> List[float]:
+def encode_face_image(img_dir: str) -> List[float]:
     """
     Creates a normailized feature vector for a given id photograph
-    :param img: File directory for the id photograph
+    :param img_dir: File directory for the id photograph
     :type: str
 
     :return: Normalized list of features
@@ -16,7 +16,7 @@ def encode_face_image(img: str) -> List[float]:
     detector = dlib.get_frontal_face_detector()
     predictor = dlib.shape_predictor("./landmarks_data/shape_predictor_68_face_landmarks.dat")
 
-    # img = cv2.imread('../facial_images/1.jpg', 0)
+    img = cv2.imread(img_dir, 0)
 
     faces = detector(img)
 
