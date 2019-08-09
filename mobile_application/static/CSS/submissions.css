@@ -24,10 +24,10 @@ body {
     font-family: 'Crimson Pro', serif;
 }
 
-button.view-submission-btn {
+button.viewButton {
     font-family: 'Crimson Pro', serif;
-    font-size: 250%;
-    margin-top: 20px;
+    font-size: 120%;
+    margin-top: 10px;
     width: 30%;
     text-align: center;
     background-color: #f0f0f0;
@@ -51,4 +51,9 @@ h1.submissions {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0;
+}
+
+#submissionText {
+    font-family: 'Crimson Pro', serif;
+    text-align: center;
 }
