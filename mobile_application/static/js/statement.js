@@ -35,6 +35,9 @@ $(document).ready(() => {
     if ($('#person-name-yes').is(':checked')) {
       submission.firstName = $('#firstname').val()
       submission.surname = $('#surname').val()
+    } else {
+      submission.firstName = ""
+      submission.surname = ""
     }
 
     if ($('#gender :selected').val() === 'other') {
