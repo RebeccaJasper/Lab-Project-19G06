@@ -71,6 +71,24 @@ def add_feature_vector_to_db(person_id: str, feature_vector: List[float]) -> Non
     commit_changes()
 
 
+def add_feature_vector_to_identikit_db(feature_vector: List[float]) -> None:
+    """
+    Adds a feature vector to the database
+
+    :param feature_vector: List representing a feature vector
+    :type: str
+    :param person_id: String representing the id associated with the person
+    :type: str
+    :rtype: None
+    """
+
+    query_string = ''' INSERT INTO identikit_markers(face_encoding)
+                    VALUES ('%s'); '''
+    args = (convert_list_to_str(feature_vector))
+    execute_query(query_string, args)
+    commit_changes()
+
+
 def get_random_image() -> Tuple[str, str]:
     """
     Returns a random image id and base64 encoded image from the database
