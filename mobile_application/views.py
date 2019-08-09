@@ -56,7 +56,8 @@ def submit_statement():
 
     submission = request.get_json()
     print(submission)
-    process_submission_info(submission["firstName"], submission["surname"], submission["gender"], submission["race"])
+    process_submission_info(submission["firstName"], submission["surname"], submission["gender"], submission["race"],
+                            submission["person_id"])
     process_submission_feature_vector(submission["feature_vector"])
     process_submission_photo(submission["identikit"])
     return jsonify(status="success")
