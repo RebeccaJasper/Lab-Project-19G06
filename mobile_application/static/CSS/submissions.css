@@ -27,7 +27,7 @@ body {
 button.viewButton {
     font-family: 'Crimson Pro', serif;
     font-size: 120%;
-    margin-top: 10px;
+    margin-top: 5px;
     width: 30%;
     text-align: center;
     background-color: #f0f0f0;
@@ -56,4 +56,5 @@ h1.submissions {
 #submissionText {
     font-family: 'Crimson Pro', serif;
     text-align: center;
+    font-size: 120%;
 }

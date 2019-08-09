@@ -44,7 +44,7 @@ let appendSubmissionToTable = function (submission) {
   let viewButton = document.createElement('button')
   viewButton.id = 'viewButton'
   viewButton.classList.add('btn', 'btn-sm', 'btn-secondary')
-  viewButton.innerHTML = '<i class="fas fa-check"></i>'
+  viewButton.innerHTML = 'View'
   let viewButtonCell = document.createElement('td')
   viewButtonCell.appendChild(viewButton)
   newRow.appendChild(viewButtonCell)
