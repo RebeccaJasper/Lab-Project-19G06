@@ -1,6 +1,8 @@
 import * as markers from './GUI.js'
 import * as gameWindow from './gameLogic.js'
 
+
+
 $(document).ready(() => {
   $('.submit-btn').click(() => {
     let statement = JSON.parse(window.sessionStorage.getItem('statement'))
