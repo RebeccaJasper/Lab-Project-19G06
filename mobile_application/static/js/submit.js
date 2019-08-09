@@ -3,14 +3,24 @@ import * as gameWindow from './gameLogic.js'
 
 $(document).ready(() => {
   $('.submit-btn').click(() => {
-    let statement = window.sessionStorage.getItem('statement')
+    let statement = JSON.parse(window.sessionStorage.getItem('statement'))
     let identikit = gameWindow.saveAsImage()
+    console.log(statement.firstName)
+    let submission = {
+        "firstName" : statement.firstName,
+        "surname" : statement.surname,
+        "gender" : statement.gender,
+        "race" : statement.race,
+        "feature_vector" : markers.facialMarkers.toString(),
+        "identikit" : identikit
+    }
 
+    console.log(submission)
     $.ajax({
       url: '/api/submit',
       method: 'POST',
       contentType: 'application/json',
-      data: JSON.stringify(statement, markers.facialMarkers, identikit),
+      data: JSON.stringify(submission),
       success: function (res) {
         console.log('statement and identikit submitted')
         console.log(statement, markers.facialMarkers, identikit)

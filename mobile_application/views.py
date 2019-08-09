@@ -52,7 +52,9 @@ def statement():
 
 @mobile_application.route('/api/submit',  methods=['POST'])
 def submit_statement():
-    submission = loads(request.get_json())
+
+    submission = request.get_json()
+    print(submission)
     process_submission_info(submission["firstName"], submission["surname"], submission["gender"], submission["race"])
     return jsonify(status="success")
 

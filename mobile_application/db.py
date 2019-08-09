@@ -25,7 +25,7 @@ def execute_query(query_string: str, args: tuple) -> None:
 
     query = query_string % args
     print(query)
-    cursor.execute(query)
+    # cursor.execute(query)
 
 
 def commit_changes() -> None:
@@ -34,7 +34,7 @@ def commit_changes() -> None:
 
     :rtype: None
     """
-    conn.commit()
+    # conn.commit()
 
 
 def retrieve_data() -> List:
