@@ -1,6 +1,14 @@
-EYES = list(range(8, 20))
-NOSE = list(range(6, 8))
-MOUTH = list(range(20, 24))
+
+feature_vector_indexes = {
+    "Eyes": list(range(8, 20)),
+    "Nose": list(range(6, 8)),
+    "Mouth": list(range(20, 24)),
+    "Face": list(range(0, 24)),
+    "Race": list(range(24, 31)),
+    "Gender": list(range(30, 34))
+}
+
+print(feature_vector_indexes["Eyes"])
 
 face_feature_weights = {
     "Eyes": 0.81,
