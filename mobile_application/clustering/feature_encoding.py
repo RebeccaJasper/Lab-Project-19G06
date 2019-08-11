@@ -6,3 +6,10 @@ race = {
     "Other": 5,
     "Unknown": 6
 }
+
+gender = {
+    "Female": "F",
+    "Male": "M",
+    "Other": "O",
+    "Unknown": "U"
+}
