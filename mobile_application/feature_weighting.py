@@ -8,7 +8,6 @@ feature_vector_indexes = {
     "Gender": list(range(30, 34))
 }
 
-print(feature_vector_indexes["Eyes"])
 
 face_feature_weights = {
     "Eyes": 0.81,
