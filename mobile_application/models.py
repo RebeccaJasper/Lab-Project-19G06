@@ -130,7 +130,7 @@ def get_random_image() -> Tuple[str, str]:
 
 def save_identikit_info_to_db(firstname: str, surname: str, gender: float, race: float, person_id:int):
     query_string = """INSERT INTO identikits(firstname, surname, gender, race, person_id)
-                    VALUES ('%s', '%s', '%f', '%f', '%d');"""
+                    VALUES ('%s', '%s', '%f', '%f', '%s');"""
     args = (firstname, surname, gender, race, person_id)
     execute_query(query_string, args)
     commit_changes()
