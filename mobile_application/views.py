@@ -1,8 +1,10 @@
 from flask import Blueprint, render_template, jsonify
 from os import path, getcwd
 from mobile_application.models import get_random_image
-
-from flask import Blueprint, render_template, jsonify,request
+from mobile_application.controller import process_submission_info, process_submission_feature_vector, \
+    process_submission_photo
+from flask import Blueprint, render_template, jsonify, request
+from json import loads
 
 
 mobile_application = Blueprint('mobile_application', __name__)
@@ -30,7 +32,7 @@ def instructions():
 
 @mobile_application.route('/identi-kreate')
 def index():
-    return render_template('index.html')
+    return render_template('identi-kreate.html')
 
 
 @mobile_application.route('/photo')
@@ -51,8 +53,12 @@ def statement():
 
 @mobile_application.route('/api/submit',  methods=['POST'])
 def submit_statement():
+
     submission = request.get_json()
-    print(submission)
+    process_submission_info(submission["firstName"], submission["surname"], submission["gender"], submission["race"],
+                            submission["person_id"])
+    process_submission_feature_vector(submission["feature_vector"])
+    process_submission_photo(submission["identikit"])
     return jsonify(status="success")
 
 @mobile_application.route('/submissions')
@@ -63,3 +69,6 @@ def submissions():
 @mobile_application.route('/submission-info')
 def submission_info():
     return render_template('submission-info.html')
+@mobile_application.route('/complete')
+def complete():
+    return render_template('finish.html')
