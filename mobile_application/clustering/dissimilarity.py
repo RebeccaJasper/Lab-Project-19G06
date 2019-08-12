@@ -12,7 +12,7 @@ class UnequalArrayLength(Exception):
 
 class NonBinaryFormat(Exception):
     def __init__(self):
-        Exception.__init__(self, "Input arrays are not in binary format")
+        Exception.__init__(self, "Input arrays are not in binary format (i.e. containing int values 0 or 1)")
 
 
 class Dissimilarity:
@@ -49,12 +49,18 @@ class Dissimilarity:
         return dissimilarity_vector
 
     @staticmethod
-    def gower_similarity(vector_1: np.array, vector_2: np.array, datatype: str ="")-> float:
+    def gower_similarity(vector_1: np.array, vector_2: np.array, datatype: str ="ratio")-> float:
+        if vector_1.size != vector_2.size:
+            raise UnequalArrayLength()
+
         if datatype == "ratio":
-            manhattan_distance(vector_1, vector_2)
+            similarity = Dissimilarity.manhattan_distance(vector_1, vector_2)
+        elif datatype == "nominal":
+            similarity = Dissimilarity.dice_coefficient(vector_1, vector_2)
+        else:
+            raise ValueError('datatype must be "nominal" or "ratio"')
 
-
-
+        return similarity
 
     @staticmethod
     def manhattan_distance(vector_1: np.array, vector_2: np.array):
@@ -98,4 +104,4 @@ class Dissimilarity:
         return coef
 
 d = Dissimilarity()
-print(d.dice_coefficient(np.array([1, 4, 3]), np.array([1, 2, 3])))
+print(d.gower_similarity(np.array([1, 4, 3]), np.array([1, 2, 3]), datatype="sqaf"))
