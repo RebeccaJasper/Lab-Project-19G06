@@ -9,13 +9,23 @@ var material = new THREE.MeshLambertMaterial({ color: skinColour })
 
 // Face shape
 var zero = new THREE.Vector2(-177, 120)
+var one = new THREE.Vector2(-173, 78)
+var two = new THREE.Vector2(-167, 37)
+var three = new THREE.Vector2(-156, -4)
 var four = new THREE.Vector2(-147, -44)
+var five = new THREE.Vector2(-123, -78)
+
 var six = new THREE.Vector2(-88, -104)
 var seven = new THREE.Vector2(-46, -122)
 var eight = new THREE.Vector2(0, -128)
 var nine = new THREE.Vector2(46, -122)
 var ten = new THREE.Vector2(88, -104)
+var eleven = new THREE.Vector2(123, -78)
+
 var twelve = new THREE.Vector2(147, -44)
+var thirteen = new THREE.Vector2(156, -4)
+var fourteen = new THREE.Vector2(167, 37)
+var fifteen = new THREE.Vector2(173, 78)
 var sixteen = new THREE.Vector2(177, 120)
 
 // Facial markers added to make face look better
@@ -27,7 +37,7 @@ var FH3 = new THREE.Vector2(-147, 250)
 var FH4 = new THREE.Vector2(147, 250)
 
 var faceCurve = new THREE.SplineCurve([
-  FH0, FH1, FH3, zero, four, six, seven, eight, nine, ten, twelve, sixteen, FH4, FH2, FH0
+  FH0, FH1, FH3, zero, one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, FH4, FH2, FH0
 ])
 
 var extrudeSettings = {

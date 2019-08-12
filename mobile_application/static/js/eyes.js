@@ -84,8 +84,8 @@ leftPupil.position.y = thirtySeven.y - (thirtySeven.y - fortyOne.y) / 2
 leftPupil.position.z = 20
 
 var rightPupil = new THREE.Mesh(geometry, materialPupil)
-rightPupil.position.x = fortyThree.x - (fortyThree.x - fortyFour.x) / 2
-rightPupil.position.y = fortyThree.y - (fortyThree.y - fortySeven.y) / 2
+rightPupil.position.x = fortyFour.x + (fortyThree.x - fortyFour.x) / 2
+rightPupil.position.y = fortyFour.y - (fortyThree.y - fortySeven.y) / 2
 rightPupil.position.z = 20
 
 var update = function () {
