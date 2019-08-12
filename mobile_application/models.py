@@ -36,7 +36,21 @@ def add_image_to_database(person_id: str, filename: str) -> None:
     commit_changes()
 
 
-# add_image_to_database('3', './facial_images/3.jpg')
+def add_image_to_identikit_database(base64_string: str) -> None:
+    """
+    Adds a specified person's image to the database
+
+    :param person_id: The id od the person
+    :type: str
+    :param filename: The name of the image file
+    :type: str
+    :rtype: None
+    """
+    query_string = ''' INSERT INTO identikit_photos(photo)
+                    VALUES ('%s'); '''
+    args = (base64_string)
+    execute_query(query_string, args)
+    commit_changes()
 
 
 def convert_list_to_str(input_list: List[float]) -> str:
@@ -71,6 +85,24 @@ def add_feature_vector_to_db(person_id: str, feature_vector: List[float]) -> Non
     commit_changes()
 
 
+def add_feature_vector_to_identikit_db(feature_vector: List[float]) -> None:
+    """
+    Adds a feature vector to the database
+
+    :param feature_vector: List representing a feature vector
+    :type: str
+    :param person_id: String representing the id associated with the person
+    :type: str
+    :rtype: None
+    """
+
+    query_string = ''' INSERT INTO identikit_markers(face_encoding)
+                    VALUES ('%s'); '''
+    args = (convert_list_to_str(feature_vector))
+    execute_query(query_string, args)
+    commit_changes()
+
+
 def get_random_image() -> Tuple[str, str]:
     """
     Returns a random image id and base64 encoded image from the database
@@ -94,6 +126,14 @@ def get_random_image() -> Tuple[str, str]:
     data = retrieve_data()
     (person_id, base64_img_string) = (data[0], data[1])
     return person_id, base64_img_string
+
+
+def save_identikit_info_to_db(firstname: str, surname: str, gender: float, race: float, person_id:int):
+    query_string = """INSERT INTO identikits(firstname, surname, gender, race, person_id)
+                    VALUES ('%s', '%s', '%f', '%f', '%s');"""
+    args = (firstname, surname, gender, race, person_id)
+    execute_query(query_string, args)
+    commit_changes()
 
 
 def add_person_info_to_db(person_id: str, firstname: str, surname: str) -> None:
