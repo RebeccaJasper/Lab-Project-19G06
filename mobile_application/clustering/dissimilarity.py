@@ -9,6 +9,12 @@ class UnequalArrayLength(Exception):
     def __init__(self):
         Exception.__init__(self, "Input arrays are not of the same length")
 
+
+class NonBinaryFormat(Exception):
+    def __init__(self):
+        Exception.__init__(self, "Input arrays are not in binary format")
+
+
 class Dissimilarity:
     __LENGTH_OF_VECTOR = 3
     __vectors = np.empty(shape=(0, __LENGTH_OF_VECTOR))
@@ -64,6 +70,13 @@ class Dissimilarity:
     @staticmethod
     def dice_coefficient(binary_vector_1: np.array, binary_vector_2: np.array):
 
+        if binary_vector_1.size != binary_vector_2.size:
+            raise UnequalArrayLength()
+
+        for i in np.arange(0, binary_vector_1.size):
+            if binary_vector_1[i] != 0 or binary_vector_1[i] != 0 or binary_vector_2[i] != 0 or binary_vector_1[i] != 1:
+                raise NonBinaryFormat()
+
         # Sum of all the elements that exist in both matrices (a)
         true_indexes_1 = np.array(np.where(binary_vector_1 == 1))
         true_indexes_2 = np.array(np.where(binary_vector_2 == 1))
@@ -85,4 +98,4 @@ class Dissimilarity:
         return coef
 
 d = Dissimilarity()
-print(d.manhattan_distance(np.array([1, 4, 3]), np.array([1, 2, 3, 5])))
+print(d.dice_coefficient(np.array([1, 4, 3]), np.array([1, 2, 3])))
