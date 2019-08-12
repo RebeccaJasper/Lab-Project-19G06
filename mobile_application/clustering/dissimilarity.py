@@ -2,6 +2,7 @@ import numpy as np
 from feature_encoding import *
 from feature_weighting import *
 from mobile_application.face_encoding.coordinates import Coordinate
+from sklearn import preprocessing
 
 class Dissimilarity:
     __LENGTH_OF_VECTOR = 3
@@ -17,12 +18,13 @@ class Dissimilarity:
     @staticmethod
     def dissimilarity(vector_1: np.array, vector_2: np.array):
         dissimilarity_vector = np.array([])
+        # max_abs_scaler = preprocessing.MaxAbsScaler()
 
+        for x, y in zip(*[iter(feature_vector_indexes["Face"])] * 2):
 
-        for i in feature_vector_indexes["Face"]:
-            # Gower Distance
             print(i)
 
+        # dissimilarity_vector = max_abs_scaler.fit_transform(dissimilarity_vector)
 
         for i in feature_vector_indexes["Race"]:
             # Gower Distance for nominal data
@@ -36,17 +38,23 @@ class Dissimilarity:
         return dissimilarity_vector
 
     @staticmethod
-    def gower_distance(vector_1: np.array, vector_2: np.array, datatype: str ="")-> float:
-        if datatype == "nominal":
-            return
+    def gower_similarity(vector_1: np.array, vector_2: np.array, datatype: str ="")-> float:
+        if datatype == "ratio":
+            __manhattan_distance
+
+
+
 
     @staticmethod
-    def __manhattan_distance(point_1: Coordinate, point_2: Coordinate):
-        dist = abs(point_1.y - point_2.y) + abs(point_1.x - point_2.x)
+    def manhattan_distance(vector_1: np.array, vector_2: np.array):
+        dist = 0
+        for i in np.arange(0, vector_1.size):
+            dist += abs(vector_1[i] - vector_2[i])
+
         return dist
 
     @staticmethod
-    def dice_coefficient(binary_vector_1: np.array, binary_vector_2: np.array):
+    def __dice_coefficient(binary_vector_1: np.array, binary_vector_2: np.array):
 
         # Sum of all the elements that exist in both matrices (a)
         true_indexes_1 = np.array(np.where(binary_vector_1 == 1))
@@ -64,14 +72,9 @@ class Dissimilarity:
 
         c = np.sum(binary_vector_2[false_indexes_1] == 1)
 
-
-        print("a = ", a)
-        print("b = ", b)
-        print("c = ", c)
         coef = 2*a/(2*a + b + c)
 
         return coef
 
 d = Dissimilarity()
-a = d.dice_coefficient(np.array([1, 0, 1, 0]), np.array([1, 0, 0, 1]))
-print(a)
+print(d.manhattan_distance(np.array([1, 4, 3]), np.array([1, 2, 3])))
