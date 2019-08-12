@@ -4,6 +4,11 @@ from feature_weighting import *
 from mobile_application.face_encoding.coordinates import Coordinate
 from sklearn import preprocessing
 
+
+class UnequalArrayLength(Exception):
+    def __init__(self):
+        Exception.__init__(self, "Input arrays are not of the same length")
+
 class Dissimilarity:
     __LENGTH_OF_VECTOR = 3
     __vectors = np.empty(shape=(0, __LENGTH_OF_VECTOR))
@@ -40,13 +45,16 @@ class Dissimilarity:
     @staticmethod
     def gower_similarity(vector_1: np.array, vector_2: np.array, datatype: str ="")-> float:
         if datatype == "ratio":
-            __manhattan_distance
+            manhattan_distance(vector_1, vector_2)
 
 
 
 
     @staticmethod
     def manhattan_distance(vector_1: np.array, vector_2: np.array):
+        if vector_1.size != vector_2.size:
+            raise UnequalArrayLength()
+
         dist = 0
         for i in np.arange(0, vector_1.size):
             dist += abs(vector_1[i] - vector_2[i])
@@ -54,7 +62,7 @@ class Dissimilarity:
         return dist
 
     @staticmethod
-    def __dice_coefficient(binary_vector_1: np.array, binary_vector_2: np.array):
+    def dice_coefficient(binary_vector_1: np.array, binary_vector_2: np.array):
 
         # Sum of all the elements that exist in both matrices (a)
         true_indexes_1 = np.array(np.where(binary_vector_1 == 1))
@@ -77,4 +85,4 @@ class Dissimilarity:
         return coef
 
 d = Dissimilarity()
-print(d.manhattan_distance(np.array([1, 4, 3]), np.array([1, 2, 3])))
+print(d.manhattan_distance(np.array([1, 4, 3]), np.array([1, 2, 3, 5])))
