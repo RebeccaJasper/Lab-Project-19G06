@@ -13,7 +13,11 @@ camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight,
 camera.position.set(0, 0, 500)
 camera.lookAt(0, 0, 0)
 
-renderer = new THREE.WebGLRenderer()
+renderer = new THREE.WebGLRenderer({
+  preserveDrawingBuffer: true
+})
+
+// renderer = new THREE.WebGLRenderer()
 renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild(renderer.domElement)
 
@@ -56,4 +60,17 @@ var gameLoop = function () {
 
 gameLoop()
 
-export { scene }
+// Save screen/frame as a jpeg image
+
+function saveAsImage () {
+  try {
+    var strMime = 'image/jpeg'
+    var imgData = renderer.domElement.toDataURL(strMime)
+    // window.open(imgData)
+    return imgData
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+export { scene, saveAsImage }
