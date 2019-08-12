@@ -49,13 +49,29 @@ class Dissimilarity:
     def dice_coefficient(binary_vector_1: np.array, binary_vector_2: np.array):
 
         # Sum of all the elements that exist in both matrices (a)
-        print('Binary vector 1: ', np.array(np.where(binary_vector_1 == 1)))
-        print('Binary vector2: ', np.array(np.where(binary_vector_2 == 1)))
-        a = np.sum(np.array(np.where(binary_vector_1 == 1)) == np.array(np.where(binary_vector_2 == 1)))
-        # All the elements that are true in the first vector that aren't true in the second
-        coef = a
+        true_indexes_1 = np.array(np.where(binary_vector_1 == 1))
+        true_indexes_2 = np.array(np.where(binary_vector_2 == 1))
+
+        a = np.sum(true_indexes_1 == true_indexes_2)
+
+        # All the elements that are true in the first vector that aren't false in the second (b)
+        false_indexes_2 = np.array(np.where(binary_vector_2 == 0))
+
+        b = np.sum(binary_vector_1[false_indexes_2] == 1)
+
+        # All the elements that are false in the first vector that aren't true in the second (b)
+        false_indexes_1 = np.array(np.where(binary_vector_1 == 0))
+
+        c = np.sum(binary_vector_2[false_indexes_1] == 1)
+
+
+        print("a = ", a)
+        print("b = ", b)
+        print("c = ", c)
+        coef = 2*a/(2*a + b + c)
+
         return coef
 
 d = Dissimilarity()
-a = d.dice_coefficient(np.array([1, 0, 1, 0]), np.array([1, 0, 0, 0]))
+a = d.dice_coefficient(np.array([1, 0, 1, 0]), np.array([1, 0, 0, 1]))
 print(a)
