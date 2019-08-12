@@ -175,15 +175,65 @@ window.onload = function () {
   })
 }
 
-let facialMarkers = [generateFace.zero.x, generateFace.zero.y, generateFace.four.x, generateFace.four.y,
-  generateFace.six.x, generateFace.six.y, generateFace.ten.x, generateFace.ten.y,
-  generateFace.twelve.x, generateFace.twelve.y, generateFace.sixteen.x, generateFace.sixteen.y,
-  nose.thirtyOne.x, nose.thirtyOne.y, nose.thirtyFive.x, nose.thirtyFive.y, eyes.thirtySix.x,
-  eyes.thirtySix.y, eyes.thirtySeven.x, eyes.thirtySeven.y, eyes.thirtyEight.x, eyes.thirtyEight.y,
-  eyes.thirtyNine.x, eyes.thirtyNine.y, eyes.forty.x, eyes.forty.y, eyes.fortyOne.x, eyes.fortyOne.y,
-  eyes.fortyTwo.x, eyes.fortyTwo.y, eyes.fortyThree.x, eyes.fortyThree.y, eyes.fortyFour.x, eyes.fortyFour.y,
-  eyes.fortyFive.x, eyes.fortyFive.y, eyes.fortySix.x, eyes.fortySix.y, eyes.fortySeven.x, eyes.fortySeven.y,
-  mouth.fortyEight.x, mouth.fortyEight.y, mouth.fiftyOne.x, mouth.fiftyOne.y, mouth.fiftyFour.x,
-  mouth.fiftyFour.y, mouth.fiftySeven.x, mouth.fiftySeven.y]
+let facialMarkers =
+[
+  generateFace.zero.x, generateFace.zero.y,
+  generateFace.four.x, generateFace.four.y,
+  generateFace.six.x, generateFace.six.y,
+  generateFace.ten.x, generateFace.ten.y,
+  generateFace.twelve.x, generateFace.twelve.y,
+  generateFace.sixteen.x, generateFace.sixteen.y,
+
+  brows.seventeen.x, brows.seventeen.y,
+  brows.eighteen.x, brows.eighteen.y,
+  brows.nineteen.x, brows.nineteen.y,
+  brows.twenty.x, brows.twenty.y,
+  brows.twentyOne.x, brows.twentyOne.y,
+  brows.twentyTwo.x, brows.twentyTwo.y,
+  brows.twentyThree.x, brows.twentyThree.y,
+  brows.twentyFour.x, brows.twentyFour.y,
+  brows.twentyFive.x, brows.twentyFive.y,
+  brows.twentySix.x, brows.twentySix.y,
+
+  nose.thirtyOne.x, nose.thirtyOne.y,
+  nose.thirtyTwo.x, nose.thirtyTwo.y,
+  nose.thirtyThree.x, nose.thirtyThree.y,
+  nose.thirtyFour.x, nose.thirtyFour.y,
+  nose.thirtyFive.x, nose.thirtyFive.y,
+
+  eyes.thirtySix.x, eyes.thirtySix.y,
+  eyes.thirtySeven.x, eyes.thirtySeven.y,
+  eyes.thirtyEight.x, eyes.thirtyEight.y,
+  eyes.thirtyNine.x, eyes.thirtyNine.y,
+  eyes.forty.x, eyes.forty.y,
+  eyes.fortyOne.x, eyes.fortyOne.y,
+  eyes.fortyTwo.x, eyes.fortyTwo.y,
+  eyes.fortyThree.x, eyes.fortyThree.y,
+  eyes.fortyFour.x, eyes.fortyFour.y,
+  eyes.fortyFive.x, eyes.fortyFive.y,
+  eyes.fortySix.x, eyes.fortySix.y,
+  eyes.fortySeven.x, eyes.fortySeven.y,
+
+  mouth.fortyEight.x, mouth.fortyEight.y,
+  mouth.fortyNine.x, mouth.fortyNine.y,
+  mouth.fifty.x, mouth.fifty.y,
+  mouth.fiftyOne.x, mouth.fiftyOne.y,
+  mouth.fiftyTwo.x, mouth.fiftyTwo.y,
+  mouth.fiftyThree.x, mouth.fiftyThree.y,
+  mouth.fiftyFour.x, mouth.fiftyFour.y,
+  mouth.fiftyFive.x, mouth.fiftyFive.y,
+  mouth.fiftySix.x, mouth.fiftySix.y,
+  mouth.fiftySeven.x, mouth.fiftySeven.y,
+  mouth.fiftyEight.x, mouth.fiftyEight.y,
+  mouth.fiftyNine.x, mouth.fiftyNine.y,
+  mouth.sixty.x, mouth.sixty.y,
+  mouth.sixtyOne.x, mouth.sixtyOne.y,
+  mouth.sixtyTwo.x, mouth.sixtyTwo.y,
+  mouth.sixtyThree.x, mouth.sixtyThree.y,
+  mouth.sixtyFour.x, mouth.sixtyFour.y,
+  mouth.sixtyFive.x, mouth.sixtyFive.y,
+  mouth.sixtySix.x, mouth.sixtySix.y,
+  mouth.sixtySeven.x, mouth.sixtySeven.y
+]
 
 export { facialMarkers }

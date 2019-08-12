@@ -83,6 +83,23 @@ var update = function () {
   gameLogic.scene.add(mouthGap)
 }
 
-export { fortyEight, fiftyFour, fortyNine, fiftyThree, fifty, fiftyTwo, fiftyOne, fiftyFive,
-  fiftySix, fiftySeven, fiftyEight, fiftyNine, update, lipColour, material,
-  sixty, sixtyOne, sixtyTwo, sixtyThree, sixtyFour, sixtyFive, sixtySix, sixtySeven }
+export { update, lipColour, material,
+  fortyNine,
+  fifty,
+  fiftyOne,
+  fiftyTwo,
+  fiftyThree,
+  fiftyFour,
+  fiftyFive,
+  fiftySix,
+  fiftySeven,
+  fiftyEight,
+  fiftyNine,
+  sixty,
+  sixtyOne,
+  sixtyTwo,
+  sixtyThree,
+  sixtyFour,
+  sixtyFive,
+  sixtySix,
+  sixtySeven }
