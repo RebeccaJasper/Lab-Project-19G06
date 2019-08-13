@@ -15,19 +15,40 @@ class NonBinaryFormat(Exception):
         Exception.__init__(self, "Input arrays are not in binary format (i.e. containing int values 0 or 1)")
 
 
-class Dissimilarity:
-    __LENGTH_OF_VECTOR = 3
-    __vectors = np.empty(shape=(0, __LENGTH_OF_VECTOR))
+class Dissimilarity(object):
+    __LENGTH_OF_VECTOR = 4
+    __distance_vector = np.array([])
+
+    def __init__(self):
+        self._feature_vectors = np.array([])
 
     @property
     def feature_vectors(self):
-        return self.__vectors
+        return self.__feature_vectors
+
+    def load_feature_vectors(self, vectors: np.array) -> None:
+        self.__feature_vectors = vectors
 
     def add_vector(self, vector: np.array) -> None:
-        self.__vectors = np.vstack((self.__vectors, vector))
+        self.__feature_vectors = np.vstack((self.__vectors, vector))
+
+    def distance_matrix(self)-> np.array:
+        np.delete(feature_matrix, np.arange(0, feature_matrix.shape[0]), 0)
+        distance_matrix = np.array([])
+        for currrent_row_index in np.arange(0, self.__feature_vectors.shape[0]):
+            for other_row_index in np.arange(0, self.__feature_vectors.shape[0]):
+                distance_vector = Dissimilarity.distance(self.__feature_vectors[currrent_row_index],
+                                                         self.__feature_vectors[other_row_index])
+                if currrent_row_index == 0 and other_row_index == 0:
+                    distance_matrix = np.hstack((distance_matrix, distance_vector))
+                else:
+                    distance_matrix = np.vstack((distance_matrix, distance_vector))
+
+        return distance_matrix
+
 
     @staticmethod
-    def dissimilarity(vector_1: np.array, vector_2: np.array)-> np.array:
+    def distance(vector_1: np.array, vector_2: np.array)-> np.array:
         """
         Calculate dissimilary between feature vectors
 
@@ -118,7 +139,11 @@ class Dissimilarity:
 
         return coef
 
+
+feature_matrix = np.array(([1, 2, 4, 5, 1, 0, 0, 0, 1, 0], [1, 3, 6, 5, 0, 1, 0, 0, 1, 0]))
+
+# print('After deletion:')
+# print(np.delete(feature_matrix, np.arange(0, feature_matrix.shape[0]), 0))
 d = Dissimilarity()
-vec_1 = np.array([1, 2, 4, 5, 1, 0, 0, 0, 1, 0])
-vec_2 = np.array([1, 3, 6, 5, 0, 1, 0, 0, 1, 0])
-print(d.dissimilarity(vec_1, vec_2))
+d.load_feature_vectors(feature_matrix)
+print(d.distance_matrix())
