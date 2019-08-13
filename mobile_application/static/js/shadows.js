@@ -33,6 +33,17 @@ var philtrumShape = new THREE.Shape(philtrumCurve.getSpacedPoints(100))
 var philtrumGeometry = new THREE.ExtrudeGeometry(philtrumShape, extrudeSettings)
 var philtrumShadow = new THREE.Mesh(philtrumGeometry, shadowMaterial)
 
+var chin1 = new THREE.Vector2(38, -64)
+var chin2 = new THREE.Vector2(16, -63)
+var chin3 = new THREE.Vector2(0, -57)
+var chin4 = new THREE.Vector2(-16, -63)
+var chin5 = new THREE.Vector2(-38, -64)
+
+var chinCurve = new THREE.SplineCurve([chin1, chin2, chin3, chin4, chin5])
+var chinShape = new THREE.Shape(chinCurve.getSpacedPoints(100))
+var chinGeometry = new THREE.ExtrudeGeometry(chinShape, extrudeSettings)
+var chinShadow = new THREE.Mesh(chinGeometry, shadowMaterial)
+
 var update = function () {
   gameLogic.scene.remove(shadowL)
   shadowLShape = new THREE.Shape(shadowLCurve.getSpacedPoints(100))
@@ -51,6 +62,12 @@ var update = function () {
   philtrumGeometry = new THREE.ExtrudeGeometry(philtrumShape, extrudeSettings)
   philtrumShadow = new THREE.Mesh(philtrumGeometry, shadowMaterial)
   gameLogic.scene.add(philtrumShadow)
+
+  gameLogic.scene.remove(chinShadow)
+  chinShape = new THREE.Shape(chinCurve.getSpacedPoints(100))
+  chinGeometry = new THREE.ExtrudeGeometry(chinShape, extrudeSettings)
+  chinShadow = new THREE.Mesh(chinGeometry, shadowMaterial)
+  gameLogic.scene.add(chinShadow)
 }
 
 export { update, shadowMaterial }
