@@ -58,4 +58,4 @@ function dec2hex (i) {
   if (result.length === 8) { return result }
 }
 
-export { skinColour, material, zero, four, six, seven, nine, ten, eight, twelve, FH0, FH1, FH2, FH4, sixteen, dec2hex, update }
+export { skinColour, material, zero, four, six, seven, nine, ten, eight, twelve, FH0, FH1, FH2, FH4, FH3, sixteen, dec2hex, update }

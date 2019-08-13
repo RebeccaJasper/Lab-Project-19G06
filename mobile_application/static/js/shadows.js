@@ -78,6 +78,14 @@ var eyelidRShape = new THREE.Shape(eyelidRCurve.getSpacedPoints(100))
 var eyelidRGeometry = new THREE.ExtrudeGeometry(eyelidRShape, extrudeSettings)
 var eyelidR = new THREE.Mesh(eyelidRGeometry, shadowMaterial)
 
+var cheekL1 = new THREE.Vector2(-134, 20)
+var cheekL2 = new THREE.Vector2(-162, 129)
+
+var cheekLCurve = new THREE.SplineCurve([face.FH3, face.zero, face.four, face.six, cheekL1, cheekL2])
+var cheekLShape = new THREE.Shape(cheekLCurve.getSpacedPoints(100))
+var cheekLGeometry = new THREE.ExtrudeGeometry(cheekLShape, extrudeSettings)
+var cheekL = new THREE.Mesh(cheekLGeometry, shadowMaterial)
+
 var cheekR1 = new THREE.Vector2(134, 20)
 var cheekR2 = new THREE.Vector2(162, 129)
 
@@ -85,8 +93,6 @@ var cheekRCurve = new THREE.SplineCurve([face.FH4, face.sixteen, face.twelve, fa
 var cheekRShape = new THREE.Shape(cheekRCurve.getSpacedPoints(100))
 var cheekRGeometry = new THREE.ExtrudeGeometry(cheekRShape, extrudeSettings)
 var cheekR = new THREE.Mesh(cheekRGeometry, shadowMaterial)
-
-face.sixteen
 
 var update = function () {
   gameLogic.scene.remove(shadowL)
@@ -116,11 +122,17 @@ var update = function () {
   gameLogic.scene.add(eyelidL)
   gameLogic.scene.add(eyelidR)
 
+  gameLogic.scene.remove(cheekL)
+  cheekLShape = new THREE.Shape(cheekLCurve.getSpacedPoints(100))
+  cheekLGeometry = new THREE.ExtrudeGeometry(cheekLShape, extrudeSettings)
+  cheekL = new THREE.Mesh(cheekLGeometry, shadowMaterial)
+  gameLogic.scene.add(cheekL)
+
   gameLogic.scene.remove(cheekR)
   cheekRShape = new THREE.Shape(cheekRCurve.getSpacedPoints(100))
   cheekRGeometry = new THREE.ExtrudeGeometry(cheekRShape, extrudeSettings)
   cheekR = new THREE.Mesh(cheekRGeometry, shadowMaterial)
-  gameLogic.scene.add(cheekR)
+  gameLogic.scene.add(cheekR) 
 }
 
-export { update, shadowMaterial, cheekR1, cheekR2 }
+export { update, shadowMaterial, cheekR1, cheekR2, cheekL1, cheekL2 }

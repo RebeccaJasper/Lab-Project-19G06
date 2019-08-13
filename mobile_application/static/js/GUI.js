@@ -41,6 +41,8 @@ window.onload = function () {
     generateFace.sixteen.x = 177 + value
     shadows.cheekR1.x = 134 + value
     shadows.cheekR2.x = 162 + value
+    shadows.cheekL1.x = -134 - value
+    shadows.cheekL2.x = -162 - value
   })
 
   faceGUI.add(params, 'midWidth', -50, 50).name('Mid-Face Width').onChange(function () {
@@ -48,8 +50,9 @@ window.onload = function () {
     generateFace.four.x = -147 - value
     generateFace.twelve.x = 147 + value
     shadows.cheekR1.x = 134 + value
+    shadows.cheekL1.x = -134 - value
   })
-
+  
   faceGUI.add(params, 'chinWidth', -50, 50).name('Chin Width').onChange(function () {
     let value = params.chinWidth
     generateFace.six.x = -88 - value
@@ -57,6 +60,7 @@ window.onload = function () {
     generateFace.seven.x = -46 - value
     generateFace.nine.x = 46 + value
     shadows.cheekR1.x = 134 + value
+    shadows.cheekL1.x = -134 - value
   })
 
   faceGUI.addColor(params, 'skinColour').name('Skin Tone').onChange(function () {
