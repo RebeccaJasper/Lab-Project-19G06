@@ -57,6 +57,7 @@ window.onload = function () {
   faceGUI.addColor(params, 'skinColour').name('Skin Tone').onChange(function () {
     generateFace.material.color.setHex(generateFace.dec2hex(params.skinColour))
     nose.material.color.setHex(generateFace.dec2hex(params.skinColour))
+    // nose.shadowMaterial.color.setHex((generateFace.dec2hex(params.skinColour) & 0xfefefe) >> 1)
   })
 
   var eyeGUI = gui.addFolder('Eyes')

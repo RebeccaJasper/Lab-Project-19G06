@@ -37,13 +37,29 @@ var noseShape = new THREE.Shape(noseCurve.getSpacedPoints(100))
 var geometry = new THREE.ExtrudeGeometry(noseShape, extrudeSettings)
 var nose = new THREE.Mesh(geometry, material)
 
+var shadowLCurve = new THREE.SplineCurve([twentySevenL, twentyEightL, twentyNineL, thirtyL, thirtyOne])
+var shadowColour = (skinColour & 0xfefefe) >> 1
+var shadowMaterial = new THREE.MeshLambertMaterial({ color: shadowColour })
+
+var shadowLShape = new THREE.Shape(shadowLCurve.getSpacedPoints(100))
+var shadowGeometry = new THREE.ExtrudeGeometry(shadowLShape, extrudeSettings)
+var shadowL = new THREE.Mesh(shadowGeometry, shadowMaterial)
+
 var update = function () {
   gameLogic.scene.remove(nose)
   noseShape = new THREE.Shape(noseCurve.getSpacedPoints(100))
   geometry = new THREE.ExtrudeGeometry(noseShape, extrudeSettings)
   nose = new THREE.Mesh(geometry, material)
   gameLogic.scene.add(nose)
+
+  // gameLogic.scene.remove(shadowL)
+  // shadowColour = (skinColour & 0xfefefe) >> 1
+  // shadowMaterial = new THREE.MeshLambertMaterial({ color: shadowColour })
+  // shadowLShape = new THREE.Shape(shadowLCurve.getSpacedPoints(100))
+  // shadowGeometry = new THREE.ExtrudeGeometry(shadowLShape, extrudeSettings)
+  // shadowL = new THREE.Mesh(shadowGeometry, shadowMaterial)
+  gameLogic.scene.add(shadowL)
 }
 
 export { skinColour, material, update, thirtyOne, thirtyTwo, thirtyFour, thirtyFive, thirtyThree,
-  twentySevenL, twentySevenR, twentyEightL, twentyEightR, twentyNineL, twentyNineR, thirtyL, thirtyR }
+  twentySevenL, twentySevenR, twentyEightL, twentyEightR, twentyNineL, twentyNineR, thirtyL, thirtyR, shadowMaterial }
