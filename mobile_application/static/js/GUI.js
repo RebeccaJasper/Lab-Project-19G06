@@ -18,6 +18,7 @@ var UserControls = function () {
   this.mouthCorners = 0
   this.mouthColour = mouth.lipColour
   this.noseWidth = 0
+  this.bridgeWidth = 0
   this.nosePeak = 0
   this.browPeak = 0
   this.browOuterX = 0
@@ -131,6 +132,18 @@ window.onload = function () {
     let value = params.noseWidth
     nose.thirtyOne.x = -33 - value
     nose.thirtyFive.x = 33 + value
+  })
+
+  noseGUI.add(params, 'bridgeWidth', -10, 10).name('Bridge Width').onChange(function () {
+    let value = params.bridgeWidth
+    nose.twentySevenL.x = -10 - value
+    nose.twentySevenR.x = 10 + value
+    nose.twentyEightL.x = -10 - value
+    nose.twentyEightR.x = 10 + value
+    nose.twentyNineL.x = -10 - value
+    nose.twentyNineR.x = 10 + value
+    nose.thirtyL.x = -15 - value
+    nose.thirtyR.x = 15 + value
   })
 
   noseGUI.add(params, 'nosePeak', -5, 10).name('Nose Peak').onChange(function () {

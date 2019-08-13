@@ -1,10 +1,6 @@
 import * as gameLogic from './gameLogic.js'
 
 // Nose markers
-// var twentySeven = new THREE.Vector2(0, 150)
-// var twentyEight = new THREE.Vector2(0, 124)
-// var twentyNine = new THREE.Vector2(0, 98)
-// var thirty = new THREE.Vector2(0, 72)
 
 var twentySevenL = new THREE.Vector2(-10, 150)
 var twentySevenR = new THREE.Vector2(10, 150)
@@ -20,9 +16,6 @@ var thirtyTwo = new THREE.Vector2(-17, 39)
 var thirtyThree = new THREE.Vector2(0, 35)
 var thirtyFour = new THREE.Vector2(17, 39)
 var thirtyFive = new THREE.Vector2(33, 42)
-
-// var noseCurve = new THREE.SplineCurve([ twentySeven, twentyEight, twentyNine, thirty, thirtyOne, thirtyTwo, thirtyThree, thirtyFour, thirtyFive,
-//   thirty, twentyNine, twentyEight, twentySeven ])
 
 var noseCurve = new THREE.SplineCurve([ twentySevenL, twentyEightL, twentyNineL, thirtyL, thirtyOne, thirtyTwo, thirtyThree, thirtyFour, thirtyFive,
   thirtyR, twentyNineR, twentyEightR, twentySevenR ])
@@ -52,4 +45,5 @@ var update = function () {
   gameLogic.scene.add(nose)
 }
 
-export { skinColour, material, update, thirtyOne, thirtyTwo, thirtyFour, thirtyFive, thirtyThree }
+export { skinColour, material, update, thirtyOne, thirtyTwo, thirtyFour, thirtyFive, thirtyThree,
+  twentySevenL, twentySevenR, twentyEightL, twentyEightR, twentyNineL, twentyNineR, thirtyL, thirtyR }
