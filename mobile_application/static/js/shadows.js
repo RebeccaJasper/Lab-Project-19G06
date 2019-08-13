@@ -53,17 +53,30 @@ var chinShadow = new THREE.Mesh(chinGeometry, shadowMaterial)
 var eyelidL2 = new THREE.Vector2(-94, 170)
 var eyelidL3 = new THREE.Vector2(-71, 170)
 var eyelidL4 = new THREE.Vector2(-39, 155)
-
 var eyelidL5 = new THREE.Vector2(-38, 170)
 var eyelidL6 = new THREE.Vector2(-62, 173)
 var eyelidL7 = new THREE.Vector2(-94, 173)
 var eyelidL8 = new THREE.Vector2(-130, 153)
+
+var eyelidR2 = new THREE.Vector2(94, 170)
+var eyelidR3 = new THREE.Vector2(71, 170)
+var eyelidR4 = new THREE.Vector2(39, 155)
+var eyelidR5 = new THREE.Vector2(38, 170)
+var eyelidR6 = new THREE.Vector2(62, 173)
+var eyelidR7 = new THREE.Vector2(94, 173)
+var eyelidR8 = new THREE.Vector2(130, 153)
 
 var eyelidLCurve = new THREE.SplineCurve([eyelidL2, eyelidL3, eyelidL4,
 eyelidL5, eyelidL6, eyelidL7, eyelidL8])
 var eyelidLShape = new THREE.Shape(eyelidLCurve.getSpacedPoints(100))
 var eyelidLGeometry = new THREE.ExtrudeGeometry(eyelidLShape, extrudeSettings)
 var eyelidL = new THREE.Mesh(eyelidLGeometry, shadowMaterial)
+
+var eyelidRCurve = new THREE.SplineCurve([eyelidR2, eyelidR3, eyelidR4,
+    eyelidR5, eyelidR6, eyelidR7, eyelidR8])
+var eyelidRShape = new THREE.Shape(eyelidRCurve.getSpacedPoints(100))
+var eyelidRGeometry = new THREE.ExtrudeGeometry(eyelidRShape, extrudeSettings)
+var eyelidR = new THREE.Mesh(eyelidRGeometry, shadowMaterial)
 
 var update = function () {
   gameLogic.scene.remove(shadowL)
@@ -91,6 +104,7 @@ var update = function () {
   gameLogic.scene.add(chinShadow)
 
   gameLogic.scene.add(eyelidL)
+  gameLogic.scene.add(eyelidR)
 }
 
 export { update, shadowMaterial }
