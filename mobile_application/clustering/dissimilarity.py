@@ -139,11 +139,11 @@ class Dissimilarity(object):
 
         return coef
 
-
-feature_matrix = np.array(([1, 2, 4, 5, 1, 0, 0, 0, 1, 0], [1, 3, 6, 5, 0, 1, 0, 0, 1, 0]))
-
-# print('After deletion:')
-# print(np.delete(feature_matrix, np.arange(0, feature_matrix.shape[0]), 0))
-d = Dissimilarity()
-d.load_feature_vectors(feature_matrix)
-print(d.distance_matrix())
+#
+# feature_matrix = np.array(([1, 2, 4, 5, 1, 0, 0, 0, 1, 0], [1, 3, 6, 5, 0, 1, 0, 0, 1, 0]))
+#
+# # print('After deletion:')
+# # print(np.delete(feature_matrix, np.arange(0, feature_matrix.shape[0]), 0))
+# d = Dissimilarity()
+# d.load_feature_vectors(feature_matrix)
+# print(d.distance_matrix())
