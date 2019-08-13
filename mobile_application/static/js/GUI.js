@@ -3,6 +3,7 @@ import * as eyes from './eyes.js'
 import * as mouth from './mouth.js'
 import * as nose from './nose.js'
 import * as brows from './brows.js'
+import * as shadows from './shadows.js'
 
 var UserControls = function () {
   this.upperWidth = 0
@@ -57,7 +58,7 @@ window.onload = function () {
   faceGUI.addColor(params, 'skinColour').name('Skin Tone').onChange(function () {
     generateFace.material.color.setHex(generateFace.dec2hex(params.skinColour))
     nose.material.color.setHex(generateFace.dec2hex(params.skinColour))
-    nose.shadowMaterial.color.setHex((generateFace.dec2hex(params.skinColour) & 0xfefefe) >> 1)
+    shadows.shadowMaterial.color.setHex((generateFace.dec2hex(params.skinColour) & 0xfefefe) >> 1)
   })
 
   var eyeGUI = gui.addFolder('Eyes')
