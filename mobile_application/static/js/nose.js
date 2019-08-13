@@ -52,12 +52,10 @@ var update = function () {
   nose = new THREE.Mesh(geometry, material)
   gameLogic.scene.add(nose)
 
-  // gameLogic.scene.remove(shadowL)
-  // shadowColour = (skinColour & 0xfefefe) >> 1
-  // shadowMaterial = new THREE.MeshLambertMaterial({ color: shadowColour })
-  // shadowLShape = new THREE.Shape(shadowLCurve.getSpacedPoints(100))
-  // shadowGeometry = new THREE.ExtrudeGeometry(shadowLShape, extrudeSettings)
-  // shadowL = new THREE.Mesh(shadowGeometry, shadowMaterial)
+  gameLogic.scene.remove(shadowL)
+  shadowLShape = new THREE.Shape(shadowLCurve.getSpacedPoints(100))
+  shadowGeometry = new THREE.ExtrudeGeometry(shadowLShape, extrudeSettings)
+  shadowL = new THREE.Mesh(shadowGeometry, shadowMaterial)
   gameLogic.scene.add(shadowL)
 }
 
