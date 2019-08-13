@@ -84,6 +84,7 @@ var update = function () {
 }
 
 export { update, lipColour, material,
+  fortyEight,
   fortyNine,
   fifty,
   fiftyOne,
