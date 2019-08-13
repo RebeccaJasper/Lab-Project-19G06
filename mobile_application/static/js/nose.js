@@ -37,13 +37,18 @@ var noseShape = new THREE.Shape(noseCurve.getSpacedPoints(100))
 var geometry = new THREE.ExtrudeGeometry(noseShape, extrudeSettings)
 var nose = new THREE.Mesh(geometry, material)
 
-var shadowLCurve = new THREE.SplineCurve([twentySevenL, twentyEightL, twentyNineL, thirtyL, thirtyOne])
 var shadowColour = (skinColour & 0xfefefe) >> 1
-var shadowMaterial = new THREE.MeshLambertMaterial({ color: shadowColour })
+var shadowMaterial = new THREE.MeshLambertMaterial({ color: shadowColour, transparent: true, opacity: 0.2 })
 
+var shadowLCurve = new THREE.SplineCurve([twentySevenL, twentyEightL, twentyNineL, thirtyL, thirtyOne])
 var shadowLShape = new THREE.Shape(shadowLCurve.getSpacedPoints(100))
-var shadowGeometry = new THREE.ExtrudeGeometry(shadowLShape, extrudeSettings)
-var shadowL = new THREE.Mesh(shadowGeometry, shadowMaterial)
+var shadowLGeometry = new THREE.ExtrudeGeometry(shadowLShape, extrudeSettings)
+var shadowL = new THREE.Mesh(shadowLGeometry, shadowMaterial)
+
+var shadowRCurve = new THREE.SplineCurve([twentySevenR, twentyEightR, twentyNineR, thirtyR, thirtyFive])
+var shadowRShape = new THREE.Shape(shadowRCurve.getSpacedPoints(100))
+var shadowRGeometry = new THREE.ExtrudeGeometry(shadowRShape, extrudeSettings)
+var shadowR = new THREE.Mesh(shadowRGeometry, shadowMaterial)
 
 var update = function () {
   gameLogic.scene.remove(nose)
@@ -54,9 +59,15 @@ var update = function () {
 
   gameLogic.scene.remove(shadowL)
   shadowLShape = new THREE.Shape(shadowLCurve.getSpacedPoints(100))
-  shadowGeometry = new THREE.ExtrudeGeometry(shadowLShape, extrudeSettings)
-  shadowL = new THREE.Mesh(shadowGeometry, shadowMaterial)
+  shadowLGeometry = new THREE.ExtrudeGeometry(shadowLShape, extrudeSettings)
+  shadowL = new THREE.Mesh(shadowLGeometry, shadowMaterial)
   gameLogic.scene.add(shadowL)
+
+  gameLogic.scene.remove(shadowR)
+  shadowRShape = new THREE.Shape(shadowRCurve.getSpacedPoints(100))
+  shadowRGeometry = new THREE.ExtrudeGeometry(shadowRShape, extrudeSettings)
+  shadowR = new THREE.Mesh(shadowRGeometry, shadowMaterial)
+  gameLogic.scene.add(shadowR)
 }
 
 export { skinColour, material, update, thirtyOne, thirtyTwo, thirtyFour, thirtyFive, thirtyThree,
