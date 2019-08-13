@@ -7,7 +7,7 @@ import * as nose from './nose.js'
 
 var extrudeSettings = {
   steps: 1,
-  depth: 17,
+  depth: 13,
   bevelEnabled: true,
   bevelThickness: 5,
   bevelSize: 1,
@@ -28,7 +28,13 @@ var shadowRShape = new THREE.Shape(shadowRCurve.getSpacedPoints(100))
 var shadowRGeometry = new THREE.ExtrudeGeometry(shadowRShape, extrudeSettings)
 var shadowR = new THREE.Mesh(shadowRGeometry, shadowMaterial)
 
-var philtrumCurve = new THREE.SplineCurve([nose.thirtyTwo, nose.thirtyThree, nose.thirtyFour, mouth.fiftyTwo, mouth.fiftyOne, mouth.fifty])
+var philtrum1 = new THREE.Vector2(-7, 39)
+var philtrum2 = new THREE.Vector2(0, 35)
+var philtrum3 = new THREE.Vector2(7, 39)
+var philtrum4 = new THREE.Vector2(10, 5)
+var philtrum5 = new THREE.Vector2(-10, 5)
+
+var philtrumCurve = new THREE.SplineCurve([philtrum1, philtrum2, philtrum3, philtrum4, mouth.fiftyOne, philtrum5])
 var philtrumShape = new THREE.Shape(philtrumCurve.getSpacedPoints(100))
 var philtrumGeometry = new THREE.ExtrudeGeometry(philtrumShape, extrudeSettings)
 var philtrumShadow = new THREE.Mesh(philtrumGeometry, shadowMaterial)
