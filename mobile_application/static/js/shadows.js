@@ -1,7 +1,7 @@
 import * as gameLogic from './gameLogic.js'
 import * as face from './face.js'
 // import * as eyes from './eyes.js'
-// import * as mouth from './mouth.js'
+import * as mouth from './mouth.js'
 import * as nose from './nose.js'
 // import * as brows from './brows.js'
 
@@ -28,6 +28,11 @@ var shadowRShape = new THREE.Shape(shadowRCurve.getSpacedPoints(100))
 var shadowRGeometry = new THREE.ExtrudeGeometry(shadowRShape, extrudeSettings)
 var shadowR = new THREE.Mesh(shadowRGeometry, shadowMaterial)
 
+var philtrumCurve = new THREE.SplineCurve([nose.thirtyTwo, nose.thirtyThree, nose.thirtyFour, mouth.fiftyTwo, mouth.fiftyOne, mouth.fifty])
+var philtrumShape = new THREE.Shape(philtrumCurve.getSpacedPoints(100))
+var philtrumGeometry = new THREE.ExtrudeGeometry(philtrumShape, extrudeSettings)
+var philtrumShadow = new THREE.Mesh(philtrumGeometry, shadowMaterial)
+
 var update = function () {
   gameLogic.scene.remove(shadowL)
   shadowLShape = new THREE.Shape(shadowLCurve.getSpacedPoints(100))
@@ -40,6 +45,12 @@ var update = function () {
   shadowRGeometry = new THREE.ExtrudeGeometry(shadowRShape, extrudeSettings)
   shadowR = new THREE.Mesh(shadowRGeometry, shadowMaterial)
   gameLogic.scene.add(shadowR)
+
+  gameLogic.scene.remove(philtrumShadow)
+  philtrumShape = new THREE.Shape(philtrumCurve.getSpacedPoints(100))
+  philtrumGeometry = new THREE.ExtrudeGeometry(philtrumShape, extrudeSettings)
+  philtrumShadow = new THREE.Mesh(philtrumGeometry, shadowMaterial)
+  gameLogic.scene.add(philtrumShadow)
 }
 
 export { update, shadowMaterial }
