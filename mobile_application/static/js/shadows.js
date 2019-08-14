@@ -190,6 +190,18 @@ var chinHShape = new THREE.Shape(chinHCurve.getSpacedPoints(100))
 var chinHGeometry = new THREE.ExtrudeGeometry(chinHShape, extrudeSettings)
 var chinHighlight = new THREE.Mesh(chinHGeometry, highlightMaterial)
 
+// CHEEK HIGHLIGHTS
+
+var cheekHR1 = new THREE.Vector2(140, 118)
+var cheekHR2 = new THREE.Vector2(49, 105)
+var cheekHR3 = new THREE.Vector2(124, 50)
+var cheekHR4 = new THREE.Vector2(100, 105)
+
+var cheekHRCurve = new THREE.SplineCurve([ cheekHR2, cheekHR4, cheekHR1, cheekHR3, cheekHR2])
+var cheekHRShape = new THREE.Shape(cheekHRCurve.getSpacedPoints(100))
+var cheekHRGeometry = new THREE.ExtrudeGeometry(cheekHRShape, extrudeSettings)
+var cheekRHighlight = new THREE.Mesh(cheekHRGeometry, highlightMaterial)
+
 // UPDATE
 
 var update = function () {
@@ -263,6 +275,8 @@ var update = function () {
   chinHGeometry = new THREE.ExtrudeGeometry(chinHShape, extrudeSettings)
   chinHighlight = new THREE.Mesh(chinHGeometry, highlightMaterial)
   gameLogic.scene.add(chinHighlight)
+
+  gameLogic.scene.add(cheekRHighlight)
 }
 
 export { update, shadowMaterial, cheekR1, cheekR2, cheekL1, cheekL2, highlightMaterial }
