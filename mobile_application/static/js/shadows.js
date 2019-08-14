@@ -327,7 +327,16 @@ var update = function () {
   eyelashR = new THREE.Mesh(eyelashRGeometry, lashMaterial)
   gameLogic.scene.add(eyelashR)
 
+  gameLogic.scene.remove(eyebagL)
+  eyebagLShape = new THREE.Shape(eyebagLCurve.getSpacedPoints(100))
+  eyebagLGeometry = new THREE.ExtrudeGeometry(eyebagLShape, extrudeSettings)
+  eyebagL = new THREE.Mesh(eyebagLGeometry, shadowMaterial)
   gameLogic.scene.add(eyebagL)
+
+  gameLogic.scene.remove(eyebagR)
+  eyebagRShape = new THREE.Shape(eyebagRCurve.getSpacedPoints(100))
+  eyebagRGeometry = new THREE.ExtrudeGeometry(eyebagRShape, extrudeSettings)
+  eyebagR = new THREE.Mesh(eyebagRGeometry, shadowMaterial)
   gameLogic.scene.add(eyebagR)
 
   // HIGHLIGHTS
@@ -360,4 +369,5 @@ var update = function () {
 }
 
 export { update, shadowMaterial, cheekR1, cheekR2, cheekL1, cheekL2, highlightMaterial,
-  cheekHR1, cheekHR3, cheekHL1, cheekHL3, cheekL3, cheekR3 }
+  cheekHR1, cheekHR3, cheekHL1, cheekHL3, cheekL3, cheekR3, eyebagL1, eyebagL2, eyebagL3, eyebagL4,
+  eyebagR1, eyebagR2, eyebagR3, eyebagR4, eyebagL5, eyebagL6, eyebagR5, eyebagR6 }

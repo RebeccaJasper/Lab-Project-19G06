@@ -100,6 +100,18 @@ window.onload = function () {
     eyes.fortyOne.y = 131 - value
     eyes.fortySix.y = 131 - value
     eyes.fortySeven.y = 131 - value
+    shadows.eyebagL1.y = 128 - value
+    shadows.eyebagR1.y = 128 - value
+    shadows.eyebagL2.y = 120 - value
+    shadows.eyebagR2.y = 120 - value
+    shadows.eyebagL3.y = 120 - value
+    shadows.eyebagR3.y = 120 - value
+    shadows.eyebagL4.y = 122 - value
+    shadows.eyebagR4.y = 122 - value
+    shadows.eyebagL5.y = 107 - value
+    shadows.eyebagR5.y = 107 - value
+    shadows.eyebagL6.y = 110 - value
+    shadows.eyebagR6.y = 110 - value
   })
 
   eyeGUI.addColor(params, 'eyeColour').name('Eye Colour').onChange(function () {
