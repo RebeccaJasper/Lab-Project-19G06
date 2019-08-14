@@ -43,6 +43,8 @@ window.onload = function () {
     shadows.cheekR2.x = 162 + value
     shadows.cheekL1.x = -134 - value
     shadows.cheekL2.x = -162 - value
+    shadows.cheekHR1.x = 140 + value
+    shadows.cheekHR3.x = 124 + value
   })
 
   faceGUI.add(params, 'midWidth', -50, 50).name('Mid-Face Width').onChange(function () {

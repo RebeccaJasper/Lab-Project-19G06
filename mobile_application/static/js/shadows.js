@@ -276,7 +276,12 @@ var update = function () {
   chinHighlight = new THREE.Mesh(chinHGeometry, highlightMaterial)
   gameLogic.scene.add(chinHighlight)
 
+  gameLogic.scene.remove(cheekRHighlight)
+  cheekHRShape = new THREE.Shape(cheekHRCurve.getSpacedPoints(100))
+  cheekHRGeometry = new THREE.ExtrudeGeometry(cheekHRShape, extrudeSettings)
+  cheekRHighlight = new THREE.Mesh(cheekHRGeometry, highlightMaterial)
   gameLogic.scene.add(cheekRHighlight)
+
 }
 
-export { update, shadowMaterial, cheekR1, cheekR2, cheekL1, cheekL2, highlightMaterial }
+export { update, shadowMaterial, cheekR1, cheekR2, cheekL1, cheekL2, highlightMaterial, cheekHR1, cheekHR3 }
