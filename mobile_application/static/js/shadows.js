@@ -139,8 +139,8 @@ var eyelashLShape = new THREE.Shape(eyelashLCurve.getSpacedPoints(100))
 var eyelashLGeometry = new THREE.ExtrudeGeometry(eyelashLShape, lashExtrude)
 var eyelashL = new THREE.Mesh(eyelashLGeometry, lashMaterial)
 
-var eyelashRCurve = new THREE.SplineCurve([eyes.fortyTwo, eyes.fortyThree, eyes.fortyFour, eyes.fortyFive,
-eyes.fortyFour, eyes.fortyThree, eyes.fortyTwo])
+var eyelashRCurve = new THREE.SplineCurve([ eyes.fortyFive,
+eyes.fortyFour, eyes.fortyThree, eyes.fortyTwo, eyes.fortyThree, eyes.fortyFour,eyes.fortyFive ])
 var eyelashRShape = new THREE.Shape(eyelashRCurve.getSpacedPoints(100))
 var eyelashRGeometry = new THREE.ExtrudeGeometry(eyelashRShape, lashExtrude)
 var eyelashR = new THREE.Mesh(eyelashRGeometry, lashMaterial)
