@@ -1,6 +1,6 @@
 import * as gameLogic from './gameLogic.js'
 import * as face from './face.js'
-// import * as eyes from './eyes.js'
+import * as eyes from './eyes.js'
 import * as mouth from './mouth.js'
 import * as nose from './nose.js'
 // import * as brows from './brows.js'
@@ -127,6 +127,26 @@ rightPupil.position.x = 90
 rightPupil.position.y = 142
 rightPupil.position.z = 23
 
+// EYELASHES
+
+var lashMaterial = new THREE.MeshLambertMaterial({ color: 0x0d0d0d, transparent: true, opacity: 1 })
+var lashExtrude = extrudeSettings
+lashExtrude.depth = 16
+
+var eyelashLCurve = new THREE.SplineCurve([eyes.thirtySix, eyes.thirtySeven, eyes.thirtyEight, eyes.thirtyNine,
+eyes.thirtyEight, eyes.thirtySeven, eyes.thirtySix])
+var eyelashLShape = new THREE.Shape(eyelashLCurve.getSpacedPoints(100))
+var eyelashLGeometry = new THREE.ExtrudeGeometry(eyelashLShape, lashExtrude)
+var eyelashL = new THREE.Mesh(eyelashLGeometry, lashMaterial)
+
+// var lashMaterial = new THREE.LineBasicMaterial({ color: 0xffffff, linewidth: 100 })
+
+// var eyelashLGeometry = new THREE.Geometry()
+// eyelashLGeometry.vertices.push(eyelidL2, eyelidL3, eyelidL6)
+
+// var eyelashL = new THREE.Line( eyelashLGeometry, lashMaterial )
+// eyelashL.position.y = 30
+
 // UPDATE
 
 var update = function () {
@@ -171,6 +191,12 @@ var update = function () {
 
   gameLogic.scene.add(leftPupil)
   gameLogic.scene.add(rightPupil)
+
+  gameLogic.scene.remove(eyelashL)
+  eyelashLShape = new THREE.Shape(eyelashLCurve.getSpacedPoints(100))
+  eyelashLGeometry = new THREE.ExtrudeGeometry(eyelashLShape, lashExtrude)
+  eyelashL = new THREE.Mesh(eyelashLGeometry, lashMaterial)
+  gameLogic.scene.add(eyelashL)
 }
 
 export { update, shadowMaterial, cheekR1, cheekR2, cheekL1, cheekL2 }
