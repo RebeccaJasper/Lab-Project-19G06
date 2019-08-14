@@ -202,6 +202,16 @@ var cheekHRShape = new THREE.Shape(cheekHRCurve.getSpacedPoints(100))
 var cheekHRGeometry = new THREE.ExtrudeGeometry(cheekHRShape, extrudeSettings)
 var cheekRHighlight = new THREE.Mesh(cheekHRGeometry, highlightMaterial)
 
+var cheekHL1 = new THREE.Vector2(-140, 118)
+var cheekHL2 = new THREE.Vector2(-49, 105)
+var cheekHL3 = new THREE.Vector2(-124, 50)
+var cheekHL4 = new THREE.Vector2(-100, 105)
+
+var cheekHLCurve = new THREE.SplineCurve([ cheekHL2, cheekHL4, cheekHL1, cheekHL3, cheekHL2])
+var cheekHLShape = new THREE.Shape(cheekHLCurve.getSpacedPoints(100))
+var cheekHLGeometry = new THREE.ExtrudeGeometry(cheekHLShape, extrudeSettings)
+var cheekLHighlight = new THREE.Mesh(cheekHLGeometry, highlightMaterial)
+
 // UPDATE
 
 var update = function () {
@@ -282,6 +292,12 @@ var update = function () {
   cheekRHighlight = new THREE.Mesh(cheekHRGeometry, highlightMaterial)
   gameLogic.scene.add(cheekRHighlight)
 
+  gameLogic.scene.remove(cheekLHighlight)
+  cheekHLShape = new THREE.Shape(cheekHLCurve.getSpacedPoints(100))
+  cheekHLGeometry = new THREE.ExtrudeGeometry(cheekHLShape, extrudeSettings)
+  cheekLHighlight = new THREE.Mesh(cheekHLGeometry, highlightMaterial)
+  gameLogic.scene.add(cheekLHighlight)
+
 }
 
-export { update, shadowMaterial, cheekR1, cheekR2, cheekL1, cheekL2, highlightMaterial, cheekHR1, cheekHR3 }
+export { update, shadowMaterial, cheekR1, cheekR2, cheekL1, cheekL2, highlightMaterial, cheekHR1, cheekHR3, cheekHL1, cheekHL3 }
