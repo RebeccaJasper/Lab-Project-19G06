@@ -119,6 +119,18 @@ var eyebagLShape = new THREE.Shape(eyebagLCurve.getSpacedPoints(100))
 var eyebagLGeometry = new THREE.ExtrudeGeometry(eyebagLShape, extrudeSettings)
 var eyebagL = new THREE.Mesh(eyebagLGeometry, shadowMaterial)
 
+var eyebagR1 = new THREE.Vector2(115, 128)
+var eyebagR2 = new THREE.Vector2(94, 120)
+var eyebagR3 = new THREE.Vector2(71, 120)
+var eyebagR4 = new THREE.Vector2(42, 122)
+var eyebagR5 = new THREE.Vector2(49, 107)
+var eyebagR6 = new THREE.Vector2(90, 110)
+
+var eyebagRCurve = new THREE.SplineCurve([ eyebagR1, eyebagR2, eyebagR3, eyebagR4, eyebagR5, eyebagR6 ])
+var eyebagRShape = new THREE.Shape(eyebagRCurve.getSpacedPoints(100))
+var eyebagRGeometry = new THREE.ExtrudeGeometry(eyebagRShape, extrudeSettings)
+var eyebagR = new THREE.Mesh(eyebagRGeometry, shadowMaterial)
+
 // EYE FLECKS
 
 var radius = 4
@@ -316,6 +328,7 @@ var update = function () {
   gameLogic.scene.add(eyelashR)
 
   gameLogic.scene.add(eyebagL)
+  gameLogic.scene.add(eyebagR)
 
   // HIGHLIGHTS
 
