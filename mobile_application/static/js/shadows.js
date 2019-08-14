@@ -7,7 +7,7 @@ import * as nose from './nose.js'
 
 var extrudeSettings = {
   steps: 1,
-  depth: 13,
+  depth: 12,
   bevelEnabled: true,
   bevelThickness: 5,
   bevelSize: 1,
@@ -212,6 +212,26 @@ var cheekHLShape = new THREE.Shape(cheekHLCurve.getSpacedPoints(100))
 var cheekHLGeometry = new THREE.ExtrudeGeometry(cheekHLShape, extrudeSettings)
 var cheekLHighlight = new THREE.Mesh(cheekHLGeometry, highlightMaterial)
 
+// FOREHEAD HIGHLIGHT
+
+// var twentyFour = new THREE.Vector2(97, 203)
+
+var foreheadH1 = new THREE.Vector2(-147, 195)
+var foreheadH2 = new THREE.Vector2(-145, 220)
+var foreheadH3 = new THREE.Vector2(-95, 280)
+var foreheadH4 = new THREE.Vector2(95, 280)
+var foreheadH5 = new THREE.Vector2(145, 220)
+var foreheadH6 = new THREE.Vector2(147, 195)
+var foreheadH7 = new THREE.Vector2(97, 220)
+var foreheadH8 = new THREE.Vector2(0, 210)
+var foreheadH9 = new THREE.Vector2(-97, 220)
+
+var foreheadHCurve = new THREE.SplineCurve([foreheadH1, foreheadH2, foreheadH3, foreheadH4,
+    foreheadH5, foreheadH6,foreheadH7, foreheadH8, foreheadH9, foreheadH1 ])
+var foreheadHShape = new THREE.Shape(foreheadHCurve.getSpacedPoints(100))
+var foreheadHGeometry = new THREE.ExtrudeGeometry(foreheadHShape, extrudeSettings)
+var foreheadHighlight = new THREE.Mesh(foreheadHGeometry, highlightMaterial)
+
 // UPDATE
 
 var update = function () {
@@ -298,6 +318,7 @@ var update = function () {
   cheekLHighlight = new THREE.Mesh(cheekHLGeometry, highlightMaterial)
   gameLogic.scene.add(cheekLHighlight)
 
+  gameLogic.scene.add(foreheadHighlight)
 }
 
 export { update, shadowMaterial, cheekR1, cheekR2, cheekL1, cheekL2, highlightMaterial, cheekHR1, cheekHR3, cheekHL1, cheekHL3 }
