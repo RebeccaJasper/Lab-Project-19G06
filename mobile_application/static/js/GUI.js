@@ -35,7 +35,7 @@ window.onload = function () {
 
   var faceGUI = gui.addFolder('Face')
 
-  faceGUI.add(params, 'upperWidth', -30, 30).name('Upper Face Width').onChange(function () {
+  faceGUI.add(params, 'upperWidth', -15, 15).name('Upper Face Width').onChange(function () {
     let value = params.upperWidth
     generateFace.zero.x = -177 - value
     generateFace.sixteen.x = 177 + value
@@ -51,15 +51,17 @@ window.onload = function () {
     shadows.cheekHL3.x = -124 - value
   })
 
-  faceGUI.add(params, 'midWidth', -50, 50).name('Mid-Face Width').onChange(function () {
+  faceGUI.add(params, 'midWidth', -15, 15).name('Mid-Face Width').onChange(function () {
     let value = params.midWidth
     generateFace.four.x = -147 - value
     generateFace.twelve.x = 147 + value
     shadows.cheekR1.x = 140 + value
     shadows.cheekL1.x = -140 - value
+    shadows.cheekL2.x = -150 - value
+    shadows.cheekR2.x = 150 + value
   })
 
-  faceGUI.add(params, 'chinWidth', -50, 50).name('Chin Width').onChange(function () {
+  faceGUI.add(params, 'chinWidth', -15, 15).name('Chin Width').onChange(function () {
     let value = params.chinWidth
     generateFace.six.x = -88 - value
     generateFace.ten.x = 88 + value
@@ -67,6 +69,8 @@ window.onload = function () {
     generateFace.nine.x = 46 + value
     shadows.cheekR1.x = 140 + value
     shadows.cheekL1.x = -140 - value
+    shadows.cheekL2.x = -150 - value
+    shadows.cheekR2.x = 150 + value
   })
 
   faceGUI.addColor(params, 'skinColour').name('Skin Tone').onChange(function () {

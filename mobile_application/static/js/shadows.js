@@ -56,8 +56,7 @@ var chinShape = new THREE.Shape(chinCurve.getSpacedPoints(100))
 var chinGeometry = new THREE.ExtrudeGeometry(chinShape, extrudeSettings)
 var chinShadow = new THREE.Mesh(chinGeometry, shadowMaterial)
 
-
-// EYELID SHADOWS 
+// EYELID SHADOWS
 
 var eyelidL2 = new THREE.Vector2(-94, 170)
 var eyelidL3 = new THREE.Vector2(-71, 170)
@@ -76,13 +75,13 @@ var eyelidR7 = new THREE.Vector2(94, 173)
 var eyelidR8 = new THREE.Vector2(130, 153)
 
 var eyelidLCurve = new THREE.SplineCurve([eyelidL2, eyelidL3, eyelidL4,
-eyelidL5, eyelidL6, eyelidL7, eyelidL8])
+  eyelidL5, eyelidL6, eyelidL7, eyelidL8])
 var eyelidLShape = new THREE.Shape(eyelidLCurve.getSpacedPoints(100))
 var eyelidLGeometry = new THREE.ExtrudeGeometry(eyelidLShape, extrudeSettings)
 var eyelidL = new THREE.Mesh(eyelidLGeometry, shadowMaterial)
 
 var eyelidRCurve = new THREE.SplineCurve([eyelidR2, eyelidR3, eyelidR4,
-    eyelidR5, eyelidR6, eyelidR7, eyelidR8])
+  eyelidR5, eyelidR6, eyelidR7, eyelidR8])
 var eyelidRShape = new THREE.Shape(eyelidRCurve.getSpacedPoints(100))
 var eyelidRGeometry = new THREE.ExtrudeGeometry(eyelidRShape, extrudeSettings)
 var eyelidR = new THREE.Mesh(eyelidRGeometry, shadowMaterial)
@@ -136,17 +135,16 @@ var lashExtrude = extrudeSettings
 lashExtrude.depth = 16
 
 var eyelashLCurve = new THREE.SplineCurve([eyes.thirtySix, eyes.thirtySeven, eyes.thirtyEight, eyes.thirtyNine,
-eyes.thirtyEight, eyes.thirtySeven, eyes.thirtySix])
+  eyes.thirtyEight, eyes.thirtySeven, eyes.thirtySix])
 var eyelashLShape = new THREE.Shape(eyelashLCurve.getSpacedPoints(100))
 var eyelashLGeometry = new THREE.ExtrudeGeometry(eyelashLShape, lashExtrude)
 var eyelashL = new THREE.Mesh(eyelashLGeometry, lashMaterial)
 
 var eyelashRCurve = new THREE.SplineCurve([ eyes.fortyFive,
-eyes.fortyFour, eyes.fortyThree, eyes.fortyTwo, eyes.fortyThree, eyes.fortyFour,eyes.fortyFive ])
+  eyes.fortyFour, eyes.fortyThree, eyes.fortyTwo, eyes.fortyThree, eyes.fortyFour, eyes.fortyFive ])
 var eyelashRShape = new THREE.Shape(eyelashRCurve.getSpacedPoints(100))
 var eyelashRGeometry = new THREE.ExtrudeGeometry(eyelashRShape, lashExtrude)
 var eyelashR = new THREE.Mesh(eyelashRGeometry, lashMaterial)
-
 
 // NOSE HIGHLIGHT
 
@@ -164,39 +162,37 @@ var noseH7 = new THREE.Vector2(2, 124)
 var noseH8 = new THREE.Vector2(2, 140)
 
 var noseHExtrude = {
-    steps: 1,
-    depth: 20,
-    bevelEnabled: true,
-    bevelThickness: 5,
-    bevelSize: 1,
-    bevelOffset: 1,
-    bevelSegments: 5
+  steps: 1,
+  depth: 20,
+  bevelEnabled: true,
+  bevelThickness: 5,
+  bevelSize: 1,
+  bevelOffset: 1,
+  bevelSegments: 5
 }
 
 var noseHighCurve = new THREE.SplineCurve([ noseH1, noseH2, noseH3, noseH4,
-    noseH5, noseH6, noseH7, noseH8 ])
+  noseH5, noseH6, noseH7, noseH8 ])
 var noseHighShape = new THREE.Shape(noseHighCurve.getSpacedPoints(100))
 var noseHighGeometry = new THREE.ExtrudeGeometry(noseHighShape, noseHExtrude)
 var noseHigh = new THREE.Mesh(noseHighGeometry, highlightMaterial)
 
-
 var extrudeSettingsH = {
-    steps: 1,
-    depth: 10,
-    bevelEnabled: true,
-    bevelThickness: 5,
-    bevelSize: 1,
-    bevelOffset: 1,
-    bevelSegments: 5
+  steps: 1,
+  depth: 10,
+  bevelEnabled: true,
+  bevelThickness: 5,
+  bevelSize: 1,
+  bevelOffset: 1,
+  bevelSegments: 5
 }
-
 
 // CHIN HIGHLIGHT
 
-var chinH1 = new THREE.Vector2(-34, -74)
-var chinH2 = new THREE.Vector2(34, -74)
-var chinH3 = new THREE.Vector2(34, -90)
-var chinH4 = new THREE.Vector2(-34, -90)
+var chinH1 = new THREE.Vector2(-34, -80)
+var chinH2 = new THREE.Vector2(34, -80)
+var chinH3 = new THREE.Vector2(34, -100)
+var chinH4 = new THREE.Vector2(-34, -100)
 
 var chinHCurve = new THREE.SplineCurve([chinH1, chinH2, chinH3, chinH4, chinH1])
 var chinHShape = new THREE.Shape(chinHCurve.getSpacedPoints(100))
@@ -238,7 +234,7 @@ var foreheadH8 = new THREE.Vector2(0, 210)
 var foreheadH9 = new THREE.Vector2(-97, 220)
 
 var foreheadHCurve = new THREE.SplineCurve([foreheadH1, foreheadH2, foreheadH3, foreheadH4,
-    foreheadH5, foreheadH6,foreheadH7, foreheadH8, foreheadH9, foreheadH1 ])
+  foreheadH5, foreheadH6, foreheadH7, foreheadH8, foreheadH9, foreheadH1 ])
 var foreheadHShape = new THREE.Shape(foreheadHCurve.getSpacedPoints(100))
 var foreheadHGeometry = new THREE.ExtrudeGeometry(foreheadHShape, extrudeSettingsH)
 var foreheadHighlight = new THREE.Mesh(foreheadHGeometry, highlightMaterial)
@@ -246,7 +242,6 @@ var foreheadHighlight = new THREE.Mesh(foreheadHGeometry, highlightMaterial)
 // UPDATE
 
 var update = function () {
-
   // SHADOWS
 
   gameLogic.scene.remove(shadowL)
@@ -286,7 +281,7 @@ var update = function () {
   cheekRShape = new THREE.Shape(cheekRCurve.getSpacedPoints(100))
   cheekRGeometry = new THREE.ExtrudeGeometry(cheekRShape, extrudeSettings)
   cheekR = new THREE.Mesh(cheekRGeometry, shadowMaterial)
-  gameLogic.scene.add(cheekR) 
+  gameLogic.scene.add(cheekR)
 
   gameLogic.scene.add(leftPupil)
   gameLogic.scene.add(rightPupil)
@@ -333,4 +328,4 @@ var update = function () {
 }
 
 export { update, shadowMaterial, cheekR1, cheekR2, cheekL1, cheekL2, highlightMaterial,
-    cheekHR1, cheekHR3, cheekHL1, cheekHL3, cheekL3, cheekR3 }
+  cheekHR1, cheekHR3, cheekHL1, cheekHL3, cheekL3, cheekR3 }
