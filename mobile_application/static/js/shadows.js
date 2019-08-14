@@ -130,9 +130,13 @@ rightPupil.position.z = 23
 
 // EYELASHES
 
+var lashExtrude = {
+  steps: 5,
+  depth: 25,
+  bevelEnabled: false
+}
+
 var lashMaterial = new THREE.MeshLambertMaterial({ color: 0x0d0d0d, transparent: true, opacity: 1 })
-var lashExtrude = extrudeSettings
-lashExtrude.depth = 16
 
 var eyelashLCurve = new THREE.SplineCurve([eyes.thirtySix, eyes.thirtySeven, eyes.thirtyEight, eyes.thirtyNine,
   eyes.thirtyEight, eyes.thirtySeven, eyes.thirtySix])
