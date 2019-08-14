@@ -177,9 +177,25 @@ var noseHighShape = new THREE.Shape(noseHighCurve.getSpacedPoints(100))
 var noseHighGeometry = new THREE.ExtrudeGeometry(noseHighShape, noseHExtrude)
 var noseHigh = new THREE.Mesh(noseHighGeometry, highlightMaterial)
 
+
+// CHIN HIGHLIGHT
+
+var chinH1 = new THREE.Vector2(-34, -74)
+var chinH2 = new THREE.Vector2(34, -74)
+var chinH3 = new THREE.Vector2(34, -90)
+var chinH4 = new THREE.Vector2(-34, -90)
+
+var chinHCurve = new THREE.SplineCurve([chinH1, chinH2, chinH3, chinH4, chinH1])
+var chinHShape = new THREE.Shape(chinHCurve.getSpacedPoints(100))
+var chinHGeometry = new THREE.ExtrudeGeometry(chinHShape, extrudeSettings)
+var chinHighlight = new THREE.Mesh(chinHGeometry, highlightMaterial)
+
 // UPDATE
 
 var update = function () {
+
+  // SHADOWS
+
   gameLogic.scene.remove(shadowL)
   shadowLShape = new THREE.Shape(shadowLCurve.getSpacedPoints(100))
   shadowLGeometry = new THREE.ExtrudeGeometry(shadowLShape, extrudeSettings)
@@ -234,11 +250,19 @@ var update = function () {
   eyelashR = new THREE.Mesh(eyelashRGeometry, lashMaterial)
   gameLogic.scene.add(eyelashR)
 
+  // HIGHLIGHTS
+
   gameLogic.scene.remove(noseHigh)
   noseHighShape = new THREE.Shape(noseHighCurve.getSpacedPoints(100))
   noseHighGeometry = new THREE.ExtrudeGeometry(noseHighShape, noseHExtrude)
   noseHigh = new THREE.Mesh(noseHighGeometry, highlightMaterial)
   gameLogic.scene.add(noseHigh)
+
+  gameLogic.scene.remove(chinHighlight)
+  chinHShape = new THREE.Shape(chinHCurve.getSpacedPoints(100))
+  chinHGeometry = new THREE.ExtrudeGeometry(chinHShape, extrudeSettings)
+  chinHighlight = new THREE.Mesh(chinHGeometry, highlightMaterial)
+  gameLogic.scene.add(chinHighlight)
 }
 
 export { update, shadowMaterial, cheekR1, cheekR2, cheekL1, cheekL2, highlightMaterial }
