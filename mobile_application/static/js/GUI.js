@@ -67,6 +67,7 @@ window.onload = function () {
     generateFace.material.color.setHex(generateFace.dec2hex(params.skinColour))
     nose.material.color.setHex(generateFace.dec2hex(params.skinColour))
     shadows.shadowMaterial.color.setHex((generateFace.dec2hex(params.skinColour) & 0xfefefe) >> 1)
+    shadows.highlightMaterial.color.setHex(params.skinColour.offsetHSL(0, 0, 0.3))
   })
 
   var eyeGUI = gui.addFolder('Eyes')

@@ -149,7 +149,7 @@ var eyelashR = new THREE.Mesh(eyelashRGeometry, lashMaterial)
 // NOSE HIGHLIGHT
 
 var highlightColour = new THREE.Color(face.skinColour)
-highlightColour.offsetHSL(0, 0, 0.4)
+highlightColour.offsetHSL(0, 0, 0.3)
 var highlightMaterial = new THREE.MeshLambertMaterial({ color: highlightColour, transparent: true, opacity: 0.2 })
 
 var noseH1 = new THREE.Vector2(-2, 140)
@@ -234,7 +234,11 @@ var update = function () {
   eyelashR = new THREE.Mesh(eyelashRGeometry, lashMaterial)
   gameLogic.scene.add(eyelashR)
 
+  gameLogic.scene.remove(noseHigh)
+  noseHighShape = new THREE.Shape(noseHighCurve.getSpacedPoints(100))
+  noseHighGeometry = new THREE.ExtrudeGeometry(noseHighShape, noseHExtrude)
+  noseHigh = new THREE.Mesh(noseHighGeometry, highlightMaterial)
   gameLogic.scene.add(noseHigh)
 }
 
-export { update, shadowMaterial, cheekR1, cheekR2, cheekL1, cheekL2 }
+export { update, shadowMaterial, cheekR1, cheekR2, cheekL1, cheekL2, highlightMaterial }
