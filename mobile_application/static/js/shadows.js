@@ -18,6 +18,8 @@ var extrudeSettings = {
 var shadowColour = (face.skinColour & 0xfefefe) >> 1
 var shadowMaterial = new THREE.MeshLambertMaterial({ color: shadowColour, transparent: true, opacity: 0.2 })
 
+// NOSE SHADOWS
+
 var shadowLCurve = new THREE.SplineCurve([nose.twentySevenL, nose.twentyEightL, nose.twentyNineL, nose.thirtyL, nose.thirtyOne])
 var shadowLShape = new THREE.Shape(shadowLCurve.getSpacedPoints(100))
 var shadowLGeometry = new THREE.ExtrudeGeometry(shadowLShape, extrudeSettings)
@@ -27,6 +29,8 @@ var shadowRCurve = new THREE.SplineCurve([nose.twentySevenR, nose.twentyEightR, 
 var shadowRShape = new THREE.Shape(shadowRCurve.getSpacedPoints(100))
 var shadowRGeometry = new THREE.ExtrudeGeometry(shadowRShape, extrudeSettings)
 var shadowR = new THREE.Mesh(shadowRGeometry, shadowMaterial)
+
+// PHILTRUM SHADOW
 
 var philtrum1 = new THREE.Vector2(-7, 39)
 var philtrum2 = new THREE.Vector2(0, 35)
@@ -39,6 +43,8 @@ var philtrumShape = new THREE.Shape(philtrumCurve.getSpacedPoints(100))
 var philtrumGeometry = new THREE.ExtrudeGeometry(philtrumShape, extrudeSettings)
 var philtrumShadow = new THREE.Mesh(philtrumGeometry, shadowMaterial)
 
+// CHIN SHADOW
+
 var chin1 = new THREE.Vector2(38, -64)
 var chin2 = new THREE.Vector2(16, -63)
 var chin3 = new THREE.Vector2(0, -57)
@@ -49,6 +55,9 @@ var chinCurve = new THREE.SplineCurve([chin1, chin2, chin3, chin4, chin5])
 var chinShape = new THREE.Shape(chinCurve.getSpacedPoints(100))
 var chinGeometry = new THREE.ExtrudeGeometry(chinShape, extrudeSettings)
 var chinShadow = new THREE.Mesh(chinGeometry, shadowMaterial)
+
+
+// EYELID SHADOWS 
 
 var eyelidL2 = new THREE.Vector2(-94, 170)
 var eyelidL3 = new THREE.Vector2(-71, 170)
@@ -78,6 +87,8 @@ var eyelidRShape = new THREE.Shape(eyelidRCurve.getSpacedPoints(100))
 var eyelidRGeometry = new THREE.ExtrudeGeometry(eyelidRShape, extrudeSettings)
 var eyelidR = new THREE.Mesh(eyelidRGeometry, shadowMaterial)
 
+// CHEEK SHADOWS
+
 var cheekL1 = new THREE.Vector2(-134, 20)
 var cheekL2 = new THREE.Vector2(-162, 129)
 
@@ -93,6 +104,25 @@ var cheekRCurve = new THREE.SplineCurve([face.FH4, face.sixteen, face.twelve, fa
 var cheekRShape = new THREE.Shape(cheekRCurve.getSpacedPoints(100))
 var cheekRGeometry = new THREE.ExtrudeGeometry(cheekRShape, extrudeSettings)
 var cheekR = new THREE.Mesh(cheekRGeometry, shadowMaterial)
+
+// EYE FLECKS
+
+var radius = 4
+var segments = 10
+var rings = 10
+
+var geometry = new THREE.SphereGeometry(radius, segments, rings)
+var materialPupil = new THREE.MeshLambertMaterial({
+  color: 0xffffe6,
+  wireframe: false
+})
+
+var leftPupil = new THREE.Mesh(geometry, materialPupil)
+leftPupil.position.x = -75
+leftPupil.position.y = 142
+leftPupil.position.z = 22
+
+// UPDATE
 
 var update = function () {
   gameLogic.scene.remove(shadowL)
@@ -133,6 +163,8 @@ var update = function () {
   cheekRGeometry = new THREE.ExtrudeGeometry(cheekRShape, extrudeSettings)
   cheekR = new THREE.Mesh(cheekRGeometry, shadowMaterial)
   gameLogic.scene.add(cheekR) 
+
+  gameLogic.scene.add(leftPupil)
 }
 
 export { update, shadowMaterial, cheekR1, cheekR2, cheekL1, cheekL2 }
