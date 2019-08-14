@@ -139,13 +139,11 @@ var eyelashLShape = new THREE.Shape(eyelashLCurve.getSpacedPoints(100))
 var eyelashLGeometry = new THREE.ExtrudeGeometry(eyelashLShape, lashExtrude)
 var eyelashL = new THREE.Mesh(eyelashLGeometry, lashMaterial)
 
-// var lashMaterial = new THREE.LineBasicMaterial({ color: 0xffffff, linewidth: 100 })
-
-// var eyelashLGeometry = new THREE.Geometry()
-// eyelashLGeometry.vertices.push(eyelidL2, eyelidL3, eyelidL6)
-
-// var eyelashL = new THREE.Line( eyelashLGeometry, lashMaterial )
-// eyelashL.position.y = 30
+var eyelashRCurve = new THREE.SplineCurve([eyes.fortyTwo, eyes.fortyThree, eyes.fortyFour, eyes.fortyFive,
+eyes.fortyFour, eyes.fortyThree, eyes.fortyTwo])
+var eyelashRShape = new THREE.Shape(eyelashRCurve.getSpacedPoints(100))
+var eyelashRGeometry = new THREE.ExtrudeGeometry(eyelashRShape, lashExtrude)
+var eyelashR = new THREE.Mesh(eyelashRGeometry, lashMaterial)
 
 // UPDATE
 
@@ -197,6 +195,12 @@ var update = function () {
   eyelashLGeometry = new THREE.ExtrudeGeometry(eyelashLShape, lashExtrude)
   eyelashL = new THREE.Mesh(eyelashLGeometry, lashMaterial)
   gameLogic.scene.add(eyelashL)
+
+  gameLogic.scene.remove(eyelashR)
+  eyelashRShape = new THREE.Shape(eyelashRCurve.getSpacedPoints(100))
+  eyelashRGeometry = new THREE.ExtrudeGeometry(eyelashRShape, lashExtrude)
+  eyelashR = new THREE.Mesh(eyelashRGeometry, lashMaterial)
+  gameLogic.scene.add(eyelashR)
 }
 
 export { update, shadowMaterial, cheekR1, cheekR2, cheekL1, cheekL2 }
