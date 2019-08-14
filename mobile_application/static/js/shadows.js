@@ -120,7 +120,12 @@ var materialPupil = new THREE.MeshLambertMaterial({
 var leftPupil = new THREE.Mesh(geometry, materialPupil)
 leftPupil.position.x = -75
 leftPupil.position.y = 142
-leftPupil.position.z = 22
+leftPupil.position.z = 23
+
+var rightPupil = new THREE.Mesh(geometry, materialPupil)
+rightPupil.position.x = 90
+rightPupil.position.y = 142
+rightPupil.position.z = 23
 
 // UPDATE
 
@@ -165,6 +170,7 @@ var update = function () {
   gameLogic.scene.add(cheekR) 
 
   gameLogic.scene.add(leftPupil)
+  gameLogic.scene.add(rightPupil)
 }
 
 export { update, shadowMaterial, cheekR1, cheekR2, cheekL1, cheekL2 }
