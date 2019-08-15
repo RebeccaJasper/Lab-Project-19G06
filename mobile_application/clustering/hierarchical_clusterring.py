@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.spatial.distance import squareform
 from scipy.cluster.hierarchy import dendrogram, linkage
-from dissimilarity import Dissimilarity
+# from dissimilarity import Dissimilarity
 from sklearn.cluster import AgglomerativeClustering
 
 
@@ -74,12 +74,12 @@ class HeirachicalClustering(object):
         """
         return np.where(self.__cluster_labels == cluster_label)[0]
 
-feature_matrix = np.array(([1, 2, 4, 5, 1, 0, 0, 0, 1, 0], [1, 3, 6, 5, 0, 1, 0, 0, 1, 0], [1, 3, 6, 5, 0, 1, 0, 0, 0, 1]))
-d = Dissimilarity()
-d.load_feature_vectors(feature_matrix)
-matrix = d.distance_matrix()
-hac = HeirachicalClustering()
-hac.cluster(matrix)
-hac.plot_dentogram(matrix)
-print(hac.cluster_indexes())
-print("Other indexes: ", hac.find_cluster_siblings(0))
+# feature_matrix = np.array(([1, 2, 4, 5, 1, 0, 0, 0, 1, 0], [1, 3, 6, 5, 0, 1, 0, 0, 1, 0], [1, 3, 6, 5, 0, 1, 0, 0, 0, 1]))
+# d = Dissimilarity()
+# d.load_feature_vectors(feature_matrix)
+# matrix = d.distance_matrix()
+# hac = HeirachicalClustering()
+# hac.cluster(matrix)
+# hac.plot_dentogram(matrix)
+# print(hac.cluster_indexes())
+# print("Other indexes: ", hac.find_cluster_siblings(0))

@@ -1,11 +1,6 @@
 import numpy as np
 from .feature_encoding import *
 from .feature_weighting import *
-# import matplotlib.pyplot as plt
-# from scipy.spatial.distance import squareform
-# from scipy.cluster.hierarchy import dendrogram, linkage
-#
-# import scipy.cluster.hierarchy as shc
 
 
 class Dissimilarity(object):
@@ -211,29 +206,5 @@ class Dissimilarity(object):
         dice_coeficient = 2*a/(2*a + b + c)
 
         return dice_coeficient
-
-
-# feature_matrix = np.array(([1, 2, 4, 5, 1, 0, 0, 0, 1, 0], [1, 3, 6, 5, 0, 1, 0, 0, 1, 0], [1, 3, 6, 5, 0, 1, 0, 0, 0, 1]))
-# d = Dissimilarity()
-# d.load_feature_vectors(feature_matrix)
-# matrix = d.distance_matrix()
-# print(matrix)
-# #
-# # # print('After deletion:')
-# # # print(np.delete(feature_matrix, np.arange(0, feature_matrix.shape[0]), 0))
-# # # d = Dissimilarity()
-# # # d.load_feature_vectors(feature_matrix)
-# # # matrix = d.distance_matrix()
-# #
-# #
-#
-# plt.figure(figsize=(10, 7))
-# plt.title("Dendrograms")
-# dists = squareform(matrix)
-# linkage_matrix = linkage(dists, "single")
-# # dend = shc.dendrogram(shc.linkage(dists, "single"))
-# dendrogram(linkage_matrix)
-# plt.axhline(y=6, color='r', linestyle='--')
-# plt.show()
 
 
