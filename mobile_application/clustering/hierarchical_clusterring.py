@@ -3,18 +3,23 @@ import matplotlib.pyplot as plt
 from scipy.spatial.distance import squareform
 from scipy.cluster.hierarchy import dendrogram, linkage
 from dissimilarity import Dissimilarity
+from sklearn.cluster import AgglomerativeClustering
 
 class HeirachicalClustering(object):
 
-    __clusters = np.array([])
+    __cluster_labels = np.array([])
 
     def __init__(self):
         return
 
     def cluster(self, distance_matrix: np.array) -> None:
-        pass
+        dists = squareform(distance_matrix)
+        clustering = AgglomerativeClustering(affinity="precomputed", linkage="complete").fit(dists)
+        self.__cluster_labels = clustering.labels_
+        return
 
-    def plot_dentogram(self, distance_matrix: np.array) -> None:
+    @staticmethod
+    def plot_dentogram(distance_matrix: np.array) -> None:
         """
         Plots the dentogram of a condensed distance matrix
 
@@ -31,7 +36,7 @@ class HeirachicalClustering(object):
         return
 
     def cluster_indexes(self):
-        pass
+        return self.__cluster_labels
 
     def clear_clusters(self):
         pass
@@ -42,4 +47,6 @@ d = Dissimilarity()
 d.load_feature_vectors(feature_matrix)
 matrix = d.distance_matrix()
 hac = HeirachicalClustering()
+hac.cluster(matrix)
 hac.plot_dentogram(matrix)
+print(hac.cluster_indexes())
