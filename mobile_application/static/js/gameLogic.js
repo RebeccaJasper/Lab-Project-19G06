@@ -10,7 +10,7 @@ var scene, camera, renderer, controls
 // Initialise scene with camera, renderer, controls and lighting
 
 scene = new THREE.Scene()
-camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
+camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 500)
 camera.position.set(0, 0, 500)
 camera.lookAt(0, 0, 0)
 
@@ -18,14 +18,13 @@ renderer = new THREE.WebGLRenderer({
   preserveDrawingBuffer: true
 })
 
-// renderer = new THREE.WebGLRenderer()
 renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild(renderer.domElement)
 
 controls = new THREE.OrbitControls(camera, renderer.domElement)
 controls.enablePan = false
-controls.minDistance = 90
-controls.maxDistance = 800
+controls.minDistance = 300
+controls.maxDistance = 500
 controls.enableRotate = false
 
 var ambientLight = new THREE.AmbientLight(0x404040) // soft white light
