@@ -23,9 +23,10 @@ renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild(renderer.domElement)
 
 controls = new THREE.OrbitControls(camera, renderer.domElement)
-controls.enablePan = true
+controls.enablePan = false
 controls.minDistance = 90
 controls.maxDistance = 800
+controls.enableRotate = false
 
 var ambientLight = new THREE.AmbientLight(0x404040) // soft white light
 scene.add(ambientLight)
