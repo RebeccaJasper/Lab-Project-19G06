@@ -50,21 +50,26 @@ class Dissimilarity(object):
         # np.delete(feature_matrix, np.arange(0, feature_matrix.shape[0]), 0)
 
         distance_matrix = np.array([])
+
+        feature_ranges = self.ranges()
+        weights = np.ones((feature_ranges.size))
+
+
         for currrent_row_index in np.arange(0, self.__feature_vectors.shape[0]):
             start = currrent_row_index + 1
             # for other_row_index in np.arange(start, self.__feature_vectors.shape[0]):
             if start < self.__feature_vectors.shape[0]:
                 for other_row_index in np.arange(start, self.__feature_vectors.shape[0]):
                     distance = Dissimilarity.distance(self.__feature_vectors[currrent_row_index],
-                                                             self.__feature_vectors[other_row_index])
+                                                             self.__feature_vectors[other_row_index],
+                                                      feature_ranges, weights)
 
                     distance_matrix = np.append(distance_matrix, [distance])
 
         return distance_matrix
 
-
     @staticmethod
-    def distance(vector_1: np.array, vector_2: np.array, range: np.array, weights: np.array)-> np.array:
+    def distance( vector_1: np.array, vector_2: np.array, range: np.array, weights: np.array)-> np.array:
         """
         Calculate dissimilary between feature vectors
 
@@ -79,10 +84,13 @@ class Dissimilarity(object):
         # max_abs_scaler = preprocessing.MaxAbsScaler()
 
         for i in feature_vector_indexes["Face"]:
-            partial_dist = Dissimilarity.gower_similarity(np.array(vector_1[i]), np.array(vector_2[i]))
-            partial_dist = partial_dist/range[i]
-            partial_dist = partial_dist * weights[i]
-            partial_dist = partial_dist/weights.sum()
+            if range[i] != 0:
+                partial_dist = Dissimilarity.gower_similarity(np.array([vector_1[i]]), np.array([vector_2[i]]))
+                partial_dist = partial_dist/range[i]
+                partial_dist = partial_dist * weights[i]
+                partial_dist = partial_dist/weights.sum()
+            else:
+                partial_dist = 0
 
             dist += partial_dist
 
@@ -169,23 +177,24 @@ class Dissimilarity(object):
 feature_matrix = np.array(([1, 2, 4, 5, 1, 0, 0, 0, 1, 0], [1, 3, 6, 5, 0, 1, 0, 0, 1, 0], [1, 3, 6, 5, 0, 1, 0, 0, 0, 1]))
 d = Dissimilarity()
 d.load_feature_vectors(feature_matrix)
-print(d.ranges())
+matrix = d.distance_matrix()
+print(matrix)
 
 # print('After deletion:')
 # print(np.delete(feature_matrix, np.arange(0, feature_matrix.shape[0]), 0))
 # d = Dissimilarity()
 # d.load_feature_vectors(feature_matrix)
 # matrix = d.distance_matrix()
-#
-#
-#
-# plt.figure(figsize=(10, 7))
-# plt.title("Dendrograms")
-# dists = squareform(matrix)
-# linkage_matrix = linkage(dists, "single")
-# # dend = shc.dendrogram(shc.linkage(dists, "single"))
-# dendrogram(linkage_matrix)
-# plt.axhline(y=6, color='r', linestyle='--')
-# plt.show()
+
+
+
+plt.figure(figsize=(10, 7))
+plt.title("Dendrograms")
+dists = squareform(matrix)
+linkage_matrix = linkage(dists, "single")
+# dend = shc.dendrogram(shc.linkage(dists, "single"))
+dendrogram(linkage_matrix)
+plt.axhline(y=6, color='r', linestyle='--')
+plt.show()
 
 
