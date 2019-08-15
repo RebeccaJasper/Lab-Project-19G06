@@ -1,24 +1,11 @@
 import numpy as np
 from feature_encoding import *
 from feature_weighting import *
-from mobile_application.face_encoding.coordinates import Coordinate
-from sklearn import preprocessing
 import matplotlib.pyplot as plt
 from scipy.spatial.distance import squareform
 from scipy.cluster.hierarchy import dendrogram, linkage
 
 import scipy.cluster.hierarchy as shc
-
-
-class UnequalArrayLength(Exception):
-    def __init__(self):
-        Exception.__init__(self, "Input arrays are not of the same length")
-
-
-class NonBinaryFormat(Exception):
-    def __init__(self):
-        Exception.__init__(self, "Input arrays are not in binary format (i.e. containing int values 0 or 1)")
-
 
 class Dissimilarity(object):
     __LENGTH_OF_VECTOR = 4
@@ -26,42 +13,60 @@ class Dissimilarity(object):
     __feature_vectors = np.array([])
 
     def __init__(self):
+        """Default constructor"""
         self.__feature_vectors = np.array([])
 
     @property
     def feature_vectors(self):
+        """Returns the loaded feature matrix
+
+        :rtype: None
+        """
         return self.__feature_vectors
 
     def load_feature_vectors(self, vectors: np.array) -> None:
+        """Loads feature matrix to be analyzed
+
+        :rtype: None
+        """
         self.__feature_vectors = vectors
 
     def add_vector(self, vector: np.array) -> None:
+        """Add a feature vector to the feature matrix
+
+        :rtype: None
+        """
         self.__feature_vectors = np.vstack((self.__vectors, vector))
 
+    def ranges(self) -> np.array:
+        """Function for calculating in the range on each column in the feature matrix
 
-    def ranges(self):
-        """Function for calculating in the range on each column in the feature_matrix"""
-
+        :return An array with the ranges for each feature in the feature matrix
+        :rtype: np.array
+        """
         ranges = np.ptp(self.__feature_vectors, axis=0)
         return ranges
 
     def distance_matrix(self)-> np.array:
-        #
-        # np.delete(feature_matrix, np.arange(0, feature_matrix.shape[0]), 0)
+        """
+        Returns the condensed distance matrix (i.e. the upper triangular) of the loaded feature matrix
+
+        :return: The upper triangular of the distance matrix of the feature matrix
+        :rtype: np.array
+        """
 
         distance_matrix = np.array([])
 
         feature_ranges = self.ranges()
-        weights = np.ones((feature_ranges.size))
+        weights = np.ones(feature_ranges.size)
 
+        for current_row_index in np.arange(0, self.__feature_vectors.shape[0]):
+            start = current_row_index + 1
 
-        for currrent_row_index in np.arange(0, self.__feature_vectors.shape[0]):
-            start = currrent_row_index + 1
-            # for other_row_index in np.arange(start, self.__feature_vectors.shape[0]):
             if start < self.__feature_vectors.shape[0]:
                 for other_row_index in np.arange(start, self.__feature_vectors.shape[0]):
-                    distance = Dissimilarity.distance(self.__feature_vectors[currrent_row_index],
-                                                             self.__feature_vectors[other_row_index],
+                    distance = Dissimilarity.distance(self.__feature_vectors[current_row_index],
+                                                      self.__feature_vectors[other_row_index],
                                                       feature_ranges, weights)
 
                     distance_matrix = np.append(distance_matrix, [distance])
@@ -69,39 +74,30 @@ class Dissimilarity(object):
         return distance_matrix
 
     @staticmethod
-    def distance( vector_1: np.array, vector_2: np.array, range: np.array, weights: np.array)-> np.array:
+    def distance(vector_1: np.array, vector_2: np.array, feature_range: np.array, weights: np.array)-> np.array:
         """
-        Calculate dissimilary between feature vectors
+        Calculates the Gower Distance between two mixed-data feature arrays based on facial markers, race and sex
 
-        :param feature_matrix:
-        :return:
+        :param vector_1: Feature vector
+        :param vector_2: Feature vector
+        :param feature_range: Range of ratio data features for range normalization of partial distancess
+        :param weights: Array containing the weights for each and every feature in the feature vector
+        :return: Gower distance between two feature vectors
+        :rtype: float
         """
 
-        # Used a Python List instead of numpy array since Python Lists are mutable.
-        # This allows for new dissimilariy values to be appended to the vector
         dist = 0
 
-        # max_abs_scaler = preprocessing.MaxAbsScaler()
-
         for i in feature_vector_indexes["Face"]:
-            if range[i] != 0:
+            if feature_range[i] != 0:
                 partial_dist = Dissimilarity.gower_similarity(np.array([vector_1[i]]), np.array([vector_2[i]]))
-                partial_dist = partial_dist/range[i]
+                partial_dist = partial_dist/feature_range[i]
                 partial_dist = partial_dist * weights[i]
                 partial_dist = partial_dist/weights.sum()
             else:
                 partial_dist = 0
 
             dist += partial_dist
-
-        # for x, y in zip(*[iter(feature_vector_indexes["Face"])] * 2):
-        #     face_coordinate_1 = np.array([vector_1[x], vector_1[y]])
-        #     face_coordinate_2 = np.array([vector_2[x], vector_2[y]])
-        #     partial_dissimilarity = Dissimilarity.gower_similarity(face_coordinate_1, face_coordinate_2, datatype="ratio")
-        #
-        #     dissimilarity_vector.append(dissimilarity)
-
-        # dissimilarity_vector = max_abs_scaler.fit_transform(dissimilarity_vector)
 
         race_vector_1 = vector_1[feature_vector_indexes["Race"]]
         race_vector_2 = vector_2[feature_vector_indexes["Race"]]
@@ -111,7 +107,7 @@ class Dissimilarity(object):
         gender_vector_1 = vector_1[feature_vector_indexes["Gender"]]
         gender_vector_2 = vector_2[feature_vector_indexes["Gender"]]
         gender_dissimilarity = Dissimilarity.gower_similarity(gender_vector_1, gender_vector_2, datatype="nominal")
-        dist += race_dissimilarity
+        dist += gender_dissimilarity
 
         dist = dist/vector_1.size
 
@@ -120,7 +116,7 @@ class Dissimilarity(object):
     @staticmethod
     def gower_similarity(vector_1: np.array, vector_2: np.array, datatype: str ="ratio")-> float:
         if vector_1.size != vector_2.size:
-            raise UnequalArrayLength()
+            raise ValueError("Input arrays are not of the same length")
 
         if datatype == "ratio":
             similarity = Dissimilarity.manhattan_distance(vector_1, vector_2)
@@ -134,7 +130,7 @@ class Dissimilarity(object):
     @staticmethod
     def manhattan_distance(vector_1: np.array, vector_2: np.array):
         if vector_1.size != vector_2.size:
-            raise UnequalArrayLength()
+            raise ValueError("Input arrays are not of the same length")
 
         dist = 0
         for i in np.arange(0, vector_1.size):
@@ -146,12 +142,12 @@ class Dissimilarity(object):
     def dice_coefficient(binary_vector_1: np.array, binary_vector_2: np.array):
 
         if binary_vector_1.size != binary_vector_2.size:
-            raise UnequalArrayLength()
+            raise ValueError("Input arrays are not of the same length")
 
         for i in np.arange(0, binary_vector_1.size):
             if (binary_vector_1[i] != 1 and binary_vector_1[i] != 0) or (binary_vector_2[i] != 0 and
                                                                          binary_vector_2[i] != 1):
-                raise NonBinaryFormat()
+                raise ValueError("Input arrays are not in binary format (i.e. containing int values 0 or 1)")
 
         # Sum of all the elements that exist in both matrices (a)
         true_indexes_1 = np.array(np.where(binary_vector_1 == 1))
@@ -179,14 +175,14 @@ d = Dissimilarity()
 d.load_feature_vectors(feature_matrix)
 matrix = d.distance_matrix()
 print(matrix)
-
-# print('After deletion:')
-# print(np.delete(feature_matrix, np.arange(0, feature_matrix.shape[0]), 0))
-# d = Dissimilarity()
-# d.load_feature_vectors(feature_matrix)
-# matrix = d.distance_matrix()
-
-
+#
+# # print('After deletion:')
+# # print(np.delete(feature_matrix, np.arange(0, feature_matrix.shape[0]), 0))
+# # d = Dissimilarity()
+# # d.load_feature_vectors(feature_matrix)
+# # matrix = d.distance_matrix()
+#
+#
 
 plt.figure(figsize=(10, 7))
 plt.title("Dendrograms")
