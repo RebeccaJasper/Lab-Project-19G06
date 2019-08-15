@@ -196,9 +196,9 @@ class Dissimilarity(object):
 
         c = np.sum(binary_vector_2[false_indexes_1] == 1)
 
-        coef = 2*a/(2*a + b + c)
+        dice_coeficient = 2*a/(2*a + b + c)
 
-        return coef
+        return dice_coeficient
 
 
 # feature_matrix = np.array(([1, 2, 4, 5, 1, 0, 0, 0, 1, 0], [1, 3, 6, 5, 0, 1, 0, 0, 1, 0], [1, 3, 6, 5, 0, 1, 0, 0, 0, 1]))
