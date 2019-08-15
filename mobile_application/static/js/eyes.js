@@ -68,6 +68,26 @@ var rightCircleShape = new THREE.Shape(circleCurveRight.getSpacedPoints(20))
 var geometryCircleRight = new THREE.ExtrudeGeometry(rightCircleShape, extrudeSettingsCircle)
 var rightCircle = new THREE.Mesh(geometryCircleRight, circleMaterial)
 
+var radius = 8
+var segments = 50
+var rings = 30
+
+var geometry = new THREE.SphereGeometry(radius, segments, rings)
+var materialPupil = new THREE.MeshLambertMaterial({
+  color: 0x0d0d0d,
+  wireframe: false
+})
+
+var leftPupil = new THREE.Mesh(geometry, materialPupil)
+leftPupil.position.x = thirtySeven.x - (thirtySeven.x - thirtyEight.x) / 2
+leftPupil.position.y = thirtySeven.y - (thirtySeven.y - fortyOne.y) / 2
+leftPupil.position.z = 20
+
+var rightPupil = new THREE.Mesh(geometry, materialPupil)
+rightPupil.position.x = fortyFour.x + (fortyThree.x - fortyFour.x) / 2
+rightPupil.position.y = fortyFour.y - (fortyThree.y - fortySeven.y) / 2
+rightPupil.position.z = 20
+
 var update = function () {
   gameLogic.scene.remove(leftEye)
   leftEyeShape = new THREE.Shape(leftEyeCurve.getSpacedPoints(30))
@@ -92,6 +112,9 @@ var update = function () {
   geometryCircleRight = new THREE.ExtrudeGeometry(rightCircleShape, extrudeSettingsCircle)
   rightCircle = new THREE.Mesh(geometryCircleRight, circleMaterial)
   gameLogic.scene.add(rightCircle)
+
+  gameLogic.scene.add(leftPupil)
+  gameLogic.scene.add(rightPupil)
 }
 
 export { thirtySix, thirtySeven, thirtyEight, thirtyNine, forty, fortyOne, fortyTwo, fortyThree,
