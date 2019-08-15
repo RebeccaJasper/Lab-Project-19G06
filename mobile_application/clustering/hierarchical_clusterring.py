@@ -64,6 +64,14 @@ class HeirachicalClustering(object):
         return
 
     def find_cluster_siblings(self, cluster_label: int)-> np.array:
+        """
+        Finds the indexes of all the elements with the same cluster labels
+
+        :param cluster_label: Cluster label to be searched
+        :type: int
+        :return: Array with indices of elements that are labelled with the given cluster label
+        :rtype: np.array
+        """
         return np.where(self.__cluster_labels == cluster_label)[0]
 
 feature_matrix = np.array(([1, 2, 4, 5, 1, 0, 0, 0, 1, 0], [1, 3, 6, 5, 0, 1, 0, 0, 1, 0], [1, 3, 6, 5, 0, 1, 0, 0, 0, 1]))
