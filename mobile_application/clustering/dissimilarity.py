@@ -1,11 +1,12 @@
 import numpy as np
 from feature_encoding import *
 from feature_weighting import *
-import matplotlib.pyplot as plt
-from scipy.spatial.distance import squareform
-from scipy.cluster.hierarchy import dendrogram, linkage
+# import matplotlib.pyplot as plt
+# from scipy.spatial.distance import squareform
+# from scipy.cluster.hierarchy import dendrogram, linkage
+#
+# import scipy.cluster.hierarchy as shc
 
-import scipy.cluster.hierarchy as shc
 
 class Dissimilarity(object):
     __LENGTH_OF_VECTOR = 4
@@ -115,6 +116,16 @@ class Dissimilarity(object):
 
     @staticmethod
     def gower_similarity(vector_1: np.array, vector_2: np.array, datatype: str ="ratio")-> float:
+        """
+        Calculates the gower similarity between two input vectors of the same data type
+
+        :param vector_1: Feature vector
+        :param vector_2: Feature vector
+        :param datatype: Type of data to calcualte the distance between (either "nominal" or "ratio"). Default
+                            type is "ratio"
+        :return: Gower similarity measure
+        :rtype: float
+        """
         if vector_1.size != vector_2.size:
             raise ValueError("Input arrays are not of the same length")
 
@@ -128,7 +139,17 @@ class Dissimilarity(object):
         return similarity
 
     @staticmethod
-    def manhattan_distance(vector_1: np.array, vector_2: np.array):
+    def manhattan_distance(vector_1: np.array, vector_2: np.array) -> float:
+        """
+        Calculate the Manhattan Distance between two n-dimensional points
+
+        :param vector_1: N-dimensional point
+        :type: np.array
+        :param vector_2: N-dimensional point
+        :type: np.array
+        :return: Manhattan distance between the points
+        :rtype: float
+        """
         if vector_1.size != vector_2.size:
             raise ValueError("Input arrays are not of the same length")
 
@@ -139,7 +160,17 @@ class Dissimilarity(object):
         return dist
 
     @staticmethod
-    def dice_coefficient(binary_vector_1: np.array, binary_vector_2: np.array):
+    def dice_coefficient(binary_vector_1: np.array, binary_vector_2: np.array) -> float:
+        """
+        Calculates the Dice Coeffient (a similarity measure) between two ones-hot encoded nominal values
+
+        :param binary_vector_1: Binary vector of ones-hot encoded nominal feature
+        :type: np.array
+        :param binary_vector_2: Binary vector of ones-hot encoded nominal feature
+        :type: np.array
+        :return: Dice coefficient
+        :rtype: float
+        """
 
         if binary_vector_1.size != binary_vector_2.size:
             raise ValueError("Input arrays are not of the same length")
@@ -170,27 +201,27 @@ class Dissimilarity(object):
         return coef
 
 
-feature_matrix = np.array(([1, 2, 4, 5, 1, 0, 0, 0, 1, 0], [1, 3, 6, 5, 0, 1, 0, 0, 1, 0], [1, 3, 6, 5, 0, 1, 0, 0, 0, 1]))
-d = Dissimilarity()
-d.load_feature_vectors(feature_matrix)
-matrix = d.distance_matrix()
-print(matrix)
+# feature_matrix = np.array(([1, 2, 4, 5, 1, 0, 0, 0, 1, 0], [1, 3, 6, 5, 0, 1, 0, 0, 1, 0], [1, 3, 6, 5, 0, 1, 0, 0, 0, 1]))
+# d = Dissimilarity()
+# d.load_feature_vectors(feature_matrix)
+# matrix = d.distance_matrix()
+# print(matrix)
+# #
+# # # print('After deletion:')
+# # # print(np.delete(feature_matrix, np.arange(0, feature_matrix.shape[0]), 0))
+# # # d = Dissimilarity()
+# # # d.load_feature_vectors(feature_matrix)
+# # # matrix = d.distance_matrix()
+# #
+# #
 #
-# # print('After deletion:')
-# # print(np.delete(feature_matrix, np.arange(0, feature_matrix.shape[0]), 0))
-# # d = Dissimilarity()
-# # d.load_feature_vectors(feature_matrix)
-# # matrix = d.distance_matrix()
-#
-#
-
-plt.figure(figsize=(10, 7))
-plt.title("Dendrograms")
-dists = squareform(matrix)
-linkage_matrix = linkage(dists, "single")
-# dend = shc.dendrogram(shc.linkage(dists, "single"))
-dendrogram(linkage_matrix)
-plt.axhline(y=6, color='r', linestyle='--')
-plt.show()
+# plt.figure(figsize=(10, 7))
+# plt.title("Dendrograms")
+# dists = squareform(matrix)
+# linkage_matrix = linkage(dists, "single")
+# # dend = shc.dendrogram(shc.linkage(dists, "single"))
+# dendrogram(linkage_matrix)
+# plt.axhline(y=6, color='r', linestyle='--')
+# plt.show()
 
 
