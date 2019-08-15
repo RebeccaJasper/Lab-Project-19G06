@@ -47,3 +47,4 @@ class TestDissimilarity:
         second_assertion = answer_2 == 9
 
         assert first_assertion and second_assertion
+

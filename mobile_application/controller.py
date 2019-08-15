@@ -28,7 +28,6 @@ def get_matching_person_ids(submission_id: str) -> np.array:
     :return: Array of person_ids that the sketch hs been clustered
     :rtype: np.array
     """
-    # person_ids = np.array([])
 
     submission_feature_vector = get_submission_features(submission_id)
 
@@ -42,4 +41,6 @@ def get_matching_person_ids(submission_id: str) -> np.array:
 
     cluster_label = hac.cluster_indexes()[-1]
     indexes = hac.find_cluster_siblings(cluster_label)[0:-2]
+    person_ids = existing_person_ids[indexes]
+
     return person_ids

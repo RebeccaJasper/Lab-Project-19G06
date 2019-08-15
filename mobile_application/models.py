@@ -157,7 +157,7 @@ def get_submission_features(submission_id: str) -> np.araay:
     :return: Feature vector associated with the specified submission_id
     :rtype: np.array
     """
-    feature_vector = np.array([])
+    feature_vector = np.array([]) 
     return feature_vector
 
 
