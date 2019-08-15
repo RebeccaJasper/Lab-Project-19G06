@@ -9,6 +9,8 @@ from feature_weighting import *
 
 
 class Dissimilarity(object):
+    """Class used for computing dissimilarities between feature vectors and feature matrices"""
+
     __LENGTH_OF_VECTOR = 4
     __distance_vector = np.array([])
     __feature_vectors = np.array([])
@@ -38,6 +40,13 @@ class Dissimilarity(object):
         :rtype: None
         """
         self.__feature_vectors = np.vstack((self.__vectors, vector))
+
+    def clear_feature_vectors(self):
+        """Clears all feature vectors from the feature matrix
+
+        :rtype: None
+        """
+        np.delete(self.__feature_vectors, np.arange(0, self.__feature_vectors.shape[0], 0))
 
     def ranges(self) -> np.array:
         """Function for calculating in the range on each column in the feature matrix
@@ -162,7 +171,7 @@ class Dissimilarity(object):
     @staticmethod
     def dice_coefficient(binary_vector_1: np.array, binary_vector_2: np.array) -> float:
         """
-        Calculates the Dice Coeffient (a similarity measure) between two ones-hot encoded nominal values
+        Calculates the Dice Coefficient (a similarity measure) between two ones-hot encoded nominal values
 
         :param binary_vector_1: Binary vector of ones-hot encoded nominal feature
         :type: np.array
