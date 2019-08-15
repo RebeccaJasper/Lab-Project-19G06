@@ -17,7 +17,6 @@ var UserControls = function () {
   this.lipCurve = 0
   this.lipThickness = 0
   this.mouthCorners = 0
-  this.mouthColour = mouth.lipColour
   this.noseWidth = 0
   this.bridgeWidth = 0
   this.nosePeak = 0
@@ -77,7 +76,12 @@ window.onload = function () {
     generateFace.material.color.setHex(generateFace.dec2hex(params.skinColour))
     nose.material.color.setHex(generateFace.dec2hex(params.skinColour))
     shadows.shadowMaterial.color.setHex((generateFace.dec2hex(params.skinColour) & 0xfefefe) >> 1)
-    shadows.highlightMaterial.color.setHex(params.skinColour.offsetHSL(0, 0, 0.15))
+    var highlight = new THREE.Color(params.skinColour)
+    shadows.highlightMaterial.color.set(highlight.offsetHSL(0, 0, 0.15))
+    var red = new THREE.Color(0x33001a)
+    var lips = new THREE.Color(params.skinColour)
+    lips.add(red)
+    mouth.material.color.set(lips)
   })
 
   var eyeGUI = gui.addFolder('Eyes')
@@ -153,10 +157,6 @@ window.onload = function () {
     let value = params.mouthCorners
     mouth.fiftyFour.y = -20 + value
     mouth.fortyEight.y = -20 + value
-  })
-
-  mouthGUI.addColor(params, 'mouthColour').name('Mouth Colour').onChange(function () {
-    mouth.material.color.setHex(generateFace.dec2hex(params.mouthColour))
   })
 
   var noseGUI = gui.addFolder('Nose')
