@@ -1,27 +1,49 @@
-# import sys
-# import os
-#
-# sys.path.append(os.path.abspath('../mobile_application/clustering'))
-import sys
-sys.path.append("..")
-# print(sys.path)
-import unittest
-from .mobile_application.clustering.dissimilarity import Dissimilarity
+import pytest
+from mobile_application.clustering.dissimilarity import Dissimilarity
 import numpy as np
 
-class TestDissimilarity(unittest.TestCase):
 
+class TestDissimilarity:
     __d = Dissimilarity()
 
-    def tearDown(self):
+    def teardown(self):
         self.__d.clear_feature_vectors()
+        return
 
-    """Testing the Dissimilarity Class in the clustering package"""
-    def test_add_vector(self):
+    def test_load_feature_vectors(self):
+        feature_vector = np.ones(10)
+        self.__d.load_feature_vectors(feature_vector)
+        assert np.array_equal(self.__d.feature_vectors, feature_vector)
 
-        size_of_test_vector = 10
-        feature_vector = np.ones(size_of_test_vector)
+    def test_add_feature_vector(self):
+        feature_vector = np.ones(10)
+        self.__d.add_vector(feature_vector)
+        self.__d.add_vector(feature_vector)
+        print(self.__d.feature_vectors)
+        print(np.vstack((feature_vector, feature_vector)))
+        assert np.array_equal(self.__d.feature_vectors, np.vstack((feature_vector, feature_vector)))
 
-        self.__d.add_feature_vector(feature_vector)
-        self.assertEqual(self.__d.feature_vectors(), feature_vector, "Should be the same")
+    def test_dice_coefficient(self):
+        a = np.array([1, 0, 1])
+        b = np.array([1, 1, 0])
+        result = Dissimilarity.dice_coefficient(a, b)
+        assert result == 0.5
 
+    def test_manhattan_distance(self):
+        a = np.array([10, 8, 9])
+        b = np.array([5, 6, 7])
+        result = Dissimilarity.manhattan_distance(a, b)
+        assert result == 9
+
+    def test_gower_similarity(self):
+        a = np.array([1, 0, 1])
+        b = np.array([1, 1, 0])
+        answer = Dissimilarity.gower_similarity(a, b, "nominal")
+        first_assertion = answer == 0.5
+
+        a = np.array([10, 8, 9])
+        b = np.array([5, 6, 7])
+        answer_2 = Dissimilarity.gower_similarity(a, b)
+        second_assertion = answer_2 == 9
+
+        assert first_assertion and second_assertion

@@ -1,6 +1,6 @@
 import numpy as np
-from feature_encoding import *
-from feature_weighting import *
+from .feature_encoding import *
+from .feature_weighting import *
 # import matplotlib.pyplot as plt
 # from scipy.spatial.distance import squareform
 # from scipy.cluster.hierarchy import dendrogram, linkage
@@ -39,14 +39,17 @@ class Dissimilarity(object):
 
         :rtype: None
         """
-        self.__feature_vectors = np.vstack((self.__vectors, vector))
+        if np.array_equal(self.__feature_vectors, np.array([])):
+            self.load_feature_vectors(vector)
+        else:
+            self.__feature_vectors = np.vstack((self.__feature_vectors, vector))
 
     def clear_feature_vectors(self):
         """Clears all feature vectors from the feature matrix
 
         :rtype: None
         """
-        self.__feature_vectors = np.delete(self.__feature_vectors, np.arange(0, self.__feature_vectors.shape[0], 0))
+        self.__feature_vectors = np.delete(self.__feature_vectors, np.arange(0, self.__feature_vectors.shape[0]), 0)
 
     def ranges(self) -> np.array:
         """Function for calculating in the range on each column in the feature matrix
