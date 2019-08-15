@@ -10,7 +10,7 @@ var scene, camera, renderer, controls
 // Initialise scene with camera, renderer, controls and lighting
 
 scene = new THREE.Scene()
-camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 500)
+camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 270, 500)
 camera.position.set(0, 0, 500)
 camera.lookAt(0, 0, 0)
 
