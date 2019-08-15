@@ -13,6 +13,13 @@ class HeirachicalClustering(object):
         return
 
     def cluster(self, distance_matrix: np.array) -> None:
+        """
+        Performs agglomerative hierarchical clustering given a condensed distance array
+
+        :param distance_matrix: Condensed distance array (i.e. upper triangular matrix of distance matrix in a 1-D array
+        :type: np.array
+        :rtype: None
+        """
         dists = squareform(distance_matrix)
         clustering = AgglomerativeClustering(affinity="precomputed", linkage="complete").fit(dists)
         self.__cluster_labels = clustering.labels_
@@ -35,10 +42,21 @@ class HeirachicalClustering(object):
         plt.show()
         return
 
-    def cluster_indexes(self):
+    def cluster_indexes(self) -> np.array:
+        """
+        Returns the cluster indexes generated from clustering
+
+        :return: Array of cluster indexes
+        :rtype: np.array
+        """
         return self.__cluster_labels
 
-    def clear_clusters(self):
+    def clear_clusters(self) -> None:
+        """
+        Clears the stored cluster labels
+
+        :rtype: None
+        """
         self.__cluster_labels = np.delete(self.__cluster_labels, np.arange(0, self.__cluster_labels.size))
         return
 
