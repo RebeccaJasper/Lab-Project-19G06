@@ -39,7 +39,8 @@ class HeirachicalClustering(object):
         return self.__cluster_labels
 
     def clear_clusters(self):
-        pass
+        self.__cluster_labels = np.delete(self.__cluster_labels, np.arange(0, self.__cluster_labels.size))
+        return
 
 
 feature_matrix = np.array(([1, 2, 4, 5, 1, 0, 0, 0, 1, 0], [1, 3, 6, 5, 0, 1, 0, 0, 1, 0], [1, 3, 6, 5, 0, 1, 0, 0, 0, 1]))
@@ -48,5 +49,7 @@ d.load_feature_vectors(feature_matrix)
 matrix = d.distance_matrix()
 hac = HeirachicalClustering()
 hac.cluster(matrix)
-hac.plot_dentogram(matrix)
+# hac.plot_dentogram(matrix)
+print(hac.cluster_indexes())
+hac.clear_clusters()
 print(hac.cluster_indexes())

@@ -46,7 +46,7 @@ class Dissimilarity(object):
 
         :rtype: None
         """
-        np.delete(self.__feature_vectors, np.arange(0, self.__feature_vectors.shape[0], 0))
+        self.__feature_vectors = np.delete(self.__feature_vectors, np.arange(0, self.__feature_vectors.shape[0], 0))
 
     def ranges(self) -> np.array:
         """Function for calculating in the range on each column in the feature matrix
