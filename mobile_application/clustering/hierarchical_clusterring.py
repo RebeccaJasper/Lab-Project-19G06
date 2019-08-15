@@ -5,11 +5,14 @@ from scipy.cluster.hierarchy import dendrogram, linkage
 from dissimilarity import Dissimilarity
 from sklearn.cluster import AgglomerativeClustering
 
+
 class HeirachicalClustering(object):
+    """Class for performing Heirachical Agglomorative Clustering"""
 
     __cluster_labels = np.array([])
 
     def __init__(self):
+        """Default constructors"""
         return
 
     def cluster(self, distance_matrix: np.array) -> None:
@@ -60,6 +63,8 @@ class HeirachicalClustering(object):
         self.__cluster_labels = np.delete(self.__cluster_labels, np.arange(0, self.__cluster_labels.size))
         return
 
+    def find_cluster_siblings(self, cluster_label: int)-> np.array:
+        return np.where(self.__cluster_labels == cluster_label)[0]
 
 feature_matrix = np.array(([1, 2, 4, 5, 1, 0, 0, 0, 1, 0], [1, 3, 6, 5, 0, 1, 0, 0, 1, 0], [1, 3, 6, 5, 0, 1, 0, 0, 0, 1]))
 d = Dissimilarity()
@@ -69,5 +74,4 @@ hac = HeirachicalClustering()
 hac.cluster(matrix)
 # hac.plot_dentogram(matrix)
 print(hac.cluster_indexes())
-hac.clear_clusters()
-print(hac.cluster_indexes())
+print("Other indexes: ", hac.find_cluster_siblings(0))
