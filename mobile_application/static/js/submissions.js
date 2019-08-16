@@ -7,7 +7,6 @@ $(document).ready(() => {
 let loadSubmissions = function () {
   // Make an AJAX request to retrieve the past 10 submissions by their submission IDs (date time stamp)
   // Need to check the AJAX request made by this function
-//   let statement = JSON.parse(window.sessionStorage.getItem('statement'))
 //   $.ajax({
 //     url: '/api/submit',
 //     method: 'POST',
@@ -55,24 +54,8 @@ let appendSubmissionToTable = function (submission) {
 
 $(document).on('click', '#viewButton', function (e) {
   let submissionID = $(this).parents('tr')[0].id
-  $(this).parents('tr').remove()
-
-  let obj = {
-    'id': submissionID,
-    'title': $(this).closest('tr').find('td:first').text()
-  }
-
-  window.sessionStorage.setItem('submission', obj)
+  console.log(submissionID)
+  window.sessionStorage.setItem('submissionID', submissionID)
 
   window.location = '/submission-info'
-
-  //   $.ajax({
-  //     url: '/invites/data/accept',
-  //     method: 'POST',
-  //     contentType: 'application/json',
-  //     data: JSON.stringify(obj),
-  //     success: function (res) {
-  //       window.location = '/trip-manager'
-  //     }
-  //   })
 })
