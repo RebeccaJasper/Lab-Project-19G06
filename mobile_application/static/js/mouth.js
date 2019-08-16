@@ -1,4 +1,5 @@
 import * as gameLogic from './gameLogic.js'
+import * as face from './face.js'
 
 // Mouth markers
 var fortyEight = new THREE.Vector2(-64, -20)
@@ -22,7 +23,11 @@ var sixtyFive = new THREE.Vector2(15, -15)
 var sixtySix = new THREE.Vector2(0, -17)
 var sixtySeven = new THREE.Vector2(-15, -15)
 
-var lipColour = 0xff6666
+// var lipColour = 0xff6666
+var lipColour = new THREE.Color(face.skinColour)
+var red = new THREE.Color(0x33001a)
+lipColour.add(red)
+
 var material = new THREE.MeshLambertMaterial({ color: lipColour })
 
 var extrudeSettings = {
@@ -83,6 +88,24 @@ var update = function () {
   gameLogic.scene.add(mouthGap)
 }
 
-export { fortyEight, fiftyFour, fortyNine, fiftyThree, fifty, fiftyTwo, fiftyOne, fiftyFive,
-  fiftySix, fiftySeven, fiftyEight, fiftyNine, update, lipColour, material,
-  sixty, sixtyOne, sixtyTwo, sixtyThree, sixtyFour, sixtyFive, sixtySix, sixtySeven }
+export { update, lipColour, material,
+  fortyEight,
+  fortyNine,
+  fifty,
+  fiftyOne,
+  fiftyTwo,
+  fiftyThree,
+  fiftyFour,
+  fiftyFive,
+  fiftySix,
+  fiftySeven,
+  fiftyEight,
+  fiftyNine,
+  sixty,
+  sixtyOne,
+  sixtyTwo,
+  sixtyThree,
+  sixtyFour,
+  sixtyFive,
+  sixtySix,
+  sixtySeven }

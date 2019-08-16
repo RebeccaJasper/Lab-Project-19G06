@@ -3,6 +3,7 @@ import * as eyes from './eyes.js'
 import * as mouth from './mouth.js'
 import * as nose from './nose.js'
 import * as brows from './brows.js'
+import * as shadows from './shadows.js'
 
 var scene, camera, renderer, controls
 
@@ -22,9 +23,10 @@ renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild(renderer.domElement)
 
 controls = new THREE.OrbitControls(camera, renderer.domElement)
-controls.enablePan = true
+controls.enablePan = false
 controls.minDistance = 90
 controls.maxDistance = 800
+controls.enableRotate = false
 
 var ambientLight = new THREE.AmbientLight(0x404040) // soft white light
 scene.add(ambientLight)
@@ -55,6 +57,7 @@ var gameLoop = function () {
   mouth.update()
   nose.update()
   brows.update()
+  shadows.update()
   render()
 }
 
