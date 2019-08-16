@@ -1,4 +1,4 @@
-import * as generateFace from './face.js'
+import * as face from './face.js'
 import * as eyes from './eyes.js'
 import * as mouth from './mouth.js'
 import * as nose from './nose.js'
@@ -51,7 +51,7 @@ var render = function () {
 // run game loop (update, render, repeat)
 var gameLoop = function () {
   requestAnimationFrame(gameLoop)
-  generateFace.update()
+  face.update()
   eyes.update()
   mouth.update()
   nose.update()
@@ -75,4 +75,14 @@ function saveAsImage () {
   }
 }
 
-export { scene, saveAsImage }
+// Save skin and eye colour
+function saveColours () {
+  let colours = {
+    'skinColour': face.material.color.getHexString(),
+    'eyeColour': eyes.material.color.getHexString()
+  }
+  // console.log(colours)
+  return colours
+}
+
+export { scene, saveAsImage, saveColours }

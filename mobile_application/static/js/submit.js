@@ -1,27 +1,28 @@
 import * as markers from './GUI.js'
 import * as gameWindow from './gameLogic.js'
 
-
-
 $(document).ready(() => {
   $('.submit-btn').click(() => {
     let statement = JSON.parse(window.sessionStorage.getItem('statement'))
     let person_id = JSON.parse(window.sessionStorage.getItem('photo_id'))
+
     // Format string
     let identikit = gameWindow.saveAsImage()
     identikit = identikit.substring(identikit.indexOf(',') + 1, identikit.length)
+    let colours = gameWindow.saveColours()
 
     let submission = {
-        "firstName" : statement.firstName,
-        "surname" : statement.surname,
-        "gender" : statement.gender,
-        "race" : statement.race,
-        "feature_vector" : markers.facialMarkers.toString(),
-        "person_id": person_id,
-        "identikit" : identikit
+      'firstName': statement.firstName,
+      'surname': statement.surname,
+      'gender': statement.gender,
+      'race': statement.race,
+      'feature_vector': markers.facialMarkers.toString(),
+      'person_id': person_id,
+      'identikit': identikit,
+      'skinColour': colours.skinColour,
+      'eyeColour': colours.eyeColour
     }
 
-    console.log(submission)
     $.ajax({
       url: '/api/submit',
       method: 'POST',
@@ -29,7 +30,7 @@ $(document).ready(() => {
       data: JSON.stringify(submission),
       success: function (res) {
         console.log('statement and identikit submitted')
-        console.log(statement, markers.facialMarkers, identikit)
+        console.log(submission)
         window.location = '/complete'
       }
     })
