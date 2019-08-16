@@ -2,7 +2,7 @@ from mobile_application.db import *
 from typing import List, Tuple
 from base64 import b64encode
 import numpy as np
-
+from mobile_application.clustering.feature_encoding import *
 
 def photo_to_string(filename: str) -> str:
     """
@@ -121,10 +121,11 @@ def get_random_image() -> Tuple[str, str]:
     return person_id, base64_img_string
 
 
-def save_identikit_info_to_db(firstname: str, surname: str, gender: float, race: float, person_id:int):
+def save_identikit_info_to_db(firstname: str, surname: str, identikit_gender: float, identikit_race: float, person_id:int):
     query_string = """INSERT INTO identikits(firstname, surname, gender, race, person_id)
-                    VALUES ('%s', '%s', '%f', '%f', '%s');"""
-    args = (firstname, surname, gender, race, person_id)
+                    VALUES ('%s', '%s', '%s', '%d', '%s');"""
+    args = (firstname, surname, gender[identikit_gender], race[identikit_race], person_id)
+    print(query_string % args)
     execute_query(query_string, args)
     commit_changes()
 
