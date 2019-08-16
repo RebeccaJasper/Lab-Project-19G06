@@ -2,7 +2,7 @@ from db import *
 from typing import List, Tuple
 from base64 import b64encode
 import numpy as np
-from mobile_application.clustering.feature_encoding import *
+from clustering.feature_encoding import *
 
 def photo_to_string(filename: str) -> str:
     """
@@ -79,7 +79,7 @@ def add_feature_vector_to_db(person_id: str, feature_vector: List[float]) -> Non
     :rtype: None
     """
 
-    query_string = ''' INSERT INTO face_encodings(person_id, face_encodings)
+    query_string = ''' INSERT INTO face_encodings(person_id, face_encoding)
                     VALUES ('%s', '%s'); '''
     args = (person_id, convert_list_to_str(feature_vector))
     execute_query(query_string, args)
@@ -130,7 +130,7 @@ def save_identikit_info_to_db(firstname: str, surname: str, identikit_gender: fl
     commit_changes()
 
 
-def add_person_info_to_db(person_id: str, firstname: str, surname: str) -> None:
+def add_person_info_to_db(person_id: str, race: int, gender: str) -> None:
     """
     Adds a person to the the database of persons
 
@@ -142,9 +142,9 @@ def add_person_info_to_db(person_id: str, firstname: str, surname: str) -> None:
     :type: str
     :rtype: None
     """
-    query_string = """INSERT INTO persons(person_id, firstname, surname)
-                    VALUES ('%s', '%s', '%s');"""
-    args = (person_id, firstname, surname)
+    query_string = """INSERT INTO persons(person_id, race, sex)
+                    VALUES ('%s', '%d', '%s');"""
+    args = (person_id, race, gender)
     execute_query(query_string, args)
     commit_changes()
 

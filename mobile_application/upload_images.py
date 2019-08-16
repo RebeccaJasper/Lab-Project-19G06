@@ -23,11 +23,12 @@ def generate_id():
     return new_id
 
 
-for i in listdir('./facial_images'):
+for i in listdir('./facial_images/White/Male'):
     print(i)
     person_id = generate_id()
-    add_person_info_to_db(person_id, '', '')
 
-    filename = join('./facial_images', i)
+
+    filename = join('./facial_images/White/Male', i)
+    add_person_info_to_db(person_id, 4, 'M')
     add_image_to_database(person_id, filename)
-    add_feature_vector_to_db(person_id, convert_list_to_str(encode_face_image(filename)))
+    add_feature_vector_to_db(person_id, encode_face_image(filename))
