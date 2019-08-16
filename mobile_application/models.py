@@ -1,7 +1,8 @@
 from db import *
 from typing import List, Tuple
 from base64 import b64encode
-
+import numpy as np
+from mobile_application.clustering.feature_encoding import *
 
 def photo_to_string(filename: str) -> str:
     """
@@ -110,14 +111,6 @@ def get_random_image() -> Tuple[str, str]:
     :return: person_id, base64_image_string
     :rtype Tuple[str, str]
     """
-
-    # Find the total number of entries in the table
-    # query_string = ''' SELECT COUNT(*)
-    #                     FROM person_photos '''
-    # execute_query(query_string, ())
-    # data = retrieve_data()
-    # NUM_OF_ROWS = data[0]
-
     query_string = '''SELECT * FROM person_photos
                     ORDER BY RANDOM()  
                     LIMIT 1 '''
@@ -128,10 +121,11 @@ def get_random_image() -> Tuple[str, str]:
     return person_id, base64_img_string
 
 
-def save_identikit_info_to_db(firstname: str, surname: str, gender: float, race: float, person_id:int):
+def save_identikit_info_to_db(firstname: str, surname: str, identikit_gender: float, identikit_race: float, person_id:int):
     query_string = """INSERT INTO identikits(firstname, surname, gender, race, person_id)
-                    VALUES ('%s', '%s', '%f', '%f', '%s');"""
-    args = (firstname, surname, gender, race, person_id)
+                    VALUES ('%s', '%s', '%s', '%d', '%s');"""
+    args = (firstname, surname, gender[identikit_gender], race[identikit_race], person_id)
+    print(query_string % args)
     execute_query(query_string, args)
     commit_changes()
 
@@ -155,5 +149,27 @@ def add_person_info_to_db(person_id: str, firstname: str, surname: str) -> None:
     commit_changes()
 
 
-# add_person_info_to_db('3', 'Mark', 'Wilkins')
+def get_submission_features(submission_id: str) -> np.array:
+    """
+    Get the feature vector of a particular feature vector
+
+    :param submission_id: Submission_id of the submission whose feature vector is to extracted
+    :type: str
+    :return: Feature vector associated with the specified submission_id
+    :rtype: np.array
+    """
+    feature_vector = np.array([])
+    return feature_vector
+
+
+def get_person_feature_matrix() -> np.ndarray:
+    """
+    Get a feature vector of the existing person database
+
+    :return: 2-D array of all feature vectors of the existing persons database
+    :rtype: np.ndarray
+    """
+    feature_vector = np.array([])
+    return feature_vector
+
 
