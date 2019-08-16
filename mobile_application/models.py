@@ -148,7 +148,7 @@ def add_person_info_to_db(person_id: str, firstname: str, surname: str) -> None:
     commit_changes()
 
 
-def get_submission_features(submission_id: str) -> np.araay:
+def get_submission_features(submission_id: str) -> np.array:
     """
     Get the feature vector of a particular feature vector
 
@@ -157,7 +157,7 @@ def get_submission_features(submission_id: str) -> np.araay:
     :return: Feature vector associated with the specified submission_id
     :rtype: np.array
     """
-    feature_vector = np.array([]) 
+    feature_vector = np.array([])
     return feature_vector
 
 
