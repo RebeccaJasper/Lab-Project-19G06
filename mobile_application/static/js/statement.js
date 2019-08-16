@@ -41,36 +41,37 @@ $(document).ready(() => {
     }
 
     if ($('#gender :selected').val() === 'other') {
-      submission.gender = 0.25
+      submission.gender = "Other"
     }
     if ($('#gender :selected').val() === 'female') {
-      submission.gender = 0.5
+      submission.gender = "Female"
     }
     if ($('#gender :selected').val() === 'male') {
-      submission.gender = 0.75
+      submission.gender = "Male"
     }
     if ($('#gender :selected').val() === 'unknown') {
-      submission.gender = 1
+      submission.gender = "Unknown"
     }
 
     if ($('#race :selected').val() === 'unknown') {
-      submission.race = 0.16
+      submission.race = "Unknown"
     }
 
     if ($('#race :selected').val() === 'white') {
-      submission.race = 0.32
+      submission.race = "White"
+      console.log(submission.race)
     }
     if ($('#race :selected').val() === 'asian') {
-      submission.race = 0.48
+      submission.race = "Indian and Asian"
     }
     if ($('#race :selected').val() === 'indian') {
-      submission.race = 0.64
+      submission.race = "Indian and Asian"
     }
     if ($('#race :selected').val() === 'coloured') {
-      submission.race = 0.8
+      submission.race = "Coloured"
     }
     if ($('#race :selected').val() === 'black') {
-      submission.race = 0.96
+      submission.race = "Black"
     }
 
     window.sessionStorage.setItem('statement', JSON.stringify(submission))
