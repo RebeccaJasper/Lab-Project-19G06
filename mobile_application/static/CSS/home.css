@@ -68,6 +68,12 @@ body {
         font-size: 150%;
         padding: 0 10%;
     }
+    .home-page-real-image {
+        display: none;
+    }
+    .home-page-cartoon-image {
+        display: none;
+    }
 
 }
 
