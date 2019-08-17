@@ -52,7 +52,7 @@ body {
     #home-page-btn {
         font-family: 'Crimson Pro', serif;
         font-size: 250%;
-        margin-top: 20%;
+        margin-top: 10%;
         width: 60% !important;
         margin-left: 20%;
         display: inline-block;
@@ -60,6 +60,13 @@ body {
         background-color: #f0f0f0;
         border: none;
         position: relative;
+    }
+
+    .sub-heading {
+        color: white;
+        font-family: 'Crimson Pro', serif;
+        font-size: 150%;
+        padding: 0 10%;
     }
 
 }
