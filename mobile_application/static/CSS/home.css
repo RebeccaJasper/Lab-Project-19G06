@@ -21,7 +21,7 @@ body {
 /* Mobile Styles */
 @media only screen and (max-width: 400px) {
     #brand-name-area {
-        margin-top: 5%;
+        margin-top: 25%;
         margin-left: 0%;
         text-align: center;
         width: 100%;
