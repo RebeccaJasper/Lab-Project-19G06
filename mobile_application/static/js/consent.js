@@ -1,4 +1,7 @@
 $(document).ready(() => {
+    $('#consent-checkbox').prop(':checked', false).removeAttr('checked')
+    $('#consent-checkbox').removeAttr('checked')
+    
     if (typeof window.sessionStorage.getItem('photo_id') == 'undefined' ||
         typeof window.sessionStorage.getItem('photo_id') == 'object') {
          $('#consent-checkbox').change(() => {
