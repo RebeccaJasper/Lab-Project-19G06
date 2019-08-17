@@ -20,35 +20,47 @@ body {
 
 /* Mobile Styles */
 @media only screen and (max-width: 400px) {
-  #brand-name-area {
-    margin-top: 5%;
-    margin-left: 0%;
-    text-align: center;
-    width: 100%;
-  }
+    #brand-name-area {
+        margin-top: 5%;
+        margin-left: 0%;
+        text-align: center;
+        width: 100%;
+    }
 
-  .brand-name {
-    animation-duration: 3s;
-    animation-name: slidein;
-    font-size: 400%;
-    width:  100%;
-    text-align: center;
-    color: white;
-    font-family: 'Abril Fatface', cursive;
-    margin-bottom: 15px;
-  }
+    .brand-name {
+        animation-duration: 3s;
+        animation-name: slidein;
+        font-size: 400%;
+        width:  100%;
+        text-align: center;
+        color: white;
+        font-family: 'Abril Fatface', cursive;
+        margin-bottom: 15px;
+    }
 
-  @keyframes slidein {
-  from {
-    margin-left: 100%;
-    width: 50%;
-  }
+    @keyframes slidein {
+      from {
+        margin-left: 100%;
+        width: 50%;
+      }
 
-  to {
-    margin-left: 0%;
-    width: 100%;
-  }
-}
+      to {
+        margin-left: 0%;
+        width: 100%;
+      }
+    }
+    #home-page-btn {
+        font-family: 'Crimson Pro', serif;
+        font-size: 250%;
+        margin-top: 20%;
+        width: 60% !important;
+        margin-left: 20%;
+        display: inline-block;
+        text-align: center;
+        background-color: #f0f0f0;
+        border: none;
+        position: relative;
+    }
 
 }
 
@@ -62,6 +74,20 @@ body {
     font-family: 'Abril Fatface', cursive;
     margin-bottom: 15px;
   }
+}
+
+/* Desktop Styles */
+@media only screen and (min-width: 961px) {
+    #home-page-btn {
+        font-family: 'Crimson Pro', serif;
+        font-size: 250%;
+        margin-left: 40%;
+        margin-top: 0%;
+        width: 30%;
+        text-align: center;
+        background-color: #f0f0f0;
+        border: none;
+    }
 }
 
 @keyframes slidein {
@@ -82,16 +108,7 @@ body {
     font-family: 'Crimson Pro', serif;
 }
 
-#home-page-btn {
-    font-family: 'Crimson Pro', serif;
-    font-size: 250%;
-    margin-left: 40%;
-    margin-top: 0%;
-    width: 30%;
-    text-align: center;
-    background-color: #f0f0f0;
-    border: none;
-}
+
 
 .home-page-real-image {
     height: 300px;
