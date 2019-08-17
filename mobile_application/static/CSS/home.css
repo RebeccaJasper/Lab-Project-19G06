@@ -18,6 +18,52 @@ body {
     margin-bottom: 15px;
 }
 
+/* Mobile Styles */
+@media only screen and (max-width: 400px) {
+  #brand-name-area {
+    margin-top: 5%;
+    margin-left: 0%;
+    text-align: center;
+    width: 100%;
+  }
+
+  .brand-name {
+    animation-duration: 3s;
+    animation-name: slidein;
+    font-size: 400%;
+    width:  100%;
+    text-align: center;
+    color: white;
+    font-family: 'Abril Fatface', cursive;
+    margin-bottom: 15px;
+  }
+
+  @keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 50%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+}
+
+/* Tablet Styles */
+@media only screen and (min-width: 401px) and (max-width: 960px) {
+  .brand-name {
+    animation-duration: 3s;
+    animation-name: slidein;
+    font-size: 400%;
+    color: white;
+    font-family: 'Abril Fatface', cursive;
+    margin-bottom: 15px;
+  }
+}
+
 @keyframes slidein {
   from {
     margin-left: 100%;
