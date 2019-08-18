@@ -108,7 +108,17 @@ h1.explanation {
         margin: 5% auto;
     }
 }
-
+@media only screen and (max-height: 400px) and (orientation:landscape) {
+    #explanation-area {
+        color: black;
+        background-color: #f0f0f0;
+        font-family: 'Raleway', sans-serif;
+        width: 90% ;
+        padding: 25px 50px;
+        overflow: hidden;
+        margin: 5% auto;
+    }
+}
 /* Desktop Styles */
 @media only screen and (min-width: 961px) {
     #explanation-area {
