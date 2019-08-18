@@ -180,63 +180,9 @@ body {
 }
 
 
-@media only screen and (min-width: 768px) and (max-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) and (orientation:landscape) {
-   #brand-name-area {
-        margin-top: 25%;
-        margin-left: 0%;
-        text-align: center;
-        width: 100%;
-    }
-
-    .brand-name {
-        animation-duration: 3s;
-        animation-name: slidein;
-        font-size: 20%;
-        width:  100%;
-        text-align: center;
-        color: white;
-        font-family: 'Abril Fatface', cursive;
-        margin-bottom: 15px;
-    }
-
-    @keyframes slidein {
-      from {
-        margin-left: 100%;
-        width: 50%;
-      }
-
-      to {
-        margin-left: 0%;
-        width: 100%;
-      }
-    }
-
-    #home-page-btn {
-        font-family: 'Crimson Pro', serif;
-        font-size: 250%;
-        margin-left: 40%;
-        margin-top: 0%;
-        width: 30%;
-        text-align: center;
-        background-color: #f0f0f0;
-        border: none;
-    }
-    .sub-heading {
-        color: white;
-        font-family: 'Crimson Pro', serif;
-        font-size: 150%;
-        padding: 0 10%;
-    }
-    .home-page-real-image {
-        display: none;
-    }
-    .home-page-cartoon-image {
-        display: none;
-    }
-}
 
 /* Desktop Styles */
-@media only screen and (min-width: 1200px) and (max-width: 1600px) {
+@media only screen and (min-width: 961px) {
     #home-page-btn {
         font-family: 'Crimson Pro', serif;
         font-size: 250%;
