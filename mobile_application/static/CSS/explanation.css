@@ -140,13 +140,6 @@ h1.explanation {
       }
     }
 
-    #brand-name-area {
-        display: none;
-    }
-
-    .brand-name {
-        display: none;
-    }
 
     button.continue-btn {
         font-family: 'Crimson Pro', serif;
