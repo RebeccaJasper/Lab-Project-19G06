@@ -2,21 +2,7 @@ body {
     background-color: #171717;
 }
 
-#brand-name-area {
-    margin-top: 5%;
-    margin-left: 10%;
-    text-align: center;
-    width: 30%;
-}
 
-.brand-name {
-    animation-duration: 3s;
-    animation-name: slidein;
-    font-size: 600%;
-    color: white;
-    font-family: 'Abril Fatface', cursive;
-    margin-bottom: 15px;
-}
 
 /* Mobile Styles */
 @media only screen and (max-width: 400px) {
@@ -78,15 +64,80 @@ body {
 }
 
 /* Tablet Styles */
-@media only screen and (min-width: 401px) and (max-width: 960px) {
-  .brand-name {
-    animation-duration: 3s;
-    animation-name: slidein;
-    font-size: 400%;
-    color: white;
-    font-family: 'Abril Fatface', cursive;
-    margin-bottom: 15px;
-  }
+@media only screen and (min-width: 401px) and (max-width: 960px) and (orientation:portrait) {
+    #brand-name-area {
+        margin-top: 20%;
+        margin-left: 0%;
+        text-align: center;
+        width: 100%;
+    }
+
+    .brand-name {
+        animation-duration: 3s;
+        animation-name: slidein;
+        font-size: 1000%;
+        width:  100%;
+        text-align: center;
+        color: white;
+        font-family: 'Abril Fatface', cursive;
+        margin-bottom: 15px;
+    }
+
+    @keyframes slidein {
+      from {
+        margin-left: 100%;
+        width: 50%;
+      }
+
+      to {
+        margin-left: 0%;
+        width: 100%;
+      }
+    }
+    #home-page-btn {
+        font-family: 'Crimson Pro', serif;
+        font-size: 250%;
+        margin-top: 10%;
+        width: 60% !important;
+        margin-left: 20%;
+        display: inline-block;
+        text-align: center;
+        background-color: #f0f0f0;
+        border: none;
+        position: relative;
+    }
+
+    .sub-heading {
+        color: white;
+        font-family: 'Crimson Pro', serif;
+        font-size: 200%;
+        padding: 0 10%;
+    }
+    .home-page-real-image {
+        display: none;
+    }
+    .home-page-cartoon-image {
+        display: none;
+    }
+}
+
+
+@media only screen and (min-width: 401px) and (max-width: 960px) and (orientation: landscape) {
+    .brand-name {
+        animation-duration: 3s;
+        animation-name: slidein;
+        font-size: 4%;
+        color: white;
+        font-family: 'Abril Fatface', cursive;
+        margin-bottom: 15px;
+      }
+
+    #brand-name-area {
+        margin-top: 55%;
+        margin-left: 10%;
+        text-align: center;
+        width: 30%;
+    }
 }
 
 /* Desktop Styles */
@@ -100,6 +151,22 @@ body {
         text-align: center;
         background-color: #f0f0f0;
         border: none;
+    }
+
+    #brand-name-area {
+        margin-top: 5%;
+        margin-left: 10%;
+        text-align: center;
+        width: 30%;
+    }
+
+    .brand-name {
+        animation-duration: 3s;
+        animation-name: slidein;
+        font-size: 600%;
+        color: white;
+        font-family: 'Abril Fatface', cursive;
+        margin-bottom: 15px;
     }
 }
 
