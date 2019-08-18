@@ -14,13 +14,12 @@ body {
     }
 }
 @media only screen and (max-height: 400px) and (orientation:landscape) {
-    #image-area {
-        height: 100%;
-        width: 100%;
-    }
     img {
-      max-height: inherit;
-      width: auto;
+      padding: 0;
+      display: block;
+      margin: 0 auto;
+      max-height: 80vh;
+      max-width: 100%;
     }
 }
 /* Desktop Styles */
