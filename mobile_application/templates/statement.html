@@ -17,68 +17,73 @@
 </head>
 
 <body>
-    <h1> Statement </h1>
+    <nav class="navbar navbar-light bg-light">
+      <span class="navbar-brand mb-0 h1">Identi.Fi App</span>
+    </nav>
 
-    <p> Did you know of/see this person prior to this:
-        <div class="form-check">
-          <label class="form-check-label">
-            <input type="radio" class="form-check-input" name="known-before-group" id="known-before-yes">Yes
-          </label>
-        </div>
-        <div class="form-check">
-          <label class="form-check-label">
-            <input type="radio" class="form-check-input" name="known-before-group" id="known-before-no">No
-          </label>
-        </div>
-    </p>
+    <div id="explanation-area">
+        <h1 class="explanation"> Statement </h1>
 
-    <div class="details" style="display: none">
-        <p>
-            Do you know the person's name?
+        <p> Did you know of/see this person prior to this:
             <div class="form-check">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="person-name-group" id="person-name-yes">Yes
+                <input type="radio" class="form-check-input" name="known-before-group" id="known-before-yes">Yes
               </label>
             </div>
-
             <div class="form-check">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="person-name-group" id="person-name-no">No
+                <input type="radio" class="form-check-input" name="known-before-group" id="known-before-no">No
               </label>
             </div>
-
-            <div id="name-is-known" style="display: none">
-                First name: <input type="text" class="form-control" placeholder="Person's first name" id="firstname">
-                Surname: <input type="text" class="form-control" placeholder="Person's surname" id="surname">
-            </div>
-
         </p>
+
+        <div class="details" style="display: none">
+            <p>
+                Do you know the person's name?
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="person-name-group" id="person-name-yes">Yes
+                  </label>
+                </div>
+
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="person-name-group" id="person-name-no">No
+                  </label>
+                </div>
+
+                <div id="name-is-known" style="display: none">
+                    First name: <input type="text" class="form-control" placeholder="Person's first name" id="firstname">
+                    Surname: <input type="text" class="form-control" placeholder="Person's surname" id="surname">
+                </div>
+
+            </p>
+        </div>
+
+        <p>
+            Person's gender:
+              <select id="gender">
+                <option value="unknown">Unknown</option>
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+                <option value="other">Other</option>
+              </select>
+        </p>
+
+        <p>
+            Person's race:
+              <select id="race">
+                <option value="unknown">Unknown</option>
+                <option value="white">White</option>
+                <option value="coloured">Coloured</option>
+                <option value="indian">Indian</option>
+                <option value="asian">Asian</option>
+                <option value="black">Black</option>
+              </select>
+        </p>
+
+            <button type="button" class="btn btn-success" id="submit-btn" style="display: none">Submit Response</button>
     </div>
-
-    <p>
-        Person's gender:
-          <select id="gender">
-            <option value="unknown">Unknown</option>
-            <option value="female">Female</option>
-            <option value="male">Male</option>
-            <option value="other">Other</option>
-          </select>
-    </p>
-
-    <p>
-        Person's race:
-          <select id="race">
-            <option value="unknown">Unknown</option>
-            <option value="white">White</option>
-            <option value="coloured">Coloured</option>
-            <option value="indian">Indian</option>
-            <option value="asian">Asian</option>
-            <option value="black">Black</option>
-          </select>
-    </p>
-
-        <button type="button" class="btn btn-success" id="submit-btn" style="display: none">Submit Response</button>
-
 </body>
 
 </html>
