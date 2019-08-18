@@ -4,36 +4,87 @@ body {
     margin: 0
 }
 
-canvas{width: 100%; height: 100%}
 
-#brand-name-area {
-    margin-top: 10px;
-    margin-left: 5px;
-    text-align: center;
-    width: 30%;
+/* Mobile Styles */
+@media only screen and (max-width: 400px) {
+    canvas{width: 100%; height: 100%}
+
+    #brand-name-area {
+        margin-top: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        width: 30%;
+    }
+
+    .brand-name {
+        font-size: 200%;
+        color: white;
+        font-family: 'Abril Fatface', cursive;
+        margin-bottom: 0px;
+    }
+
+    .sub-heading {
+        color: white;
+        font-family: 'Crimson Pro', serif;
+        font-size: 130%;
+    }
+
+    button.submit-btn {
+        font-family: 'Crimson Pro', serif;
+        font-size: 150%;
+        margin-left: 30%;
+        margin-right: auto;
+        margin-top: 0px;
+        width: 40% !important;
+        text-align: center;
+        background-color: white;
+        border: none;
+        /* float: left; */
+    }
 }
-
-.brand-name {
-    font-size: 330%;
-    color: white;
-    font-family: 'Abril Fatface', cursive;
-    margin-bottom: 0px;
+@media only screen and (max-height: 400px) and (orientation:landscape) {
+    img {
+      padding: 0;
+      display: block;
+      margin: 0 auto;
+      max-height: 80vh;
+      max-width: 100%;
+    }
 }
+/* Desktop Styles */
+@media only screen and (min-width: 961px) {
+    canvas{width: 100%; height: 100%}
 
-.sub-heading {
-    color: white;
-    font-family: 'Crimson Pro', serif;
-    font-size: 130%;
-}
+    #brand-name-area {
+        margin-top: 10px;
+        margin-left: 5px;
+        text-align: center;
+        width: 30%;
+    }
 
-button.submit-btn {
-    font-family: 'Crimson Pro', serif;
-    font-size: 150%;
-    margin-left: 60px;
-    margin-top: 0px;
-    width: 20%;
-    text-align: center;
-    background-color: white;
-    border: none;
-    /* float: left; */
+    .brand-name {
+        font-size: 330%;
+        color: white;
+        font-family: 'Abril Fatface', cursive;
+        margin-bottom: 0px;
+    }
+
+    .sub-heading {
+        color: white;
+        font-family: 'Crimson Pro', serif;
+        font-size: 130%;
+    }
+
+    button.submit-btn {
+        font-family: 'Crimson Pro', serif;
+        font-size: 150%;
+        margin-left: 60px;
+        margin-top: 0px;
+        width: 20%;
+        text-align: center;
+        background-color: white;
+        border: none;
+        /* float: left; */
+    }
 }
