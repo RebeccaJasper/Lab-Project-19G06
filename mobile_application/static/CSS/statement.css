@@ -1,3 +1,135 @@
 body {
-    margin: 50px;
+    background-color: #171717;
+}
+
+#brand-name-area {
+    margin-top: 5%;
+    margin-right: 140px;
+    text-align: center;
+    width: 30%;
+    float: right;
+}
+
+.brand-name {
+    animation-duration: 3s;
+    animation-name: slidein;
+    font-size: 600%;
+    color: white;
+    font-family: 'Abril Fatface', cursive;
+    margin-bottom: 15px;
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 50%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+
+.sub-heading {
+    color: white;
+    font-family: 'Crimson Pro', serif;
+}
+
+button.continue-btn {
+    font-family: 'Crimson Pro', serif;
+    font-size: 250%;
+    margin-right: 140px;
+    margin-top: 60px;
+    width: 30%;
+    text-align: center;
+    background-color: #f0f0f0;
+    border: none;
+    float: right;
+}
+
+.home-page-real-image {
+    height: 300px;
+    position: absolute;
+    z-index: 5;
+    margin-left: 600px;
+    margin-top: 5%;
+    animation-duration: 6s;
+    animation-name: slide-real;
+}
+.home-page-cartoon-image {
+    height: 300px;
+    position: absolute;
+    z-index: 5;
+    float: right;
+    margin-left: 1000px;
+    margin-top: 5%;
+    animation-duration: 6s;
+    animation-name: slide-fake;
+}
+
+@keyframes slide-real {
+  from {
+    margin-left: 100%;
+  }
+
+  to {
+    margin-left: 600px;
+  }
+}
+
+@keyframes slide-fake {
+  from {
+    margin-left: 100%;
+  }
+
+  to {
+    margin-left: 1000px;
+  }
+}
+
+h1.explanation {
+    font-family: 'Crimson Pro', serif;
+    text-align: center;
+}
+
+
+
+/* Mobile Styles */
+@media only screen and (max-width: 400px) {
+    #explanation-area {
+        color: black;
+        background-color: #f0f0f0;
+        font-family: 'Raleway', sans-serif;
+        width: 90% ;
+        padding: 25px 50px;
+        overflow: hidden;
+        margin: 5% auto;
+    }
+}
+@media only screen and (max-height: 400px) and (orientation:landscape) {
+    #explanation-area {
+        color: black;
+        background-color: #f0f0f0;
+        font-family: 'Raleway', sans-serif;
+        width: 90% ;
+        padding: 25px 50px;
+        overflow: hidden;
+        margin: 5% auto;
+    }
+}
+/* Desktop Styles */
+@media only screen and (min-width: 961px) {
+    #explanation-area {
+        color: black;
+        background-color: #f0f0f0;
+        font-family: 'Raleway', sans-serif;
+        width: 50% ;
+        padding: 25px 50px;
+        overflow: hidden;
+        margin-top: 2%;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
