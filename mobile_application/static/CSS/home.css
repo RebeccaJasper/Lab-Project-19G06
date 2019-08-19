@@ -2,89 +2,275 @@ body {
     background-color: #171717;
 }
 
-#brand-name-area {
-    margin-top: 5%;
-    margin-left: 10%;
-    text-align: center;
-    width: 30%;
+
+
+/* Mobile Styles */
+@media only screen and (max-width: 400px) and (orientation:portrait) {
+    #brand-name-area {
+        margin-top: 25%;
+        margin-left: 0%;
+        text-align: center;
+        width: 100%;
+    }
+
+    .brand-name {
+        animation-duration: 3s;
+        animation-name: slidein;
+        font-size: 400%;
+        width:  100%;
+        text-align: center;
+        color: white;
+        font-family: 'Abril Fatface', cursive;
+        margin-bottom: 15px;
+    }
+
+    @keyframes slidein {
+      from {
+        margin-left: 100%;
+        width: 50%;
+      }
+
+      to {
+        margin-left: 0%;
+        width: 100%;
+      }
+    }
+    #home-page-btn {
+        font-family: 'Crimson Pro', serif;
+        font-size: 250%;
+        margin-top: 10%;
+        width: 60% !important;
+        margin-left: 20%;
+        display: inline-block;
+        text-align: center;
+        background-color: #f0f0f0;
+        border: none;
+        position: relative;
+    }
+
+    .sub-heading {
+        color: white;
+        font-family: 'Crimson Pro', serif;
+        font-size: 150%;
+        padding: 0 10%;
+    }
+    .home-page-real-image {
+        display: none;
+    }
+    .home-page-cartoon-image {
+        display: none;
+    }
+
 }
 
-.brand-name {
-    animation-duration: 3s;
-    animation-name: slidein;
-    font-size: 600%;
-    color: white;
-    font-family: 'Abril Fatface', cursive;
-    margin-bottom: 15px;
+@media only screen and (max-height: 400px) and (orientation:landscape) {
+    #brand-name-area {
+        margin-top: 2%;
+        margin-left: 0%;
+        text-align: center;
+        width: 100%;
+    }
+
+    .brand-name {
+        animation-duration: 3s;
+        animation-name: slidein;
+        font-size: 350%;
+        width:  100%;
+        text-align: center;
+        color: white;
+        font-family: 'Abril Fatface', cursive;
+        margin-bottom: 15px;
+    }
+
+    @keyframes slidein {
+      from {
+        margin-left: 100%;
+        width: 50%;
+      }
+
+      to {
+        margin-left: 0%;
+        width: 100%;
+      }
+    }
+    #home-page-btn {
+        font-family: 'Crimson Pro', serif;
+        font-size: 180%;
+        margin-top: 2%;
+        margin-bottom: 10%;
+        width: 60% !important;
+        margin-left: 20%;
+        display: inline-block;
+        text-align: center;
+        background-color: #f0f0f0;
+        border: none;
+        position: relative;
+    }
+
+    .sub-heading {
+        color: white;
+        font-family: 'Crimson Pro', serif;
+        font-size: 100%;
+        padding: 0 10%;
+    }
+    .home-page-real-image {
+        display: none;
+    }
+    .home-page-cartoon-image {
+        display: none;
+    }
 }
 
-@keyframes slidein {
-  from {
-    margin-left: 100%;
-    width: 50%;
-  }
+/* Tablet Styles */
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation:portrait) {
+    #brand-name-area {
+        margin-top: 20%;
+        margin-left: 0%;
+        text-align: center;
+        width: 100%;
+    }
 
-  to {
-    margin-left: 0%;
-    width: 100%;
-  }
+    .brand-name {
+        animation-duration: 3s;
+        animation-name: slidein;
+        font-size: 1000%;
+        width:  100%;
+        text-align: center;
+        color: white;
+        font-family: 'Abril Fatface', cursive;
+        margin-bottom: 15px;
+    }
+
+    @keyframes slidein {
+      from {
+        margin-left: 100%;
+        width: 50%;
+      }
+
+      to {
+        margin-left: 0%;
+        width: 100%;
+      }
+    }
+    #home-page-btn {
+        font-family: 'Crimson Pro', serif;
+        font-size: 250%;
+        margin-top: 10%;
+        width: 60% !important;
+        margin-left: 20%;
+        display: inline-block;
+        text-align: center;
+        background-color: #f0f0f0;
+        border: none;
+        position: relative;
+    }
+
+    .sub-heading {
+        color: white;
+        font-family: 'Crimson Pro', serif;
+        font-size: 200%;
+        padding: 0 10%;
+    }
+    .home-page-real-image {
+        display: none;
+    }
+    .home-page-cartoon-image {
+        display: none;
+    }
 }
 
 
-.sub-heading {
-    color: white;
-    font-family: 'Crimson Pro', serif;
+
+/* Desktop Styles */
+@media only screen and (min-width: 961px) {
+    #home-page-btn {
+        font-family: 'Crimson Pro', serif;
+        font-size: 250%;
+        margin-left: 40%;
+        margin-top: 0%;
+        width: 30%;
+        text-align: center;
+        background-color: #f0f0f0;
+        border: none;
+    }
+
+    #brand-name-area {
+        margin-top: 5%;
+        margin-left: 10%;
+        text-align: center;
+        width: 30%;
+    }
+
+    .brand-name {
+        animation-duration: 3s;
+        animation-name: slidein;
+        font-size: 600%;
+        color: white;
+        font-family: 'Abril Fatface', cursive;
+        margin-bottom: 15px;
+    }
+
+
+    @keyframes slidein {
+      from {
+        margin-left: 100%;
+        width: 50%;
+      }
+
+      to {
+        margin-left: 0%;
+        width: 100%;
+      }
+    }
+
+
+    .sub-heading {
+        color: white;
+        font-family: 'Crimson Pro', serif;
+    }
+
+
+
+    .home-page-real-image {
+        height: 300px;
+        position: absolute;
+        z-index: 5;
+        margin-left: 600px;
+        margin-top: 5%;
+        animation-duration: 6s;
+        animation-name: slide-real;
+    }
+    .home-page-cartoon-image {
+        height: 300px;
+        position: absolute;
+        z-index: 5;
+        float: right;
+        margin-left: 1000px;
+        margin-top: 5%;
+        animation-duration: 6s;
+        animation-name: slide-fake;
+    }
+
+    @keyframes slide-real {
+      from {
+        margin-left: 100%;
+      }
+
+      to {
+        margin-left: 600px;
+      }
+    }
+
+    @keyframes slide-fake {
+      from {
+        margin-left: 100%;
+      }
+
+      to {
+        margin-left: 1000px;
+      }
+    }
+
+
 }
-
-#home-page-btn {
-    font-family: 'Crimson Pro', serif;
-    font-size: 250%;
-    margin-left: 40%;
-    margin-top: 0%;
-    width: 30%;
-    text-align: center;
-    background-color: #f0f0f0;
-    border: none;
-}
-
-.home-page-real-image {
-    height: 300px;
-    position: absolute;
-    z-index: 5;
-    margin-left: 600px;
-    margin-top: 5%;
-    animation-duration: 6s;
-    animation-name: slide-real;
-}
-.home-page-cartoon-image {
-    height: 300px;
-    position: absolute;
-    z-index: 5;
-    float: right;
-    margin-left: 1000px;
-    margin-top: 5%;
-    animation-duration: 6s;
-    animation-name: slide-fake;
-}
-
-@keyframes slide-real {
-  from {
-    margin-left: 100%;
-  }
-
-  to {
-    margin-left: 600px;
-  }
-}
-
-@keyframes slide-fake {
-  from {
-    margin-left: 100%;
-  }
-
-  to {
-    margin-left: 1000px;
-  }
-}
-
 
