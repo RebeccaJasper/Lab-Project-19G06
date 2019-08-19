@@ -49,6 +49,8 @@ def convert_db_array_to_feature_vector(db_array: np.array) -> np.array:
     facial_feature_array = convert_feature_string_to_array(db_array[0])
     race_array = create_race_array(int(db_array[1]))
     sex_array = create_sex_array(str(db_array[2]))
+
+
     submission_feature_vector = np.hstack((facial_feature_array, race_array, sex_array))
 
     return submission_feature_vector
@@ -81,7 +83,7 @@ def persons_feature_matrix() -> np.ndarray:
     return feature_matrix
 
 
-print(persons_feature_matrix())
+# print(persons_feature_matrix()[0])
 
 def process_submission_photo(base64_string: str) -> None:
     add_image_to_identikit_database(base64_string)
@@ -97,12 +99,12 @@ def get_matching_person_ids(submission_id: str) -> np.array:
     :rtype: np.array
     """
 
-    submission_feature_vector = get_submission_features(submission_id)
+    existing_persons_feature_matrix = persons_feature_matrix()
+    existing_person_ids = get_person_ids()
 
-    (existing_persons_feature_matrix, existing_person_ids) = get_person_feature_matrix()
     d = Dissimilarity()
     d.load_feature_vectors(existing_persons_feature_matrix)
-    d.add_vector(submission_feature_vector)
+    d.add_vector(existing_persons_feature_matrix[0])
 
     hac = HeirachicalClustering()
     hac.cluster(d.distance_matrix())
@@ -113,3 +115,4 @@ def get_matching_person_ids(submission_id: str) -> np.array:
 
     return person_ids
 
+print(get_matching_person_ids('1520'))

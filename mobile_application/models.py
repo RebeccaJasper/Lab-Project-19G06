@@ -168,6 +168,13 @@ def get_submission_feature_vector(submission_id: int) -> np.array:
     data = retrieve_data()
     return np.array(data)
 
+def get_person_ids() -> np.array:
+    query_string = '''SELECT persons.person_id
+                        from persons'''
+    execute_query(query_string, ())
+    data = retrieve_all()
+    return np.array(data)
+
 
 def get_person_feature_matrix() -> np.ndarray:
     """
