@@ -149,7 +149,7 @@ def add_person_info_to_db(person_id: str, firstname: str, surname: str) -> None:
     commit_changes()
 
 
-def get_submission_features(submission_id: str) -> np.array:
+def get_submission(submission_id: int) -> np.array:
     """
     Get the feature vector of a particular feature vector
 
@@ -159,8 +159,17 @@ def get_submission_features(submission_id: str) -> np.array:
     :rtype: np.array
     """
     feature_vector = np.array([])
+    query_string = '''SELECT face_encoding FROM identikit_markers
+                        WHERE submission_id = %s '''
+
+    arg = int(submission_id)
+    execute_query(query_string, arg)
+    data = retrieve_data()
+    feature_vector_str = data[0]
+    print(feature_vector_str)
     return feature_vector
 
+get_submission(38)
 
 def get_person_feature_matrix() -> np.ndarray:
     """
@@ -169,6 +178,7 @@ def get_person_feature_matrix() -> np.ndarray:
     :return: 2-D array of all feature vectors of the existing persons database
     :rtype: np.ndarray
     """
+
     feature_vector = np.array([])
     return feature_vector
 

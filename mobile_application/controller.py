@@ -14,6 +14,10 @@ def process_submission_feature_vector(feature_vector_string: str) -> None:
     feature_vector = normalize_feature_vector(feature_vector)
     add_feature_vector_to_identikit_db(feature_vector)
 
+def fetch_submission_feature_vector(submission_id: str)-> np.array:
+    submission_feature_vector = np.array([])
+    return submission_feature_vector
+
 
 def process_submission_photo(base64_string: str) -> None:
     add_image_to_identikit_database(base64_string)
