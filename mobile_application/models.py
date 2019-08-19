@@ -158,7 +158,6 @@ def get_submission_feature_vector(submission_id: int) -> np.array:
     :return: Feature vector associated with the specified submission_id
     :rtype: np.array
     """
-    feature_vector = np.array([])
     query_string = '''SELECT identikit_markers.face_encoding, identikits.race, identikits.gender
                         from identikits
                         inner join identikit_markers on identikit_markers.submission_id=identikits.submission_id
@@ -167,11 +166,9 @@ def get_submission_feature_vector(submission_id: int) -> np.array:
     arg = int(submission_id)
     execute_query(query_string, arg)
     data = retrieve_data()
-    # feature_vector_str = data[0]
-    # print(feature_vector_str)
     return np.array(data)
 
-print(get_submission_feature_vector(38))
+
 
 def get_person_feature_matrix() -> np.ndarray:
     """

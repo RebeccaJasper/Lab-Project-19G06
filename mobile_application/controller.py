@@ -1,6 +1,7 @@
 from mobile_application.models import *
 from mobile_application.face_encoding.normalization import normalize_feature_vector
 from mobile_application.clustering.dissimilarity import Dissimilarity
+from mobile_application.clustering.feature_encoding import *
 from mobile_application.clustering.hierarchical_clusterring import HeirachicalClustering
 import numpy as np
 
@@ -14,9 +15,50 @@ def process_submission_feature_vector(feature_vector_string: str) -> None:
     feature_vector = normalize_feature_vector(feature_vector)
     add_feature_vector_to_identikit_db(feature_vector)
 
+
+def create_race_array(race_int: int) -> np.array:
+    if race_int > 6 or race_int < 1:
+        ValueError('Race integer "%d"  does not exist in current encoding scheme' % race_int)
+
+    race_array = np.zeros(6)
+    race_array[race_int - 1] = 1
+    return race_array
+
+def create_sex_array(gender_str: str) -> np.array:
+    sex_array = np.zeros(4)
+    if gender_str == gender["Female"]:
+        sex_array[0] = 1
+    elif gender_str == gender["Male"]:
+        sex_array[1] = 1
+    elif gender_str == gender["Other"]:
+        sex_array[2] = 1
+    elif gender_str == gender["Unknown"]:
+        sex_array[3] = 1
+    else:
+        ValueError('Sex string does not exist in current sex encoding')
+
+    return sex_array
+
+def convert_feature_string_to_array(feature_string: str) -> np.array:
+    feature_array = np.array(feature_string.split(','), float)
+    return feature_array
+
+
+
 def fetch_submission_feature_vector(submission_id: str)-> np.array:
-    submission_feature_vector = np.array([])
+    database_feature_vector = get_submission_feature_vector(submission_id)
+
+    facial_feature_array = convert_feature_string_to_array(database_feature_vector[0])
+    race_array = create_race_array(int(database_feature_vector[1]))
+    sex_array = create_sex_array(str(database_feature_vector[2]))
+
+    print(facial_feature_array.size)
+    submission_feature_vector = np.hstack((facial_feature_array, race_array, sex_array))
+
     return submission_feature_vector
+
+
+print(fetch_submission_feature_vector(38))
 
 
 def process_submission_photo(base64_string: str) -> None:
