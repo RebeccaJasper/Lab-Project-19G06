@@ -3,6 +3,7 @@ import * as gameWindow from './gameLogic.js'
 
 $(document).ready(() => {
   $('.submit-btn').click(() => {
+    $('.submit-btn').attr('disabled', true)
     let statement = JSON.parse(window.sessionStorage.getItem('statement'))
     let person_id = JSON.parse(window.sessionStorage.getItem('photo_id'))
 
