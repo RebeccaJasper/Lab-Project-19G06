@@ -33,13 +33,13 @@ var extrudeSettings = {
 var skinColour = 0x996633
 var material = new THREE.MeshLambertMaterial({ color: skinColour })
 
-var noseShape = new THREE.Shape(noseCurve.getSpacedPoints(100))
+var noseShape = new THREE.Shape(noseCurve.getSpacedPoints(50))
 var geometry = new THREE.ExtrudeGeometry(noseShape, extrudeSettings)
 var nose = new THREE.Mesh(geometry, material)
 
 var update = function () {
   gameLogic.scene.remove(nose)
-  noseShape = new THREE.Shape(noseCurve.getSpacedPoints(100))
+  noseShape = new THREE.Shape(noseCurve.getSpacedPoints(50))
   geometry = new THREE.ExtrudeGeometry(noseShape, extrudeSettings)
   nose = new THREE.Mesh(geometry, material)
   gameLogic.scene.add(nose)
