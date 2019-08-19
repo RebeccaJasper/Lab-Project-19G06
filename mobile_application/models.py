@@ -169,7 +169,6 @@ def get_submission_feature_vector(submission_id: int) -> np.array:
     return np.array(data)
 
 
-
 def get_person_feature_matrix() -> np.ndarray:
     """
     Get a feature vector of the existing person database
@@ -183,9 +182,6 @@ def get_person_feature_matrix() -> np.ndarray:
                     inner join face_encodings on face_encodings.person_id = persons.person_id'''
     execute_query(query_string, ())
     data = retrieve_all()
-    print(np.array(data))
     return np.array(data)
 
-
-get_person_feature_matrix()
 

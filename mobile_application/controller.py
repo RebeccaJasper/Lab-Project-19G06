@@ -45,26 +45,43 @@ def convert_feature_string_to_array(feature_string: str) -> np.array:
 
 
 
-def fetch_submission_feature_vector(submission_id: str)-> np.array:
-    database_feature_vector = get_submission_feature_vector(submission_id)
-
-    facial_feature_array = convert_feature_string_to_array(database_feature_vector[0])
-    race_array = create_race_array(int(database_feature_vector[1]))
-    sex_array = create_sex_array(str(database_feature_vector[2]))
-
-    print(facial_feature_array.size)
+def convert_db_array_to_feature_vector(db_array: np.array) -> np.array:
+    facial_feature_array = convert_feature_string_to_array(db_array[0])
+    race_array = create_race_array(int(db_array[1]))
+    sex_array = create_sex_array(str(db_array[2]))
     submission_feature_vector = np.hstack((facial_feature_array, race_array, sex_array))
 
     return submission_feature_vector
 
 
+def fetch_submission_feature_vector(submission_id: str)-> np.array:
+    database_feature_vector = get_submission_feature_vector(submission_id)
 
-def persons_feature_matrix() -> np.array:
+    submission_feature_vector = convert_db_array_to_feature_vector(database_feature_vector)
+
+    return submission_feature_vector
+
+
+def persons_feature_matrix() -> np.ndarray:
     """
     Retreives feature matrix
     :rtype: np.ndarray
     """
+    feature_matrix = np.array([])
 
+    db_person_feature_matrix = get_person_feature_matrix()
+
+    for row in db_person_feature_matrix:
+        if feature_matrix.size != 0:
+            feature_matrix = np.vstack((feature_matrix, convert_db_array_to_feature_vector(row)))
+        else:
+            feature_matrix = np.hstack((feature_matrix, convert_db_array_to_feature_vector(row)))
+
+
+    return feature_matrix
+
+
+print(persons_feature_matrix())
 
 def process_submission_photo(base64_string: str) -> None:
     add_image_to_identikit_database(base64_string)
