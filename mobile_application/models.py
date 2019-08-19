@@ -178,7 +178,14 @@ def get_person_feature_matrix() -> np.ndarray:
     :rtype: np.ndarray
     """
 
-    feature_vector = np.array([])
-    return feature_vector
+    query_string = '''SELECT face_encodings.face_encoding, persons.race, persons.sex
+                    FROM persons 
+                    inner join face_encodings on face_encodings.person_id = persons.person_id'''
+    execute_query(query_string, ())
+    data = retrieve_all()
+    print(np.array(data))
+    return np.array(data)
 
+
+get_person_feature_matrix()
 

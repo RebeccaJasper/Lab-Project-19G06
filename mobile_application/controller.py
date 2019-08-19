@@ -58,7 +58,12 @@ def fetch_submission_feature_vector(submission_id: str)-> np.array:
     return submission_feature_vector
 
 
-print(fetch_submission_feature_vector(38))
+
+def persons_feature_matrix() -> np.array:
+    """
+    Retreives feature matrix
+    :rtype: np.ndarray
+    """
 
 
 def process_submission_photo(base64_string: str) -> None:
@@ -90,3 +95,4 @@ def get_matching_person_ids(submission_id: str) -> np.array:
     person_ids = existing_person_ids[indexes]
 
     return person_ids
+
