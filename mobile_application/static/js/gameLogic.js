@@ -48,21 +48,6 @@ var render = function () {
   renderer.render(scene, camera)
 }
 
-// run game loop (update, render, repeat)
-// function animate () {
-//   setTimeout(function () {
-//     requestAnimationFrame(animate)
-//     console.log('loop')
-//     face.update()
-//     eyes.update()
-//     mouth.update()
-//     nose.update()
-//     brows.update()
-//     shadows.update()
-//   }, 500)
-//   render()
-// }
-
 let request = requestAnimationFrame(animate)
 
 function animate () {
@@ -79,41 +64,8 @@ function animate () {
 animate()
 
 function cancelAnimate () {
-  // setTimeout(function () {
   cancelAnimationFrame(request)
-  // }, 0)
 }
-
-// var isAnimating = true
-
-// function setAnimation (change) {
-//   if (change === true) {
-//     isAnimating = true
-//   }
-//   if (change === false) {
-//     setTimeout(function () {
-//       isAnimating = false
-//     }, 500)
-//   }
-// }
-
-// function animate () {
-//   if (isAnimating) {
-//     // setTimeout(function () {
-//     requestAnimationFrame(animate)
-//     console.log('loop')
-//     face.update()
-//     eyes.update()
-//     mouth.update()
-//     nose.update()
-//     brows.update()
-//     shadows.update()
-//     // }, 500)
-//     render()
-//   }
-// }
-
-// animate()
 
 // Save screen/frame as a jpeg image
 function saveAsImage () {
