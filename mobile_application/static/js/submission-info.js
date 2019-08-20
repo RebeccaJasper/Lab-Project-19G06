@@ -23,7 +23,7 @@ let loadSubmissionInfo = function () {
     surname: 'surname',
     gender: 'male',
     race: 'black',
-    photo: './img/home-page2.jpg' }
+    photo: 'static/img/identikit.jpg' }
 
   displaySubmissionInfo(submission)
 }
@@ -48,7 +48,7 @@ let displaySubmissionInfo = function (submission) {
 
   let photo = document.createElement('img')
   photo.id = 'identikit-photo'
-  photo.src = 'static/img/identikit.jpg'
+  photo.src = submission.photo
   submissionInfoArea.append(photo)
 }
 
