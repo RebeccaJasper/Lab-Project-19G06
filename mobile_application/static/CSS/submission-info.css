@@ -35,9 +35,9 @@ button.match-button-btn {
     margin-left: 35%;
 }
 
-h1.submission-info-area {
+h1.submission-info {
     font-family: 'Crimson Pro', serif;
-    text-align: center;
+    text-align: left;
 }
 
 #submission-info-area {
