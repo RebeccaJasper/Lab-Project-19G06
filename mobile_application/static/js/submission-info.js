@@ -31,19 +31,19 @@ let loadSubmissionInfo = function () {
 let displaySubmissionInfo = function (submission) {
   let submissionInfoArea = $('#submission-info-area')
   let submissionID = document.createElement('div')
-  submissionID.innerHTML = 'Submission ID: ' + submission.id
+  submissionID.innerHTML = '<b>Submission ID: </b>' + submission.id
   submissionInfoArea.append(submissionID)
 
   let submissionNames = document.createElement('div')
-  submissionNames.innerHTML = 'Full Name : ' + submission.name + ' ' + submission.surname
+  submissionNames.innerHTML = '<b>Full Name : </b>' + submission.name + ' ' + submission.surname
   submissionInfoArea.append(submissionNames)
 
   let submissionGender = document.createElement('div')
-  submissionGender.innerHTML = 'Gender: ' + submission.gender
+  submissionGender.innerHTML = '<b>Gender: </b>' + submission.gender
   submissionInfoArea.append(submissionGender)
 
   let submissionRace = document.createElement('div')
-  submissionRace.innerHTML = 'Race: ' + submission.race
+  submissionRace.innerHTML = '<b>Race: </b>' + submission.race
   submissionInfoArea.append(submissionRace)
 }
 
