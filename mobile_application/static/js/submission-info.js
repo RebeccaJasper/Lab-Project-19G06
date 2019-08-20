@@ -50,8 +50,13 @@ let displaySubmissionInfo = function (submission) {
   photo.id = 'identikit-photo'
   photo.src = submission.photo
   submissionInfoArea.append(photo)
+
+  // let button = document.createElement('button')
+  // button.className = 'match-button-btn'
+  // button.innerHTML = 'FIND ALL MATCHES'
+  // submissionInfoArea.append(button)
 }
 
-$(document).on('click', '#match-button-btn', function (e) {
-
-})
+let findMatches = function () {
+  console.log('find matches')
+}

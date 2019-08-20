@@ -45,6 +45,7 @@ h1.submission-info-area {
     background-color: #f0f0f0;
     font-family: 'Raleway', sans-serif;
     width: 50% ;
+    height: 355px;
     padding: 25px 50px;
     overflow: hidden;
     margin-top: 2%;
@@ -54,8 +55,11 @@ h1.submission-info-area {
 }
 
 #identikit-photo{
-    float: right;
+    /* Crop the image */
     width: 200px;
     height: 300px;
     object-fit: cover;
+    float: right;
+    position: relative;
+    top: -150px;
 }
