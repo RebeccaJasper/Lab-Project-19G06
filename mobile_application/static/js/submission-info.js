@@ -23,7 +23,7 @@ let loadSubmissionInfo = function () {
     surname: 'surname',
     gender: 'male',
     race: 'black',
-    photo: 'photo 1' }
+    photo: './img/home-page2.jpg' }
 
   displaySubmissionInfo(submission)
 }
@@ -45,6 +45,11 @@ let displaySubmissionInfo = function (submission) {
   let submissionRace = document.createElement('div')
   submissionRace.innerHTML = '<b>Race: </b>' + submission.race
   submissionInfoArea.append(submissionRace)
+
+  let photo = document.createElement('img')
+  photo.id = 'identikit-photo'
+  photo.src = 'static/img/identikit.jpg'
+  submissionInfoArea.append(photo)
 }
 
 $(document).on('click', '#match-button-btn', function (e) {

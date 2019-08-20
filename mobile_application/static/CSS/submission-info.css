@@ -53,8 +53,9 @@ h1.submission-info-area {
     margin-bottom: 0;
 }
 
-/* #submissionText {
-    font-family: 'Crimson Pro', serif;
-    text-align: center;
-    font-size: 120%;
-} */
+#identikit-photo{
+    float: right;
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+}
