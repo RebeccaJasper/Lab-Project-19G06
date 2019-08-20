@@ -3,15 +3,29 @@ from os.path import join, dirname
 from dotenv import load_dotenv
 from typing import List
 from os import environ
-from psycopg2 import *
+import psycopg2
+from psycopg2 import pool
 
 dotenv_path = join(os.path.abspath(os.path.join(dirname(__file__), os.pardir)), '.env')
 load_dotenv(dotenv_path)
 
 DATABASE_URL = os.getenv('DATABASE_URL')
-conn = connect(DATABASE_URL, sslmode='require')
 
-cursor = conn.cursor()
+ps_connection = None
+cursor = None
+
+try:
+    threaded_postgreSQL_pool = psycopg2.pool.ThreadedConnectionPool(5, 20, DATABASE_URL, sslmode='require')
+    if(threaded_postgreSQL_pool):
+        print("Connection pool created successfully using ThreadedConnectionPool")
+    # # Use getconn() method to Get Connection from connection pool
+    ps_connection  = threaded_postgreSQL_pool.getconn()
+    if(ps_connection):
+        print("successfully recived connection from connection pool ")
+        cursor = ps_connection.cursor()
+    
+except (Exception, psycopg2.DatabaseError) as error :
+    print ("Error while connecting to PostgreSQL", error)
 
 
 def execute_query(query_string: str, args: tuple) -> None:
@@ -25,6 +39,7 @@ def execute_query(query_string: str, args: tuple) -> None:
 
     query = query_string % args
     print(query)
+    # cursor = create_cursor()
     cursor.execute(query)
 
 
@@ -34,7 +49,7 @@ def commit_changes() -> None:
 
     :rtype: None
     """
-    conn.commit()
+    ps_connection.commit()
 
 
 def retrieve_data() -> List:
