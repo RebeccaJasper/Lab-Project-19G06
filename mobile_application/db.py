@@ -39,7 +39,6 @@ def execute_query(query_string: str, args: tuple) -> None:
 
     query = query_string % args
     print(query)
-    # cursor = create_cursor()
     cursor.execute(query)
 
 
