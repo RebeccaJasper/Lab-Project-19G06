@@ -36,7 +36,9 @@ window.onload = function () {
   var faceGUI = gui.addFolder('Face')
 
   faceGUI.add(params, 'upperWidth', -15, 15).name('Upper Face Width').onChange(function () {
-    gameLogic.setAnimation(true)
+    // gameLogic.setAnimation(true)
+    // gameLogic.animate()
+
     gameLogic.animate()
     let value = params.upperWidth
     generateFace.zero.x = -177 - value
@@ -51,7 +53,9 @@ window.onload = function () {
     shadows.cheekHR3.x = 124 + value
     shadows.cheekHL1.x = -140 - value
     shadows.cheekHL3.x = -124 - value
-    gameLogic.setAnimation(false)
+    gameLogic.cancelAnimate()
+
+    // gameLogic.setAnimation(false)
   })
 
   faceGUI.add(params, 'midWidth', -15, 15).name('Mid-Face Width').onChange(function () {

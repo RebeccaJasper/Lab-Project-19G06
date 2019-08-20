@@ -63,38 +63,57 @@ var render = function () {
 //   render()
 // }
 
-// animate()
-
-var isAnimating = true
-
-function setAnimation (change) {
-  if (change === true) {
-    isAnimating = true
-  }
-  if (change === false) {
-    setTimeout(function () {
-      isAnimating = false
-    }, 500)
-  }
-}
+let request = requestAnimationFrame(animate)
 
 function animate () {
-  if (isAnimating) {
-    // setTimeout(function () {
-    requestAnimationFrame(animate)
-    console.log('loop')
-    face.update()
-    eyes.update()
-    mouth.update()
-    nose.update()
-    brows.update()
-    shadows.update()
-    // }, 500)
-    render()
-  }
+  console.log('loop')
+  face.update()
+  eyes.update()
+  mouth.update()
+  nose.update()
+  brows.update()
+  shadows.update()
+  render()
 }
 
 animate()
+
+function cancelAnimate () {
+  // setTimeout(function () {
+  cancelAnimationFrame(request)
+  // }, 0)
+}
+
+// var isAnimating = true
+
+// function setAnimation (change) {
+//   if (change === true) {
+//     isAnimating = true
+//   }
+//   if (change === false) {
+//     setTimeout(function () {
+//       isAnimating = false
+//     }, 500)
+//   }
+// }
+
+// function animate () {
+//   if (isAnimating) {
+//     // setTimeout(function () {
+//     requestAnimationFrame(animate)
+//     console.log('loop')
+//     face.update()
+//     eyes.update()
+//     mouth.update()
+//     nose.update()
+//     brows.update()
+//     shadows.update()
+//     // }, 500)
+//     render()
+//   }
+// }
+
+// animate()
 
 // Save screen/frame as a jpeg image
 function saveAsImage () {
@@ -118,4 +137,4 @@ function saveColours () {
   return colours
 }
 
-export { scene, saveAsImage, saveColours, setAnimation, animate }
+export { scene, saveAsImage, saveColours, animate, cancelAnimate }
