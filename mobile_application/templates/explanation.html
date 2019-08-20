@@ -8,6 +8,7 @@
      <!--Stylesheets-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="../static/CSS/explanation.css">
+    <link rel="shortcut icon" href="{{url_for('static', filename='favicon.ico')}}">
 
     <!--Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
@@ -37,10 +38,10 @@
         </p>
         <p>
             The app aims to allow you to give a brief description of a person and
-            create a facial composite, a.k.a an identikit, of the person in an
-            easy, user-friendly way. With this description, our Identi.Match App
-            will allow for authorities to find possible matches to your description
-            in an existing person database.
+            create a facial composite, or an identikit, of the person in an
+            easy, user-friendly way. With the person information and the identikit you provide,
+            our Identi.Match App will allow for authorities to find possible real-life matches
+            from an existing person database.
         </p>
         <p>
             The potential, positive impact that this app can have is huge.
@@ -54,7 +55,7 @@
 
         <p>
             Please help us make this all possible by helping identify an "unknown"
-            person that we're about to introduce to you. Your participation will really
+            person that we're about to introduce you to. Your participation will really
             help us make this app as effective as possible.
         </p>
     </div>
@@ -70,6 +71,8 @@
     </div>
 
     <button class="continue-btn"> Continue </button>
+
+    <div class="loader"></div> 
 
 </body>
 </html>

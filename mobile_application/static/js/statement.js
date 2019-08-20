@@ -1,7 +1,11 @@
+$('.loader').fadeIn('slow')
+
 $(document).ready(() => {
+  $('.loader').fadeOut('slow')
+
   // Object for holding submission information
   var submission = {}
-  window.sessionStorage.setItem("prevRoute", window.location)
+  window.sessionStorage.setItem('prevRoute', window.location)
   // Toggle all further details based on whether the person is known or not
   $('#known-before-yes').on('change', () => {
     if ($('#known-before-yes').is(':checked')) {
@@ -36,42 +40,42 @@ $(document).ready(() => {
       submission.firstName = $('#firstname').val()
       submission.surname = $('#surname').val()
     } else {
-      submission.firstName = ""
-      submission.surname = ""
+      submission.firstName = ''
+      submission.surname = ''
     }
 
     if ($('#gender :selected').val() === 'other') {
-      submission.gender = "Other"
+      submission.gender = 'Other'
     }
     if ($('#gender :selected').val() === 'female') {
-      submission.gender = "Female"
+      submission.gender = 'Female'
     }
     if ($('#gender :selected').val() === 'male') {
-      submission.gender = "Male"
+      submission.gender = 'Male'
     }
     if ($('#gender :selected').val() === 'unknown') {
-      submission.gender = "Unknown"
+      submission.gender = 'Unknown'
     }
 
     if ($('#race :selected').val() === 'unknown') {
-      submission.race = "Unknown"
+      submission.race = 'Unknown'
     }
 
     if ($('#race :selected').val() === 'white') {
-      submission.race = "White"
+      submission.race = 'White'
       console.log(submission.race)
     }
     if ($('#race :selected').val() === 'asian') {
-      submission.race = "Indian and Asian"
+      submission.race = 'Indian and Asian'
     }
     if ($('#race :selected').val() === 'indian') {
-      submission.race = "Indian and Asian"
+      submission.race = 'Indian and Asian'
     }
     if ($('#race :selected').val() === 'coloured') {
-      submission.race = "Coloured"
+      submission.race = 'Coloured'
     }
     if ($('#race :selected').val() === 'black') {
-      submission.race = "Black"
+      submission.race = 'Black'
     }
 
     window.sessionStorage.setItem('statement', JSON.stringify(submission))
