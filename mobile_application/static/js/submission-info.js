@@ -17,20 +17,34 @@ let loadSubmissionInfo = function () {
 //       displaySubmissionInfo(submission)
 //     }
 //   })
-  let submission = { id: '12345', statement: 'statement 1', photo: 'photo 1' }
+
+  let submission = { id: '12345',
+    name: 'name',
+    surname: 'surname',
+    gender: 'male',
+    race: 'black',
+    photo: 'photo 1' }
+
   displaySubmissionInfo(submission)
 }
 
 let displaySubmissionInfo = function (submission) {
-  let submissionID = document.createElement('div')
-  submissionID.innerHTML = submission.id
   let submissionInfoArea = $('#submission-info-area')
+  let submissionID = document.createElement('div')
+  submissionID.innerHTML = 'Submission ID: ' + submission.id
   submissionInfoArea.append(submissionID)
 
-//   <div id='submission-id'></div>
-//   <div id='submission-name-and-surname'></div>
-//   <div id='submission-gender'></div>
-//   <div id='submission-race'></div>
+  let submissionNames = document.createElement('div')
+  submissionNames.innerHTML = 'Full Name : ' + submission.name + ' ' + submission.surname
+  submissionInfoArea.append(submissionNames)
+
+  let submissionGender = document.createElement('div')
+  submissionGender.innerHTML = 'Gender: ' + submission.gender
+  submissionInfoArea.append(submissionGender)
+
+  let submissionRace = document.createElement('div')
+  submissionRace.innerHTML = 'Race: ' + submission.race
+  submissionInfoArea.append(submissionRace)
 }
 
 $(document).on('click', '#match-button-btn', function (e) {
