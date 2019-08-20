@@ -49,22 +49,38 @@ var render = function () {
 }
 
 // run game loop (update, render, repeat)
-// var gameLoop = function () {
-//   console.log('execute game loop')
-//   requestAnimationFrame(gameLoop)
-//   face.update()
-//   eyes.update()
-//   mouth.update()
-//   nose.update()
-//   brows.update()
-//   shadows.update()
+// function animate () {
+//   setTimeout(function () {
+//     requestAnimationFrame(animate)
+//     console.log('loop')
+//     face.update()
+//     eyes.update()
+//     mouth.update()
+//     nose.update()
+//     brows.update()
+//     shadows.update()
+//   }, 500)
 //   render()
 // }
 
-// gameLoop()
+// animate()
+
+var isAnimating = true
+
+function setAnimation (change) {
+  if (change === true) {
+    isAnimating = true
+  }
+  if (change === false) {
+    setTimeout(function () {
+      isAnimating = false
+    }, 500)
+  }
+}
 
 function animate () {
-  setTimeout(function () {
+  if (isAnimating) {
+    // setTimeout(function () {
     requestAnimationFrame(animate)
     console.log('loop')
     face.update()
@@ -73,15 +89,14 @@ function animate () {
     nose.update()
     brows.update()
     shadows.update()
-  }, 500)
-
-  render()
+    // }, 500)
+    render()
+  }
 }
 
 animate()
 
 // Save screen/frame as a jpeg image
-
 function saveAsImage () {
   try {
     var strMime = 'image/jpeg'
@@ -103,4 +118,4 @@ function saveColours () {
   return colours
 }
 
-export { scene, saveAsImage, saveColours }
+export { scene, saveAsImage, saveColours, setAnimation, animate }
