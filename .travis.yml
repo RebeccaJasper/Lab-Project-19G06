@@ -8,3 +8,5 @@ install:
 script: pytest
 deploy:
   provider: heroku
+  api_key:
+    secure: HEROKU_API
