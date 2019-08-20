@@ -21,7 +21,7 @@ try:
     # # Use getconn() method to Get Connection from connection pool
     ps_connection  = threaded_postgreSQL_pool.getconn()
     if(ps_connection):
-        print("successfully recived connection from connection pool ")
+        print("successfully recieved connection from connection pool ")
         cursor = ps_connection.cursor()
     
 except (Exception, psycopg2.DatabaseError) as error :
