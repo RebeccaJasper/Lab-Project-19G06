@@ -48,6 +48,8 @@ var render = function () {
   renderer.render(scene, camera)
 }
 
+console.log('game logic file is called')
+
 // run game loop (update, render, repeat)
 var gameLoop = function () {
   requestAnimationFrame(gameLoop)
