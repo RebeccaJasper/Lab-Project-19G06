@@ -48,21 +48,37 @@ var render = function () {
   renderer.render(scene, camera)
 }
 
-console.log('game logic file is called')
-
 // run game loop (update, render, repeat)
-var gameLoop = function () {
-  requestAnimationFrame(gameLoop)
-  face.update()
-  eyes.update()
-  mouth.update()
-  nose.update()
-  brows.update()
-  shadows.update()
+// var gameLoop = function () {
+//   console.log('execute game loop')
+//   requestAnimationFrame(gameLoop)
+//   face.update()
+//   eyes.update()
+//   mouth.update()
+//   nose.update()
+//   brows.update()
+//   shadows.update()
+//   render()
+// }
+
+// gameLoop()
+
+function animate () {
+  setTimeout(function () {
+    requestAnimationFrame(animate)
+    console.log('loop')
+    face.update()
+    eyes.update()
+    mouth.update()
+    nose.update()
+    brows.update()
+    shadows.update()
+  }, 500)
+
   render()
 }
 
-gameLoop()
+animate()
 
 // Save screen/frame as a jpeg image
 
