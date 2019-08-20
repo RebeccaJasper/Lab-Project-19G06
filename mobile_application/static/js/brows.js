@@ -28,24 +28,24 @@ var browColour = 0x331a00
 var material = new THREE.MeshLambertMaterial({ color: browColour })
 
 var leftBrowCurve = new THREE.SplineCurve([seventeen, eighteen, nineteen, twenty, twentyOne, nineteen, seventeen])
-var leftBrowShape = new THREE.Shape(leftBrowCurve.getSpacedPoints(100))
+var leftBrowShape = new THREE.Shape(leftBrowCurve.getSpacedPoints(30))
 var geometryL = new THREE.ExtrudeGeometry(leftBrowShape, extrudeSettings)
 var leftBrow = new THREE.Mesh(geometryL, material)
 
 var rightBrowCurve = new THREE.SplineCurve([twentyTwo, twentyThree, twentyFour, twentyFive, twentySix, twentyFour, twentyTwo])
-var rightBrowShape = new THREE.Shape(rightBrowCurve.getSpacedPoints(100))
+var rightBrowShape = new THREE.Shape(rightBrowCurve.getSpacedPoints(30))
 var geometryR = new THREE.ExtrudeGeometry(rightBrowShape, extrudeSettings)
 var rightBrow = new THREE.Mesh(geometryR, material)
 
 var update = function () {
   gameLogic.scene.remove(leftBrow)
-  leftBrowShape = new THREE.Shape(leftBrowCurve.getSpacedPoints(100))
+  leftBrowShape = new THREE.Shape(leftBrowCurve.getSpacedPoints(30))
   geometryL = new THREE.ExtrudeGeometry(leftBrowShape, extrudeSettings)
   leftBrow = new THREE.Mesh(geometryL, material)
   gameLogic.scene.add(leftBrow)
 
   gameLogic.scene.remove(rightBrow)
-  rightBrowShape = new THREE.Shape(rightBrowCurve.getSpacedPoints(100))
+  rightBrowShape = new THREE.Shape(rightBrowCurve.getSpacedPoints(30))
   geometryR = new THREE.ExtrudeGeometry(rightBrowShape, extrudeSettings)
   rightBrow = new THREE.Mesh(geometryR, material)
   gameLogic.scene.add(rightBrow)
