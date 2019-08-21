@@ -2,7 +2,11 @@ from mobile_application.db import *
 from typing import List, Tuple
 from base64 import b64encode
 import numpy as np
+from random import seed, randint
 from mobile_application.clustering.feature_encoding import *
+from datetime import datetime
+
+seed(datetime.now())
 
 def photo_to_string(filename: str) -> str:
     """
@@ -104,6 +108,23 @@ def add_feature_vector_to_identikit_db(feature_vector: List[float]) -> None:
     commit_changes()
 
 
+# def get_random_image() -> Tuple[str, str]:
+#     """
+#     Returns a random image id and base64 encoded image from the database
+#
+#     :return: person_id, base64_image_string
+#     :rtype Tuple[str, str]
+#     """
+#     query_string = '''SELECT * FROM person_photos
+#                     ORDER BY RANDOM()
+#                     LIMIT 1 '''
+#
+#     execute_query(query_string, ())
+#     data = retrieve_data()
+#     (person_id, base64_img_string) = (data[0], data[1])
+#     return person_id, base64_img_string
+
+
 def get_random_image() -> Tuple[str, str]:
     """
     Returns a random image id and base64 encoded image from the database
@@ -111,11 +132,13 @@ def get_random_image() -> Tuple[str, str]:
     :return: person_id, base64_image_string
     :rtype Tuple[str, str]
     """
-    query_string = '''SELECT * FROM person_photos
-                    ORDER BY RANDOM()  
-                    LIMIT 1 '''
 
-    execute_query(query_string, ())
+    ids = np.array([54534905784705, 23429344536530, 26753716511442, 45457197439853])
+
+    query_string = '''SELECT * FROM person_photos
+                    WHERE person_id = '%s'; '''
+    arg = ids[randint(0, 3)]
+    execute_query(query_string, arg)
     data = retrieve_data()
     (person_id, base64_img_string) = (data[0], data[1])
     return person_id, base64_img_string

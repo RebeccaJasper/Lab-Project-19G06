@@ -7,4 +7,6 @@ install:
   - pip install -r requirements.txt
 script: pytest
 deploy:
-  provider: azure_web_apps
+  provider: heroku
+  api_key:
+    secure: HEROKU_API
