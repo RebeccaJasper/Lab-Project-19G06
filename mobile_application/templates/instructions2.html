@@ -7,7 +7,7 @@
 
      <!--Stylesheets-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/CSS/explanation.css">
+    <link rel="stylesheet" href="../static/CSS/instructions.css">
     <link rel="shortcut icon" href="{{url_for('static', filename='favicon.ico')}}">
 
     <!--Fonts-->
@@ -19,7 +19,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="\static\js\explanation.js"></script>
+    <script type="text/javascript" src="\static\js\instructions2.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-light bg-light">
@@ -27,50 +27,22 @@
     </nav>
 
     <div id="explanation-area">
-        <h1 class="explanation">  The Big Idea </h1>
-        <p>
-            In real life, it's often
-            hard for authorities to find a person from peoples'
-            descriptions alone.
+        <h1 class="explanation">  Instructions </h1>
+        <p id = 'instructions-text'>
+            The control panel shown on the right is the same control panel that
+            you will be using when you recreate the unknown person's face.
+            It is therefore advised that you examine these characteristics
+            on the person you will see carefully.
         </p>
-        <p style="text-align: center">
-            The Identi.Fi App aims to change that.
-        </p>
-        <p>
-            The app aims to allow you to give a brief description of a person and
-            create a facial composite, or an identikit, of the person in an
-            easy, user-friendly way. With the person information and the identikit you provide,
-            our Identi.Match App will allow for authorities to find possible real-life matches
-            from an existing person database.
-        </p>
-        <p>
-            The potential, positive impact that this app can have is huge.
-            Some possible uses for it include:
-        </p>
-        <ul>
-            <li> Finding missing persons </li>
-            <li> Identifying suspects </li>
-            <li> Etc.</li>
-        </ul>
 
-        <p>
-            Please help us make this all possible by helping identify an "unknown"
-            person that we're about to introduce you to. Your participation will really
-            help us make this app as effective as possible.
+        <img src='static/img/control-panel.png' id='photo'></img>
+
+        <p id = 'ready-text'>
+            When you're ready to view the image, press the "Start" button below.
         </p>
     </div>
 
-     <div id="brand-name-area">
-        <p class="brand-name">
-            IDENTI.FI <br>
-            APP
-        </p>
-        <p class="sub-heading">
-            Made by Rebecca Jasper and Thabang Mabula
-        </p>
-    </div>
-
-    <button class="continue-btn"> Continue </button>
+    <button class="continue-btn"> Start </button>
 
     <div class="loader"></div> 
 

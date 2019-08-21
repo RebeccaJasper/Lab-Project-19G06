@@ -8,6 +8,7 @@
      <!--Stylesheets-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="../static/CSS/instructions.css">
+    <link rel="shortcut icon" href="{{url_for('static', filename='favicon.ico')}}">
 
     <!--Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
@@ -18,7 +19,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="\static\js\instructions.js"></script>
+    <script type="text/javascript" src="\static\js\instructions1.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-light bg-light">
@@ -28,11 +29,16 @@
     <div id="explanation-area">
         <h1 class="explanation">  Instructions </h1>
         <p>
-            You're about to be shown a picture of a person for 5 seconds.
-            After the 5 seconds are over, you're going to be asked to respond to a few questions about the person
-            that you just saw. Please answer the questions as honestly as possible.
+            You're about to be shown a picture of a non-existent GAN person for 15 seconds.
+            Study the person's face as closely as possible - their face shape, eye shape, mouth shape,
+            eyebrow shape and nose shape - in the alloted time.
         </p>
 
+        <p>
+            After the 15 seconds are over, you're going to be asked to fill out a short form about the person
+            that you just saw. Please answer the questions as accurately as possible.
+        </p>
+            
         <p>
             After you fill in the form, you're going to be directed to the Identi-Kreate tool, where you'll
             get a chance to try and recreate the person's face. Please try and recreate the person's face
@@ -42,13 +48,11 @@
             Once you're done with that, and have pressed the "Submit" button, you're done!
         </p>
 
-        <p>
-            When you're ready to view the image, press the "Start" button below.
-        </p>
     </div>
 
-    <button class="continue-btn"> Start </button>
+    <button class="continue-btn"> Continue </button>
 
+    <div class="loader"></div> 
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-import * as generateFace from './face.js'
+import * as face from './face.js'
 import * as eyes from './eyes.js'
 import * as mouth from './mouth.js'
 import * as nose from './nose.js'
@@ -10,7 +10,7 @@ var scene, camera, renderer, controls
 // Initialise scene with camera, renderer, controls and lighting
 
 scene = new THREE.Scene()
-camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
+camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 270, 500)
 camera.position.set(0, 0, 500)
 camera.lookAt(0, 0, 0)
 
@@ -18,14 +18,13 @@ renderer = new THREE.WebGLRenderer({
   preserveDrawingBuffer: true
 })
 
-// renderer = new THREE.WebGLRenderer()
 renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild(renderer.domElement)
 
 controls = new THREE.OrbitControls(camera, renderer.domElement)
 controls.enablePan = false
-controls.minDistance = 90
-controls.maxDistance = 800
+controls.minDistance = 300
+controls.maxDistance = 500
 controls.enableRotate = false
 
 var ambientLight = new THREE.AmbientLight(0x404040) // soft white light
@@ -52,7 +51,7 @@ var render = function () {
 // run game loop (update, render, repeat)
 var gameLoop = function () {
   requestAnimationFrame(gameLoop)
-  generateFace.update()
+  face.update()
   eyes.update()
   mouth.update()
   nose.update()
@@ -76,4 +75,14 @@ function saveAsImage () {
   }
 }
 
-export { scene, saveAsImage }
+// Save skin and eye colour
+function saveColours () {
+  let colours = {
+    'skinColour': face.material.color.getHexString(),
+    'eyeColour': eyes.material.color.getHexString()
+  }
+  // console.log(colours)
+  return colours
+}
+
+export { scene, saveAsImage, saveColours }
