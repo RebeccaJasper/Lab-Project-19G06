@@ -197,6 +197,15 @@ h1.explanation {
         margin-right: auto;
         margin-bottom: 0;
     }
+    #photo {
+        float: left;
+        margin-top: 2%;
+        margin-bottom: 3%;
+    }
+
+    #instructions-text{
+        width: 100%;
+    }
 }
 
 
