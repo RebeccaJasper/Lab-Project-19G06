@@ -218,6 +218,9 @@ h1.explanation {
         border: none;
         margin-left: 35%;
     }
+    #photo {
+        margin-top: 5%;
+    }
 
 }
 
