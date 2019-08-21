@@ -25,9 +25,9 @@ def consent():
     return render_template('consent.html')
 
 
-@mobile_application.route('/instructions')
-def instructions():
-    return render_template('instructions.html')
+@mobile_application.route('/instructions1')
+def instructions1():
+    return render_template('instructions1.html')
 
 
 @mobile_application.route('/identi-kreate')

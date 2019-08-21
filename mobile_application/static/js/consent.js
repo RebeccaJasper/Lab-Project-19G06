@@ -10,7 +10,7 @@ $(document).ready(() => {
         typeof window.sessionStorage.getItem('photo_id') === 'object') {
     $('#consent-checkbox').change(() => {
       if ($('#consent-checkbox').is(':checked')) {
-        window.location = '/instructions'
+        window.location = '/instructions1'
       }
     })
   } else {
