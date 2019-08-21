@@ -136,6 +136,28 @@ h1.explanation {
         margin-left: 35%;
         margin-bottom: 5%;
     }
+
+    #explanation-area {
+        color: black;
+        background-color: #f0f0f0;
+        font-family: 'Raleway', sans-serif;
+        padding: 25px 50px;
+        overflow: hidden;
+        margin-top: 2%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 0;
+    }
+
+    #photo {
+        float: left;
+        margin-top: 2%;
+        margin-bottom: 3%;
+    }
+
+    #instructions-text{
+        width: 100%;
+    }
 }
 
 
@@ -162,6 +184,27 @@ h1.explanation {
         border: none;
         margin-left: 35%;
         margin-bottom: 5%;
+    }
+    #explanation-area {
+        color: black;
+        background-color: #f0f0f0;
+        font-family: 'Raleway', sans-serif;
+        width: 50% ;
+        padding: 25px 50px;
+        overflow: hidden;
+        margin-top: 2%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 0;
+    }
+    #photo {
+        float: left;
+        margin-top: 2%;
+        margin-bottom: 3%;
+    }
+
+    #instructions-text{
+        width: 100%;
     }
 }
 
@@ -218,7 +261,6 @@ h1.explanation {
         border: none;
         margin-left: 35%;
     }
-
 }
 
 .loader{
