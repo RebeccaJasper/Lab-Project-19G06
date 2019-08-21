@@ -30,6 +30,11 @@ def instructions1():
     return render_template('instructions1.html')
 
 
+@mobile_application.route('/instructions2')
+def instructions2():
+    return render_template('instructions2.html')
+
+
 @mobile_application.route('/identi-kreate')
 def index():
     return render_template('identi-kreate.html')
