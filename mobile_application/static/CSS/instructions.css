@@ -96,6 +96,21 @@ h1.explanation {
     margin-bottom: 0;
 }
 
+#photo {
+    float: right;
+    position: relative;
+    margin-top: -28%;
+}
+
+#instructions-text{
+    width: 55%;
+}
+
+#ready-text{
+    width: 55%;
+}
+
+
 /* Mobile Styles */
 @media only screen and (max-width: 400px) {
     #explanation-area {
