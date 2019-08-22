@@ -51,10 +51,9 @@ h1.submissions {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0;
+    overflow: scroll;
 }
 
-#submissionText {
-    font-family: 'Crimson Pro', serif;
-    text-align: center;
-    font-size: 120%;
+td {
+    padding-right: 100px;
 }
