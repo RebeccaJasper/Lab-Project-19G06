@@ -89,7 +89,8 @@ let findMatches = function () {
 
   displayMatches(persons)
 
-  // change the page display - move submission info to left and show matches on right
+  // change the page display
+
   $('.match-button-btn').attr('disabled', true)
 
   let submissionInfo = document.getElementById('right')
