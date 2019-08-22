@@ -66,7 +66,14 @@ def submit_statement():
     process_submission_photo(submission["identikit"])
     return jsonify(status="success")
 
+@mobile_application.route('/submissions')
+def submissions():
+    return render_template('submissions.html')
 
+
+@mobile_application.route('/submission-info')
+def submission_info():
+    return render_template('submission-info.html')
 @mobile_application.route('/complete')
 def complete():
     return render_template('finish.html')

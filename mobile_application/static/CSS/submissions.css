@@ -1,0 +1,59 @@
+body {
+    background-color: #171717;
+}
+
+#brand-name-area {
+    margin-top: 5%;
+    margin-right: 140px;
+    text-align: center;
+    width: 30%;
+    float: right;
+}
+
+.brand-name {
+    animation-duration: 3s;
+    animation-name: slidein;
+    font-size: 600%;
+    color: white;
+    font-family: 'Abril Fatface', cursive;
+    margin-bottom: 15px;
+}
+
+.sub-heading {
+    color: white;
+    font-family: 'Crimson Pro', serif;
+}
+
+button.viewButton {
+    font-family: 'Crimson Pro', serif;
+    font-size: 120%;
+    margin-top: 5px;
+    width: 30%;
+    text-align: center;
+    background-color: #f0f0f0;
+    border: none;
+    margin-left: 35%;
+}
+
+h1.submissions {
+    font-family: 'Crimson Pro', serif;
+    text-align: center;
+}
+
+#submissions-area {
+    color: black;
+    background-color: #f0f0f0;
+    font-family: 'Raleway', sans-serif;
+    width: 50% ;
+    padding: 25px 50px;
+    overflow: hidden;
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    overflow: scroll;
+}
+
+td {
+    padding-right: 100px;
+}
