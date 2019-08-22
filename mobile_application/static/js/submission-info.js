@@ -91,7 +91,7 @@ let findMatches = function () {
 
   // change the page display
 
-  $('.match-button-btn').attr('disabled', true)
+  $('.match-button-btn').attr('hidden', true)
 
   let submissionInfo = document.getElementById('right')
   submissionInfo.style.visibility = 'visible'
