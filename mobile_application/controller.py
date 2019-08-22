@@ -48,10 +48,13 @@ def convert_feature_string_to_array(feature_string: str) -> np.array:
 
 def convert_db_array_to_feature_vector(db_array: np.array) -> np.array:
     facial_feature_array = convert_feature_string_to_array(db_array[0])
-    desired_facial_marker_points = np.array([0, 4, 6, 7, 8, 9, 10, 12, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 31,
-                                             32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49,
-                                             50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67])
+    desired_facial_marker_dlib_points = np.array([0, 4, 6, 10, 12, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+                                                  31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47,
+                                                  48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64,
+                                                  65, 66, 67])
 
+    desired_facial_marker_points = convert_dlib_points_to_coordinate_indexes(desired_facial_marker_dlib_points)
+    facial_feature_array = facial_feature_array[desired_facial_marker_points.astype(int)]
     race_array = create_race_array(int(db_array[1]))
     sex_array = create_sex_array(str(db_array[2]))
 
@@ -63,12 +66,15 @@ def convert_db_array_to_feature_vector(db_array: np.array) -> np.array:
 
 def convert_identikit_array_to_feature_vector(db_array: np.array) -> np.array:
     facial_feature_array = convert_feature_string_to_array(db_array[0])
-    facial_feature_array = change_coordinate_reference_of__identikit_array(facial_feature_array)
+    # facial_feature_array = change_coordinate_reference_of__identikit_array(facial_feature_array)
+    print("Facial feature size on submission: %d" % facial_feature_array.size)
     race_array = create_race_array(int(db_array[1]))
     sex_array = create_sex_array(str(db_array[2]))
+    print("Race size on submission: %d" % race_array.size)
+    print("Sex size on submission: %d" % sex_array.size)
 
     submission_feature_vector = np.hstack((facial_feature_array, race_array, sex_array))
-
+    print("Submission feature vector length: %d" % submission_feature_vector.size)
     return submission_feature_vector
 
 
@@ -120,7 +126,7 @@ def get_matching_person_ids(submission_id: str) -> np.array:
 
     d = Dissimilarity()
     d.load_feature_vectors(existing_persons_feature_matrix)
-    d.add_vector(existing_persons_feature_matrix[0])
+    d.add_vector(fetch_submission_feature_vector(submission_id))
 
     hac = HeirachicalClustering()
     hac.cluster(d.distance_matrix())
@@ -131,3 +137,4 @@ def get_matching_person_ids(submission_id: str) -> np.array:
 
     return person_ids
 
+print(get_matching_person_ids('70'))

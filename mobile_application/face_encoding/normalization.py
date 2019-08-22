@@ -1,6 +1,6 @@
 from .coordinates import *
 from typing import List
-import nummpy as np
+import numpy as np
 
 
 def normalize_feature_vector(feature_vector: List[int]) -> List[float]:

@@ -70,6 +70,3 @@ def convert_dlib_points_to_coordinate_indexes(dlib_points: np.array) -> np.array
         coordinate_indexes = np.hstack((coordinate_indexes, np.array([x_coordinate]), np.array([y_coordinate])))
 
     return coordinate_indexes
-
-dlib_points = np.array([0, 4])
-print(convert_dlib_points_to_coordinate_indexes(dlib_points))
