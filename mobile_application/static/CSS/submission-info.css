@@ -34,6 +34,7 @@ button.match-button-btn {
     background-color: #1aff1a;
     border: none;
     margin-left: 35%;
+    font-weight: bold;
 }
 
 h1.submission-info {
@@ -156,4 +157,17 @@ h1.matches-info {
         width: 100%;
         opacity: 1;
     }
+}
+
+#back-button {
+    font-family: 'Crimson Pro', serif;
+    font-size: 150%;
+    width: 25%;
+    margin-left: 37.5%;
+    display: inline-block;
+    text-align: center;
+    background-color: #f0f0f0;
+    border: none;
+    position: fixed;
+    margin-top: -25%;
 }

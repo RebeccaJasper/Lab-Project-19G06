@@ -136,3 +136,7 @@ let displayPersonInfo = function (person) {
 
   matchesInfoArea.append(personDiv)
 }
+
+$(document).on('click', '#back-button', function () {
+  window.location = '/submissions'
+})
