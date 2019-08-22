@@ -66,7 +66,52 @@ h1.submission-info {
 
 #left{
     visibility: visible;
+    /* animation-duration: 2s;
+    animation-name: slide-left; */
 }
+
+.move-left
+{
+    animation:anyname 2s;
+    -moz-animation:anyname 2s; /* Firefox */
+    -webkit-animation:anyname 2s; /* Safari and Chrome */
+    animation-direction:left;
+    -moz-animation-direction:left;
+    -webkit-animation-direction:left;
+    animation-timing-function:linear;
+    -moz-animation-timing-function:linear; /* Firefox */
+    -webkit-animation-timing-function:linear; /* Safari and Chrome */
+}
+
+@keyframes anyname
+{
+    from {margin-left:600px;}
+    to {margin-left:0px;}
+}
+
+@-moz-keyframes anyname /* Firefox */
+{
+    from {margin-left:600px;}
+    to {margin-left:0px;}
+}
+
+@-webkit-keyframes anyname /* Safari and Chrome */
+{
+    from {margin-left:600px;}
+    to {margin-left:0px;}
+}
+
+/* @keyframes slide-left {
+    from {
+      margin-left: 0%;
+      width: 100%;
+    }
+
+    to {
+      margin-left: 100%;
+      width: 100%;
+    }
+} */
 
 h1.matches-info {
     font-family: 'Crimson Pro', serif;
