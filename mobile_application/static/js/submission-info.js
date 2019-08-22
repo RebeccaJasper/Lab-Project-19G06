@@ -80,6 +80,12 @@ let findMatches = function () {
       surname: 'another surname',
       gender: 'female',
       race: 'white',
+      photo: 'static/img/1.jpg' },
+    { id: '11111',
+      name: 'another name',
+      surname: 'another surname',
+      gender: 'female',
+      race: 'white',
       photo: 'static/img/1.jpg' }
   ]
 
@@ -96,24 +102,30 @@ let displayMatches = function (persons) {
 
 let displayPersonInfo = function (person) {
   let matchesInfoArea = $('#matches-info-area')
+
+  let personDiv = document.createElement('div')
+  personDiv.className = 'person'
+
   let personID = document.createElement('div')
   personID.innerHTML = '<b>Person ID: </b>' + person.id
-  matchesInfoArea.append(personID)
+  personDiv.append(personID)
 
   let personNames = document.createElement('div')
   personNames.innerHTML = '<b>Full Name : </b>' + person.name + ' ' + person.surname
-  matchesInfoArea.append(personNames)
+  personDiv.append(personNames)
 
   let personGender = document.createElement('div')
   personGender.innerHTML = '<b>Gender: </b>' + person.gender
-  matchesInfoArea.append(personGender)
+  personDiv.append(personGender)
 
   let personRace = document.createElement('div')
   personRace.innerHTML = '<b>Race: </b>' + person.race
-  matchesInfoArea.append(personRace)
+  personDiv.append(personRace)
 
   let photo = document.createElement('img')
-  photo.className = 'person-photo'
+  photo.id = 'person-photo'
   photo.src = person.photo
-  matchesInfoArea.append(photo)
+  personDiv.append(photo)
+
+  matchesInfoArea.append(personDiv)
 }
