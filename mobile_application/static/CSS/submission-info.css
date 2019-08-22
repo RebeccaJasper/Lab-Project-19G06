@@ -80,7 +80,7 @@ h1.matches-info {
     width: 50% ;
     height: 355px;
     padding: 25px 50px;
-    overflow: hidden;
+    overflow: scroll;
     margin-top: 2%;
     margin-left: auto;
     margin-right: auto;
