@@ -66,40 +66,46 @@ h1.submission-info {
 
 #left{
     visibility: visible;
-    /* animation-duration: 2s;
-    animation-name: slide-left; */
+    width: 100%;
 }
 
 .move-left
 {
-    animation:anyname 2s;
-    -moz-animation:anyname 2s; /* Firefox */
-    -webkit-animation:anyname 2s; /* Safari and Chrome */
-    animation-direction:left;
-    -moz-animation-direction:left;
-    -webkit-animation-direction:left;
-    animation-timing-function:linear;
-    -moz-animation-timing-function:linear; /* Firefox */
-    -webkit-animation-timing-function:linear; /* Safari and Chrome */
+    animation:slide-left 2s;
+    animation-timing-function: linear;
+
+    /* -moz-animation:anyname 2s; Firefox
+    -webkit-animation:anyname 2s; Safari and Chrome */
+    /* -moz-animation-direction:left;
+    -webkit-animation-direction:left; */
+    /* -moz-animation-timing-function:linear; Firefox
+    -webkit-animation-timing-function:linear; Safari and Chrome */
 }
 
-@keyframes anyname
+@keyframes slide-left
 {
-    from {margin-left:600px;}
-    to {margin-left:0px;}
+    from {
+        margin-left: 0%;
+        width: 100%;
+    }
+
+    to {
+        margin-left: -25%;
+        width: 100%;
+    }
 }
 
-@-moz-keyframes anyname /* Firefox */
-{
+/* Firefox */
+/* @-moz-keyframes anyname  {
     from {margin-left:600px;}
     to {margin-left:0px;}
-}
+} */
 
-@-webkit-keyframes anyname /* Safari and Chrome */
-{
+/* Safari and Chrome */
+/* @-webkit-keyframes anyname {
     from {margin-left:600px;}
     to {margin-left:0px;}
-}
+} */
 
 /* @keyframes slide-left {
     from {
