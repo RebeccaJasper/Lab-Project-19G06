@@ -48,6 +48,10 @@ def convert_feature_string_to_array(feature_string: str) -> np.array:
 
 def convert_db_array_to_feature_vector(db_array: np.array) -> np.array:
     facial_feature_array = convert_feature_string_to_array(db_array[0])
+    desired_facial_marker_points = np.array([0, 4, 6, 7, 8, 9, 10, 12, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 31,
+                                             32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49,
+                                             50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67])
+
     race_array = create_race_array(int(db_array[1]))
     sex_array = create_sex_array(str(db_array[2]))
 
@@ -55,6 +59,7 @@ def convert_db_array_to_feature_vector(db_array: np.array) -> np.array:
     submission_feature_vector = np.hstack((facial_feature_array, race_array, sex_array))
 
     return submission_feature_vector
+
 
 def convert_identikit_array_to_feature_vector(db_array: np.array) -> np.array:
     facial_feature_array = convert_feature_string_to_array(db_array[0])
@@ -62,10 +67,10 @@ def convert_identikit_array_to_feature_vector(db_array: np.array) -> np.array:
     race_array = create_race_array(int(db_array[1]))
     sex_array = create_sex_array(str(db_array[2]))
 
-
     submission_feature_vector = np.hstack((facial_feature_array, race_array, sex_array))
 
     return submission_feature_vector
+
 
 def fetch_submission_feature_vector(submission_id: str)-> np.array:
     database_feature_vector = get_submission_feature_vector(submission_id)
