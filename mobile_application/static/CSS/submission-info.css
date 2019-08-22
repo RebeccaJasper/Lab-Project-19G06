@@ -1,0 +1,173 @@
+body {
+    background-color: #171717;
+    overflow: hidden;
+}
+
+#brand-name-area {
+    margin-top: 5%;
+    margin-right: 140px;
+    text-align: center;
+    width: 30%;
+    float: right;
+}
+
+.brand-name {
+    animation-duration: 3s;
+    animation-name: slidein;
+    font-size: 600%;
+    color: white;
+    font-family: 'Abril Fatface', cursive;
+    margin-bottom: 15px;
+}
+
+.sub-heading {
+    color: white;
+    font-family: 'Crimson Pro', serif;
+}
+
+button.match-button-btn {
+    font-family: 'Raleway', sans-serif;
+    font-size: 150%;
+    margin-top: 5px;
+    width: 30%;
+    text-align: center;
+    background-color: #1aff1a;
+    border: none;
+    margin-left: 35%;
+    font-weight: bold;
+}
+
+h1.submission-info {
+    font-family: 'Crimson Pro', serif;
+    text-align: left;
+}
+
+#submission-info-area {
+    color: black;
+    background-color: #f0f0f0;
+    font-family: 'Raleway', sans-serif;
+    width: 48% ;
+    height: 355px;
+    padding: 25px 50px;
+    overflow: hidden;
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+}
+
+#identikit-photo{
+    /* Crop the image */
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    float: right;
+    position: relative;
+    top: -150px;
+}
+
+#left{
+    visibility: visible;
+    width: 100%;
+}
+
+.move-left
+{
+    animation:slide-left 2s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards; 
+}
+
+@keyframes slide-left
+{
+    from {
+        margin-left: 0%;
+        width: 100%;
+    }
+
+    to {
+        margin-left: -25%;
+        width: 100%;
+    }
+}
+
+
+h1.matches-info {
+    font-family: 'Crimson Pro', serif;
+    text-align: left;
+    position: fixed;
+}
+    
+#matches-info-area {
+    color: black;
+    background-color: #f0f0f0;
+    font-family: 'Raleway', sans-serif;
+    width: 48% ;
+    height: 355px;
+    padding: 25px 50px;
+    overflow: scroll;
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    position: relative;
+    top: -383px;
+    text-align: right;
+}
+
+#content{
+    margin-top: 55px;
+}
+
+#right{
+    visibility: hidden;
+    width: 100%;
+}
+
+.person{
+    margin: 10px 0px;
+    height: 350px;
+}
+
+#person-photo{
+    max-height:80%;
+    max-width: auto;
+    float: left;
+    position: relative;
+    top: -100px;
+}
+
+.move-right
+{
+    animation:slide-right 2s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards; 
+}
+
+@keyframes slide-right
+{
+    from {
+        margin-left: 0%;
+        width: 100%;
+        opacity: 0;
+    }
+
+    to {
+        margin-left: 25%;
+        width: 100%;
+        opacity: 1;
+    }
+}
+
+#back-button {
+    font-family: 'Crimson Pro', serif;
+    font-size: 150%;
+    width: 25%;
+    margin-left: 37.5%;
+    display: inline-block;
+    text-align: center;
+    background-color: #f0f0f0;
+    border: none;
+    position: fixed;
+    margin-top: -25%;
+}
