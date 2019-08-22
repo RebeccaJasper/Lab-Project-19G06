@@ -107,7 +107,6 @@ h1.matches-info {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0;
-    float: right;  
 }
 
 #right{
@@ -132,17 +131,18 @@ h1.matches-info {
 {
     animation:slide-right 2s;
     animation-timing-function: linear;
+    animation-fill-mode: forwards; 
 }
 
 @keyframes slide-right
 {
     from {
-        margin-left: -25%;
+        margin-left: 0%;
         width: 100%;
     }
 
     to {
-        margin-left: 0%;
+        margin-left: 25%;
         width: 100%;
     }
 }
