@@ -71,7 +71,6 @@ def convert_identikit_array_to_feature_vector(db_array: np.array) -> np.array:
     sex_array = create_sex_array(str(db_array[2]))
 
     submission_feature_vector = np.hstack((facial_feature_array, race_array, sex_array))
-    print("Submission feature vector length: %d" % submission_feature_vector.size)
     return submission_feature_vector
 
 
@@ -101,8 +100,6 @@ def persons_feature_matrix() -> np.ndarray:
 
     return feature_matrix
 
-
-# print(persons_feature_matrix()[0])
 
 def process_submission_photo(base64_string: str) -> None:
     add_image_to_identikit_database(base64_string)

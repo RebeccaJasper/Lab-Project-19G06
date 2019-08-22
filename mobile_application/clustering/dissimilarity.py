@@ -34,8 +34,7 @@ class Dissimilarity(object):
 
         :rtype: None
         """
-        print("Size of submission vector: %d" % vector.size)
-        print("Size of person vector: %d" % self.__feature_vectors.shape[1])
+
         if np.array_equal(self.__feature_vectors, np.array([])):
             self.load_feature_vectors(vector)
         else:
