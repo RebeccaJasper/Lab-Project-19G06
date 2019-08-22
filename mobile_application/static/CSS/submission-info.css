@@ -63,3 +63,30 @@ h1.submission-info {
     position: relative;
     top: -150px;
 }
+
+#left{
+    visibility: visible;
+}
+
+h1.matches-info {
+    font-family: 'Crimson Pro', serif;
+    text-align: left;
+}
+    
+#matches-info-area {
+    color: black;
+    background-color: #f0f0f0;
+    font-family: 'Raleway', sans-serif;
+    width: 50% ;
+    height: 355px;
+    padding: 25px 50px;
+    overflow: hidden;
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+}
+
+#right{
+    visibility: hidden;
+}
