@@ -108,7 +108,7 @@ let displayMatches = function (persons) {
 }
 
 let displayPersonInfo = function (person) {
-  let matchesInfoArea = $('#matches-info-area')
+  let matchesInfoArea = $('#content')
 
   let personDiv = document.createElement('div')
   personDiv.className = 'person'

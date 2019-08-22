@@ -1,5 +1,6 @@
 body {
     background-color: #171717;
+    overflow: hidden;
 }
 
 #brand-name-area {
@@ -93,6 +94,7 @@ h1.submission-info {
 h1.matches-info {
     font-family: 'Crimson Pro', serif;
     text-align: left;
+    position: fixed;
 }
     
 #matches-info-area {
@@ -110,6 +112,10 @@ h1.matches-info {
     position: relative;
     top: -425px;
     text-align: right;
+}
+
+#content{
+    margin-top: 55px;
 }
 
 #right{
