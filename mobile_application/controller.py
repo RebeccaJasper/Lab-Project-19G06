@@ -7,16 +7,28 @@ import numpy as np
 
 
 def process_submission_info(firstname: str = "", surname: str = "", gender: float = "1", race: float = "0.16", person_id:int = -1):
+    """
+    Controller function for saving AJAX submission of user statement to the database
+
+    :param firstname: First name from submission
+    :param surname: Surname from submission
+    :param gender: Gender from submission
+    :param race: Race from submission
+    :param person_id: Person_id from submission
+    :rtype: None
+    """
     save_identikit_info_to_db(firstname, surname, gender, race, person_id)
 
 
-def process_submission_feature_vector(feature_vector_string: str) -> None:
-    feature_vector = list(map(int, feature_vector_string.split(',')))
-    feature_vector = normalize_feature_vector(feature_vector)
-    add_feature_vector_to_identikit_db(feature_vector)
-
-
 def create_race_array(race_int: int) -> np.array:
+    """
+    Converts a integer-encoded race into a ones-hot encoded feature vector
+
+    :param race_int: Character representing race
+    :type: int
+    :return: Ones-hot encoded representation of race
+    :rtype: np.array
+    """
     if race_int > 6 or race_int < 1:
         ValueError('Race integer "%d"  does not exist in current encoding scheme' % race_int)
 
@@ -26,6 +38,14 @@ def create_race_array(race_int: int) -> np.array:
 
 
 def create_sex_array(gender_str: str) -> np.array:
+    """
+    Converts a string-encoded sex into a ones-hot encoded feature vector
+
+    :param gender_str: Character representing sex
+    :type: str
+    :return: Ones-hot encoded representation of sex
+    :rtype: np.array
+    """
     sex_array = np.zeros(4)
     if gender_str == gender["Female"]:
         sex_array[0] = 1
@@ -42,11 +62,27 @@ def create_sex_array(gender_str: str) -> np.array:
 
 
 def convert_feature_string_to_array(feature_string: str) -> np.array:
+    """
+    Convert a string of feature values into an array of features
+
+    :param feature_string: A string of feature values
+    :type: str
+    :return: Array of features
+    :rtype: np.array
+    """
     feature_array = np.array(feature_string.split(','), float)
     return feature_array
 
 
 def convert_db_array_to_feature_vector(db_array: np.array) -> np.array:
+    """
+    Convert an array of features extract from the persons database into a feature vector suitable for clustering
+
+    :param db_array: Array of features extracted from the database
+    :type: np.array
+    :return: An array of features suitable for clustering
+    :rtype: np.array
+    """
     facial_feature_array = convert_feature_string_to_array(db_array[0])
     desired_facial_marker_dlib_points = np.array([0, 4, 6, 10, 12, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
                                                   31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47,
@@ -65,6 +101,14 @@ def convert_db_array_to_feature_vector(db_array: np.array) -> np.array:
 
 
 def convert_identikit_array_to_feature_vector(db_array: np.array) -> np.array:
+    """
+    Convert an array of features extract from the identikit database into a feature vector suitable for clustering
+
+    :param db_array: Array of features extracted from the database
+    :type: np.array
+    :return: An array of features suitable for clustering
+    :rtype: np.array
+    """
     facial_feature_array = convert_feature_string_to_array(db_array[0])
     facial_feature_array = change_coordinate_reference_of__identikit_array(facial_feature_array)
     race_array = create_race_array(int(db_array[1]))
@@ -75,6 +119,14 @@ def convert_identikit_array_to_feature_vector(db_array: np.array) -> np.array:
 
 
 def fetch_submission_feature_vector(submission_id: str)-> np.array:
+    """
+    Controller function that fetches and composes a feature vector for a specified submission_id
+
+    :param submission_id: The submission_id of the desired submission
+    :type: str
+    :return: An array containing elements of the submission's feature vector
+    :rtype: np.array
+    """
     database_feature_vector = get_submission_feature_vector(submission_id)
 
     submission_feature_vector = convert_identikit_array_to_feature_vector(database_feature_vector)
@@ -84,7 +136,8 @@ def fetch_submission_feature_vector(submission_id: str)-> np.array:
 
 def persons_feature_matrix() -> np.ndarray:
     """
-    Retreives feature matrix
+    Retrieves feature matrix
+
     :rtype: np.ndarray
     """
     feature_matrix = np.array([])
@@ -97,11 +150,17 @@ def persons_feature_matrix() -> np.ndarray:
         else:
             feature_matrix = np.hstack((feature_matrix, convert_db_array_to_feature_vector(row)))
 
-
     return feature_matrix
 
 
 def process_submission_photo(base64_string: str) -> None:
+    """
+    Controller function for passing the base64 encoded image to the database
+
+    :param base64_string: Base 64 string
+    :type: str
+    :rtype: None
+    """
     add_image_to_identikit_database(base64_string)
 
 
@@ -115,20 +174,23 @@ def get_matching_person_ids(submission_id: str) -> np.array:
     :rtype: np.array
     """
 
+    # Fetch existing persons from the database
     existing_persons_feature_matrix = persons_feature_matrix()
     existing_person_ids = get_person_ids()
 
+    # Calculate dissimilarity between existing persons and the specified submission id
     d = Dissimilarity()
     d.load_feature_vectors(existing_persons_feature_matrix)
     d.add_vector(fetch_submission_feature_vector(submission_id))
 
+    # Perform clustering
     hac = HeirachicalClustering()
     hac.cluster(d.distance_matrix())
 
+    # Extract person_ids that share the same cluster label as the submission
     cluster_label = hac.cluster_indexes()[-1]
     indexes = hac.find_cluster_siblings(cluster_label)[0:-2]
     person_ids = existing_person_ids[indexes]
 
     return person_ids
 
-print(get_matching_person_ids('70'))
