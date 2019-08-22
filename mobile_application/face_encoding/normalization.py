@@ -24,6 +24,7 @@ def normalize_feature_vector(feature_vector: List[int]) -> List[float]:
 
     return normalized_feature_vector
 
+
 def change_coordinate_reference_of__identikit_array(feature_vector: np.array, ref_coordinate: Coordinate) -> np.array:
     """
     Function used to change the coordinate references of an array of feature points
