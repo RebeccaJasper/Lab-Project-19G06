@@ -66,12 +66,9 @@ def convert_db_array_to_feature_vector(db_array: np.array) -> np.array:
 
 def convert_identikit_array_to_feature_vector(db_array: np.array) -> np.array:
     facial_feature_array = convert_feature_string_to_array(db_array[0])
-    # facial_feature_array = change_coordinate_reference_of__identikit_array(facial_feature_array)
-    print("Facial feature size on submission: %d" % facial_feature_array.size)
+    facial_feature_array = change_coordinate_reference_of__identikit_array(facial_feature_array)
     race_array = create_race_array(int(db_array[1]))
     sex_array = create_sex_array(str(db_array[2]))
-    print("Race size on submission: %d" % race_array.size)
-    print("Sex size on submission: %d" % sex_array.size)
 
     submission_feature_vector = np.hstack((facial_feature_array, race_array, sex_array))
     print("Submission feature vector length: %d" % submission_feature_vector.size)
