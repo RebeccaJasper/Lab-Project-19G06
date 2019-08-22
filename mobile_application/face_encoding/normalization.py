@@ -16,7 +16,7 @@ def normalize_feature_vector(feature_vector: List[int]) -> List[float]:
 
     return normalized_feature_vector
 
-def change_coordinate_reference_of_array(feature_vector: np.array) -> np.array:
+def change_coordinate_reference_of__identikit_array(feature_vector: np.array) -> np.array:
     changed_feature_vector = []
     reference_point = Coordinate(feature_vector[100], feature_vector[101])
     for x, y in zip(*[iter(feature_vector)]*2):
