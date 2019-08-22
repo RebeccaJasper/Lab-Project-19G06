@@ -95,12 +95,9 @@ let findMatches = function () {
 
   let submissionInfo = document.getElementById('right')
   submissionInfo.style.visibility = 'visible'
+  submissionInfo.className = 'move-right'
 
   let matchesInfo = document.getElementById('left')
-  // matchesInfo.style = {
-  //   position: 'absolute',
-  //   margin: '10px'
-  // }
   matchesInfo.className = 'move-left'
 }
 

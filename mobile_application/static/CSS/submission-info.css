@@ -73,13 +73,6 @@ h1.submission-info {
 {
     animation:slide-left 2s;
     animation-timing-function: linear;
-
-    /* -moz-animation:anyname 2s; Firefox
-    -webkit-animation:anyname 2s; Safari and Chrome */
-    /* -moz-animation-direction:left;
-    -webkit-animation-direction:left; */
-    /* -moz-animation-timing-function:linear; Firefox
-    -webkit-animation-timing-function:linear; Safari and Chrome */
 }
 
 @keyframes slide-left
@@ -95,29 +88,6 @@ h1.submission-info {
     }
 }
 
-/* Firefox */
-/* @-moz-keyframes anyname  {
-    from {margin-left:600px;}
-    to {margin-left:0px;}
-} */
-
-/* Safari and Chrome */
-/* @-webkit-keyframes anyname {
-    from {margin-left:600px;}
-    to {margin-left:0px;}
-} */
-
-/* @keyframes slide-left {
-    from {
-      margin-left: 0%;
-      width: 100%;
-    }
-
-    to {
-      margin-left: 100%;
-      width: 100%;
-    }
-} */
 
 h1.matches-info {
     font-family: 'Crimson Pro', serif;
@@ -155,4 +125,23 @@ h1.matches-info {
     float: right;
     position: relative;
     top: -100px;
+}
+
+.move-right
+{
+    animation:slide-right 2s;
+    animation-timing-function: linear;
+}
+
+@keyframes slide-right
+{
+    from {
+        margin-left: 0%;
+        width: 100%;
+    }
+
+    to {
+        margin-left: 25%;
+        width: 100%;
+    }
 }
