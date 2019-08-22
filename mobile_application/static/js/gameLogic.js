@@ -48,9 +48,10 @@ var render = function () {
   renderer.render(scene, camera)
 }
 
-// run game loop (update, render, repeat)
-var gameLoop = function () {
-  requestAnimationFrame(gameLoop)
+let request = requestAnimationFrame(animate)
+
+function animate () {
+  console.log('loop')
   face.update()
   eyes.update()
   mouth.update()
@@ -60,10 +61,13 @@ var gameLoop = function () {
   render()
 }
 
-gameLoop()
+animate()
+
+function cancelAnimate () {
+  cancelAnimationFrame(request)
+}
 
 // Save screen/frame as a jpeg image
-
 function saveAsImage () {
   try {
     var strMime = 'image/jpeg'
@@ -85,4 +89,4 @@ function saveColours () {
   return colours
 }
 
-export { scene, saveAsImage, saveColours }
+export { scene, saveAsImage, saveColours, animate, cancelAnimate }
