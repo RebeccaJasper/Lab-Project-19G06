@@ -53,8 +53,6 @@ let displaySubmissionInfo = function (submission) {
 }
 
 let findMatches = function () {
-  console.log('find matches')
-
   // REFINE AJAX REQUEST WHEN LINKING TO DATABASE
   // Make an AJAX request to retrieve the persons matching the submission ID
   // let submissionID = JSON.parse(window.sessionStorage.getItem('submissionID'))
@@ -93,6 +91,9 @@ let findMatches = function () {
 
   // change the page display - move submission info to left and show matches on right
   $('.match-button-btn').attr('disabled', true)
+
+  let submissionInfo = document.getElementById('right')
+  submissionInfo.style.visibility = 'visible'
 }
 
 let displayMatches = function (persons) {
