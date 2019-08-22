@@ -109,6 +109,7 @@ h1.matches-info {
     margin-bottom: 0;
     position: relative;
     top: -425px;
+    text-align: right;
 }
 
 #right{
@@ -124,7 +125,7 @@ h1.matches-info {
 #person-photo{
     max-height:80%;
     max-width: auto;
-    float: right;
+    float: left;
     position: relative;
     top: -100px;
 }
