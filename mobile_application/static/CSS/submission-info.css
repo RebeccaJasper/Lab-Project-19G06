@@ -73,6 +73,7 @@ h1.submission-info {
 {
     animation:slide-left 2s;
     animation-timing-function: linear;
+    animation-fill-mode: forwards; 
 }
 
 @keyframes slide-left
