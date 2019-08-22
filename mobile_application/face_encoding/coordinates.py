@@ -60,3 +60,4 @@ def change_coordinate_reference(ref: Coordinate, point: Coordinate) -> Coordinat
     y = point.y - ref.y
     new_point = Coordinate(x, y)
     return new_point
+

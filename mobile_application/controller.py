@@ -1,5 +1,5 @@
 from mobile_application.models import *
-from mobile_application.face_encoding.normalization import normalize_feature_vector
+from mobile_application.face_encoding.normalization import *
 from mobile_application.clustering.dissimilarity import Dissimilarity
 from mobile_application.clustering.feature_encoding import *
 from mobile_application.clustering.hierarchical_clusterring import HeirachicalClustering
@@ -24,6 +24,7 @@ def create_race_array(race_int: int) -> np.array:
     race_array[race_int - 1] = 1
     return race_array
 
+
 def create_sex_array(gender_str: str) -> np.array:
     sex_array = np.zeros(4)
     if gender_str == gender["Female"]:
@@ -39,10 +40,10 @@ def create_sex_array(gender_str: str) -> np.array:
 
     return sex_array
 
+
 def convert_feature_string_to_array(feature_string: str) -> np.array:
     feature_array = np.array(feature_string.split(','), float)
     return feature_array
-
 
 
 def convert_db_array_to_feature_vector(db_array: np.array) -> np.array:
@@ -55,6 +56,16 @@ def convert_db_array_to_feature_vector(db_array: np.array) -> np.array:
 
     return submission_feature_vector
 
+def convert_identikit_array_to_feature_vector(db_array: np.array) -> np.array:
+    facial_feature_array = convert_feature_string_to_array(db_array[0])
+    facial_feature_array = change_coordinate_reference_of_array(facial_feature_array)
+    race_array = create_race_array(int(db_array[1]))
+    sex_array = create_sex_array(str(db_array[2]))
+
+
+    submission_feature_vector = np.hstack((facial_feature_array, race_array, sex_array))
+
+    return submission_feature_vector
 
 def fetch_submission_feature_vector(submission_id: str)-> np.array:
     database_feature_vector = get_submission_feature_vector(submission_id)
@@ -115,4 +126,3 @@ def get_matching_person_ids(submission_id: str) -> np.array:
 
     return person_ids
 
-print(get_matching_person_ids('1520'))
