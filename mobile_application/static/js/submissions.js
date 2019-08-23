@@ -54,7 +54,8 @@ let appendSubmissionToTable = function (submission) {
 $(document).on('click', '#viewButton', function (e) {
   let submissionID = $(this).parents('tr')[0].id
   console.log(submissionID)
-  window.sessionStorage.setItem('submissionID', submissionID)
+//  window.sessionStorage.setItem('submissionID', submissionID)
 
-  window.location = '/submission-info'
+  window.location = '/submission-info/'.concat(submissionID)
+
 })

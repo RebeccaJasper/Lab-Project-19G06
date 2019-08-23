@@ -8,15 +8,18 @@ let loadSubmissionInfo = function () {
   // REFINE AJAX REQUEST WHEN LINKING TO DATABASE
   // Make an AJAX request to retrieve the submission information by the submission ID
   // let submissionID = JSON.parse(window.sessionStorage.getItem('submissionID'))
-  // $.ajax({
-  //   url: '/api/submit',
-  //   method: 'POST',
-  //   contentType: 'application/json',
-  //   data: JSON.stringify(submissionID),
-  //   success: function (submission) {
-  //     displaySubmissionInfo(submission)
-  //   }
-  // })
+  let pathArray = window.location.pathname.split('/')
+  let submissionID = Object()
+  submissionID.submissionID = pathArray[pathArray.length - 1]
+   $.ajax({
+     url: '/api/submission-info',
+     method: 'POST',
+     contentType: 'application/json',
+     data: JSON.stringify(submissionID),
+     success: function (submission) {
+//       displaySubmissionInfo(submission)
+     }
+   })
 
   let submission = { id: '12345',
     name: 'name',

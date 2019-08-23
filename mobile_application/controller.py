@@ -19,6 +19,10 @@ def process_submission_info(firstname: str = "", surname: str = "", gender: floa
     """
     save_identikit_info_to_db(firstname, surname, gender, race, person_id)
 
+def process_submission_feature_vector(feature_vector_string: str) -> None:
+    feature_vector = list(map(int, feature_vector_string.split(',')))
+    feature_vector = normalize_feature_vector(feature_vector)
+    add_feature_vector_to_identikit_db(feature_vector)
 
 def create_race_array(race_int: int) -> np.array:
     """
