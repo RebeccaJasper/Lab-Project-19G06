@@ -199,6 +199,16 @@ def get_person_ids() -> np.array:
     return np.array(data)
 
 
+def get_submission_biographical_info(submission_id: str) -> np.array:
+    query_string = """SELECT firstname, surname, gender, race
+                        FROM identikits
+                        WHERE submission_id = %d """
+
+    execute_query(query_string, submission_id)
+    data = retrieve_data()
+    return np.array(data)
+
+
 def get_person_feature_matrix() -> np.ndarray:
     """
     Get a feature vector of the existing person database

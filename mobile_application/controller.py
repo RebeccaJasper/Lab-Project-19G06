@@ -19,11 +19,39 @@ def process_submission_info(firstname: str = "", surname: str = "", gender: floa
     """
     save_identikit_info_to_db(firstname, surname, gender, race, person_id)
 
+
 def process_submission_feature_vector(feature_vector_string: str) -> None:
     feature_vector = list(map(int, feature_vector_string.split(',')))
     feature_vector = normalize_feature_vector(feature_vector)
     add_feature_vector_to_identikit_db(feature_vector)
 
+
+def get_submission_info(submission_id: str) -> None:
+    """
+    Gets biographical information of a particular submission
+
+    :param submission_id:
+    :type: str
+    :return: Array of submission biographical information
+    :rtype: np.array
+    """
+    submission_info = get_submission_biographical_info(int(submission_id))
+
+    return_array = []
+
+    return_array.append(submission_info[0])
+    return_array.append(submission_info[1])
+
+    return_array.append(str([key for key in gender.items() if key[1] == submission_info[2]][0][0]))
+    # print(str([key for key in gender.items() if key[1] == submission_info[2]][0][0]))
+    return_array.append(str([key for key in race.items() if key[1] == int(submission_info[3])][0][0]))
+    # print(submission_info[3])
+    # # submission_info[3] = next(key for key, value in race.items() if value == submission_info[3])
+
+    return np.array(return_array)
+
+print(get_submission_info('70'))
+#
 def create_race_array(race_int: int) -> np.array:
     """
     Converts a integer-encoded race into a ones-hot encoded feature vector
