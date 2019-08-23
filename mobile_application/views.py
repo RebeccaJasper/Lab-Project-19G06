@@ -3,7 +3,7 @@ from os import path, getcwd
 from mobile_application.models import get_random_image
 from mobile_application.controller import *
 from flask import Blueprint, render_template, jsonify, request
-from json import loads
+from json import loads, dumps
 
 
 mobile_application = Blueprint('mobile_application', __name__)
@@ -70,6 +70,12 @@ def submissions():
     return render_template('submissions.html')
 
 
+@mobile_application.route('api/submissions',  methods=['POST'])
+def submission_list():
+    submission_list = get_submission_list()
+    return dumps(submission_list)
+
+
 # @mobile_application.route('/submission-info')
 # def submission_info():
 #     return render_template('submission-info.html')
@@ -81,7 +87,7 @@ def submission_info(submission_id):
     return render_template('submission-info.html')
 
 
-@mobile_application.route('api/submission-info',  methods=['POST'])
+@mobile_application.route('api/submissions',  methods=['POST'])
 def submission_info_get():
     submission = request.get_json()
     submission_info = get_submission_info(submission["submissionID"])

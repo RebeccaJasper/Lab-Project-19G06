@@ -191,6 +191,7 @@ def get_submission_feature_vector(submission_id: int) -> np.array:
     data = retrieve_data()
     return np.array(data)
 
+
 def get_person_ids() -> np.array:
     query_string = '''SELECT persons.person_id
                         from persons'''
@@ -227,3 +228,16 @@ def get_person_feature_matrix() -> np.ndarray:
     return np.array(data)
 
 
+def get_submission_ids() -> np.ndarray:
+    """
+    Get all the submission ids from the person database
+
+    :return: Array containing all the submission ids
+    :rtype: np.ndarray
+    """
+    query_string = """SELECT submission_timestamp, submission_id
+                        FROM identikits"""
+    execute_query(query_string, ())
+    submission_ids = retrieve_all()
+
+    return submission_ids

@@ -4,6 +4,7 @@ from mobile_application.clustering.dissimilarity import Dissimilarity
 from mobile_application.clustering.feature_encoding import *
 from mobile_application.clustering.hierarchical_clusterring import HeirachicalClustering
 import numpy as np
+import json
 
 
 def process_submission_info(firstname: str = "", surname: str = "", gender: float = "1", race: float = "0.16", person_id:int = -1):
@@ -52,8 +53,7 @@ def get_submission_info(submission_id: str) -> None:
 
     return np.array(return_array)
 
-print(get_submission_info('70'))
-#
+
 def create_race_array(race_int: int) -> np.array:
     """
     Converts a integer-encoded race into a ones-hot encoded feature vector
@@ -228,3 +228,16 @@ def get_matching_person_ids(submission_id: str) -> np.array:
 
     return person_ids
 
+def get_submission_list():
+    submission_list = get_submission_ids()
+    return_list = []
+    for data in submission_list:
+        submission = {
+            "time": str(data[0]),
+            "id": data[1]
+        }
+        return_list.append(submission)
+
+    return return_list
+
+print(get_submission_list())
