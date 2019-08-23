@@ -38,7 +38,7 @@ def execute_query(query_string: str, args: tuple) -> None:
     """
 
     query = query_string % args
-    print(query)
+    # print(query)
     cursor.execute(query)
 
 
@@ -69,3 +69,6 @@ def retrieve_all() -> List:
     rtype: List
     """
     return cursor.fetchall()
+
+def close():
+    ps_connection.close()

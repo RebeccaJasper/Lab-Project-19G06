@@ -144,7 +144,8 @@ def convert_identikit_array_to_feature_vector(db_array: np.array) -> np.array:
     :rtype: np.array
     """
     facial_feature_array = convert_feature_string_to_array(db_array[0])
-    facial_feature_array = change_coordinate_reference_of__identikit_array(facial_feature_array)
+    facial_feature_array = change_coordinate_reference_of__identikit_array(facial_feature_array,
+                                                     Coordinate(facial_feature_array[100], facial_feature_array[101]))
     race_array = create_race_array(int(db_array[1]))
     sex_array = create_sex_array(str(db_array[2]))
 
@@ -226,7 +227,13 @@ def get_matching_person_ids(submission_id: str) -> np.array:
     indexes = hac.find_cluster_siblings(cluster_label)[0:-2]
     person_ids = existing_person_ids[indexes]
 
-    return person_ids
+
+    # Convert result to id array
+    return_array = []
+    for id in person_ids:
+        return_array.append(id[0])
+
+    return np.array(return_array)
 
 def get_submission_list():
     submission_list = get_submission_ids()
@@ -240,4 +247,27 @@ def get_submission_list():
 
     return return_list
 
-print(get_submission_list())
+
+def get_matching_persons_list(person_ids: np.array):
+    persons_list = get_persons_biographical_info(person_ids)
+    print(persons_list)
+    return_list = []
+
+    for entry in persons_list:
+        for data in entry:
+            person = {
+                "id": entry[0],
+                "name": entry[1],
+                "surname": entry[2],
+                "gender": entry[3],
+                "race": entry[4],
+                "photo": "data:image/jpg;base64," + entry[5]
+            }
+            return_list.append(person)
+
+    return return_list
+
+
+# print(get_matching_persons_list(np.array(['38876451186475'])))
+
+# close()

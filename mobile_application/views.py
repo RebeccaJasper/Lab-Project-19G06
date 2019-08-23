@@ -95,6 +95,14 @@ def submission_info_get():
                    gender=submission_info[3], race=submission_info[4], photo=submission_info[5])
 
 
+@mobile_application.route('/api/findmatches',  methods=['POST'])
+def get_matches():
+    submission = request.get_json()
+    matching_person_ids = get_matching_person_ids(submission["submissionID"])
+    print(matching_person_ids)
+    matches_list = get_matching_persons_list(matching_person_ids)
+    return dumps(matches_list)
+
 @mobile_application.route('/complete')
 def complete():
     return render_template('finish.html')

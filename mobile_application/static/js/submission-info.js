@@ -60,13 +60,17 @@ let findMatches = function () {
   // REFINE AJAX REQUEST WHEN LINKING TO DATABASE
   // Make an AJAX request to retrieve the persons matching the submission ID
   // let submissionID = JSON.parse(window.sessionStorage.getItem('submissionID'))
+  let pathArray = window.location.pathname.split('/')
+  let submissionID = Object()
+  submissionID.submissionID = pathArray[pathArray.length - 1]
+
    $.ajax({
-     url: '/api/submit',
+     url: '/api/findmatches',
      method: 'POST',
      contentType: 'application/json',
      data: JSON.stringify(submissionID),
      success: function (persons) {
-       displayMatches(persons)
+       displayMatches(JSON.parse(persons))
      }
    })
 

@@ -36,10 +36,10 @@ def change_coordinate_reference_of__identikit_array(feature_vector: np.array, re
     :return: Array of feature points
     """
     changed_feature_vector = []
-    reference_point = Coordinate(feature_vector[100], feature_vector[101])
+    # reference_point = Coordinate(feature_vector[100], feature_vector[101])
     for x, y in zip(*[iter(feature_vector)]*2):
         current_coordinate = Coordinate(x, y)
-        new_point = change_coordinate_reference(current_coordinate, reference_point)
+        new_point = change_coordinate_reference(current_coordinate, ref_coordinate)
         changed_feature_vector.append(new_point.x)
         changed_feature_vector.append(new_point.y)
 
