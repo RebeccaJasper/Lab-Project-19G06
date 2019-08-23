@@ -87,7 +87,7 @@ def submission_info(submission_id):
     return render_template('submission-info.html')
 
 
-@mobile_application.route('api/submissions',  methods=['POST'])
+@mobile_application.route('/api/submission-info',  methods=['POST'])
 def submission_info_get():
     submission = request.get_json()
     submission_info = get_submission_info(submission["submissionID"])
