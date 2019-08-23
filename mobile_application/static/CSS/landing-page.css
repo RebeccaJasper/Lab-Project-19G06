@@ -35,7 +35,7 @@ body {
         width: 100%;
       }
     }
-    #home-page-btn {
+    .home-page-btn {
         font-family: 'Crimson Pro', serif;
         font-size: 250%;
         margin-top: 10%;
@@ -93,7 +93,7 @@ body {
         width: 100%;
       }
     }
-    #home-page-btn {
+    .home-page-btn {
         font-family: 'Crimson Pro', serif;
         font-size: 180%;
         margin-top: 2%;
@@ -184,15 +184,44 @@ body {
 
 /* Desktop Styles */
 @media only screen and (min-width: 961px) {
-    #home-page-btn {
+
+    body {
+        background-color: #171717;
+        overflow: hidden;
+    }
+
+    #identi-kreate-btn {
         font-family: 'Crimson Pro', serif;
-        font-size: 250%;
-        margin-left: 40%;
-        margin-top: 0%;
-        width: 30%;
+        font-size: 200%;
+        /* width: 20%; */
         text-align: center;
         background-color: #f0f0f0;
         border: none;
+        position: absolute;
+        z-index: 5;
+        float: left;
+        margin-left: 50%;
+        margin-top: 3%;
+        animation-duration: 3s;
+        animation-name: slidein;
+        animation-fill-mode: forwards;
+    }
+
+    #identi-match-btn {
+        font-family: 'Crimson Pro', serif;
+        font-size: 200%;
+        /* width: 20%; */
+        text-align: center;
+        background-color: #f0f0f0;
+        border: none;
+        position: absolute;
+        z-index: 5;
+        float: left;
+        margin-left: 50%;
+        margin-top: 8%;
+        animation-duration: 3s;
+        animation-name: slidein;
+        animation-fill-mode: forwards;
     }
 
     #brand-name-area {
@@ -238,7 +267,7 @@ body {
         z-index: 5;
         margin-left: 44%;
         margin-top: 5%;
-        animation-duration: 6s;
+        animation-duration: 3s;
         animation-name: slide-real;
     }
     .home-page-cartoon-image {
@@ -248,7 +277,7 @@ body {
         float: right;
         margin-left: 72%;
         margin-top: 5%;
-        animation-duration: 6s;
+        animation-duration: 3s;
         animation-name: slide-fake;
     }
 
