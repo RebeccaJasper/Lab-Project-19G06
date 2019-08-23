@@ -241,3 +241,26 @@ def get_submission_ids() -> np.ndarray:
     submission_ids = retrieve_all()
 
     return submission_ids
+
+
+def get_persons_biographical_info(person_ids: np.array) -> np.array:
+    query_string = '''SELECT persons.firstname, persons.surname, persons.gender, persons.race,
+                            identikit_photos.photo
+                        from identikits
+                        inner join identikit_photos on identikit_photos.submission_id=identikits.submission_id'''
+
+    for i in range(0, person_ids.size):
+        if i == 0:
+            query_string = query_string + "\n WHERE identikits.submission_id=%d "
+        elif i != 0:
+            query_string = query_string + "\n OR identikits.submission_id=%d"
+
+    query_string = query_string + ";"
+
+    execute_query(query_string, tuple(person_ids))
+    data = retrieve_all()
+    return data
+
+
+
+print(get_persons_biographical_info(np.array([38876451186475, 20481879647791, 42471982792450])))
