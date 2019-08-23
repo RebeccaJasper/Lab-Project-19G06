@@ -6,8 +6,6 @@ $('.loader').fadeIn('slow')
 
 $(document).ready(() => {
   $('.loader').fadeOut('slow')
-
-  // window.location = window.sessionStorage.getItem('prevRoute')
 })
 
 let identiKreate = function () {
