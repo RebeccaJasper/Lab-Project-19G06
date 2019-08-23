@@ -33,27 +33,27 @@ let loadSubmissionInfo = function () {
 }
 
 let displaySubmissionInfo = function (submission) {
-  let submissionInfoArea = $('#submission-info-area')
-  let submissionID = document.createElement('div')
-  submissionID.innerHTML = '<b>Submission ID: </b>' + submission.id
-  submissionInfoArea.append(submissionID)
+    let submissionInfoArea = $('#submission-info-area')
+    let submissionID = document.createElement('div')
+    submissionID.innerHTML = '<b>Submission ID: </b>' + submission.id
+    submissionInfoArea.append(submissionID)
 
-  let submissionNames = document.createElement('div')
-  submissionNames.innerHTML = '<b>Full Name : </b>' + submission.name + ' ' + submission.surname
-  submissionInfoArea.append(submissionNames)
+    let submissionNames = document.createElement('div')
+    submissionNames.innerHTML = '<b>Full Name : </b>' + submission.name + ' ' + submission.surname
+    submissionInfoArea.append(submissionNames)
 
-  let submissionGender = document.createElement('div')
-  submissionGender.innerHTML = '<b>Gender: </b>' + submission.gender
-  submissionInfoArea.append(submissionGender)
+    let submissionGender = document.createElement('div')
+    submissionGender.innerHTML = '<b>Gender: </b>' + submission.gender
+    submissionInfoArea.append(submissionGender)
 
-  let submissionRace = document.createElement('div')
-  submissionRace.innerHTML = '<b>Race: </b>' + submission.race
-  submissionInfoArea.append(submissionRace)
+    let submissionRace = document.createElement('div')
+    submissionRace.innerHTML = '<b>Race: </b>' + submission.race
+    submissionInfoArea.append(submissionRace)
 
-  let photo = document.createElement('img')
-  photo.id = 'identikit-photo'
-  photo.src = submission.photo
-  submissionInfoArea.append(photo)
+    let photo = document.createElement('img')
+    photo.id = 'identikit-photo'
+    photo.src = submission.photo
+    submissionInfoArea.append(photo)
 }
 
 let findMatches = function () {

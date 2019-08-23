@@ -86,7 +86,7 @@ def submission_info_get():
     submission = request.get_json()
     submission_info = get_submission_info(submission["submissionID"])
     return jsonify(id=submission_info[0], name=submission_info[1], surname=submission_info[2],
-                   gender=submission_info[3], race=submission_info[4], photo='static/img/identikit.jpg')
+                   gender=submission_info[3], race=submission_info[4], photo=submission_info[5])
 
 
 @mobile_application.route('/complete')

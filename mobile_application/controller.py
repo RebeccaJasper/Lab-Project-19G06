@@ -46,6 +46,7 @@ def get_submission_info(submission_id: str) -> None:
     return_array.append(str([key for key in gender.items() if key[1] == submission_info[2]][0][0]))
     # print(str([key for key in gender.items() if key[1] == submission_info[2]][0][0]))
     return_array.append(str([key for key in race.items() if key[1] == int(submission_info[3])][0][0]))
+    return_array.append("data:image/jpg;base64," + submission_info[4])
     # print(submission_info[3])
     # # submission_info[3] = next(key for key, value in race.items() if value == submission_info[3])
 

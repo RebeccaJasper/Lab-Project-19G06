@@ -200,9 +200,11 @@ def get_person_ids() -> np.array:
 
 
 def get_submission_biographical_info(submission_id: str) -> np.array:
-    query_string = """SELECT firstname, surname, gender, race
-                        FROM identikits
-                        WHERE submission_id = %d """
+    query_string = '''SELECT identikits.firstname, identikits.surname, identikits.gender, identikits.race,
+                            identikit_photos.photo
+                        from identikits
+                        inner join identikit_photos on identikit_photos.submission_id=identikits.submission_id
+                        where identikits.submission_id=%d'''
 
     execute_query(query_string, submission_id)
     data = retrieve_data()
