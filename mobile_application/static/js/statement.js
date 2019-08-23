@@ -5,6 +5,7 @@ $(document).ready(() => {
 
   // Object for holding submission information
   var submission = {}
+
   // window.sessionStorage.setItem('prevRoute', window.location)
 
   // Toggle all further details based on whether the person is known or not

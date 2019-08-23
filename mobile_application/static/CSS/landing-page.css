@@ -35,9 +35,9 @@ body {
         width: 100%;
       }
     }
-    .home-page-btn {
+    #identi-kreate-btn {
         font-family: 'Crimson Pro', serif;
-        font-size: 250%;
+        font-size: 200%;
         margin-top: 10%;
         width: 60% !important;
         margin-left: 20%;
@@ -47,6 +47,19 @@ body {
         border: none;
         position: relative;
     }
+
+    #identi-match-btn {
+      font-family: 'Crimson Pro', serif;
+      font-size: 200%;
+      margin-top: 10%;
+      width: 60% !important;
+      margin-left: 20%;
+      display: inline-block;
+      text-align: center;
+      background-color: #f0f0f0;
+      border: none;
+      position: relative;
+  }
 
     .sub-heading {
         color: white;
@@ -93,11 +106,11 @@ body {
         width: 100%;
       }
     }
-    .home-page-btn {
+    #identi-kreate-btn {
         font-family: 'Crimson Pro', serif;
         font-size: 180%;
         margin-top: 2%;
-        margin-bottom: 10%;
+        margin-bottom: 2%;
         width: 60% !important;
         margin-left: 20%;
         display: inline-block;
@@ -106,6 +119,20 @@ body {
         border: none;
         position: relative;
     }
+
+    #identi-match-btn {
+      font-family: 'Crimson Pro', serif;
+      font-size: 180%;
+      margin-top: 2%;
+      margin-bottom: 5%;
+      width: 60% !important;
+      margin-left: 20%;
+      display: inline-block;
+      text-align: center;
+      background-color: #f0f0f0;
+      border: none;
+      position: relative;
+  }
 
     .sub-heading {
         color: white;
