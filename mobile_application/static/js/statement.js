@@ -6,8 +6,6 @@ $(document).ready(() => {
   // Object for holding submission information
   var submission = {}
 
-  // window.sessionStorage.setItem('prevRoute', window.location)
-
   // Toggle all further details based on whether the person is known or not
   $('#known-before-yes').on('change', () => {
     if ($('#known-before-yes').is(':checked')) {
@@ -35,6 +33,27 @@ $(document).ready(() => {
       $('#name-is-known').css('display', 'none')
     }
   })
+
+  // // Toggle input field for "other"
+  // $('#other').on('change', () => {
+  //   console.log('other changed')
+  //   if ($('#other').is(':checked')) {
+  //     console.log('other checked')
+  //     $('#other-selected').css('display', 'block')
+  //   }
+  // })
+
+  $('#interaction').on('change', () => {
+    displayOther()
+  })
+
+  let displayOther = function () {
+    if ($('#interaction').value === 'other') {
+      $('#other').css('display', 'block')
+    }
+
+    // if (this.value === 'other') { this.form['other'].style.visibility = 'visible' } else { this.form['other'].style.visibility = 'hidden' };
+  }
 
   // Submission
   $('#submit-btn').click(() => {
