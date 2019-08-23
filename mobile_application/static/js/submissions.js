@@ -16,7 +16,7 @@ let loadSubmissions = function () {
 //       displaySubmissions(res)
 //     }
 //   })
-  let submissions = [{ time: '22/08/2019', id: '12345', statement: 'statement 1', photo: 'photo 1' },
+  let submissions = [{ time: '22/08/2019', id: '70', statement: 'statement 1', photo: 'photo 1' },
     { time: '20/08/2019', id: '54321', statement: 'statement 2', photo: 'photo 2' },
     { time: '18/08/2019', id: '32154', statement: 'statement 3', photo: 'photo 3' }]
   displaySubmissions(submissions)

@@ -1,8 +1,7 @@
 from flask import Blueprint, render_template, jsonify
 from os import path, getcwd
 from mobile_application.models import get_random_image
-from mobile_application.controller import process_submission_info, process_submission_feature_vector, \
-    process_submission_photo
+from mobile_application.controller import *
 from flask import Blueprint, render_template, jsonify, request
 from json import loads
 
@@ -85,8 +84,9 @@ def submission_info(submission_id):
 @mobile_application.route('api/submission-info',  methods=['POST'])
 def submission_info_get():
     submission = request.get_json()
-    print(submission["submissionID"])
-    return
+    submission_info = get_submission_info(submission["submissionID"])
+    return jsonify(id=submission_info[0], name=submission_info[1], surname=submission_info[2],
+                   gender=submission_info[3], race=submission_info[4], photo='static/img/identikit.jpg')
 
 
 @mobile_application.route('/complete')

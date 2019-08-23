@@ -18,17 +18,18 @@ let loadSubmissionInfo = function () {
      data: JSON.stringify(submissionID),
      success: function (submission) {
 //       displaySubmissionInfo(submission)
+        displaySubmissionInfo(submission)
      }
    })
-
-  let submission = { id: '12345',
-    name: 'name',
-    surname: 'surname',
-    gender: 'male',
-    race: 'black',
-    photo: 'static/img/identikit.jpg' }
-
-  displaySubmissionInfo(submission)
+//
+//  let submission = { id: '12345',
+//    name: 'name',
+//    surname: 'surname',
+//    gender: 'male',
+//    race: 'black',
+//    photo: 'static/img/identikit.jpg' }
+//
+//  displaySubmissionInfo(submission)
 }
 
 let displaySubmissionInfo = function (submission) {

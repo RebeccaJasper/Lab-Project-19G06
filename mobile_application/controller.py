@@ -39,6 +39,7 @@ def get_submission_info(submission_id: str) -> None:
 
     return_array = []
 
+    return_array.append(submission_id)
     return_array.append(submission_info[0])
     return_array.append(submission_info[1])
 
