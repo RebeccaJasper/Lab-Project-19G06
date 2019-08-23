@@ -202,7 +202,7 @@ body {
         float: left;
         margin-left: 50%;
         margin-top: 3%;
-        animation-duration: 3s;
+        animation-duration: 2s;
         animation-name: slidein;
         animation-fill-mode: forwards;
     }
@@ -219,7 +219,7 @@ body {
         float: left;
         margin-left: 50%;
         margin-top: 8%;
-        animation-duration: 3s;
+        animation-duration: 2s;
         animation-name: slidein;
         animation-fill-mode: forwards;
     }
