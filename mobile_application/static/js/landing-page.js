@@ -11,7 +11,7 @@ $(document).ready(() => {
 })
 
 let identiKreate = function () {
-  window.location = '/explanation'
+  window.location = '/statement'
 }
 
 let identiMatch = function () {
