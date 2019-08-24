@@ -67,7 +67,9 @@ class Dissimilarity(object):
         distance_matrix = np.array([])
 
         feature_ranges = self.ranges()
-        weights = np.ones(feature_ranges.size)
+        # weights_1 = np.ones(feature_ranges.size)
+        # print(weights_1)
+        weights = np.append(np.full((1, 106), 0.8), np.full((1, 10), 5*10**10))
 
         for current_row_index in np.arange(0, self.__feature_vectors.shape[0]):
             start = current_row_index + 1
@@ -81,6 +83,7 @@ class Dissimilarity(object):
                     distance_matrix = np.append(distance_matrix, [distance])
 
         return distance_matrix
+
 
     @staticmethod
     def distance(vector_1: np.array, vector_2: np.array, feature_range: np.array, weights: np.array)-> np.array:

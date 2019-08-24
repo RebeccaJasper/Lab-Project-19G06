@@ -24,7 +24,7 @@ class HeirachicalClustering(object):
         :rtype: None
         """
         dists = squareform(distance_matrix)
-        clustering = AgglomerativeClustering(affinity="precomputed", linkage="complete").fit(dists)
+        clustering = AgglomerativeClustering(n_clusters=7, affinity="precomputed", linkage="complete").fit(dists)
         self.__cluster_labels = clustering.labels_
         return
 

@@ -99,7 +99,6 @@ def submission_info_get():
 def get_matches():
     submission = request.get_json()
     matching_person_ids = get_matching_person_ids(submission["submissionID"])
-    print(matching_person_ids)
     matches_list = get_matching_persons_list(matching_person_ids)
     return dumps(matches_list)
 

@@ -110,9 +110,10 @@ let findMatches = function () {
 }
 
 let displayMatches = function (persons) {
-  persons.forEach(person => {
-    displayPersonInfo(person)
-  })
+    console.log(persons.length)
+    persons.forEach(person => {
+        displayPersonInfo(person)
+    })
 }
 
 let displayPersonInfo = function (person) {

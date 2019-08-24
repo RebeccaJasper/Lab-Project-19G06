@@ -148,7 +148,6 @@ def save_identikit_info_to_db(firstname: str, surname: str, identikit_gender: fl
     query_string = """INSERT INTO identikits(firstname, surname, gender, race, person_id)
                     VALUES ('%s', '%s', '%s', '%d', '%s');"""
     args = (firstname, surname, gender[identikit_gender], race[identikit_race], person_id)
-    print(query_string % args)
     execute_query(query_string, args)
     commit_changes()
 

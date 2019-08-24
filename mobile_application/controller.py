@@ -221,10 +221,15 @@ def get_matching_person_ids(submission_id: str) -> np.array:
     # Perform clustering
     hac = HeirachicalClustering()
     hac.cluster(d.distance_matrix())
+    # hac.plot_dentogram(d.distance_matrix())
 
     # Extract person_ids that share the same cluster label as the submission
+    print(hac.cluster_indexes())
     cluster_label = hac.cluster_indexes()[-1]
+    print("The submission cluster label: %d" % cluster_label)
     indexes = hac.find_cluster_siblings(cluster_label)[0:-2]
+    print("The other indexes: ")
+    print(indexes)
     person_ids = existing_person_ids[indexes]
 
 
@@ -250,7 +255,6 @@ def get_submission_list():
 
 def get_matching_persons_list(person_ids: np.array):
     persons_list = get_persons_biographical_info(person_ids)
-    print(persons_list)
     return_list = []
 
     for entry in persons_list:
@@ -264,6 +268,7 @@ def get_matching_persons_list(person_ids: np.array):
                 "photo": "data:image/jpg;base64," + entry[5]
             }
             return_list.append(person)
+
 
     return return_list
 
