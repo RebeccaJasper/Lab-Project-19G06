@@ -267,8 +267,8 @@ def get_matching_persons_list(person_ids: np.array):
                 "id": entry[0],
                 "name": entry[1],
                 "surname": entry[2],
-                "gender": entry[3],
-                "race": entry[4],
+                "gender": str([key for key in gender.items() if key[1] == entry[3]][0][0]),
+                "race": str([key for key in race.items() if key[1] == int(entry[4])][0][0]),
                 "photo": "data:image/jpg;base64," + entry[5]
             }
             return_list.append(person)
