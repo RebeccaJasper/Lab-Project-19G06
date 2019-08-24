@@ -73,3 +73,5 @@ class HeirachicalClustering(object):
         :rtype: np.array
         """
         return np.where(self.__cluster_labels == cluster_label)[0]
+
+

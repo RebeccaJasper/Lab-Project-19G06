@@ -224,13 +224,17 @@ def get_matching_person_ids(submission_id: str) -> np.array:
     # hac.plot_dentogram(d.distance_matrix())
 
     # Extract person_ids that share the same cluster label as the submission
+
     print(hac.cluster_indexes())
     cluster_label = hac.cluster_indexes()[-1]
     print("The submission cluster label: %d" % cluster_label)
-    indexes = hac.find_cluster_siblings(cluster_label)[0:-2]
+    indexes = hac.find_cluster_siblings(cluster_label)[0:-1]
     print("The other indexes: ")
     print(indexes)
-    person_ids = existing_person_ids[indexes]
+    person_ids = np.array([])
+    if indexes.size != 0:
+        person_ids = existing_person_ids[indexes]
+    print(person_ids)
 
 
     # Convert result to id array
