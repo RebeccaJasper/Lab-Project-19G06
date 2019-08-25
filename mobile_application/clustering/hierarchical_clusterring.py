@@ -24,7 +24,7 @@ class HeirachicalClustering(object):
         :rtype: None
         """
         dists = squareform(distance_matrix)
-        clustering = AgglomerativeClustering(affinity="precomputed", linkage="complete").fit(dists)
+        clustering = AgglomerativeClustering(n_clusters=8, affinity="precomputed", linkage="complete").fit(dists)
         self.__cluster_labels = clustering.labels_
         return
 
@@ -74,12 +74,4 @@ class HeirachicalClustering(object):
         """
         return np.where(self.__cluster_labels == cluster_label)[0]
 
-# feature_matrix = np.array(([1, 2, 4, 5, 1, 0, 0, 0, 1, 0], [1, 3, 6, 5, 0, 1, 0, 0, 1, 0], [1, 3, 6, 5, 0, 1, 0, 0, 0, 1]))
-# d = Dissimilarity()
-# d.load_feature_vectors(feature_matrix)
-# matrix = d.distance_matrix()
-# hac = HeirachicalClustering()
-# hac.cluster(matrix)
-# hac.plot_dentogram(matrix)
-# print(hac.cluster_indexes())
-# print("Other indexes: ", hac.find_cluster_siblings(0))
+
