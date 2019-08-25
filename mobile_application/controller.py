@@ -244,7 +244,14 @@ def get_matching_person_ids(submission_id: str) -> np.array:
 
     return np.array(return_array)
 
-def get_submission_list():
+
+def get_submission_list() -> List[dict]:
+    """
+    Get a list of the off all the submissions and their time stamps
+
+    :return: List of dictionary objects containing the timestamps and submission_ids of each submission
+    :rtype: List[dict]
+    """
     submission_list = get_submission_ids()
     return_list = []
     for data in submission_list:
@@ -257,7 +264,15 @@ def get_submission_list():
     return return_list
 
 
-def get_matching_persons_list(person_ids: np.array):
+def get_matching_persons_list(person_ids: np.array) -> List[dict]:
+    """
+    Retrieve the personal biographical information for a given array of person_ids
+
+    :param person_ids: Array of person_ids of matching persons/desired persons
+    :type: np.array
+    :return: List of dictionary objects containing biographical information of each person
+    :rtype: List[dict]
+    """
     persons_list = get_persons_biographical_info(person_ids)
     return_list = []
 
@@ -276,7 +291,3 @@ def get_matching_persons_list(person_ids: np.array):
 
     return return_list
 
-
-# print(get_matching_persons_list(np.array(['38876451186475'])))
-
-# close()
