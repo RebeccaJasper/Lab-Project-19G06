@@ -261,18 +261,18 @@ def get_matching_persons_list(person_ids: np.array):
     persons_list = get_persons_biographical_info(person_ids)
     return_list = []
 
+    # for entry in persons_list:
     for entry in persons_list:
-        for data in entry:
-            person = {
-                "id": entry[0],
-                "name": entry[1],
-                "surname": entry[2],
-                "gender": str([key for key in gender.items() if key[1] == entry[3]][0][0]),
-                "race": str([key for key in race.items() if key[1] == int(entry[4])][0][0]),
-                "photo": "data:image/jpg;base64," + entry[5]
-            }
-            return_list.append(person)
-
+        person = {
+            "id": entry[0],
+            "name": entry[1],
+            "surname": entry[2],
+            "gender": str([key for key in gender.items() if key[1] == entry[3]][0][0]),
+            "race": str([key for key in race.items() if key[1] == int(entry[4])][0][0]),
+            "photo": "data:image/jpg;base64," + entry[5]
+        }
+        return_list.append(person)
+    print(return_list)
 
     return return_list
 
