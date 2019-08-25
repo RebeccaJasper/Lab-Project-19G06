@@ -5,7 +5,7 @@ $(document).ready(() => {
 
   // Object for holding submission information
   var submission = {}
-  window.sessionStorage.setItem('prevRoute', window.location)
+
   // Toggle all further details based on whether the person is known or not
   $('#known-before-yes').on('change', () => {
     if ($('#known-before-yes').is(':checked')) {
@@ -31,6 +31,15 @@ $(document).ready(() => {
   $('#person-name-no').click(() => {
     if ($('#person-name-no').is(':checked')) {
       $('#name-is-known').css('display', 'none')
+    }
+  })
+
+  $('#interaction').on('change', () => {
+    let value = $('#interaction').val()
+    if (value === 'other') {
+      $('#other').css('display', 'block')
+    } else {
+      $('#other').css('display', 'none')
     }
   })
 
@@ -63,7 +72,6 @@ $(document).ready(() => {
 
     if ($('#race :selected').val() === 'white') {
       submission.race = 'White'
-      console.log(submission.race)
     }
     if ($('#race :selected').val() === 'asian') {
       submission.race = 'Indian and Asian'

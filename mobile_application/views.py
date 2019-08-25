@@ -10,8 +10,12 @@ mobile_application = Blueprint('mobile_application', __name__)
 
 
 @mobile_application.route('/')
+def landing():
+    return render_template('landing-page.html')
+
+@mobile_application.route('/identi-fi')
 def home():
-    return render_template('home.html')
+    return render_template('home.html')    
 
 
 @mobile_application.route('/explanation')

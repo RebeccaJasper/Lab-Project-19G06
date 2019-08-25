@@ -18,7 +18,7 @@ $(document).ready(() => {
     showLoader()
 
     let statement = JSON.parse(window.sessionStorage.getItem('statement'))
-    let person_id = JSON.parse(window.sessionStorage.getItem('photo_id'))
+    // let person_id = JSON.parse(window.sessionStorage.getItem('photo_id'))
 
     // Format string
     let identikit = gameWindow.saveAsImage()
@@ -31,7 +31,7 @@ $(document).ready(() => {
       'gender': statement.gender,
       'race': statement.race,
       'feature_vector': markers.facialMarkers.toString(),
-      'person_id': person_id,
+      // 'person_id': person_id,
       'identikit': identikit,
       'skinColour': colours.skinColour,
       'eyeColour': colours.eyeColour
