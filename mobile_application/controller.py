@@ -4,7 +4,6 @@ from mobile_application.clustering.dissimilarity import Dissimilarity
 from mobile_application.clustering.feature_encoding import *
 from mobile_application.clustering.hierarchical_clusterring import HeirachicalClustering
 import numpy as np
-import json
 
 
 def process_submission_info(firstname: str = "", surname: str = "", gender: float = "1", race: float = "0.16", person_id:int = -1):
@@ -276,7 +275,6 @@ def get_matching_persons_list(person_ids: np.array) -> List[dict]:
     persons_list = get_persons_biographical_info(person_ids)
     return_list = []
 
-    # for entry in persons_list:
     for entry in persons_list:
         person = {
             "id": entry[0],
