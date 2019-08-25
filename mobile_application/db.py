@@ -38,7 +38,7 @@ def execute_query(query_string: str, args: tuple) -> None:
     """
 
     query = query_string % args
-    print(query)
+    # print(query)
     cursor.execute(query)
 
 
@@ -60,3 +60,15 @@ def retrieve_data() -> List:
     """
     return cursor.fetchone()
 
+
+def retrieve_all() -> List:
+    """
+    Retrieves all rows returned by the DBMS from previously executed query
+
+    :return: Row of data retrieved from query
+    rtype: List
+    """
+    return cursor.fetchall()
+
+def close():
+    ps_connection.close()
