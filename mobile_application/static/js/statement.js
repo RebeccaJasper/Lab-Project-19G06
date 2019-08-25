@@ -34,26 +34,14 @@ $(document).ready(() => {
     }
   })
 
-  // // Toggle input field for "other"
-  // $('#other').on('change', () => {
-  //   console.log('other changed')
-  //   if ($('#other').is(':checked')) {
-  //     console.log('other checked')
-  //     $('#other-selected').css('display', 'block')
-  //   }
-  // })
-
   $('#interaction').on('change', () => {
-    displayOther()
-  })
-
-  let displayOther = function () {
-    if ($('#interaction').value === 'other') {
+    let value = $('#interaction').val()
+    if (value === 'other') {
       $('#other').css('display', 'block')
+    } else {
+      $('#other').css('display', 'none')
     }
-
-    // if (this.value === 'other') { this.form['other'].style.visibility = 'visible' } else { this.form['other'].style.visibility = 'hidden' };
-  }
+  })
 
   // Submission
   $('#submit-btn').click(() => {
