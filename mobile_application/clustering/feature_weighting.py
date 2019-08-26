@@ -1,14 +1,21 @@
 
 feature_vector_indexes = {
-    "Eyes": list(range(8, 20)),
-    "Nose": list(range(6, 8)),
-    "Mouth": list(range(20, 24)),
-    # "Face": list(range(0, 24)),
-    # "Race": list(range(24, 31)),
-    # "Gender": list(range(30, 34))
-    "Face": list(range(0, 106)),
+    "Other_facial_features": list(range(0, 32)),
+    "Nose": list(range(32, 42)),
+    "Eyes": list(range(42, 66)),
+    "Mouth": list(range(66, 106)),
     "Race": list(range(106, 112)),
-    "Gender": list(range(112, 116))
+    "Gender": list(range(112, 116)),
+    "Face": list(range(0, 106))
+}
+
+all_weights = {
+    "Nose": 0.088,
+    "Eyes": 0.81,
+    "Mouth": 0.022,
+    "Other_facial_features": 0.08,
+    "Race": 0.5,
+    "Gender": 1
 }
 
 
