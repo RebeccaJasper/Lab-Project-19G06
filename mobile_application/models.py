@@ -148,7 +148,6 @@ def save_identikit_info_to_db(firstname: str, surname: str, identikit_gender: fl
     query_string = """INSERT INTO identikits(firstname, surname, gender, race, person_id)
                     VALUES ('%s', '%s', '%s', '%d', '%s');"""
     args = (firstname, surname, gender[identikit_gender], race[identikit_race], person_id)
-    print(query_string % args)
     execute_query(query_string, args)
     commit_changes()
 
@@ -172,7 +171,7 @@ def add_person_info_to_db(person_id: str, firstname: str, surname: str) -> None:
     commit_changes()
 
 
-def get_submission_features(submission_id: str) -> np.array:
+def get_submission_feature_vector(submission_id: int) -> np.array:
     """
     Get the feature vector of a particular feature vector
 
@@ -181,8 +180,35 @@ def get_submission_features(submission_id: str) -> np.array:
     :return: Feature vector associated with the specified submission_id
     :rtype: np.array
     """
-    feature_vector = np.array([])
-    return feature_vector
+    query_string = '''SELECT identikit_markers.face_encoding, identikits.race, identikits.gender
+                        from identikits
+                        inner join identikit_markers on identikit_markers.submission_id=identikits.submission_id
+                        where identikits.submission_id=%d'''
+
+    arg = int(submission_id)
+    execute_query(query_string, arg)
+    data = retrieve_data()
+    return np.array(data)
+
+
+def get_person_ids() -> np.array:
+    query_string = '''SELECT persons.person_id
+                        from persons'''
+    execute_query(query_string, ())
+    data = retrieve_all()
+    return np.array(data)
+
+
+def get_submission_biographical_info(submission_id: str) -> np.array:
+    query_string = '''SELECT identikits.firstname, identikits.surname, identikits.gender, identikits.race,
+                            identikit_photos.photo
+                        from identikits
+                        inner join identikit_photos on identikit_photos.submission_id=identikits.submission_id
+                        where identikits.submission_id=%d'''
+
+    execute_query(query_string, submission_id)
+    data = retrieve_data()
+    return np.array(data)
 
 
 def get_person_feature_matrix() -> np.ndarray:
@@ -192,7 +218,45 @@ def get_person_feature_matrix() -> np.ndarray:
     :return: 2-D array of all feature vectors of the existing persons database
     :rtype: np.ndarray
     """
-    feature_vector = np.array([])
-    return feature_vector
 
+    query_string = '''SELECT face_encodings.face_encoding, persons.race, persons.sex
+                    FROM persons 
+                    inner join face_encodings on face_encodings.person_id = persons.person_id'''
+    execute_query(query_string, ())
+    data = retrieve_all()
+    return np.array(data)
+
+
+def get_submission_ids() -> np.ndarray:
+    """
+    Get all the submission ids from the person database
+
+    :return: Array containing all the submission ids
+    :rtype: np.ndarray
+    """
+    query_string = """SELECT submission_timestamp, submission_id
+                        FROM identikits"""
+    execute_query(query_string, ())
+    submission_ids = retrieve_all()
+
+    return submission_ids
+
+
+def get_persons_biographical_info(person_ids: np.array) -> np.array:
+    query_string = '''SELECT persons.person_id, persons.firstname, persons.surname, persons.sex, persons.race,
+                            person_photos.photo
+                        from persons
+                        inner join person_photos on person_photos.person_id=persons.person_id'''
+
+    for i in range(0, len(person_ids)):
+        if i == 0:
+            query_string = query_string + "\n WHERE persons.person_id='%s'"
+        elif i != 0:
+            query_string = query_string + "\n OR persons.person_id='%s'"
+
+    query_string = query_string + ";"
+
+    execute_query(query_string, tuple(person_ids))
+    data = retrieve_all()
+    return data
 

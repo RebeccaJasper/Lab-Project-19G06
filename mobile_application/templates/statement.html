@@ -20,13 +20,13 @@
 
 <body>
     <nav class="navbar navbar-light bg-light">
-      <span class="navbar-brand mb-0 h1">Identi.Fi App</span>
+      <span class="navbar-brand mb-0 h1">Identi.Kreate App</span>
     </nav>
 
     <div id="explanation-area">
         <h1 class="explanation"> Statement </h1>
 
-        <p> Did you know of/see this person prior to this <span style="color: red"> * </span>:
+        <p> Did you know of/see this person prior to this? <span style="color: red"> * </span>:
             <div class="form-check">
               <label class="form-check-label">
                 <input type="radio" class="form-check-input" name="known-before-group" id="known-before-yes">Yes
@@ -73,18 +73,70 @@
         </p>
 
         <p>
-            Person's race <span style="color: red"> * </span>:
-              <select id="race">
-                <option value="unknown">Unknown</option>
-                <option value="white">White</option>
-                <option value="coloured">Coloured</option>
-                <option value="indian">Indian</option>
-                <option value="asian">Asian</option>
-                <option value="black">Black</option>
-              </select>
+          Person's race <span style="color: red"> * </span>:
+            <select id="race">
+              <option value="unknown">Unknown</option>
+              <option value="white">White</option>
+              <option value="coloured">Coloured</option>
+              <option value="indian">Indian</option>
+              <option value="asian">Asian</option>
+              <option value="black">Black</option>
+            </select>
         </p>
 
-            <button type="button" class="btn btn-success" id="submit-btn" style="display: none">Submit Response</button>
+        <p>
+          Person's age:
+            <select id="age">
+              <option value="0-10">0-10 years</option>
+              <option value="11-20">11-20 years</option>
+              <option value="21-30">21-30 years</option>
+              <option value="31-40">31-40 years</option>
+              <option value="41-50">41-50 years</option>
+              <option value="51-60">51-60 years</option>
+              <option value="61-70">61-70 years</option>
+              <option value="71-80">71-80 years</option>
+              <option value="81-90">81-90 years</option>
+              <option value="91-100">91-100 years</option>
+            </select>
+        </p>
+
+        <p>
+          Person's occupation (if known):
+          <input type="text" class="form-control" placeholder="Occupation" id="occupation">
+        </p>
+
+        <p>
+          Where did you last see this person:
+          <input type="text" class="form-control" placeholder="Location" id="location">
+        </p>
+
+        <p>
+            Nature of interaction:
+              <select id="interaction">
+                <option value="theft">Theft</option>
+                <option value="sexual">Sexual Harrassment</option>
+                <option value="violent">Violent</option>
+                <option value="civil">Civil</option>
+                <option value="friendly">Friendly</option>
+                <option value="other">Other (please specify)</option>
+              </select>
+
+              <div id="other" style="display: none;">
+                Other: <input type="text" class="form-control" placeholder="Other" id="other-interaction">
+              </div>
+        </p>
+
+        <p>
+          Description of interaction(s):
+          <textarea rows="3" class="form-control" placeholder="Description of interaction(s)" id="describe-interaction"></textarea>
+        </p>
+        
+        <p>
+          Other information about this person:
+          <textarea rows="3" class="form-control" placeholder="Other information" id="other-info"></textarea>
+        </p>
+
+        <button type="button" class="btn btn-success" id="submit-btn" style="display: none">Submit Response</button>
     </div>
 
     <div class="loader"></div> 

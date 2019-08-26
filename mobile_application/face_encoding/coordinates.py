@@ -1,4 +1,5 @@
 from math import sqrt
+import numpy as np
 
 
 class Coordinate:
@@ -60,3 +61,12 @@ def change_coordinate_reference(ref: Coordinate, point: Coordinate) -> Coordinat
     y = point.y - ref.y
     new_point = Coordinate(x, y)
     return new_point
+
+def convert_dlib_points_to_coordinate_indexes(dlib_points: np.array) -> np.array:
+    coordinate_indexes = np.array([])
+    for i in dlib_points:
+        x_coordinate = int(i * 2)
+        y_coordinate = int(x_coordinate + 1)
+        coordinate_indexes = np.hstack((coordinate_indexes, np.array([x_coordinate]), np.array([y_coordinate])))
+
+    return coordinate_indexes

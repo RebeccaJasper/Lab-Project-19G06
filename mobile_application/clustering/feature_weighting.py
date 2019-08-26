@@ -6,9 +6,9 @@ feature_vector_indexes = {
     # "Face": list(range(0, 24)),
     # "Race": list(range(24, 31)),
     # "Gender": list(range(30, 34))
-    "Face": list(range(0, 4)),
-    "Race": list(range(4, 8)),
-    "Gender": list(range(8, 10))
+    "Face": list(range(0, 106)),
+    "Race": list(range(106, 112)),
+    "Gender": list(range(112, 116))
 }
 
 

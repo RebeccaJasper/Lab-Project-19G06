@@ -8,86 +8,94 @@ let loadSubmissionInfo = function () {
   // REFINE AJAX REQUEST WHEN LINKING TO DATABASE
   // Make an AJAX request to retrieve the submission information by the submission ID
   // let submissionID = JSON.parse(window.sessionStorage.getItem('submissionID'))
-  // $.ajax({
-  //   url: '/api/submit',
-  //   method: 'POST',
-  //   contentType: 'application/json',
-  //   data: JSON.stringify(submissionID),
-  //   success: function (submission) {
-  //     displaySubmissionInfo(submission)
-  //   }
-  // })
-
-  let submission = { id: '12345',
-    name: 'name',
-    surname: 'surname',
-    gender: 'male',
-    race: 'black',
-    photo: 'static/img/identikit.jpg' }
-
-  displaySubmissionInfo(submission)
+  let pathArray = window.location.pathname.split('/')
+  let submissionID = Object()
+  submissionID.submissionID = pathArray[pathArray.length - 1]
+   $.ajax({
+     url: '/api/submission-info',
+     method: 'POST',
+     contentType: 'application/json',
+     data: JSON.stringify(submissionID),
+     success: function (submission) {
+//       displaySubmissionInfo(submission)
+        displaySubmissionInfo(submission)
+     }
+   })
+//
+//  let submission = { id: '12345',
+//    name: 'name',
+//    surname: 'surname',
+//    gender: 'male',
+//    race: 'black',
+//    photo: 'static/img/identikit.jpg' }
+//
+//  displaySubmissionInfo(submission)
 }
 
 let displaySubmissionInfo = function (submission) {
-  let submissionInfoArea = $('#submission-info-area')
-  let submissionID = document.createElement('div')
-  submissionID.innerHTML = '<b>Submission ID: </b>' + submission.id
-  submissionInfoArea.append(submissionID)
+    let submissionInfoArea = $('#submission-info-area')
+    let submissionID = document.createElement('div')
+    submissionID.innerHTML = '<b>Submission ID: </b>' + submission.id
+    submissionInfoArea.append(submissionID)
 
-  let submissionNames = document.createElement('div')
-  submissionNames.innerHTML = '<b>Full Name : </b>' + submission.name + ' ' + submission.surname
-  submissionInfoArea.append(submissionNames)
+    let submissionNames = document.createElement('div')
+    submissionNames.innerHTML = '<b>Full Name : </b>' + submission.name + ' ' + submission.surname
+    submissionInfoArea.append(submissionNames)
 
-  let submissionGender = document.createElement('div')
-  submissionGender.innerHTML = '<b>Gender: </b>' + submission.gender
-  submissionInfoArea.append(submissionGender)
+    let submissionGender = document.createElement('div')
+    submissionGender.innerHTML = '<b>Gender: </b>' + submission.gender
+    submissionInfoArea.append(submissionGender)
 
-  let submissionRace = document.createElement('div')
-  submissionRace.innerHTML = '<b>Race: </b>' + submission.race
-  submissionInfoArea.append(submissionRace)
+    let submissionRace = document.createElement('div')
+    submissionRace.innerHTML = '<b>Race: </b>' + submission.race
+    submissionInfoArea.append(submissionRace)
 
-  let photo = document.createElement('img')
-  photo.id = 'identikit-photo'
-  photo.src = submission.photo
-  submissionInfoArea.append(photo)
+    let photo = document.createElement('img')
+    photo.id = 'identikit-photo'
+    photo.src = submission.photo
+    submissionInfoArea.append(photo)
 }
 
 let findMatches = function () {
   // REFINE AJAX REQUEST WHEN LINKING TO DATABASE
   // Make an AJAX request to retrieve the persons matching the submission ID
   // let submissionID = JSON.parse(window.sessionStorage.getItem('submissionID'))
-  // $.ajax({
-  //   url: '/api/submit',
-  //   method: 'POST',
-  //   contentType: 'application/json',
-  //   data: JSON.stringify(submissionID),
-  //   success: function (persons) {
-  //     displayMatches(persons)
-  //   }
-  // })
+  let pathArray = window.location.pathname.split('/')
+  let submissionID = Object()
+  submissionID.submissionID = pathArray[pathArray.length - 1]
 
-  let persons = [
-    { id: '12345',
-      name: 'name',
-      surname: 'surname',
-      gender: 'male',
-      race: 'black',
-      photo: 'static/img/1.jpg' },
-    { id: '54321',
-      name: 'another name',
-      surname: 'another surname',
-      gender: 'female',
-      race: 'white',
-      photo: 'static/img/1.jpg' },
-    { id: '11111',
-      name: 'another name',
-      surname: 'another surname',
-      gender: 'female',
-      race: 'white',
-      photo: 'static/img/1.jpg' }
-  ]
+   $.ajax({
+     url: '/api/findmatches',
+     method: 'POST',
+     contentType: 'application/json',
+     data: JSON.stringify(submissionID),
+     success: function (persons) {
+       displayMatches(JSON.parse(persons))
+     }
+   })
 
-  displayMatches(persons)
+//  let persons = [
+//    { id: '12345',
+//      name: 'name',
+//      surname: 'surname',
+//      gender: 'male',
+//      race: 'black',
+//      photo: 'static/img/1.jpg' },
+//    { id: '54321',
+//      name: 'another name',
+//      surname: 'another surname',
+//      gender: 'female',
+//      race: 'white',
+//      photo: 'static/img/1.jpg' },
+//    { id: '11111',
+//      name: 'another name',
+//      surname: 'another surname',
+//      gender: 'female',
+//      race: 'white',
+//      photo: 'static/img/1.jpg' }
+//  ]
+//
+//  displayMatches(persons)
 
   // change the page display
 
@@ -102,9 +110,10 @@ let findMatches = function () {
 }
 
 let displayMatches = function (persons) {
-  persons.forEach(person => {
-    displayPersonInfo(person)
-  })
+    console.log(persons.length)
+    persons.forEach(person => {
+        displayPersonInfo(person)
+    })
 }
 
 let displayPersonInfo = function (person) {

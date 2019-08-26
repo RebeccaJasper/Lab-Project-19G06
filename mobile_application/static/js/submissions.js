@@ -7,19 +7,20 @@ $(document).ready(() => {
 let loadSubmissions = function () {
   // Make an AJAX request to retrieve the past 10 submissions by their submission IDs (date time stamp)
   // Need to check the AJAX request made by this function
-//   $.ajax({
-//     url: '/api/submit',
-//     method: 'POST',
-//     contentType: 'application/json',
-//     data: JSON.stringify(statement),
-//     success: function (res) {
-//       displaySubmissions(res)
-//     }
-//   })
-  let submissions = [{ time: '22/08/2019', id: '12345', statement: 'statement 1', photo: 'photo 1' },
-    { time: '20/08/2019', id: '54321', statement: 'statement 2', photo: 'photo 2' },
-    { time: '18/08/2019', id: '32154', statement: 'statement 3', photo: 'photo 3' }]
-  displaySubmissions(submissions)
+   $.ajax({
+     url: 'api/submissions',
+     method: 'POST',
+     contentType: 'application/json',
+     data: JSON.stringify(),
+     success: function (res) {
+       console.log(typeof JSON.parse(res))
+       displaySubmissions(JSON.parse(res))
+     }
+   })
+//  let submissions = [{ time: '22/08/2019', id: '70', statement: 'statement 1', photo: 'photo 1' },
+//    { time: '20/08/2019', id: '54321', statement: 'statement 2', photo: 'photo 2' },
+//    { time: '18/08/2019', id: '32154', statement: 'statement 3', photo: 'photo 3' }]
+//  displaySubmissions(submissions)
 }
 
 let displaySubmissions = function (submissions) {
@@ -54,7 +55,8 @@ let appendSubmissionToTable = function (submission) {
 $(document).on('click', '#viewButton', function (e) {
   let submissionID = $(this).parents('tr')[0].id
   console.log(submissionID)
-  window.sessionStorage.setItem('submissionID', submissionID)
+//  window.sessionStorage.setItem('submissionID', submissionID)
 
-  window.location = '/submission-info'
+  window.location = '/submission-info/'.concat(submissionID)
+
 })
