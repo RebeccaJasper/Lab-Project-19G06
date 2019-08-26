@@ -20,10 +20,6 @@ let loadSubmissions = function () {
       displaySubmissions(JSON.parse(res))
     }
   })
-//  let submissions = [{ time: '22/08/2019', id: '70', statement: 'statement 1', photo: 'photo 1' },
-//    { time: '20/08/2019', id: '54321', statement: 'statement 2', photo: 'photo 2' },
-//    { time: '18/08/2019', id: '32154', statement: 'statement 3', photo: 'photo 3' }]
-//  displaySubmissions(submissions)
 }
 
 let displaySubmissions = function (submissions) {
@@ -58,7 +54,5 @@ let appendSubmissionToTable = function (submission) {
 $(document).on('click', '#viewButton', function (e) {
   let submissionID = $(this).parents('tr')[0].id
   console.log(submissionID)
-  //  window.sessionStorage.setItem('submissionID', submissionID)
-
   window.location = '/submission-info/'.concat(submissionID)
 })

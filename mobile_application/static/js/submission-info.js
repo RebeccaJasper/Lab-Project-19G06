@@ -24,15 +24,6 @@ let loadSubmissionInfo = function () {
       displaySubmissionInfo(submission)
     }
   })
-//
-//  let submission = { id: '12345',
-//    name: 'name',
-//    surname: 'surname',
-//    gender: 'male',
-//    race: 'black',
-//    photo: 'static/img/identikit.jpg' }
-//
-//  displaySubmissionInfo(submission)
 }
 
 let displaySubmissionInfo = function (submission) {
@@ -64,7 +55,6 @@ let findMatches = function () {
 
   // REFINE AJAX REQUEST WHEN LINKING TO DATABASE
   // Make an AJAX request to retrieve the persons matching the submission ID
-  // let submissionID = JSON.parse(window.sessionStorage.getItem('submissionID'))
   let pathArray = window.location.pathname.split('/')
   let submissionID = Object()
   submissionID.submissionID = pathArray[pathArray.length - 1]
@@ -79,29 +69,6 @@ let findMatches = function () {
       displayMatches(JSON.parse(persons))
     }
   })
-
-  //  let persons = [
-  //    { id: '12345',
-  //      name: 'name',
-  //      surname: 'surname',
-  //      gender: 'male',
-  //      race: 'black',
-  //      photo: 'static/img/1.jpg' },
-  //    { id: '54321',
-  //      name: 'another name',
-  //      surname: 'another surname',
-  //      gender: 'female',
-  //      race: 'white',
-  //      photo: 'static/img/1.jpg' },
-  //    { id: '11111',
-  //      name: 'another name',
-  //      surname: 'another surname',
-  //      gender: 'female',
-  //      race: 'white',
-  //      photo: 'static/img/1.jpg' }
-  //  ]
-  //
-  //  displayMatches(persons)
 
   // change the page display
 
