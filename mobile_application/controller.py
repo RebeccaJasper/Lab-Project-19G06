@@ -314,8 +314,9 @@ def get_matching_submission_ids(submission_id: str) -> np.array:
 
     # Convert result to id array
     return_array = []
-    for id in submission_ids:
-        return_array.append(id[0])
+    for i in range(0, submission_ids.size):
+        if i % 2 == 1:
+            return_array.append(submission_ids[i])
 
     return np.array(return_array)
 
