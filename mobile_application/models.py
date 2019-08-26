@@ -261,5 +261,5 @@ def get_persons_biographical_info(person_ids: np.array) -> np.array:
         data = retrieve_all()
         return data
     else:
-        return
+        return np.array([])
 
