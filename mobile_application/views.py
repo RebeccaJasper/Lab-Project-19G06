@@ -104,7 +104,6 @@ def get_matches():
     submission = request.get_json()
     matching_person_ids = get_matching_person_ids(submission["submissionID"])
     matches_list = get_matching_persons_list(matching_person_ids)
-    print(len(matches_list))
     return dumps(matches_list)
 
 @mobile_application.route('/complete')
