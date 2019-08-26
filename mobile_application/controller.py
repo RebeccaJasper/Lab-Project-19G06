@@ -361,3 +361,29 @@ def get_matching_persons_list(person_ids: np.array) -> List[dict]:
 
     return return_list
 
+
+def get_matching_persons_list(submission_ids: np.array) -> List[dict]:
+    """
+    Retrieve the personal biographical information for a given array of person_ids
+
+    :param person_ids: Array of person_ids of matching persons/desired persons
+    :type: np.array
+    :return: List of dictionary objects containing biographical information of each person
+    :rtype: List[dict]
+    """
+    persons_list = get_identikits_biographical_info(submission_ids)
+    return_list = []
+
+    for entry in persons_list:
+        person = {
+            "id": entry[0],
+            "name": entry[1],
+            "surname": entry[2],
+            "gender": str([key for key in gender.items() if key[1] == entry[3]][0][0]),
+            "race": str([key for key in race.items() if key[1] == int(entry[4])][0][0]),
+            "photo": "data:image/jpg;base64," + entry[5]
+        }
+        return_list.append(person)
+    print(return_list)
+
+    return return_list
