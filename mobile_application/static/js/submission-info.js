@@ -60,6 +60,8 @@ let displaySubmissionInfo = function (submission) {
 }
 
 let findMatches = function () {
+  $('.matches-loader').fadeIn('slow')
+
   // REFINE AJAX REQUEST WHEN LINKING TO DATABASE
   // Make an AJAX request to retrieve the persons matching the submission ID
   // let submissionID = JSON.parse(window.sessionStorage.getItem('submissionID'))
@@ -67,15 +69,18 @@ let findMatches = function () {
   let submissionID = Object()
   submissionID.submissionID = pathArray[pathArray.length - 1]
 
-  $.ajax({
-    url: '/api/findmatches',
-    method: 'POST',
-    contentType: 'application/json',
-    data: JSON.stringify(submissionID),
-    success: function (persons) {
-      displayMatches(JSON.parse(persons))
-    }
-  })
+  // $.ajax({
+  //   url: '/api/findmatches',
+  //   method: 'POST',
+  //   contentType: 'application/json',
+  //   data: JSON.stringify(submissionID),
+  //   success: function (persons) {
+  //     $('.matches-loader').fadeOut('slow')
+  //     displayMatches(JSON.parse(persons))
+  //   }
+  // })
+
+  // $('.matches-loader').fadeOut('slow')
 
   //  let persons = [
   //    { id: '12345',
