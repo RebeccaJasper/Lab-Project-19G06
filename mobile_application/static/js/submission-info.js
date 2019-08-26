@@ -65,7 +65,11 @@ let findPeopleMatches = function () {
     data: JSON.stringify(submissionID),
     success: function (persons) {
       $('.matches-loader').fadeOut('slow')
-      displayMatches(JSON.parse(persons))
+      if (persons.length() === 0) {
+        noMatches()
+      } else {
+        displayMatches(JSON.parse(persons))
+      }
     }
   })
 
@@ -96,7 +100,11 @@ let findIdentikitMatches = function () {
     data: JSON.stringify(submissionID),
     success: function (identikits) {
       $('.matches-loader').fadeOut('slow')
-      displayMatches(JSON.parse(identikits))
+      if (identikits.length() === 0) {
+        noMatches()
+      } else {
+        displayMatches(JSON.parse(identikits))
+      }
     }
   })
 
@@ -151,3 +159,13 @@ let displayPersonInfo = function (person) {
 $(document).on('click', '#back-button', function () {
   window.location = '/submissions'
 })
+
+let noMatches = function (person) {
+  let matchesInfoArea = $('#content')
+
+  let message = document.createElement('div')
+  message.innerHTML = '<b>No matches found for this person.</b>'
+  matchesInfoArea.append(message)
+
+  matchesInfoArea.append(matchesInfoArea)
+}
