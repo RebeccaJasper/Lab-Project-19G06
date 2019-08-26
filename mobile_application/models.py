@@ -211,28 +211,19 @@ def get_submission_biographical_info(submission_id: str) -> np.array:
     return np.array(data)
 
 
-def get_all_submission_biographical_info() -> np.array:
-    query_string = '''SELECT identikits.firstname, identikits.surname, identikits.gender, identikits.race,
-                            identikit_photos.photo
+def get_submission_feature_matrix() -> np.array:
+    """
+    Get the feature vector of a particular feature vector
+
+    :param submission_id: Submission_id of the submission whose feature vector is to extracted
+    :type: str
+    :return: Feature vector associated with the specified submission_id
+    :rtype: np.array
+    """
+    query_string = '''SELECT identikit_markers.face_encoding, identikits.race, identikits.gender
                         from identikits
-                        inner join identikit_photos on identikit_photos.submission_id=identikits.submission_id'''
+                        inner join identikit_markers on identikit_markers.submission_id=identikits.submission_id'''
 
-    execute_query(query_string, ())
-    data = retrieve_all()
-    return np.array(data)
-
-
-def get_person_feature_matrix() -> np.ndarray:
-    """
-    Get a feature vector of the existing person database
-
-    :return: 2-D array of all feature vectors of the existing persons database
-    :rtype: np.ndarray
-    """
-
-    query_string = '''SELECT face_encodings.face_encoding, persons.race, persons.sex
-                    FROM persons 
-                    inner join face_encodings on face_encodings.person_id = persons.person_id'''
     execute_query(query_string, ())
     data = retrieve_all()
     return np.array(data)

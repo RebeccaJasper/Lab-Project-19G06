@@ -187,6 +187,25 @@ def persons_feature_matrix() -> np.ndarray:
     return feature_matrix
 
 
+def processed_submission_feature_matrix() -> np.ndarray:
+    """
+    Retrieves feature matrix
+
+    :rtype: np.ndarray
+    """
+    feature_matrix = np.array([])
+
+    db_submission_feature_matrix = get_submission_feature_matrix()
+
+    for row in db_submission_feature_matrix:
+        if feature_matrix.size != 0:
+            feature_matrix = np.vstack((feature_matrix, convert_identikit_array_to_feature_vector(row)))
+        else:
+            feature_matrix = np.hstack((feature_matrix, convert_identikit_array_to_feature_vector(row)))
+
+    return feature_matrix
+
+
 def process_submission_photo(base64_string: str) -> None:
     """
     Controller function for passing the base64 encoded image to the database
@@ -243,6 +262,59 @@ def get_matching_person_ids(submission_id: str) -> np.array:
 
     return np.array(return_array)
 
+
+def get_matching_submission_ids(submission_id: str) -> np.array:
+    """
+    Returns an array of submission_ids that the sketch has been clustered with
+
+    :param submission_id: The submission_id of the submission to be clustered with existing person database
+    :type: string
+    :return: Array of person_ids that the sketch hs been clustered
+    :rtype: np.array
+    """
+
+    # Fetch existing persons from the database
+    submission_feature_matrix = processed_submission_feature_matrix()
+    db_submission_ids = get_submission_ids()
+    print("The length of the vectors in the feature matrix is: %d" % submission_feature_matrix.shape[1])
+    print("The length of the feature vector being laoded is: %d" % fetch_submission_feature_vector(submission_id).size)
+
+    # Calculate dissimilarity between existing persons and the specified submission id
+    d = Dissimilarity()
+    d.load_feature_vectors(submission_feature_matrix)
+    d.add_vector(fetch_submission_feature_vector(submission_id))
+
+    # Perform clustering
+    hac = HeirachicalClustering()
+    hac.cluster(d.distance_matrix())
+    # hac.plot_dentogram(d.distance_matrix())
+
+    # Extract person_ids that share the same cluster label as the submission
+
+    print(hac.cluster_indexes())
+    print("Number of elements that have been clustered: %d" % hac.cluster_indexes().size)
+    cluster_label = hac.cluster_indexes()[-1]
+    print("The submission cluster label: %d" % cluster_label)
+    indexes = hac.find_cluster_siblings(cluster_label)[0:-1]
+    print("The other indexes: ")
+    print(indexes)
+    submission_ids = np.array([])
+    if indexes.size != 0:
+        submission_ids = db_submission_ids[indexes]
+        # Remove the current submission_id from the suggested list
+        submission_ids = submission_ids[submission_ids != submission_id]
+
+    print(submission_ids)
+
+
+    # Convert result to id array
+    return_array = []
+    for id in submission_ids:
+        return_array.append(id[0])
+
+    return np.array(return_array)
+
+get_matching_submission_ids(70)
 
 def get_submission_list() -> List[dict]:
     """
