@@ -24,15 +24,6 @@ let loadSubmissionInfo = function () {
       displaySubmissionInfo(submission)
     }
   })
-//
-//  let submission = { id: '12345',
-//    name: 'name',
-//    surname: 'surname',
-//    gender: 'male',
-//    race: 'black',
-//    photo: 'static/img/identikit.jpg' }
-//
-//  displaySubmissionInfo(submission)
 }
 
 let displaySubmissionInfo = function (submission) {
@@ -59,12 +50,10 @@ let displaySubmissionInfo = function (submission) {
   submissionInfoArea.append(photo)
 }
 
-let findMatches = function () {
+let findPeopleMatches = function () {
   $('.matches-loader').fadeIn('slow')
 
-  // REFINE AJAX REQUEST WHEN LINKING TO DATABASE
   // Make an AJAX request to retrieve the persons matching the submission ID
-  // let submissionID = JSON.parse(window.sessionStorage.getItem('submissionID'))
   let pathArray = window.location.pathname.split('/')
   let submissionID = Object()
   submissionID.submissionID = pathArray[pathArray.length - 1]
@@ -80,28 +69,36 @@ let findMatches = function () {
     }
   })
 
-  //  let persons = [
-  //    { id: '12345',
-  //      name: 'name',
-  //      surname: 'surname',
-  //      gender: 'male',
-  //      race: 'black',
-  //      photo: 'static/img/1.jpg' },
-  //    { id: '54321',
-  //      name: 'another name',
-  //      surname: 'another surname',
-  //      gender: 'female',
-  //      race: 'white',
-  //      photo: 'static/img/1.jpg' },
-  //    { id: '11111',
-  //      name: 'another name',
-  //      surname: 'another surname',
-  //      gender: 'female',
-  //      race: 'white',
-  //      photo: 'static/img/1.jpg' }
-  //  ]
-  //
-  //  displayMatches(persons)
+  // change the page display
+
+  $('.match-button-btn').attr('hidden', true)
+
+  let submissionInfo = document.getElementById('right')
+  submissionInfo.style.visibility = 'visible'
+  submissionInfo.className = 'move-right'
+
+  let matchesInfo = document.getElementById('left')
+  matchesInfo.className = 'move-left'
+}
+
+let findIdentikitMatches = function () {
+  $('.matches-loader').fadeIn('slow')
+
+  // Make an AJAX request to retrieve the persons matching the submission ID
+  let pathArray = window.location.pathname.split('/')
+  let submissionID = Object()
+  submissionID.submissionID = pathArray[pathArray.length - 1]
+
+  $.ajax({
+    url: '/api/findidentikitmatches',
+    method: 'POST',
+    contentType: 'application/json',
+    data: JSON.stringify(submissionID),
+    success: function (identikits) {
+      $('.matches-loader').fadeOut('slow')
+      displayMatches(JSON.parse(identikits))
+    }
+  })
 
   // change the page display
 
@@ -116,7 +113,6 @@ let findMatches = function () {
 }
 
 let displayMatches = function (persons) {
-  console.log(persons.length)
   persons.forEach(person => {
     displayPersonInfo(person)
   })
