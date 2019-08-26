@@ -10,24 +10,24 @@ feature_vector_indexes = {
 }
 
 all_weights = {
-    "Nose": 0.088,
-    "Eyes": 0.81,
-    "Mouth": 0.022,
-    "Other_facial_features": 0.08,
-    "Race": 0.5,
-    "Gender": 1
+    "Nose": 1000,
+    "Eyes": 1,
+    "Mouth": 1,
+    "Other_facial_features": 0.8,
+    "Race": 0.0001,
+    "Gender": 0.0001
 }
 
 
-face_feature_weights = {
-    "Eyes": 0.81,
-    "Nose": 0.088,
-    "Mouth": 0.022,
-    "Other": 0.08,
-}
+# face_feature_weights = {
+#     "Eyes": 0.81,
+#     "Nose": 0.088,
+#     "Mouth": 0.022,
+#     "Other": 0.08,
+# }
 
-feature_weights = {
-    "Race": 0.4,
-    "Gender": 0.4,
-    "Face": 0.2
-}
+# feature_weights = {
+#     "Race": 0.4,
+#     "Gender": 0.4,
+#     "Face": 0.2
+# }

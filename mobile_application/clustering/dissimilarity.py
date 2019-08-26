@@ -68,16 +68,14 @@ class Dissimilarity(object):
 
         feature_ranges = self.ranges()
         # weights_1 = np.ones(feature_ranges.size)
-        # print(weights_1)
         # weights = np.append(np.full((1, 106), 0.8), np.full((1, 10), 5*10**10))
 
         weights = np.append(np.full((0, 32), all_weights["Other_facial_features"]), np.full((32, 42), all_weights["Nose"]))
         weights = np.append(weights, np.full((42, 66), all_weights["Eyes"]))
         weights = np.append(weights, np.full((66, 106), all_weights["Mouth"]))
         weights = np.append(weights, np.full((106, 112), all_weights["Race"]))
-        weights = np.append(weights, np.full((112, 116), all_weights["Gender"]))     
+        weights = np.append(weights, np.full((112, 116), all_weights["Gender"]))
         
-        print("The weight vector's length: %d" % weights.size)
 
         for current_row_index in np.arange(0, self.__feature_vectors.shape[0]):
             start = current_row_index + 1
@@ -90,6 +88,7 @@ class Dissimilarity(object):
 
                     distance_matrix = np.append(distance_matrix, [distance])
 
+        print("Black female distance: %f" % distance_matrix[29])
         return distance_matrix
 
 

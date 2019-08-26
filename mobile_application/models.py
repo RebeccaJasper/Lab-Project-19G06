@@ -243,20 +243,23 @@ def get_submission_ids() -> np.ndarray:
 
 
 def get_persons_biographical_info(person_ids: np.array) -> np.array:
-    query_string = '''SELECT persons.person_id, persons.firstname, persons.surname, persons.sex, persons.race,
+    if person_ids.size != 0 :
+        query_string = '''SELECT persons.person_id, persons.firstname, persons.surname, persons.sex, persons.race,
                             person_photos.photo
                         from persons
                         inner join person_photos on person_photos.person_id=persons.person_id'''
 
-    for i in range(0, len(person_ids)):
-        if i == 0:
-            query_string = query_string + "\n WHERE persons.person_id='%s'"
-        elif i != 0:
-            query_string = query_string + "\n OR persons.person_id='%s'"
+        for i in range(0, len(person_ids)):
+            if i == 0:
+                query_string = query_string + "\n WHERE persons.person_id='%s'"
+            elif i != 0:
+                query_string = query_string + "\n OR persons.person_id='%s'"
 
-    query_string = query_string + ";"
+        query_string = query_string + ";"
 
-    execute_query(query_string, tuple(person_ids))
-    data = retrieve_all()
-    return data
+        execute_query(query_string, tuple(person_ids))
+        data = retrieve_all()
+        return data
+    else:
+        return
 
