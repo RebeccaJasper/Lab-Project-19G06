@@ -211,6 +211,33 @@ def get_submission_biographical_info(submission_id: str) -> np.array:
     return np.array(data)
 
 
+def get_all_submission_biographical_info() -> np.array:
+    query_string = '''SELECT identikits.firstname, identikits.surname, identikits.gender, identikits.race,
+                            identikit_photos.photo
+                        from identikits
+                        inner join identikit_photos on identikit_photos.submission_id=identikits.submission_id'''
+
+    execute_query(query_string, ())
+    data = retrieve_all()
+    return np.array(data)
+
+
+def get_person_feature_matrix() -> np.ndarray:
+    """
+    Get a feature vector of the existing person database
+
+    :return: 2-D array of all feature vectors of the existing persons database
+    :rtype: np.ndarray
+    """
+
+    query_string = '''SELECT face_encodings.face_encoding, persons.race, persons.sex
+                    FROM persons 
+                    inner join face_encodings on face_encodings.person_id = persons.person_id'''
+    execute_query(query_string, ())
+    data = retrieve_all()
+    return np.array(data)
+
+
 def get_person_feature_matrix() -> np.ndarray:
     """
     Get a feature vector of the existing person database
