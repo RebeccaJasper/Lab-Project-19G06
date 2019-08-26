@@ -69,18 +69,16 @@ let findMatches = function () {
   let submissionID = Object()
   submissionID.submissionID = pathArray[pathArray.length - 1]
 
-  // $.ajax({
-  //   url: '/api/findmatches',
-  //   method: 'POST',
-  //   contentType: 'application/json',
-  //   data: JSON.stringify(submissionID),
-  //   success: function (persons) {
-  //     $('.matches-loader').fadeOut('slow')
-  //     displayMatches(JSON.parse(persons))
-  //   }
-  // })
-
-  // $('.matches-loader').fadeOut('slow')
+  $.ajax({
+    url: '/api/findmatches',
+    method: 'POST',
+    contentType: 'application/json',
+    data: JSON.stringify(submissionID),
+    success: function (persons) {
+      $('.matches-loader').fadeOut('slow')
+      displayMatches(JSON.parse(persons))
+    }
+  })
 
   //  let persons = [
   //    { id: '12345',

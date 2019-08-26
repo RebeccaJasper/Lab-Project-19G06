@@ -189,22 +189,22 @@ h1.matches-info {
 	width: 45%;
 	height: 40%;
 	z-index: 9999;
-	background: url(https://j2n9a3i8.stackpathcdn.com/wp-content/uploads/2014/08/Preloader_3.gif) center no-repeat #fff;
+    background: url(https://j2n9a3i8.stackpathcdn.com/wp-content/uploads/2014/08/Preloader_3.gif) center no-repeat #fff;
+    animation:slide-right-loader 5s;
+    animation-timing-function: linear;
 }
 
-/* #matches-info-area {
-    color: black;
-    background-color: #f0f0f0;
-    font-family: 'Raleway', sans-serif;
-    width: 48% ;
-    height: 355px;
-    padding: 25px 50px;
-    overflow: scroll;
-    margin-top: 2%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 0;
-    position: relative;
-    top: -383px;
-    text-align: right;
-} */
+@keyframes slide-right-loader
+{
+    from {
+        margin-left: 50%;
+        width: 100%;
+        opacity: 0;
+    }
+
+    to {
+        margin-left: 100%;
+        width: 100%;
+        opacity: 1;
+    }
+}
