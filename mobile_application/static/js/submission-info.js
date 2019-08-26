@@ -50,10 +50,9 @@ let displaySubmissionInfo = function (submission) {
   submissionInfoArea.append(photo)
 }
 
-let findMatches = function () {
+let findPeopleMatches = function () {
   $('.matches-loader').fadeIn('slow')
 
-  // REFINE AJAX REQUEST WHEN LINKING TO DATABASE
   // Make an AJAX request to retrieve the persons matching the submission ID
   let pathArray = window.location.pathname.split('/')
   let submissionID = Object()
@@ -82,8 +81,38 @@ let findMatches = function () {
   matchesInfo.className = 'move-left'
 }
 
+let findIdentikitMatches = function () {
+  $('.matches-loader').fadeIn('slow')
+
+  // Make an AJAX request to retrieve the persons matching the submission ID
+  let pathArray = window.location.pathname.split('/')
+  let submissionID = Object()
+  submissionID.submissionID = pathArray[pathArray.length - 1]
+
+  $.ajax({
+    url: '/api/findidentikitmatches',
+    method: 'POST',
+    contentType: 'application/json',
+    data: JSON.stringify(submissionID),
+    success: function (identikits) {
+      $('.matches-loader').fadeOut('slow')
+      displayMatches(JSON.parse(identikits))
+    }
+  })
+
+  // change the page display
+
+  $('.match-button-btn').attr('hidden', true)
+
+  let submissionInfo = document.getElementById('right')
+  submissionInfo.style.visibility = 'visible'
+  submissionInfo.className = 'move-right'
+
+  let matchesInfo = document.getElementById('left')
+  matchesInfo.className = 'move-left'
+}
+
 let displayMatches = function (persons) {
-  console.log(persons.length)
   persons.forEach(person => {
     displayPersonInfo(person)
   })
