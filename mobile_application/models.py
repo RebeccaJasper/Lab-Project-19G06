@@ -284,7 +284,7 @@ def get_persons_biographical_info(person_ids: np.array) -> np.array:
 
 def get_identikits_biographical_info(submission_ids: np.array) -> np.array:
     if submission_ids.size != 0:
-        query_string = '''SELECT identikits.person_id, identikits.firstname, identikits.surname, identikits.gender,
+        query_string = '''SELECT identikits.submission_id, identikits.firstname, identikits.surname, identikits.gender,
                             identikits.race, identikit_photos.photo
                             from identikits
                             inner join identikit_photos on identikit_photos.submission_id=identikits.submission_id'''

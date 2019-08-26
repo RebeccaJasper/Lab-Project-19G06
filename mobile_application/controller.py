@@ -308,10 +308,6 @@ def get_matching_submission_ids(submission_id: str) -> np.array:
         # Remove the current submission_id from the suggested list
         submission_ids = submission_ids[submission_ids != submission_id]
 
-    print("Cluster labels: ")
-    print(submission_ids)
-
-
     # Convert result to id array
     return_array = []
     for i in range(0, submission_ids.size):
@@ -367,7 +363,7 @@ def get_matching_persons_list(person_ids: np.array) -> List[dict]:
     return return_list
 
 
-def get_matching_persons_list(submission_ids: np.array) -> List[dict]:
+def get_matching_identikits_list(submission_ids: np.array) -> List[dict]:
     """
     Retrieve the personal biographical information for a given array of person_ids
 
