@@ -212,3 +212,5 @@ class Dissimilarity(object):
         return dice_coeficient
 
 
+d = Dissimilarity()
+d

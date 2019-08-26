@@ -283,6 +283,9 @@ def get_matching_submission_ids(submission_id: str) -> np.array:
     d = Dissimilarity()
     d.load_feature_vectors(submission_feature_matrix)
     d.add_vector(fetch_submission_feature_vector(submission_id))
+    d.add_vector(fetch_submission_feature_vector(submission_id))
+    print("The distance matrix: ")
+    print(d.distance_matrix())
 
     # Perform clustering
     hac = HeirachicalClustering()
@@ -293,17 +296,19 @@ def get_matching_submission_ids(submission_id: str) -> np.array:
 
     print(hac.cluster_indexes())
     print("Number of elements that have been clustered: %d" % hac.cluster_indexes().size)
-    cluster_label = hac.cluster_indexes()[-1]
+    cluster_label = hac.cluster_indexes()[-2]
     print("The submission cluster label: %d" % cluster_label)
-    indexes = hac.find_cluster_siblings(cluster_label)[0:-1]
+    indexes = hac.find_cluster_siblings(cluster_label)[0:-2].astype(int)
     print("The other indexes: ")
     print(indexes)
     submission_ids = np.array([])
     if indexes.size != 0:
-        submission_ids = db_submission_ids[indexes]
+        # print("Database Submission IDs length: %d " % db_submission_ids.size)
+        submission_ids = np.array(db_submission_ids)[indexes.astype(int)]
         # Remove the current submission_id from the suggested list
         submission_ids = submission_ids[submission_ids != submission_id]
 
+    print("Cluster labels: ")
     print(submission_ids)
 
 
@@ -314,7 +319,6 @@ def get_matching_submission_ids(submission_id: str) -> np.array:
 
     return np.array(return_array)
 
-get_matching_submission_ids(70)
 
 def get_submission_list() -> List[dict]:
     """
