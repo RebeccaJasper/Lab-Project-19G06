@@ -137,6 +137,15 @@ h1.matches-info {
     top: -100px;
 }
 
+#matching-identikit-photo{
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    float: left;
+    position: relative;
+    top: -100px;
+}
+
 .move-right
 {
     animation:slide-right 2s;

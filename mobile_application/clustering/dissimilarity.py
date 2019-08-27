@@ -102,7 +102,7 @@ class Dissimilarity(object):
 
         for i in feature_vector_indexes["Face"]:
             if feature_range[i] != 0:
-                partial_dist = Dissimilarity.gower_similarity(np.array([vector_1[i]]), np.array([vector_2[i]])) * 10*2
+                partial_dist = Dissimilarity.gower_similarity(np.array([vector_1[i]]), np.array([vector_2[i]])) # * 10*2
                 partial_dist = partial_dist/feature_range[i]
                 partial_dist = partial_dist * weights[i]
                 partial_dist = partial_dist/weights.sum()

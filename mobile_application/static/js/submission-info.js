@@ -1,5 +1,8 @@
 'use strict'
 
+let findPerson = false
+let findIdentikits = false
+
 $('.loader').fadeIn('slow')
 
 $(document).ready(() => {
@@ -20,7 +23,6 @@ let loadSubmissionInfo = function () {
     contentType: 'application/json',
     data: JSON.stringify(submissionID),
     success: function (submission) {
-      //       displaySubmissionInfo(submission)
       displaySubmissionInfo(submission)
     }
   })
@@ -53,6 +55,9 @@ let displaySubmissionInfo = function (submission) {
 let findPeopleMatches = function () {
   $('.matches-loader').fadeIn('slow')
 
+  findPerson = true
+  findIdentikits = false
+
   // Make an AJAX request to retrieve the persons matching the submission ID
   let pathArray = window.location.pathname.split('/')
   let submissionID = Object()
@@ -83,6 +88,9 @@ let findPeopleMatches = function () {
 
 let findIdentikitMatches = function () {
   $('.matches-loader').fadeIn('slow')
+
+  findPerson = false
+  findIdentikits = true
 
   // Make an AJAX request to retrieve the persons matching the submission ID
   let pathArray = window.location.pathname.split('/')
@@ -141,7 +149,12 @@ let displayPersonInfo = function (person) {
   personDiv.append(personRace)
 
   let photo = document.createElement('img')
-  photo.id = 'person-photo'
+  if (findPerson === true) {
+    photo.id = 'person-photo'
+  }
+  if (findIdentikits === true) {
+    photo.id = 'matching-identikit-photo'
+  }
   photo.src = person.photo
   personDiv.append(photo)
 
