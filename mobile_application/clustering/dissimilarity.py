@@ -68,6 +68,8 @@ class Dissimilarity(object):
 
         feature_ranges = self.ranges()
         # weights_1 = np.ones(feature_ranges.size)
+        # print(weights_1)
+        weights = np.append(np.full((1, 106), 0.8), np.full((1, 10), 1))
         # weights = np.append(np.full((1, 106), 0.8), np.full((1, 10), 5*10**10))
 
         weights = np.append(np.full((0, 32), all_weights["Other_facial_features"]), np.full((32, 42), all_weights["Nose"]))
@@ -109,7 +111,7 @@ class Dissimilarity(object):
 
         for i in feature_vector_indexes["Face"]:
             if feature_range[i] != 0:
-                partial_dist = Dissimilarity.gower_similarity(np.array([vector_1[i]]), np.array([vector_2[i]]))
+                partial_dist = Dissimilarity.gower_similarity(np.array([vector_1[i]]), np.array([vector_2[i]])) # * 10*2
                 partial_dist = partial_dist/feature_range[i]
                 # partial_dist = partial_dist * weights[i]
                 # partial_dist = partial_dist/weights.sum()
@@ -219,3 +221,4 @@ class Dissimilarity(object):
         return dice_coeficient
 
 
+d = Dissimilarity()

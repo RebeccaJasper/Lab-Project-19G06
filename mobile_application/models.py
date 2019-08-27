@@ -211,6 +211,24 @@ def get_submission_biographical_info(submission_id: str) -> np.array:
     return np.array(data)
 
 
+def get_submission_feature_matrix() -> np.array:
+    """
+    Get the feature vector of a particular feature vector
+
+    :param submission_id: Submission_id of the submission whose feature vector is to extracted
+    :type: str
+    :return: Feature vector associated with the specified submission_id
+    :rtype: np.array
+    """
+    query_string = '''SELECT identikit_markers.face_encoding, identikits.race, identikits.gender
+                        from identikits
+                        inner join identikit_markers on identikit_markers.submission_id=identikits.submission_id'''
+
+    execute_query(query_string, ())
+    data = retrieve_all()
+    return np.array(data)
+
+
 def get_person_feature_matrix() -> np.ndarray:
     """
     Get a feature vector of the existing person database
@@ -243,11 +261,11 @@ def get_submission_ids() -> np.ndarray:
 
 
 def get_persons_biographical_info(person_ids: np.array) -> np.array:
-    if person_ids.size != 0 :
+    if person_ids.size != 0:
         query_string = '''SELECT persons.person_id, persons.firstname, persons.surname, persons.sex, persons.race,
-                            person_photos.photo
-                        from persons
-                        inner join person_photos on person_photos.person_id=persons.person_id'''
+                                person_photos.photo
+                            from persons
+                            inner join person_photos on person_photos.person_id=persons.person_id'''
 
         for i in range(0, len(person_ids)):
             if i == 0:
@@ -258,6 +276,28 @@ def get_persons_biographical_info(person_ids: np.array) -> np.array:
         query_string = query_string + ";"
 
         execute_query(query_string, tuple(person_ids))
+        data = retrieve_all()
+        return data
+    else:
+        return np.array([])
+
+
+def get_identikits_biographical_info(submission_ids: np.array) -> np.array:
+    if submission_ids.size != 0:
+        query_string = '''SELECT identikits.submission_id, identikits.firstname, identikits.surname, identikits.gender,
+                            identikits.race, identikit_photos.photo
+                            from identikits
+                            inner join identikit_photos on identikit_photos.submission_id=identikits.submission_id'''
+
+        for i in range(0, len(submission_ids)):
+            if i == 0:
+                query_string = query_string + "\n WHERE identikits.submission_id='%s'"
+            elif i != 0:
+                query_string = query_string + "\n OR identikits.submission_id='%s'"
+
+        query_string = query_string + ";"
+
+        execute_query(query_string, tuple(submission_ids))
         data = retrieve_all()
         return data
     else:
