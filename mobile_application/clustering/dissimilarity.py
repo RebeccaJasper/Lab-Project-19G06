@@ -82,18 +82,23 @@ class Dissimilarity(object):
         for current_row_index in np.arange(0, self.__feature_vectors.shape[0]):
             start = current_row_index + 1
 
-            if feature_types[current_row_index] == "p" and feature_type[other_row_index] == "p":
-                feature_type = "person-person"
-            elif feature_types[current_row_index] == "i" and feature_type[other_row_index] == "i":
-                feature_type = "identikit-identikit"
-            elif (feature_types[current_row_index] == "p" and feature_type[other_row_index] == "i") or (feature_types
-                    [current_row_index] == "i" and feature_type[other_row_index] == "p"):
-                feature_type = "identikit-person"
-            else:
-                raise TypeError("Feature type can only be 'p' for person or 'i' for identikit")
 
             if start < self.__feature_vectors.shape[0]:
                 for other_row_index in np.arange(start, self.__feature_vectors.shape[0]):
+
+                    feature_type = ""
+
+                    if feature_types[current_row_index] == "p" and feature_types[other_row_index] == "p":
+                        feature_type = "person-person"
+                    elif feature_types[current_row_index] == "i" and feature_types[other_row_index] == "i":
+                        feature_type = "identikit-identikit"
+                    elif (feature_types[current_row_index] == "p" and feature_types[other_row_index] == "i") or (
+                            feature_types
+                            [current_row_index] == "i" and feature_types[other_row_index] == "p"):
+                        feature_type = "identikit-person"
+                    else:
+                        raise TypeError("Feature type can only be 'p' for person or 'i' for identikit")
+
                     distance = Dissimilarity.distance(self.__feature_vectors[current_row_index],
                                                       self.__feature_vectors[other_row_index],
                                                       feature_ranges, weights, feature_type)
