@@ -386,6 +386,7 @@ def get_matching_identikits_list(submission_ids: np.array) -> List[dict]:
             "photo": "data:image/jpg;base64," + entry[5]
         }
         return_list.append(person)
-    print(return_list)
+
+    
 
     return return_list
