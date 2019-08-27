@@ -70,5 +70,6 @@ def retrieve_all() -> List:
     """
     return cursor.fetchall()
 
+
 def close():
     ps_connection.close()

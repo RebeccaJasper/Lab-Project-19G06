@@ -106,6 +106,15 @@ def get_matches():
     matches_list = get_matching_persons_list(matching_person_ids)
     return dumps(matches_list)
 
+
+@mobile_application.route('/api/findidentikitmatches',  methods=['POST'])
+def get_identikit_matches():
+    submission = request.get_json()
+    matching_identikit_ids = get_matching_submission_ids(submission["submissionID"])
+    matches_list = get_matching_identikits_list(matching_identikit_ids)
+    return dumps(matches_list)
+
+
 @mobile_application.route('/complete')
 def complete():
     return render_template('finish.html')

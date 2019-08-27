@@ -95,7 +95,7 @@ h1.submission-info {
 h1.matches-info {
     font-family: 'Crimson Pro', serif;
     text-align: left;
-    position: fixed;
+    position: relative;
 }
     
 #matches-info-area {
@@ -115,9 +115,9 @@ h1.matches-info {
     text-align: right;
 }
 
-#content{
+/* #content{
     margin-top: 55px;
-}
+} */
 
 #right{
     visibility: hidden;
@@ -132,6 +132,15 @@ h1.matches-info {
 #person-photo{
     max-height:80%;
     max-width: auto;
+    float: left;
+    position: relative;
+    top: -100px;
+}
+
+#matching-identikit-photo{
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
     float: left;
     position: relative;
     top: -100px;
