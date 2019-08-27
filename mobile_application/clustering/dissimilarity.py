@@ -72,11 +72,11 @@ class Dissimilarity(object):
         weights = np.append(np.full((1, 106), 0.8), np.full((1, 10), 1))
         # weights = np.append(np.full((1, 106), 0.8), np.full((1, 10), 5*10**10))
 
-        weights = np.append(np.full((0, 32), all_weights["Other_facial_features"]), np.full((32, 42), all_weights["Nose"]))
-        weights = np.append(weights, np.full((42, 66), all_weights["Eyes"]))
-        weights = np.append(weights, np.full((66, 106), all_weights["Mouth"]))
-        weights = np.append(weights, np.full((106, 112), all_weights["Race"]))
-        weights = np.append(weights, np.full((112, 116), all_weights["Gender"]))
+        weights = np.append(np.full((1, 32), all_weights["Other_facial_features"]), np.full((32, 42), all_weights["Nose"]))
+        weights = np.append(weights, np.full((1, 24), all_weights["Eyes"]))
+        weights = np.append(weights, np.full((1, 40), all_weights["Mouth"]))
+        weights = np.append(weights, np.full((1, 6), all_weights["Race"]))
+        weights = np.append(weights, np.full((1, 4), all_weights["Gender"]))
 
 
         for current_row_index in np.arange(0, self.__feature_vectors.shape[0]):
@@ -127,7 +127,7 @@ class Dissimilarity(object):
         elif type == "identikit-identikit":
             factor = 10**5
         elif type == "person-person":
-            factor = 10**5
+            factor = 10
         else:
             raise TypeError("Incorrect distance type (must be identikit-face, identikit-identikit or face-face")
 
