@@ -1,5 +1,8 @@
 'use strict'
 
+let findPerson = false
+let findIdentikits = false
+
 $('.loader').fadeIn('slow')
 
 $(document).ready(() => {
@@ -20,7 +23,6 @@ let loadSubmissionInfo = function () {
     contentType: 'application/json',
     data: JSON.stringify(submissionID),
     success: function (submission) {
-      //       displaySubmissionInfo(submission)
       displaySubmissionInfo(submission)
     }
   })
@@ -53,6 +55,9 @@ let displaySubmissionInfo = function (submission) {
 let findPeopleMatches = function () {
   $('.matches-loader').fadeIn('slow')
 
+  findPerson = true
+  findIdentikits = false
+
   // Make an AJAX request to retrieve the persons matching the submission ID
   let pathArray = window.location.pathname.split('/')
   let submissionID = Object()
@@ -65,7 +70,11 @@ let findPeopleMatches = function () {
     data: JSON.stringify(submissionID),
     success: function (persons) {
       $('.matches-loader').fadeOut('slow')
-      displayMatches(JSON.parse(persons))
+      if (persons.length() === 0) {
+        noMatches()
+      } else {
+        displayMatches(JSON.parse(persons))
+      }
     }
   })
 
@@ -84,6 +93,9 @@ let findPeopleMatches = function () {
 let findIdentikitMatches = function () {
   $('.matches-loader').fadeIn('slow')
 
+  findPerson = false
+  findIdentikits = true
+
   // Make an AJAX request to retrieve the persons matching the submission ID
   let pathArray = window.location.pathname.split('/')
   let submissionID = Object()
@@ -96,7 +108,11 @@ let findIdentikitMatches = function () {
     data: JSON.stringify(submissionID),
     success: function (identikits) {
       $('.matches-loader').fadeOut('slow')
-      displayMatches(JSON.parse(identikits))
+      if (identikits.length() === 0) {
+        noMatches()
+      } else {
+        displayMatches(JSON.parse(identikits))
+      }
     }
   })
 
@@ -119,13 +135,18 @@ let displayMatches = function (persons) {
 }
 
 let displayPersonInfo = function (person) {
-  let matchesInfoArea = $('#content')
+  let matchesInfoArea = $('#matches-info-area')
 
   let personDiv = document.createElement('div')
   personDiv.className = 'person'
 
   let personID = document.createElement('div')
-  personID.innerHTML = '<b>Person ID: </b>' + person.id
+  if (findPerson === true) {
+    personID.innerHTML = '<b>Person ID: </b>' + person.id
+  }
+  if (findIdentikits === true) {
+    personID.innerHTML = '<b>Submission ID: </b>' + person.id
+  }
   personDiv.append(personID)
 
   let personNames = document.createElement('div')
@@ -141,7 +162,12 @@ let displayPersonInfo = function (person) {
   personDiv.append(personRace)
 
   let photo = document.createElement('img')
-  photo.id = 'person-photo'
+  if (findPerson === true) {
+    photo.id = 'person-photo'
+  }
+  if (findIdentikits === true) {
+    photo.id = 'matching-identikit-photo'
+  }
   photo.src = person.photo
   personDiv.append(photo)
 
@@ -151,3 +177,13 @@ let displayPersonInfo = function (person) {
 $(document).on('click', '#back-button', function () {
   window.location = '/submissions'
 })
+
+let noMatches = function (person) {
+  let matchesInfoArea = $('#content')
+
+  let message = document.createElement('div')
+  message.innerHTML = '<b>No matches found for this person.</b>'
+  matchesInfoArea.append(message)
+
+  matchesInfoArea.append(matchesInfoArea)
+}
