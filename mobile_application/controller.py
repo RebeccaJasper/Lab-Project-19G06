@@ -235,18 +235,19 @@ def get_matching_person_ids(submission_id: str) -> np.array:
     d = Dissimilarity()
     d.load_feature_vectors(existing_persons_feature_matrix)
     d.add_vector(fetch_submission_feature_vector(submission_id))
+    d.add_vector(fetch_submission_feature_vector(submission_id))
 
     # Perform clustering
     hac = HeirachicalClustering()
     hac.cluster(d.distance_matrix())
-    # hac.plot_dentogram(d.distance_matrix())
+    hac.plot_dentogram(d.distance_matrix())
 
     # Extract person_ids that share the same cluster label as the submission
 
     print(hac.cluster_indexes())
-    cluster_label = hac.cluster_indexes()[-1]
+    cluster_label = hac.cluster_indexes()[-2]
     print("The submission cluster label: %d" % cluster_label)
-    indexes = hac.find_cluster_siblings(cluster_label)[0:-1]
+    indexes = hac.find_cluster_siblings(cluster_label)[0:-2]
     print("The other indexes: ")
     print(indexes)
     person_ids = np.array([])
@@ -290,7 +291,7 @@ def get_matching_submission_ids(submission_id: str) -> np.array:
     # Perform clustering
     hac = HeirachicalClustering()
     hac.cluster(d.distance_matrix())
-    # hac.plot_dentogram(d.distance_matrix())
+    hac.plot_dentogram(d.distance_matrix())
 
     # Extract person_ids that share the same cluster label as the submission
 
