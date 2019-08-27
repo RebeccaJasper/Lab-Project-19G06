@@ -96,11 +96,11 @@ class Dissimilarity(object):
                 for other_row_index in np.arange(start, self.__feature_vectors.shape[0]):
                     distance = Dissimilarity.distance(self.__feature_vectors[current_row_index],
                                                       self.__feature_vectors[other_row_index],
-                                                      feature_ranges, weights)
+                                                      feature_ranges, weights, feature_type)
 
                     distance_matrix = np.append(distance_matrix, [distance])
 
-        print("Black female distance: %f" % distance_matrix[29])
+
         return distance_matrix
 
 
