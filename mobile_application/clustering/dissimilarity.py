@@ -56,7 +56,7 @@ class Dissimilarity(object):
         ranges = np.ptp(self.__feature_vectors, axis=0)
         return ranges
 
-    def distance_matrix(self)-> np.array:
+    def distance_matrix(self, type:str = "face-face")-> np.array:
         """
         Returns the condensed distance matrix (i.e. the upper triangular) of the loaded feature matrix
 
@@ -79,6 +79,7 @@ class Dissimilarity(object):
         weights = np.append(weights, np.full((112, 116), all_weights["Gender"]))
         
 
+
         for current_row_index in np.arange(0, self.__feature_vectors.shape[0]):
             start = current_row_index + 1
 
@@ -95,7 +96,8 @@ class Dissimilarity(object):
 
 
     @staticmethod
-    def distance(vector_1: np.array, vector_2: np.array, feature_range: np.array, weights: np.array)-> np.array:
+    def distance(vector_1: np.array, vector_2: np.array, feature_range: np.array, weights: np.array,
+                 type:str = "face-face")-> np.array:
         """
         Calculates the Gower Distance between two mixed-data feature arrays based on facial markers, race and sex
 
@@ -106,12 +108,20 @@ class Dissimilarity(object):
         :return: Gower distance between two feature vectors
         :rtype: float
         """
+        if type == "identikit-face":
+            factor = 1
+        elif type == "identikit-identikit":
+            factor = 10**3
+        elif type == "face-face":
+            factor = 10**5
+        else:
+            raise TypeError("Incorrect distance type (must be identikit-face, identikit-identikit or face-face")
 
         dist = 0
 
         for i in feature_vector_indexes["Face"]:
             if feature_range[i] != 0:
-                partial_dist = Dissimilarity.gower_similarity(np.array([vector_1[i]]), np.array([vector_2[i]])) # * 10*2
+                partial_dist = Dissimilarity.gower_similarity(np.array([vector_1[i]]), np.array([vector_2[i]])) * factor
                 partial_dist = partial_dist/feature_range[i]
                 # partial_dist = partial_dist * weights[i]
                 # partial_dist = partial_dist/weights.sum()
