@@ -137,8 +137,8 @@ class Dissimilarity(object):
             if feature_range[i] != 0:
                 partial_dist = Dissimilarity.gower_similarity(np.array([vector_1[i]]), np.array([vector_2[i]])) * factor
                 partial_dist = partial_dist/feature_range[i]
-                # partial_dist = partial_dist * weights[i]
-                # partial_dist = partial_dist/weights.sum()
+                partial_dist = partial_dist * weights[i]
+                partial_dist = partial_dist/weights.sum()
             else:
                 partial_dist = 0
 
