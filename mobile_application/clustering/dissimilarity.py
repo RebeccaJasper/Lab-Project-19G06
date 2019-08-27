@@ -56,7 +56,7 @@ class Dissimilarity(object):
         ranges = np.ptp(self.__feature_vectors, axis=0)
         return ranges
 
-    def distance_matrix(self, type:str = "face-face")-> np.array:
+    def distance_matrix(self, feature_types: np.array)-> np.array:
         """
         Returns the condensed distance matrix (i.e. the upper triangular) of the loaded feature matrix
 
@@ -77,11 +77,20 @@ class Dissimilarity(object):
         weights = np.append(weights, np.full((66, 106), all_weights["Mouth"]))
         weights = np.append(weights, np.full((106, 112), all_weights["Race"]))
         weights = np.append(weights, np.full((112, 116), all_weights["Gender"]))
-        
 
 
         for current_row_index in np.arange(0, self.__feature_vectors.shape[0]):
             start = current_row_index + 1
+
+            if feature_types[current_row_index] == "p" and feature_type[other_row_index] == "p":
+                feature_type = "person-person"
+            elif feature_types[current_row_index] == "i" and feature_type[other_row_index] == "i":
+                feature_type = "identikit-identikit"
+            elif (feature_types[current_row_index] == "p" and feature_type[other_row_index] == "i") or (feature_types
+                    [current_row_index] == "i" and feature_type[other_row_index] == "p"):
+                feature_type = "identikit-person"
+            else:
+                raise TypeError("Feature type can only be 'p' for person or 'i' for identikit")
 
             if start < self.__feature_vectors.shape[0]:
                 for other_row_index in np.arange(start, self.__feature_vectors.shape[0]):
@@ -97,7 +106,7 @@ class Dissimilarity(object):
 
     @staticmethod
     def distance(vector_1: np.array, vector_2: np.array, feature_range: np.array, weights: np.array,
-                 type:str = "face-face")-> np.array:
+                 type:str = "person-person")-> np.array:
         """
         Calculates the Gower Distance between two mixed-data feature arrays based on facial markers, race and sex
 
@@ -108,11 +117,11 @@ class Dissimilarity(object):
         :return: Gower distance between two feature vectors
         :rtype: float
         """
-        if type == "identikit-face":
+        if type == "identikit-person":
             factor = 1
         elif type == "identikit-identikit":
-            factor = 10**3
-        elif type == "face-face":
+            factor = 10**5
+        elif type == "person-person":
             factor = 10**5
         else:
             raise TypeError("Incorrect distance type (must be identikit-face, identikit-identikit or face-face")
