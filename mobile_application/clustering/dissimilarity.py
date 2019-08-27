@@ -127,7 +127,7 @@ class Dissimilarity(object):
         elif type == "identikit-identikit":
             factor = 10**5
         elif type == "person-person":
-            factor = 10
+            factor = 2
         else:
             raise TypeError("Incorrect distance type (must be identikit-face, identikit-identikit or face-face")
 
