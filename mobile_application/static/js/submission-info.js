@@ -133,7 +133,12 @@ let displayPersonInfo = function (person) {
   personDiv.className = 'person'
 
   let personID = document.createElement('div')
-  personID.innerHTML = '<b>Person ID: </b>' + person.id
+  if (findPerson === true) {
+    personID.innerHTML = '<b>Person ID: </b>' + person.id
+  }
+  if (findIdentikits === true) {
+    personID.innerHTML = '<b>Submission ID: </b>' + person.id
+  }
   personDiv.append(personID)
 
   let personNames = document.createElement('div')
