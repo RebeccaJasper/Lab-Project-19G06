@@ -95,7 +95,7 @@ h1.submission-info {
 h1.matches-info {
     font-family: 'Crimson Pro', serif;
     text-align: left;
-    position: fixed;
+    position: relative;
 }
     
 #matches-info-area {
@@ -115,9 +115,9 @@ h1.matches-info {
     text-align: right;
 }
 
-#content{
+/* #content{
     margin-top: 55px;
-}
+} */
 
 #right{
     visibility: hidden;
