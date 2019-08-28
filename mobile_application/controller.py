@@ -4,6 +4,7 @@ from mobile_application.clustering.dissimilarity import Dissimilarity
 from mobile_application.clustering.feature_encoding import *
 from mobile_application.clustering.hierarchical_clusterring import HeirachicalClustering
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 def process_submission_info(firstname: str = "", surname: str = "", gender: float = "1", race: float = "0.16", person_id:int = -1):
@@ -245,6 +246,7 @@ def get_matching_person_ids(submission_id: str) -> np.array:
     hac = HeirachicalClustering()
     hac.cluster(d.distance_matrix(feature_types))
     hac.plot_dentogram(d.distance_matrix(feature_types))
+    plot_facial_coordinates(submission_id)
 
     # Extract person_ids that share the same cluster label as the submission
 
@@ -397,3 +399,22 @@ def get_matching_identikits_list(submission_ids: np.array) -> List[dict]:
     
 
     return return_list
+
+
+def plot_facial_coordinates(submission_id: float) -> None:
+    plt.figure(figsize=(10, 7))
+    plt.title("Facial coordinates plot")
+
+    # convert_db_array_to_feature_vector()
+    identikit_features = fetch_submission_feature_vector(submission_id)
+    x_identikit = 0
+    y_identikit = 0
+    print(identikit_features)
+
+    for i in range(0, 106, 2):
+        x_identikit = identikit_features[i]
+        y_identikit = identikit_features[i+1]
+        plt.scatter(x_identikit, y_identikit)
+
+    plt.show()
+    return
