@@ -246,7 +246,7 @@ def get_matching_person_ids(submission_id: str) -> np.array:
     hac = HeirachicalClustering()
     hac.cluster(d.distance_matrix(feature_types))
     hac.plot_dentogram(d.distance_matrix(feature_types))
-    plot_facial_coordinates('73379494140063')
+    plot_facial_coordinates(submission_id, '73379494140063')
 
     # Extract person_ids that share the same cluster label as the submission
 
@@ -401,21 +401,21 @@ def get_matching_identikits_list(submission_ids: np.array) -> List[dict]:
     return return_list
 
 
-def plot_facial_coordinates(submission_id: str) -> None:
+def plot_facial_coordinates(submission_id: str, person_id: str) -> None:
     plt.figure(figsize=(10, 7))
     plt.title("Facial coordinates plot")
 
-    # identikit_features = fetch_submission_feature_vector(submission_id)
-    # x_identikit = 0
-    # y_identikit = 0
-    # print(identikit_features)
+    identikit_features = fetch_submission_feature_vector(submission_id)
+    x_identikit = 0
+    y_identikit = 0
+    print(identikit_features)
 
-    # for i in range(0, 106, 2):
-    #     x_identikit = identikit_features[i]
-    #     y_identikit = identikit_features[i+1]
-    #     plt.scatter(x_identikit, y_identikit)
+    for i in range(0, 106, 2):
+        x_identikit = identikit_features[i]
+        y_identikit = identikit_features[i+1]
+        plt.scatter(x_identikit, y_identikit, color='blue')
 
-    person_features = fetch_person_feature_vector(submission_id)
+    person_features = fetch_person_feature_vector(person_id)
     x_person = 0
     y_person = 0
     print(person_features)
@@ -423,7 +423,7 @@ def plot_facial_coordinates(submission_id: str) -> None:
     for i in range(0, 106, 2):
         x_person = person_features[i]
         y_person = person_features[i+1]
-        plt.scatter(x_person, y_person)
+        plt.scatter(x_person, y_person, color='red')
 
     plt.show()
     return
