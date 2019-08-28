@@ -26,7 +26,7 @@ class Coordinate:
         return '({self.x}, {self.y})'.format(self=self)
 
 
-def unit_vector(dlib_point) -> Coordinate:
+def unit_vector(dlib_point, ref_point: Coordinate) -> Coordinate:
     """
     Coverts a dlib vector to a unit vector
     :param dlib_point: Dlib coordinate
@@ -34,7 +34,7 @@ def unit_vector(dlib_point) -> Coordinate:
     :return: Unit vector of the input vector
     :rtype: Coordinate
     """
-    modulus = sqrt(pow(dlib_point.x, 2) + pow(dlib_point.y, 2))
+    modulus = sqrt(pow(dlib_point.x - ref_point.x, 2) + pow(dlib_point.y - ref_point.y, 2))
     if modulus != 0:
         x = dlib_point.x /modulus
         y = dlib_point.y/modulus

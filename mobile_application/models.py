@@ -86,6 +86,25 @@ def add_feature_vector_to_db(person_id: str, feature_vector: List[float]) -> Non
     commit_changes()
 
 
+def edit_identikit_feature_vector_in_db(submission_id: str, feature_vector: List[float]) -> None:
+    """
+    Adds a feature vector to the database
+
+    :param feature_vector: List representing a feature vector
+    :type: str
+    :param person_id: String representing the id associated with the person
+    :type: str
+    :rtype: None
+    """
+
+    query_string = ''' UPDATE identikit_markers_new
+                        WHERE submission_id = '%s'
+                        SET face_encoding = '%s'; '''
+    args = (submission_id, convert_list_to_str(feature_vector))
+    execute_query(query_string, args)
+    commit_changes()
+
+
 def add_feature_vector_to_identikit_db(feature_vector: List[float]) -> None:
     """
     Adds a feature vector to the database

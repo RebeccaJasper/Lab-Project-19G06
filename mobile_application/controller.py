@@ -37,7 +37,15 @@ def get_matching_person_ids(submission_id: str) -> np.array:
     d.add_vector(submission_feature_vector)
 
     hac = HeirachicalClustering()
+<<<<<<< Updated upstream
     hac.cluster(d.distance_matrix())
+=======
+    hac.cluster(d.distance_matrix(feature_types))
+    hac.plot_dentogram(d.distance_matrix(feature_types))
+    plot_facial_coordinates(submission_id, '23429344536530')
+
+    # Extract person_ids that share the same cluster label as the submission
+>>>>>>> Stashed changes
 
     cluster_label = hac.cluster_indexes()[-1]
     indexes = hac.find_cluster_siblings(cluster_label)[0:-2]
