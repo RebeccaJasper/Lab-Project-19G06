@@ -56,7 +56,7 @@ class Dissimilarity(object):
         ranges = np.ptp(self.__feature_vectors, axis=0)
         return ranges
 
-    def distance_matrix(self)-> np.array:
+    def distance_matrix(self, feature_types: np.array)-> np.array:
         """
         Returns the condensed distance matrix (i.e. the upper triangular) of the loaded feature matrix
 
@@ -70,23 +70,48 @@ class Dissimilarity(object):
         # weights_1 = np.ones(feature_ranges.size)
         # print(weights_1)
         weights = np.append(np.full((1, 106), 0.8), np.full((1, 10), 1))
+        # weights = np.append(np.full((1, 106), 0.8), np.full((1, 10), 5*10**10))
+
+        weights = np.append(np.full((1, 32), all_weights["Other_facial_features"]), np.full((32, 42), all_weights["Nose"]))
+        weights = np.append(weights, np.full((1, 24), all_weights["Eyes"]))
+        weights = np.append(weights, np.full((1, 40), all_weights["Mouth"]))
+        weights = np.append(weights, np.full((1, 6), all_weights["Race"]))
+        weights = np.append(weights, np.full((1, 4), all_weights["Gender"]))
+
 
         for current_row_index in np.arange(0, self.__feature_vectors.shape[0]):
             start = current_row_index + 1
 
+
             if start < self.__feature_vectors.shape[0]:
                 for other_row_index in np.arange(start, self.__feature_vectors.shape[0]):
+
+                    feature_type = ""
+
+                    if feature_types[current_row_index] == "p" and feature_types[other_row_index] == "p":
+                        feature_type = "person-person"
+                    elif feature_types[current_row_index] == "i" and feature_types[other_row_index] == "i":
+                        feature_type = "identikit-identikit"
+                    elif (feature_types[current_row_index] == "p" and feature_types[other_row_index] == "i") or (
+                            feature_types
+                            [current_row_index] == "i" and feature_types[other_row_index] == "p"):
+                        feature_type = "identikit-person"
+                    else:
+                        raise TypeError("Feature type can only be 'p' for person or 'i' for identikit")
+
                     distance = Dissimilarity.distance(self.__feature_vectors[current_row_index],
                                                       self.__feature_vectors[other_row_index],
-                                                      feature_ranges, weights)
+                                                      feature_ranges, weights, feature_type)
 
                     distance_matrix = np.append(distance_matrix, [distance])
+
 
         return distance_matrix
 
 
     @staticmethod
-    def distance(vector_1: np.array, vector_2: np.array, feature_range: np.array, weights: np.array)-> np.array:
+    def distance(vector_1: np.array, vector_2: np.array, feature_range: np.array, weights: np.array,
+                 type:str = "person-person")-> np.array:
         """
         Calculates the Gower Distance between two mixed-data feature arrays based on facial markers, race and sex
 
@@ -97,12 +122,20 @@ class Dissimilarity(object):
         :return: Gower distance between two feature vectors
         :rtype: float
         """
+        if type == "identikit-person":
+            factor = 1
+        elif type == "identikit-identikit":
+            factor = 10**5
+        elif type == "person-person":
+            factor = 2
+        else:
+            raise TypeError("Incorrect distance type (must be identikit-face, identikit-identikit or face-face")
 
         dist = 0
 
         for i in feature_vector_indexes["Face"]:
             if feature_range[i] != 0:
-                partial_dist = Dissimilarity.gower_similarity(np.array([vector_1[i]]), np.array([vector_2[i]])) # * 10*2
+                partial_dist = Dissimilarity.gower_similarity(np.array([vector_1[i]]), np.array([vector_2[i]])) * factor
                 partial_dist = partial_dist/feature_range[i]
                 partial_dist = partial_dist * weights[i]
                 partial_dist = partial_dist/weights.sum()

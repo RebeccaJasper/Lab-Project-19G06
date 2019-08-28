@@ -229,6 +229,7 @@ def get_matching_person_ids(submission_id: str) -> np.array:
 
     # Fetch existing persons from the database
     existing_persons_feature_matrix = persons_feature_matrix()
+    feature_types = np.full((1, existing_persons_feature_matrix.shape[0]), 'p', dtype=str)
     existing_person_ids = get_person_ids()
 
     # Calculate dissimilarity between existing persons and the specified submission id
@@ -236,11 +237,14 @@ def get_matching_person_ids(submission_id: str) -> np.array:
     d.load_feature_vectors(existing_persons_feature_matrix)
     d.add_vector(fetch_submission_feature_vector(submission_id))
     d.add_vector(fetch_submission_feature_vector(submission_id))
+    feature_types = np.append(feature_types, np.array(['i']))
+    feature_types = np.append(feature_types, np.array(['i']))
+    print("Length of feature types is: %d" % feature_types.size)
 
     # Perform clustering
     hac = HeirachicalClustering()
-    hac.cluster(d.distance_matrix())
-    hac.plot_dentogram(d.distance_matrix())
+    hac.cluster(d.distance_matrix(feature_types))
+    hac.plot_dentogram(d.distance_matrix(feature_types))
 
     # Extract person_ids that share the same cluster label as the submission
 
@@ -276,6 +280,7 @@ def get_matching_submission_ids(submission_id: str) -> np.array:
 
     # Fetch existing persons from the database
     submission_feature_matrix = processed_submission_feature_matrix()
+    feature_types = np.full((1, submission_feature_matrix.shape[0]), 'i', dtype=str)
     db_submission_ids = get_submission_ids()
     print("The length of the vectors in the feature matrix is: %d" % submission_feature_matrix.shape[1])
     print("The length of the feature vector being laoded is: %d" % fetch_submission_feature_vector(submission_id).size)
@@ -285,13 +290,15 @@ def get_matching_submission_ids(submission_id: str) -> np.array:
     d.load_feature_vectors(submission_feature_matrix)
     d.add_vector(fetch_submission_feature_vector(submission_id))
     d.add_vector(fetch_submission_feature_vector(submission_id))
-    print("The distance matrix: ")
-    print(d.distance_matrix())
+    feature_types = np.append(feature_types, np.array(['i']))
+    feature_types = np.append(feature_types, np.array(['i']))
+    # print("The distance matrix: ")
+    # print(d.distance_matrix())
 
     # Perform clustering
     hac = HeirachicalClustering()
-    hac.cluster(d.distance_matrix())
-    hac.plot_dentogram(d.distance_matrix())
+    hac.cluster(d.distance_matrix(feature_types))
+    hac.plot_dentogram(d.distance_matrix(feature_types))
 
     # Extract person_ids that share the same cluster label as the submission
 
