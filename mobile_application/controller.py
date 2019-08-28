@@ -144,8 +144,8 @@ def convert_identikit_array_to_feature_vector(db_array: np.array) -> np.array:
     :rtype: np.array
     """
     facial_feature_array = convert_feature_string_to_array(db_array[0])
-    facial_feature_array = change_coordinate_reference_of__identikit_array(facial_feature_array,
-                                                     Coordinate(facial_feature_array[100], facial_feature_array[101]))
+    # facial_feature_array = change_coordinate_reference_of__identikit_array(facial_feature_array,
+    #                                                  Coordinate(facial_feature_array[100], facial_feature_array[101]))
     race_array = create_race_array(int(db_array[1]))
     sex_array = create_sex_array(str(db_array[2]))
 
