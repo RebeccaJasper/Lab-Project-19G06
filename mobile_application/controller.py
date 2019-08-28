@@ -246,7 +246,7 @@ def get_matching_person_ids(submission_id: str) -> np.array:
     hac = HeirachicalClustering()
     hac.cluster(d.distance_matrix(feature_types))
     hac.plot_dentogram(d.distance_matrix(feature_types))
-    plot_facial_coordinates(submission_id)
+    plot_facial_coordinates('73379494140063')
 
     # Extract person_ids that share the same cluster label as the submission
 
@@ -401,20 +401,40 @@ def get_matching_identikits_list(submission_ids: np.array) -> List[dict]:
     return return_list
 
 
-def plot_facial_coordinates(submission_id: float) -> None:
+def plot_facial_coordinates(submission_id: str) -> None:
     plt.figure(figsize=(10, 7))
     plt.title("Facial coordinates plot")
 
-    # convert_db_array_to_feature_vector()
-    identikit_features = fetch_submission_feature_vector(submission_id)
-    x_identikit = 0
-    y_identikit = 0
-    print(identikit_features)
+    # identikit_features = fetch_submission_feature_vector(submission_id)
+    # x_identikit = 0
+    # y_identikit = 0
+    # print(identikit_features)
+
+    # for i in range(0, 106, 2):
+    #     x_identikit = identikit_features[i]
+    #     y_identikit = identikit_features[i+1]
+    #     plt.scatter(x_identikit, y_identikit)
+
+    person_features = fetch_person_feature_vector(submission_id)
+    x_person = 0
+    y_person = 0
+    print(person_features)
 
     for i in range(0, 106, 2):
-        x_identikit = identikit_features[i]
-        y_identikit = identikit_features[i+1]
-        plt.scatter(x_identikit, y_identikit)
+        x_person = person_features[i]
+        y_person = person_features[i+1]
+        plt.scatter(x_person, y_person)
 
     plt.show()
     return
+
+    
+def fetch_person_feature_vector(person_id: str) -> np.ndarray:
+
+    db_person_feature_matrix = get_person_feature_matrix()
+    existing_person_ids = get_person_ids()
+    index = np.where(existing_person_ids == person_id)
+    print(index[0][0])
+    print(db_person_feature_matrix[index[0][0]].shape)
+    person_feature_vector = convert_db_array_to_feature_vector(db_person_feature_matrix[index[0][0]])
+    return person_feature_vector
