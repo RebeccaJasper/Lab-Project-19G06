@@ -30,7 +30,7 @@ def add_image_to_database(person_id: str, filename: str) -> None:
     :type: str
     :rtype: None
     """
-    query_string = ''' INSERT INTO person_photos(person_id, photo)
+    query_string = ''' INSERT INTO person_photos_new(person_id, photo)
                     VALUES ('%s', '%s'); '''
     args = (person_id, photo_to_string(filename))
     execute_query(query_string, args)
@@ -79,7 +79,7 @@ def add_feature_vector_to_db(person_id: str, feature_vector: List[float]) -> Non
     :rtype: None
     """
 
-    query_string = ''' INSERT INTO face_encodings(person_id, face_encoding)
+    query_string = ''' INSERT INTO face_encodings_new(person_id, face_encoding)
                     VALUES ('%s', '%s'); '''
     args = (person_id, convert_list_to_str(feature_vector))
     execute_query(query_string, args)
@@ -161,7 +161,7 @@ def add_person_info_to_db(person_id: str, race: int, gender: str) -> None:
     :type: str
     :rtype: None
     """
-    query_string = """INSERT INTO persons(person_id, race, sex)
+    query_string = """INSERT INTO persons_new(person_id, race, sex)
                     VALUES ('%s', '%d', '%s');"""
     args = (person_id, race, gender)
     execute_query(query_string, args)
