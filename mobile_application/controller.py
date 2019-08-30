@@ -155,6 +155,19 @@ def convert_identikit_array_to_feature_vector(db_array: np.array) -> np.array:
     desired_facial_marker_points = convert_dlib_points_to_coordinate_indexes(desired_facial_marker_dlib_points)
     facial_feature_array = facial_feature_array[desired_facial_marker_points.astype(int)]
 
+    central_point_coordinate_array = convert_dlib_points_to_coordinate_indexes([33])
+    print("Central point coordinate array")
+    print(central_point_coordinate_array)
+    central_point = Coordinate(facial_feature_array[int(central_point_coordinate_array[0])],
+                               facial_feature_array[int(central_point_coordinate_array[1])])
+
+    for n in range(0, facial_feature_array.size, 2):
+        point = Coordinate(facial_feature_array[n], facial_feature_array[n + 1])
+        point = change_coordinate_reference(central_point, point)
+        point = unit_vector(point, central_point)
+        facial_feature_array[n] = point.x
+        facial_feature_array[n+1] = point.y
+
     race_array = create_race_array(int(db_array[1]))
     sex_array = create_sex_array(str(db_array[2]))
 
