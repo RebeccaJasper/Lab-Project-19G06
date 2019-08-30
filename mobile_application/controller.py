@@ -275,7 +275,7 @@ def get_matching_person_ids(submission_id: str) -> np.array:
     hac = HeirachicalClustering()
     hac.cluster(d.distance_matrix(feature_types))
     hac.plot_dentogram(d.distance_matrix(feature_types))
-    plot_facial_coordinates(submission_id, '54534905784705')
+    plot_facial_coordinates(submission_id, '1759639')
 
     # Extract person_ids that share the same cluster label as the submission
 
@@ -452,7 +452,7 @@ def plot_facial_coordinates(submission_id: str, person_id: str) -> None:
     for i in range(0, person_features.size - 10, 2):
         x_person = person_features[i]
         y_person = person_features[i+1]
-        # plt.scatter(x_person, y_person, color='red')
+        plt.scatter(x_person, y_person, color='red')
 
     plt.show()
     return
