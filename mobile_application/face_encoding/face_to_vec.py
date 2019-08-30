@@ -36,12 +36,14 @@ def encode_face_image(img_dir: str) -> List[float]:
 
         # Place circles at desired facial markers
         for n in range(0, 68):
-            new_dlib_point = change_coordinate_reference(landmarks.part(central_point_index), landmarks.part(n))
-            new_point = unit_vector(new_dlib_point, landmarks.part(central_point_index))
-            transformed_points.append(new_point.x)
-            transformed_points.append(new_point.y)
-            x = landmarks.part(n).x
-            y = landmarks.part(n).y
+            # new_dlib_point = change_coordinate_reference(landmarks.part(central_point_index), landmarks.part(n))
+            # new_point = unit_vector(new_dlib_point, landmarks.part(central_point_index))
+            # transformed_points.append(new_point.x)
+            # transformed_points.append(new_point.y)
+            # x = landmarks.part(n).x
+            # y = landmarks.part(n).y
+            transformed_points.append(landmarks.part(n).x)
+            transformed_points.append(landmarks.part(n).y)
     #         cv2.circle(img, (x, y), 4, (255, 0, 0), -1)
     #
     # cv2.imshow('Output', img)

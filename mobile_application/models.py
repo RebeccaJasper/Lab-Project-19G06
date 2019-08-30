@@ -98,9 +98,9 @@ def edit_identikit_feature_vector_in_db(submission_id: str, feature_vector: List
     """
 
     query_string = ''' UPDATE identikit_markers_new
-                        WHERE submission_id = '%s'
-                        SET face_encoding = '%s'; '''
-    args = (submission_id, convert_list_to_str(feature_vector))
+                        SET face_encoding = '%s'
+                        WHERE submission_id = '%s'; '''
+    args = (convert_list_to_str(feature_vector), submission_id)
     execute_query(query_string, args)
     commit_changes()
 
