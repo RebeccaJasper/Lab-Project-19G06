@@ -41,7 +41,7 @@ def unit_vector(dlib_point, ref) -> Coordinate:
         y = dlib_point.y/modulus
         new_point = Coordinate(x, y)
     else:
-        new_point = Coordinate(dlib_point.x, dlib_point.y)
+        new_point = Coordinate(0, 0)
 
     return new_point
 
@@ -61,6 +61,7 @@ def change_coordinate_reference(ref: Coordinate, point: Coordinate) -> Coordinat
     y = point.y - ref.y
     new_point = Coordinate(x, y)
     return new_point
+
 
 def convert_dlib_points_to_coordinate_indexes(dlib_points: np.array) -> object:
     coordinate_indexes = np.array([])
