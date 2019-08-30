@@ -180,9 +180,9 @@ def get_submission_feature_vector(submission_id: int) -> np.array:
     :return: Feature vector associated with the specified submission_id
     :rtype: np.array
     """
-    query_string = '''SELECT identikit_markers.face_encoding, identikits.race, identikits.gender
+    query_string = '''SELECT identikit_markers_new.face_encoding, identikits.race, identikits.gender
                         from identikits
-                        inner join identikit_markers on identikit_markers.submission_id=identikits.submission_id
+                        inner join identikit_markers_new on identikit_markers_new.submission_id=identikits.submission_id
                         where identikits.submission_id=%d'''
 
     arg = int(submission_id)

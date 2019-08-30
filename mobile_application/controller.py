@@ -146,6 +146,15 @@ def convert_identikit_array_to_feature_vector(db_array: np.array) -> np.array:
     facial_feature_array = convert_feature_string_to_array(db_array[0])
     # facial_feature_array = change_coordinate_reference_of__identikit_array(facial_feature_array,
     #                                                  Coordinate(facial_feature_array[100], facial_feature_array[101]))
+
+    desired_facial_marker_dlib_points = np.array([0, 4, 6, 10, 12, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+                                                  31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47,
+                                                  48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64,
+                                                  65, 66, 67])
+
+    desired_facial_marker_points = convert_dlib_points_to_coordinate_indexes(desired_facial_marker_dlib_points)
+    facial_feature_array = facial_feature_array[desired_facial_marker_points.astype(int)]
+
     race_array = create_race_array(int(db_array[1]))
     sex_array = create_sex_array(str(db_array[2]))
 
@@ -410,7 +419,7 @@ def plot_facial_coordinates(submission_id: str, person_id: str) -> None:
     y_identikit = 0
     print(identikit_features)
 
-    for i in range(0, 106, 2):
+    for i in range(0, identikit_features.size, 2):
         x_identikit = identikit_features[i]
         y_identikit = identikit_features[i+1]
         plt.scatter(x_identikit, y_identikit, color='blue')
@@ -420,7 +429,7 @@ def plot_facial_coordinates(submission_id: str, person_id: str) -> None:
     y_person = 0
     print(person_features)
 
-    for i in range(0, 106, 2):
+    for i in range(0, person_features.size, 2):
         x_person = person_features[i]
         y_person = person_features[i+1]
         plt.scatter(x_person, y_person, color='red')
@@ -438,3 +447,6 @@ def fetch_person_feature_vector(person_id: str) -> np.ndarray:
     print(db_person_feature_matrix[index[0][0]].shape)
     person_feature_vector = convert_db_array_to_feature_vector(db_person_feature_matrix[index[0][0]])
     return person_feature_vector
+
+
+# plot_facial_coordinates('70', '38876451186475')
