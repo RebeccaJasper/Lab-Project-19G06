@@ -147,6 +147,10 @@ def convert_identikit_array_to_feature_vector(db_array: np.array) -> np.array:
     # facial_feature_array = change_coordinate_reference_of__identikit_array(facial_feature_array,
     #                                                  Coordinate(facial_feature_array[100], facial_feature_array[101]))
 
+    central_point_coordinate_array = convert_dlib_points_to_coordinate_indexes([33])
+    central_point = Coordinate(facial_feature_array[int(central_point_coordinate_array[0])],
+                               facial_feature_array[int(central_point_coordinate_array[1])])
+    
     desired_facial_marker_dlib_points = np.array([0, 4, 6, 10, 12, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
                                                   31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47,
                                                   48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64,
@@ -155,11 +159,10 @@ def convert_identikit_array_to_feature_vector(db_array: np.array) -> np.array:
     desired_facial_marker_points = convert_dlib_points_to_coordinate_indexes(desired_facial_marker_dlib_points)
     facial_feature_array = facial_feature_array[desired_facial_marker_points.astype(int)]
 
-    central_point_coordinate_array = convert_dlib_points_to_coordinate_indexes([33])
+
     print("Central point coordinate array")
     print(central_point_coordinate_array)
-    central_point = Coordinate(facial_feature_array[int(central_point_coordinate_array[0])],
-                               facial_feature_array[int(central_point_coordinate_array[1])])
+
 
     for n in range(0, facial_feature_array.size, 2):
         point = Coordinate(facial_feature_array[n], facial_feature_array[n + 1])
@@ -445,7 +448,7 @@ def plot_facial_coordinates(submission_id: str, person_id: str) -> None:
     for i in range(0, person_features.size, 2):
         x_person = person_features[i]
         y_person = person_features[i+1]
-        plt.scatter(x_person, y_person, color='red')
+        # plt.scatter(x_person, y_person, color='red')
 
     plt.show()
     return
