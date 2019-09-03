@@ -477,16 +477,22 @@ def plot_all_identikit_facial_coordinates() -> None:
     identikit_features = []
     x_identikit = 0
     y_identikit = 0
+    num_of_faces = 5
+
+    # colours = range(len(num_of_faces))
+    # colours = range(0, num_of_faces, 1)
+    colours = ['blue', 'red', 'green', 'yellow', 'orange']
+
 
     # for i in range(0, len(submission_ids)):
-    for i in range(0, 5):
+    for i in range(0, num_of_faces):
         id_num = submission_ids[i].get('id')
         identikit_features = fetch_submission_feature_vector(id_num)
-
+        
         for j in range(0, identikit_features.size -10, 2):
             x_identikit = identikit_features[j]
             y_identikit = identikit_features[j+1]
-            plt.scatter(x_identikit, y_identikit)
+            plt.scatter(x_identikit, y_identikit, c=colours[i])
         
         # plt.show()
 
