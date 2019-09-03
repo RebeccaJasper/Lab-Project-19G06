@@ -5,6 +5,7 @@ from mobile_application.clustering.feature_encoding import *
 from mobile_application.clustering.hierarchical_clusterring import HeirachicalClustering
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib 
 
 
 def process_submission_info(firstname: str = "", surname: str = "", gender: float = "1", race: float = "0.16", person_id:int = -1):
@@ -477,18 +478,19 @@ def plot_all_identikit_facial_coordinates() -> None:
     identikit_features = []
     x_identikit = 0
     y_identikit = 0
-    num_of_faces = 5
+    num_of_faces = 15
 
     # colours = range(len(num_of_faces))
     # colours = range(0, num_of_faces, 1)
-    colours = ['blue', 'red', 'green', 'yellow', 'orange']
-
+    # colours = ['blue', 'red', 'green', 'yellow', 'orange']
+    colours = matplotlib.cm.rainbow(np.linspace(0, 1, num_of_faces))
 
     # for i in range(0, len(submission_ids)):
     for i in range(0, num_of_faces):
         id_num = submission_ids[i].get('id')
         identikit_features = fetch_submission_feature_vector(id_num)
-        
+        identikit_features = - identikit_features
+
         for j in range(0, identikit_features.size -10, 2):
             x_identikit = identikit_features[j]
             y_identikit = identikit_features[j+1]
