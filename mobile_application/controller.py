@@ -159,19 +159,19 @@ def convert_identikit_array_to_feature_vector(db_array: np.array) -> np.array:
     desired_facial_marker_points = convert_dlib_points_to_coordinate_indexes(desired_facial_marker_dlib_points)
     facial_feature_array = facial_feature_array[desired_facial_marker_points.astype(int)]
 
-    print("Central point coordinate array")
-    print(central_point_coordinate_array)
+    # print("Central point coordinate array")
+    # print(central_point_coordinate_array)
 
     for n in range(0, facial_feature_array.size, 2):
         point = Coordinate(facial_feature_array[n], facial_feature_array[n + 1])
         point = change_coordinate_reference(central_point, point)
         point = unit_vector(point, central_point)
-        print("X-ccordinate: %f" % point.x)
-        print("Y-ccordinate: %f" % point.y)
-        if point.x > 0.95:
-            print("This is the index in the array that's causing nonsense: %d" % n)
-        if point.y > 0.95:
-            print("This is the index in the array that's causing nonsense: %d" % n)
+        # print("X-ccordinate: %f" % point.x)
+        # # print("Y-ccordinate: %f" % point.y)
+        # if point.x > 0.95:
+        #     print("This is the index in the array that's causing nonsense: %d" % n)
+        # if point.y > 0.95:
+        #     print("This is the index in the array that's causing nonsense: %d" % n)
         facial_feature_array[n] = point.x
         facial_feature_array[n+1] = point.y
 
@@ -269,13 +269,13 @@ def get_matching_person_ids(submission_id: str) -> np.array:
     d.add_vector(fetch_submission_feature_vector(submission_id))
     feature_types = np.append(feature_types, np.array(['i']))
     feature_types = np.append(feature_types, np.array(['i']))
-    print("Length of feature types is: %d" % feature_types.size)
+    # print("Length of feature types is: %d" % feature_types.size)
 
     # Perform clustering
     hac = HeirachicalClustering()
     hac.cluster(d.distance_matrix(feature_types))
-    hac.plot_dentogram(d.distance_matrix(feature_types))
-    plot_facial_coordinates(submission_id, '1759639')
+    # hac.plot_dentogram(d.distance_matrix(feature_types))
+    # plot_facial_coordinates(submission_id, '1759639')
 
     # Extract person_ids that share the same cluster label as the submission
 
@@ -437,7 +437,7 @@ def plot_facial_coordinates(submission_id: str, person_id: str) -> None:
     identikit_features = fetch_submission_feature_vector(submission_id)
     x_identikit = 0
     y_identikit = 0
-    print(identikit_features)
+    # print(identikit_features)
 
     for i in range(0, identikit_features.size - 10, 2):
         x_identikit = identikit_features[i]
@@ -447,7 +447,7 @@ def plot_facial_coordinates(submission_id: str, person_id: str) -> None:
     person_features = fetch_person_feature_vector(person_id)
     x_person = 0
     y_person = 0
-    print(person_features)
+    # print(person_features)
 
     for i in range(0, person_features.size - 10, 2):
         x_person = person_features[i]
@@ -469,4 +469,25 @@ def fetch_person_feature_vector(person_id: str) -> np.ndarray:
     return person_feature_vector
 
 
-# plot_facial_coordinates('70', '38876451186475')
+def plot_all_identikit_facial_coordinates() -> None:
+    plt.figure(figsize=(10, 7))
+    plt.title("Facial coordinates plot")
+
+    submission_ids = get_submission_list()
+    identikit_features = []
+    x_identikit = 0
+    y_identikit = 0
+
+    for i in range(0, len(submission_ids)):
+        id_num = submission_ids[i].get('id')
+        identikit_features = get_submission_feature_vector(id_num)
+
+        for j in range(0, identikit_features.size -2, 2):
+            x_identikit = identikit_features[j]
+            y_identikit = identikit_features[j+1]
+            plt.scatter(x_identikit, y_identikit)
+
+    plt.show()
+    return
+
+plot_all_identikit_facial_coordinates()
