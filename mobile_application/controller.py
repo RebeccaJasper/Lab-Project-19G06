@@ -474,19 +474,21 @@ def plot_all_identikit_facial_coordinates() -> None:
     plt.title("Facial coordinates plot")
 
     submission_ids = get_submission_list()
-    # identikit_features = []
+    identikit_features = []
     x_identikit = 0
     y_identikit = 0
 
-    for i in range(0, len(submission_ids)):
+    # for i in range(0, len(submission_ids)):
+    for i in range(0, 5):
         id_num = submission_ids[i].get('id')
-        # identikit_features = get_submission_feature_vector(id_num)
         identikit_features = fetch_submission_feature_vector(id_num)
 
-        for j in range(0, identikit_features.size -9, 2):
+        for j in range(0, identikit_features.size -10, 2):
             x_identikit = identikit_features[j]
             y_identikit = identikit_features[j+1]
             plt.scatter(x_identikit, y_identikit)
+        
+        # plt.show()
 
 
     # id_num = submission_ids[0].get('id')
@@ -501,6 +503,7 @@ def plot_all_identikit_facial_coordinates() -> None:
     #     plt.scatter(x_identikit, y_identikit)
 
     plt.show()
+
     return
 
 plot_all_identikit_facial_coordinates()
