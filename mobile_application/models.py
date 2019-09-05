@@ -290,7 +290,7 @@ def get_correct_persons_id(submission_id: int) -> np.ndarray:
     return submission_ids
 
 
-print(get_correct_persons_id(70))
+
 
 def get_persons_biographical_info(person_ids: np.array) -> np.array:
     if person_ids.size != 0:

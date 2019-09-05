@@ -159,20 +159,12 @@ def convert_identikit_array_to_feature_vector(db_array: np.array) -> np.array:
     desired_facial_marker_points = convert_dlib_points_to_coordinate_indexes(desired_facial_marker_dlib_points)
     facial_feature_array = facial_feature_array[desired_facial_marker_points.astype(int)]
 
-    print("Central point coordinate array")
-    print(central_point_coordinate_array)
 
     for n in range(0, facial_feature_array.size, 2):
         point = Coordinate(facial_feature_array[n], facial_feature_array[n + 1])
         point = change_coordinate_reference(central_point, point)
         point = unit_vector(point, central_point)
-        print("X-ccordinate: %f" % point.x)
-        print("Y-ccordinate: %f" % point.y)
-        if point.x > 0.95:
-            print("This is the index in the array that's causing nonsense: %d" % n)
-        if point.y > 0.95:
-            print("This is the index in the array that's causing nonsense: %d" % n)
-        facial_feature_array[n] = point.x
+
         facial_feature_array[n+1] = point.y
 
     race_array = create_race_array(int(db_array[1]))
@@ -269,7 +261,6 @@ def get_matching_person_ids(submission_id: str) -> np.array:
     d.add_vector(fetch_submission_feature_vector(submission_id))
     feature_types = np.append(feature_types, np.array(['i']))
     feature_types = np.append(feature_types, np.array(['i']))
-    print("Length of feature types is: %d" % feature_types.size)
 
     # Perform clustering
     hac = HeirachicalClustering()
@@ -463,8 +454,6 @@ def fetch_person_feature_vector(person_id: str) -> np.ndarray:
     db_person_feature_matrix = get_person_feature_matrix()
     existing_person_ids = get_person_ids()
     index = np.where(existing_person_ids == person_id)
-    print(index[0][0])
-    print(db_person_feature_matrix[index[0][0]].shape)
     person_feature_vector = convert_db_array_to_feature_vector(db_person_feature_matrix[index[0][0]])
     return person_feature_vector
 
