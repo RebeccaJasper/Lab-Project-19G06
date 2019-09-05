@@ -220,9 +220,9 @@ def get_submission_feature_matrix() -> np.array:
     :return: Feature vector associated with the specified submission_id
     :rtype: np.array
     """
-    query_string = '''SELECT identikit_markers_new.face_encoding, identikits.race, identikits.gender
+    query_string = '''SELECT identikit_markers.face_encoding, identikits.race, identikits.gender
                         from identikits
-                        left join identikit_markers on identikit_markers_new.submission_id=identikits.submission_id'''
+                        inner join identikit_markers on identikit_markers.submission_id=identikits.submission_id'''
 
     execute_query(query_string, ())
     data = retrieve_all()
@@ -258,38 +258,6 @@ def get_submission_ids() -> np.ndarray:
     submission_ids = retrieve_all()
 
     return submission_ids
-
-def get_valid_submission_ids() -> np.ndarray:
-    """
-    Get all the submission ids from the person database
-
-    :return: Array containing all the submission ids
-    :rtype: np.ndarray
-    """
-    query_string = """SELECT submission_id
-                        FROM identikit_markers_new"""
-    execute_query(query_string, ())
-    submission_ids = retrieve_all()
-
-    return submission_ids
-
-
-def get_correct_persons_id(submission_id: int) -> np.ndarray:
-    """
-    Get all the submission ids from the person database
-
-    :return: Array containing all the submission ids
-    :rtype: np.ndarray
-    """
-    query_string = """SELECT person_id
-                        FROM identikits
-                        WHERE submission_id = '%s'"""
-    execute_query(query_string, submission_id)
-    submission_ids = retrieve_data()
-
-    return submission_ids
-
-
 
 
 def get_persons_biographical_info(person_ids: np.array) -> np.array:
@@ -335,3 +303,30 @@ def get_identikits_biographical_info(submission_ids: np.array) -> np.array:
     else:
         return np.array([])
 
+
+def get_valid_submission_ids() -> np.ndarray:
+    """
+    Get all the submission ids from the person database
+    :return: Array containing all the submission ids
+    :rtype: np.ndarray
+    """
+    query_string = """SELECT submission_id
+                        FROM identikit_markers_new"""
+    execute_query(query_string, ())
+    submission_ids = retrieve_all()
+
+    return submission_ids
+
+def get_correct_persons_id(submission_id: int) -> np.ndarray:
+    """
+    Get all the submission ids from the person database
+    :return: Array containing all the submission ids
+    :rtype: np.ndarray
+    """
+    query_string = """SELECT person_id
+                        FROM identikits
+                        WHERE submission_id = '%s'"""
+    execute_query(query_string, submission_id)
+    submission_ids = retrieve_data()
+
+    return submission_ids

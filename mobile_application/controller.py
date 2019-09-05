@@ -118,6 +118,11 @@ def convert_db_array_to_feature_vector(db_array: np.array) -> np.array:
     :rtype: np.array
     """
     facial_feature_array = convert_feature_string_to_array(db_array[0])
+
+    central_point_coordinate_array = convert_dlib_points_to_coordinate_indexes([33])
+    central_point = Coordinate(facial_feature_array[int(central_point_coordinate_array[0])],
+                               facial_feature_array[int(central_point_coordinate_array[1])])
+
     desired_facial_marker_dlib_points = np.array([0, 4, 6, 10, 12, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
                                                   31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47,
                                                   48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64,
@@ -125,6 +130,14 @@ def convert_db_array_to_feature_vector(db_array: np.array) -> np.array:
 
     desired_facial_marker_points = convert_dlib_points_to_coordinate_indexes(desired_facial_marker_dlib_points)
     facial_feature_array = facial_feature_array[desired_facial_marker_points.astype(int)]
+
+    for n in range(0, facial_feature_array.size, 2):
+        point = Coordinate(facial_feature_array[n], facial_feature_array[n + 1])
+        point = change_coordinate_reference(central_point, point)
+        point = unit_vector(point, central_point)
+
+        facial_feature_array[n] = point.x
+        facial_feature_array[n + 1] = point.y
 
     race_array = create_race_array(int(db_array[1]))
     sex_array = create_sex_array(str(db_array[2]))
@@ -159,12 +172,20 @@ def convert_identikit_array_to_feature_vector(db_array: np.array) -> np.array:
     desired_facial_marker_points = convert_dlib_points_to_coordinate_indexes(desired_facial_marker_dlib_points)
     facial_feature_array = facial_feature_array[desired_facial_marker_points.astype(int)]
 
+    # print("Central point coordinate array")
+    # print(central_point_coordinate_array)
 
     for n in range(0, facial_feature_array.size, 2):
         point = Coordinate(facial_feature_array[n], facial_feature_array[n + 1])
         point = change_coordinate_reference(central_point, point)
         point = unit_vector(point, central_point)
-
+        # print("X-ccordinate: %f" % point.x)
+        # print("Y-ccordinate: %f" % point.y)
+        # if point.x > 0.95:
+            # print("This is the index in the array that's causing nonsense: %d" % n)
+        # if point.y > 0.95:
+            # print("This is the index in the array that's causing nonsense: %d" % n)
+        facial_feature_array[n] = point.x
         facial_feature_array[n+1] = point.y
 
     race_array = create_race_array(int(db_array[1]))
@@ -261,6 +282,7 @@ def get_matching_person_ids(submission_id: str) -> np.array:
     d.add_vector(fetch_submission_feature_vector(submission_id))
     feature_types = np.append(feature_types, np.array(['i']))
     feature_types = np.append(feature_types, np.array(['i']))
+    # print("Length of feature types is: %d" % feature_types.size)
 
     # Perform clustering
     hac = HeirachicalClustering()
@@ -270,16 +292,16 @@ def get_matching_person_ids(submission_id: str) -> np.array:
 
     # Extract person_ids that share the same cluster label as the submission
 
-    print(hac.cluster_indexes())
+    # print(hac.cluster_indexes())
     cluster_label = hac.cluster_indexes()[-2]
-    print("The submission cluster label: %d" % cluster_label)
+    # print("The submission cluster label: %d" % cluster_label)
     indexes = hac.find_cluster_siblings(cluster_label)[0:-2]
-    print("The other indexes: ")
-    print(indexes)
+    # print("The other indexes: ")
+    # print(indexes)
     person_ids = np.array([])
     if indexes.size != 0:
         person_ids = existing_person_ids[indexes]
-    print(person_ids)
+    # print(person_ids)
 
 
     # Convert result to id array
@@ -304,8 +326,8 @@ def get_matching_submission_ids(submission_id: str) -> np.array:
     submission_feature_matrix = processed_submission_feature_matrix()
     feature_types = np.full((1, submission_feature_matrix.shape[0]), 'i', dtype=str)
     db_submission_ids = get_submission_ids()
-    print("The length of the vectors in the feature matrix is: %d" % submission_feature_matrix.shape[1])
-    print("The length of the feature vector being laoded is: %d" % fetch_submission_feature_vector(submission_id).size)
+    # print("The length of the vectors in the feature matrix is: %d" % submission_feature_matrix.shape[1])
+    # print("The length of the feature vector being laoded is: %d" % fetch_submission_feature_vector(submission_id).size)
 
     # Calculate dissimilarity between existing persons and the specified submission id
     d = Dissimilarity()
@@ -320,17 +342,17 @@ def get_matching_submission_ids(submission_id: str) -> np.array:
     # Perform clustering
     hac = HeirachicalClustering()
     hac.cluster(d.distance_matrix(feature_types))
-    hac.plot_dentogram(d.distance_matrix(feature_types))
+    # hac.plot_dentogram(d.distance_matrix(feature_types))
 
     # Extract person_ids that share the same cluster label as the submission
 
-    print(hac.cluster_indexes())
-    print("Number of elements that have been clustered: %d" % hac.cluster_indexes().size)
+    # print(hac.cluster_indexes())
+    # print("Number of elements that have been clustered: %d" % hac.cluster_indexes().size)
     cluster_label = hac.cluster_indexes()[-2]
-    print("The submission cluster label: %d" % cluster_label)
+    # print("The submission cluster label: %d" % cluster_label)
     indexes = hac.find_cluster_siblings(cluster_label)[0:-2].astype(int)
-    print("The other indexes: ")
-    print(indexes)
+    # print("The other indexes: ")
+    # print(indexes)
     submission_ids = np.array([])
     if indexes.size != 0:
         # print("Database Submission IDs length: %d " % db_submission_ids.size)
@@ -428,7 +450,7 @@ def plot_facial_coordinates(submission_id: str, person_id: str) -> None:
     identikit_features = fetch_submission_feature_vector(submission_id)
     x_identikit = 0
     y_identikit = 0
-    print(identikit_features)
+    # print(identikit_features)
 
     for i in range(0, identikit_features.size - 10, 2):
         x_identikit = identikit_features[i]
@@ -438,7 +460,7 @@ def plot_facial_coordinates(submission_id: str, person_id: str) -> None:
     person_features = fetch_person_feature_vector(person_id)
     x_person = 0
     y_person = 0
-    print(person_features)
+    # print(person_features)
 
     for i in range(0, person_features.size - 10, 2):
         x_person = person_features[i]
@@ -454,6 +476,8 @@ def fetch_person_feature_vector(person_id: str) -> np.ndarray:
     db_person_feature_matrix = get_person_feature_matrix()
     existing_person_ids = get_person_ids()
     index = np.where(existing_person_ids == person_id)
+    # print(index[0][0])
+    # print(db_person_feature_matrix[index[0][0]].shape)
     person_feature_vector = convert_db_array_to_feature_vector(db_person_feature_matrix[index[0][0]])
     return person_feature_vector
 

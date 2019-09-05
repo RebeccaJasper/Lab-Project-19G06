@@ -147,12 +147,12 @@ class Dissimilarity(object):
         race_vector_1 = vector_1[feature_vector_indexes["Race"]]
         race_vector_2 = vector_2[feature_vector_indexes["Race"]]
         race_dissimilarity = Dissimilarity.gower_similarity(race_vector_1, race_vector_2, datatype="nominal")
-        dist += race_dissimilarity
+        dist += race_dissimilarity * weights[-2]
 
         gender_vector_1 = vector_1[feature_vector_indexes["Gender"]]
         gender_vector_2 = vector_2[feature_vector_indexes["Gender"]]
         gender_dissimilarity = Dissimilarity.gower_similarity(gender_vector_1, gender_vector_2, datatype="nominal")
-        dist += gender_dissimilarity
+        dist += gender_dissimilarity * weights[-1]
 
         dist = dist/vector_1.size
 

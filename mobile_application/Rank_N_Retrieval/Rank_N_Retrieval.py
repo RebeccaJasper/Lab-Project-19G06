@@ -19,7 +19,7 @@ def convert_person_id(person_id):
         return 1759639
     # White male
     elif person_id == 45457197439853:
-        return 1858561
+        return 1606361
     # White female
     elif person_id == 26753716511442:
         return 1047215
@@ -44,4 +44,4 @@ for submission_id in valid_ids:
     rank_positions = np.append(rank_positions, correct_person_index)
 
 
-np.savetxt("rank_positions.csv", rank_positions, delimiter=",")
+np.savetxt("rank_positions_no_weighting.csv", rank_positions.astype(int), delimiter=",")
