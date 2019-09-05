@@ -34,7 +34,7 @@ def add_image_to_database(person_id: str, filename: str) -> None:
     :type: str
     :rtype: None
     """
-    query_string = ''' INSERT INTO person_photos(person_id, photo)
+    query_string = ''' INSERT INTO person_photos_new(person_id, photo)
                     VALUES ('%s', '%s'); '''
     args = (person_id, photo_to_string(filename))
     execute_query(query_string, args)
@@ -83,7 +83,7 @@ def add_feature_vector_to_db(person_id: str, feature_vector: List[float]) -> Non
     :rtype: None
     """
 
-    query_string = ''' INSERT INTO face_encodings(person_id, face_encodings)
+    query_string = ''' INSERT INTO face_encodings_new(person_id, face_encodings)
                     VALUES ('%s', '%s'); '''
     args = (person_id, convert_list_to_str(feature_vector))
     execute_query(query_string, args)
@@ -135,7 +135,7 @@ def get_random_image() -> Tuple[str, str]:
 
     ids = np.array([54534905784705, 23429344536530, 26753716511442, 45457197439853])
 
-    query_string = '''SELECT * FROM person_photos
+    query_string = '''SELECT * FROM person_photos_new
                     WHERE person_id = '%s'; '''
     arg = ids[randint(0, 3)]
     execute_query(query_string, arg)
@@ -164,7 +164,7 @@ def add_person_info_to_db(person_id: str, firstname: str, surname: str) -> None:
     :type: str
     :rtype: None
     """
-    query_string = """INSERT INTO persons(person_id, firstname, surname)
+    query_string = """INSERT INTO persons_new(person_id, firstname, surname)
                     VALUES ('%s', '%s', '%s');"""
     args = (person_id, firstname, surname)
     execute_query(query_string, args)
@@ -180,9 +180,9 @@ def get_submission_feature_vector(submission_id: int) -> np.array:
     :return: Feature vector associated with the specified submission_id
     :rtype: np.array
     """
-    query_string = '''SELECT identikit_markers.face_encoding, identikits.race, identikits.gender
+    query_string = '''SELECT identikit_markers_new.face_encoding, identikits.race, identikits.gender
                         from identikits
-                        inner join identikit_markers on identikit_markers.submission_id=identikits.submission_id
+                        inner join identikit_markers_new on identikit_markers_new.submission_id=identikits.submission_id
                         where identikits.submission_id=%d'''
 
     arg = int(submission_id)
@@ -192,8 +192,8 @@ def get_submission_feature_vector(submission_id: int) -> np.array:
 
 
 def get_person_ids() -> np.array:
-    query_string = '''SELECT persons.person_id
-                        from persons'''
+    query_string = '''SELECT persons_new.person_id
+                        from persons_new'''
     execute_query(query_string, ())
     data = retrieve_all()
     return np.array(data)
@@ -237,9 +237,9 @@ def get_person_feature_matrix() -> np.ndarray:
     :rtype: np.ndarray
     """
 
-    query_string = '''SELECT face_encodings.face_encoding, persons.race, persons.sex
-                    FROM persons 
-                    inner join face_encodings on face_encodings.person_id = persons.person_id'''
+    query_string = '''SELECT face_encodings_new.face_encoding, persons_new.race, persons_new.sex
+                    FROM persons_new 
+                    inner join face_encodings_new on face_encodings_new.person_id = persons_new.person_id'''
     execute_query(query_string, ())
     data = retrieve_all()
     return np.array(data)
@@ -294,16 +294,16 @@ print(get_correct_persons_id(70))
 
 def get_persons_biographical_info(person_ids: np.array) -> np.array:
     if person_ids.size != 0:
-        query_string = '''SELECT persons.person_id, persons.firstname, persons.surname, persons.sex, persons.race,
-                                person_photos.photo
-                            from persons
-                            inner join person_photos on person_photos.person_id=persons.person_id'''
+        query_string = '''SELECT persons_new.person_id, persons_new.firstname, persons_new.surname, persons_new.sex, persons_new.race,
+                                person_photos_new.photo
+                            from persons_new
+                            inner join person_photos_new on person_photos_new.person_id=persons_new.person_id'''
 
         for i in range(0, len(person_ids)):
             if i == 0:
-                query_string = query_string + "\n WHERE persons.person_id='%s'"
+                query_string = query_string + "\n WHERE persons_new.person_id='%s'"
             elif i != 0:
-                query_string = query_string + "\n OR persons.person_id='%s'"
+                query_string = query_string + "\n OR persons_new.person_id='%s'"
 
         query_string = query_string + ";"
 
