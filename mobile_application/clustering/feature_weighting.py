@@ -10,12 +10,12 @@ feature_vector_indexes = {
 }
 
 all_weights = {
-    "Nose": 1000,
+    "Nose": 1,
     "Eyes": 1,
     "Mouth": 1,
-    "Other_facial_features": 0.8,
-    "Race": 0.0001,
-    "Gender": 0.0001
+    "Other_facial_features": 1,
+    "Race": 1,
+    "Gender": 1
 }
 
 
