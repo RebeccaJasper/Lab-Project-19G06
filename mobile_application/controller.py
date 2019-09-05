@@ -282,6 +282,7 @@ def get_matching_person_ids(submission_id: str) -> np.array:
     d.add_vector(fetch_submission_feature_vector(submission_id))
     feature_types = np.append(feature_types, np.array(['i']))
     feature_types = np.append(feature_types, np.array(['i']))
+
     # print("Length of feature types is: %d" % feature_types.size)
 
     # Perform clustering
@@ -483,3 +484,13 @@ def fetch_person_feature_vector(person_id: str) -> np.ndarray:
 
 
 # plot_facial_coordinates('70', '38876451186475')
+
+def find_index_of_matches_in_persons_matrix(person_ids: np.array)->np.array:
+    person_ids_in_feature_vector = get_person_feature_matrix_ids()
+    indexes = []
+    for person_id in person_ids:
+        for i in range(0, person_ids_in_feature_vector.shape[0]):
+            if person_ids_in_feature_vector[i][0] == person_id:
+                indexes.append(i)
+
+    return np.array(indexes)

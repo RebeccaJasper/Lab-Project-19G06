@@ -244,6 +244,13 @@ def get_person_feature_matrix() -> np.ndarray:
     data = retrieve_all()
     return np.array(data)
 
+def get_person_feature_matrix_ids() -> np.ndarray:
+    query_string = '''SELECT person_id
+                        FROM persons_new'''
+    execute_query(query_string, ())
+    data = retrieve_all()
+    return np.array(data)
+
 
 def get_submission_ids() -> np.ndarray:
     """

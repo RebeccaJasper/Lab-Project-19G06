@@ -14,8 +14,8 @@ all_weights = {
     "Eyes": 1,
     "Mouth": 1,
     "Other_facial_features": 1,
-    "Race": 0,
-    "Gender": 0
+    "Race": 1,
+    "Gender": 1
 }
 
 

@@ -2,6 +2,7 @@ import mobile_application.controller as cnt
 import mobile_application.models as models
 import numpy as np
 
+
 def find_rank_index(person_id_matrix, derisred_person_id):
     for i in range(0, person_id_matrix.shape[0]):
         if person_id_matrix[i] == str(derisred_person_id):
@@ -9,6 +10,7 @@ def find_rank_index(person_id_matrix, derisred_person_id):
 
     else:
         return -1
+
 
 def convert_person_id(person_id):
     # Black male
@@ -44,4 +46,4 @@ for submission_id in valid_ids:
     rank_positions = np.append(rank_positions, correct_person_index)
 
 
-np.savetxt("rank_positions_no_weighting.csv", rank_positions.astype(int), delimiter=",")
+np.savetxt("rank_positions_2_cluster.csv", rank_positions.astype(int), fmt='%i',  delimiter=",")
