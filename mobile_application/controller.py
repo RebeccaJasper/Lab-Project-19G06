@@ -464,8 +464,8 @@ def fetch_person_feature_vector(person_id: str) -> np.ndarray:
     db_person_feature_matrix = get_person_feature_matrix()
     existing_person_ids = get_person_ids()
     index = np.where(existing_person_ids == person_id)
-    print(index[0][0])
-    print(db_person_feature_matrix[index[0][0]].shape)
+    # print(index[0][0])
+    # print(db_person_feature_matrix[index[0][0]].shape)
     person_feature_vector = convert_db_array_to_feature_vector(db_person_feature_matrix[index[0][0]])
     return person_feature_vector
 
@@ -514,4 +514,43 @@ def plot_all_identikit_facial_coordinates() -> None:
 
     return
 
-plot_all_identikit_facial_coordinates()
+# plot_all_identikit_facial_coordinates()
+
+
+
+
+def plot_all_person_facial_coordinates() -> None:
+    plt.figure(figsize=(10, 7))
+    plt.title("Facial coordinates plot")
+
+    person_features = []
+    person_features.append(fetch_person_feature_vector('1921146'))
+    person_features.append(fetch_person_feature_vector('1868096'))
+    person_features.append(fetch_person_feature_vector('1279955'))
+    person_features.append(fetch_person_feature_vector('1467761'))
+    person_features.append(fetch_person_feature_vector('1479521'))
+    person_features.append(fetch_person_feature_vector('1421699'))
+    person_features.append(fetch_person_feature_vector('1858561'))
+    person_features.append(fetch_person_feature_vector('1719363'))
+    person_features.append(fetch_person_feature_vector('1758756'))
+    person_features.append(fetch_person_feature_vector('1088833'))
+    # print(person_features)
+    # person_features = - person_features
+
+    x = 0
+    y = 0
+    num_of_faces = 10
+
+    colours = matplotlib.cm.rainbow(np.linspace(0, 1, num_of_faces))
+
+    for i in range(0, num_of_faces):
+        for j in range(0, len(person_features[i])-10, 2):
+            x = person_features[i][j]
+            y = person_features[i][j+1]
+            plt.scatter(-x, -y, c=colours[i])
+
+    plt.show()
+
+    return
+
+plot_all_person_facial_coordinates()
