@@ -288,7 +288,7 @@ def get_matching_person_ids(submission_id: str) -> np.array:
     # Perform clustering
     hac = HeirachicalClustering()
     hac.cluster(d.distance_matrix(feature_types))
-    # hac.plot_dentogram(d.distance_matrix(feature_types))
+    hac.plot_dentogram(d.distance_matrix(feature_types))
     # plot_facial_coordinates(submission_id, '1759639')
 
     # Extract person_ids that share the same cluster label as the submission
@@ -494,3 +494,15 @@ def find_index_of_matches_in_persons_matrix(person_ids: np.array)->np.array:
                 indexes.append(i)
 
     return np.array(indexes)
+
+def find_distances_in_dissimilarity_matrix(indexes, dissimilarity_matrix):
+    distances = []
+    height_of_matrix = int((-1 + sqrt(1 + 8 * dissimilarity_matrix.size)) / 2)
+    for index in indexes:
+        position = int((index + 1)*(height_of_matrix - 1) - (index * (index + 1))/2) - 1
+        print("The positions of these points are: %d" % position)
+        distances.append(dissimilarity_matrix[position])
+
+    return np.array(distances)
+
+print(find_distances_in_dissimilarity_matrix(np.array([0, 1, 2]), np.array([8, 10, 12, 16, 18, 20])))

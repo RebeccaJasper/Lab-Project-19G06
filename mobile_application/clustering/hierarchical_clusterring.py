@@ -24,7 +24,7 @@ class HeirachicalClustering(object):
         :rtype: None
         """
         dists = squareform(distance_matrix)
-        clustering = AgglomerativeClustering(n_clusters=2, affinity="precomputed", linkage="complete").fit(dists)
+        clustering = AgglomerativeClustering(n_clusters=8, affinity="precomputed", linkage="single").fit(dists)
         self.__cluster_labels = clustering.labels_
         return
 
@@ -38,7 +38,6 @@ class HeirachicalClustering(object):
         :rtype: None
         """
         plt.figure(figsize=(10, 7))
-        plt.title("Dendrogram")
         dists = squareform(distance_matrix)
         linkage_matrix = linkage(dists, "single")
         dendrogram(linkage_matrix)

@@ -46,4 +46,4 @@ for submission_id in valid_ids:
     rank_positions = np.append(rank_positions, correct_person_index)
 
 
-np.savetxt("rank_positions_2_cluster.csv", rank_positions.astype(int), fmt='%i',  delimiter=",")
+np.savetxt("rank_positions_single.csv", rank_positions.astype(int), fmt='%i',  delimiter=",")
